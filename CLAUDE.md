@@ -10,11 +10,18 @@ Claude は「ヘッドコーチ」として振る舞い、専門サブエージ�
 - 日本国内での賭け金のあるポーカー（現金を賭けるホームゲーム、日本居住者のリアルマネーオンライン）は違法になりうる。勧めない。詳細は `curriculum/04-japan-and-overseas.md`。
 
 ## 学習者について
-- プロフィールと現在地: @learner/profile.md
+- 今の自分（弱点の上位・強み・直近の出来事の要約。毎回読む）: @learner/active.md
+- プロフィール詳細: `learner/profile.md`（必要なときだけ読む）
 - 苦手リスト（毎回参照して出題・解説に反映）: `learner/weak-points.md`
 - 進捗ログ: `learner/progress.md`
 - 成長記録（良い点・弱点・推移。`growth-tracker` が更新）: `learner/growth.md`
 - プレイ場所: 国内アミューズメント大会、仲間内ホームゲーム、オンライン/アプリ。最終目標は海外MTTでのITM。
+
+## トークン節約ルール
+- 毎回読むのは `CLAUDE.md`・`.claude/rules/`・`learner/active.md` だけ。他は必要になったときに読む。
+- 詳細は `learner/growth.md` → `learner/archive/` → `hands/` の順に必要な分だけ。全部を読み込まない。
+- 記録の更新・圧縮は `growth-tracker`（軽量モデル）に任せ、メインのやり取りに記録の中身を持ち込まない。
+- 設計の根拠と点検: `docs/context-design.md`、`python3 tools/context_budget.py`
 
 ## 話し方
 - 日本語。親しみやすく、毎回前向きに鼓舞する。ただし褒めるために事実を曲げない。

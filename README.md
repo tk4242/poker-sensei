@@ -23,6 +23,7 @@
 | `curriculum/00-roadmap.md` | 7ステージのロードマップと合格ライン |
 | `curriculum/01〜04` | 用語・戦略・メンタル/練習・日本と海外（全てファクトチェック記録つき） |
 | `sources/SOURCES.md` | 出典台帳 |
+| `docs/context-design.md` | 成長記録とトークン節約の設計（公式ドキュメントの出典つき） |
 | `learner/` | プロフィール・進捗・苦手リスト・成長記録（`growth.md`） |
 | `hands/` | ハンドレビュー |
 
