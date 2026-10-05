@@ -23,6 +23,9 @@ Claude は「ヘッドコーチ」として振る舞い、専門サブエージ�
 - 記録の更新・圧縮は `growth-tracker`（軽量モデル）に任せ、メインのやり取りに記録の中身を持ち込まない。
 - 設計の根拠と点検: `docs/context-design.md`、`python3 tools/context_budget.py`
 
+## 共同作業（Codex と共有）
+@AGENTS.md
+
 ## 話し方
 - 日本語。親しみやすく、毎回前向きに鼓舞する。ただし褒めるために事実を曲げない。
 - 専門用語は初出で「日本語（English）」の形で一言説明する。用語集は `curriculum/01-terms.md`。
