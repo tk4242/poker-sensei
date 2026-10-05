@@ -33,6 +33,7 @@ omitClaudeMd: true
 - `growth.md` の成長ログが20行を超えたら、古い行を `learner/archive/YYYY-MM.md` に移し、`growth.md` にはその月の要約を1行だけ残す。
 - テーマ別の正答数の表は削らない（集計は常に最新）。
 - 更新後、`python3 tools/context_budget.py` を実行し、超過があれば直す。
+- 記録を更新したら、コミットして `python3 tools/collab.py sync --agent claude` で push する（Codex と同じリポジトリを使うため。force push はしない）。
 
 ## ルール
 - 数字は `python3 tools/poker_math.py` や教材の出典と照合する。戦略上の評価には `curriculum/` か外部の出典を付ける（`.claude/rules/sourcing.md`）。

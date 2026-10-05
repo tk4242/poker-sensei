@@ -65,3 +65,4 @@ Claude は「ヘッドコーチ」として振る舞い、専門サブエージ�
 - 数字を使う解説は `tools/poker_math.py` で検算してから書く。
 - 出典を追加したら `sources/SOURCES.md` にも追記する。
 - `learner/` を更新したら日付（YYYY-MM-DD）を入れる。
+- push は `python3 tools/collab.py sync --agent claude` を使う（Codex との衝突防止。詳細は `AGENTS.md`）。
