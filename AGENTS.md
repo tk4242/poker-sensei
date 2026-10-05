@@ -5,12 +5,19 @@ Codex は Git ルートの `AGENTS.md` を読む（出典: https://learn.chatgpt
 
 ## 仕組み（ルールを人任せにしない）
 担当表は `.collab/owners.json`、道具は `tools/collab.py`（テスト: `tests/test_collab.py`）。
-- **push は必ずこれで**: `python3 tools/collab.py sync --agent claude`（Codex は `--agent codex`）。最新を取り込み（rebase）→ 他担当のファイルを触っていないか確認 → テスト → push を行い、拒否されたら取り込み直して最大3回やり直す。**force push は一切しない**。
+- **main へ push するのは Claude だけ**。Codex は自分専用のブランチ `codex/work`（`--branch` で別名も可）へ push し、`main` 宛ての Pull Request を出す。main への直接 push はツールが止める。
+- **push は必ずこれで**: Claude は `python3 tools/collab.py sync --agent claude`、Codex は `python3 tools/collab.py sync --agent codex`。最新の main を取り込み（Claude は rebase、Codex は merge。履歴を書き換えないので force 不要）→ 他担当のファイルを触っていないか確認 → テスト → push を行い、拒否されたら取り込み直して最大3回やり直す。**force push は一切しない**。
+- **認証がなくて push できないとき**（終了コード6）: 認証情報を探したり回避したりせず、そこで止めてユーザーに報告する。
 - **衝突したら**: rebase を中止して手元を元のまま残し、止まる（終了コード3）。双方の意図を残して解決するか、ユーザーに報告する。
 - **他の担当のファイル**を触ると push が止まる（終了コード2）。頼まれて意図的に触るときだけ `--allow-other` を付け、理由をコミットメッセージに書く。
 - 事前確認: `python3 tools/collab.py check --agent codex` / 他の担当の最近の push: `python3 tools/collab.py status`。
 - 任意: `python3 tools/collab.py install-hook` で push 前の確認を自動化（環境変数 `COLLAB_AGENT` を設定）。
 - GitHub 側でも、main への push のたびにテストと文脈サイズの点検が自動で走る（`.github/workflows/check.yml`）。
+
+## Pull Request の流れ（Codex）
+1. 変更をコミットし、`sync --agent codex` で `codex/work` へ push。
+2. GitHub で `codex/work` → `main` の PR を作る（本文の最初に、何を・なぜ変えたかと、出典・テストの結果を書く）。
+3. 内容は Claude の `fact-checker` がレビューし、マージはユーザーが決める。マージ後、Codex は次の作業の前に `sync` で最新の main を取り込む。
 
 ## 基本ルール
 1. 作業を始める前に `python3 tools/collab.py status` で、相手の最近の変更を確認する。

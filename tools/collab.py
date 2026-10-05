@@ -3,7 +3,7 @@
 
 使い方:
   python3 tools/collab.py check --agent codex            # 未pushの変更が他担当のパスを触っていないか確認
-  python3 tools/collab.py sync  --agent claude           # 最新を取り込み(rebase)→確認→テスト→push（force pushはしない）
+  python3 tools/collab.py sync  --agent claude           # 最新を取り込み→確認→テスト→push（force pushはしない。claudeはmain、codexはcodex/workへ）
   python3 tools/collab.py status                         # 他の担当が最近pushした内容を表示
   python3 tools/collab.py install-hook                   # push前に自動で check を実行（環境変数 COLLAB_AGENT で担当を指定）
 
@@ -100,22 +100,52 @@ def cmd_status(args):
     return 0
 
 
+def default_target(agent):
+    """claude は main へ、codex は自分専用ブランチへ push する（main へ直接は push しない）。"""
+    return BRANCH if agent == "claude" else "codex/work"
+
+
+def remote_branch_exists(root, name):
+    return git("ls-remote", "--exit-code", "--heads", REMOTE, name, cwd=root, check=False).returncode == 0
+
+
+def integrate(root, target):
+    """最新を手元に取り込む。main 宛ては rebase（直線の履歴）、作業ブランチ宛ては merge（履歴を書き換えず force 不要）。
+    衝突したら中止して手元を元に戻し、False を返す。"""
+    fetch(root)
+    if target == BRANCH:
+        steps = [("rebase", TRACKING)]
+    else:
+        steps = [("merge", "--no-edit", TRACKING)]
+        if remote_branch_exists(root, target):
+            ref = f"refs/remotes/{REMOTE}/{target}"
+            git("fetch", "-q", REMOTE, f"+refs/heads/{target}:{ref}", cwd=root)
+            steps.append(("merge", "--no-edit", ref))
+    for step in steps:
+        r = git(*step, cwd=root, check=False)
+        if r.returncode != 0:
+            git(step[0], "--abort", cwd=root, check=False)
+            print(r.stdout.strip() + "\n" + r.stderr.strip())
+            return False
+    return True
+
+
 def cmd_sync(args):
     root = repo_root()
     if args.agent not in AGENTS:
         print("--agent claude|codex を指定してください。")
+        return 2
+    target = args.branch or default_target(args.agent)
+    if args.agent == "codex" and target == BRANCH and not args.allow_other:
+        print("codex は main へ直接 push しません。作業ブランチ（既定 codex/work）へ push して PR を出してください。")
         return 2
     if git("status", "--porcelain", cwd=root).stdout.strip():
         print("コミットされていない変更があります。先にコミットしてください。")
         return 2
     owners = load_owners(root)
     for attempt in range(1, args.retries + 1):
-        fetch(root)
-        r = git("rebase", TRACKING, cwd=root, check=False)
-        if r.returncode != 0:
-            git("rebase", "--abort", cwd=root, check=False)
-            print("衝突しました（rebaseを中止し、手元は元のままです）。双方の意図を残して手で解決するか、ユーザーに報告してください。")
-            print(r.stderr.strip())
+        if not integrate(root, target):
+            print("衝突しました（取り込みを中止し、手元は元のままです）。双方の意図を残して手で解決するか、ユーザーに報告してください。")
             return 3
         files = sorted(set(git("diff", "--name-only", f"{TRACKING}...HEAD", cwd=root).stdout.split()))
         bad = violations(files, args.agent, owners)
@@ -132,10 +162,17 @@ def cmd_sync(args):
             if t.returncode != 0:
                 print("テストが失敗しました。push を中止します。\n" + t.stderr[-800:])
                 return 4
-        p = git("push", REMOTE, f"HEAD:{BRANCH}", cwd=root, check=False)  # force は使わない
+        p = git("push", REMOTE, f"HEAD:refs/heads/{target}", cwd=root, check=False)  # force は使わない
         if p.returncode == 0:
-            print(f"push 完了（{len(files)}ファイル）。")
+            print(f"push 完了（{len(files)}ファイル → {target}）。")
+            if target != BRANCH:
+                print(f"次は {BRANCH} 宛ての Pull Request を作成してください（GitHub の画面、または gh pr create）。")
             return 0
+        err = (p.stderr or "").lower()
+        if any(k in err for k in ("authentication", "could not read username", "permission denied", "403", "401")):
+            print("GitHub の認証がなく push できません。認証を探したり回避したりせず、ユーザーに報告してください。")
+            print(p.stderr.strip()[-300:])
+            return 6
         print(f"push が拒否されました（{attempt}/{args.retries}）。最新を取り込み直します。")
     print("再試行の上限に達しました。ユーザーに報告してください。")
     return 5
@@ -166,6 +203,7 @@ def main(argv=None):
         if name == "sync":
             s.add_argument("--no-test", action="store_true")
             s.add_argument("--retries", type=int, default=3)
+            s.add_argument("--branch", help="push 先のブランチ（既定: claude は main、codex は codex/work）")
     s = sub.add_parser("status")
     s.add_argument("-n", type=int, default=5)
     sub.add_parser("install-hook")

@@ -77,15 +77,42 @@ class SyncTests(unittest.TestCase):
     def sync(self, d, agent, *extra):
         return run(sys.executable, "tools/collab.py", "sync", "--agent", agent, *extra, cwd=d)
 
+    def test_codex_pushes_to_branch_not_main(self):
+        self.commit(self.b, "curriculum/new.md", "b", "codex: lesson")
+        r = self.sync(self.b, "codex")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("Pull Request", r.stdout)
+        main_files = run("git", "ls-tree", "-r", "--name-only", "main", cwd=self.remote).stdout
+        self.assertNotIn("curriculum/new.md", main_files)  # main は無傷
+        branch_files = run("git", "ls-tree", "-r", "--name-only", "codex/work", cwd=self.remote).stdout
+        self.assertIn("curriculum/new.md", branch_files)
+
+    def test_codex_cannot_target_main(self):
+        self.commit(self.b, "curriculum/new.md", "b", "codex: lesson")
+        r = self.sync(self.b, "codex", "--branch", "main")
+        self.assertEqual(r.returncode, 2, r.stdout + r.stderr)
+
+    def test_codex_branch_follows_main_without_force(self):
+        self.commit(self.b, "curriculum/one.md", "1", "codex: one")
+        self.assertEqual(self.sync(self.b, "codex").returncode, 0)
+        self.commit(self.a, "learner/growth.md", "a", "claude: log")  # main が先に進む
+        self.assertEqual(self.sync(self.a, "claude").returncode, 0)
+        self.commit(self.b, "curriculum/two.md", "2", "codex: two")
+        r = self.sync(self.b, "codex")  # main を merge で取り込み、同じブランチへ通常push
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        files = run("git", "ls-tree", "-r", "--name-only", "codex/work", cwd=self.remote).stdout
+        for f in ("curriculum/one.md", "curriculum/two.md", "learner/growth.md"):
+            self.assertIn(f, files)
+
     def test_two_agents_interleave_without_force(self):
         self.commit(self.a, "learner/growth.md", "a", "claude: log")
-        self.commit(self.b, "curriculum/new.md", "b", "codex: lesson")
+        self.commit(self.b, "curriculum/new.md", "b", "claude2: lesson")
         ra = self.sync(self.a, "claude")
         self.assertEqual(ra.returncode, 0, ra.stdout + ra.stderr)
-        rb = self.sync(self.b, "codex")  # 手元が遅れているので rebase してから push される
+        rb = self.sync(self.b, "claude")  # 手元が遅れているので rebase してから push される
         self.assertEqual(rb.returncode, 0, rb.stdout + rb.stderr)
         log = run("git", "log", "--oneline", "--format=%s", cwd=self.remote).stdout.split("\n")
-        self.assertEqual(log[:2], ["codex: lesson", "claude: log"])  # 直線の履歴、どちらも残る
+        self.assertEqual(log[:2], ["claude2: lesson", "claude: log"])  # 直線の履歴、どちらも残る
 
     def test_other_agents_files_are_refused(self):
         self.commit(self.b, "learner/growth.md", "x", "codex: touches claude area")
@@ -94,6 +121,7 @@ class SyncTests(unittest.TestCase):
         self.assertIn("learner/growth.md", r.stdout)
         remote_files = run("git", "ls-tree", "-r", "--name-only", "main", cwd=self.remote).stdout
         self.assertNotIn("learner/growth.md", remote_files)
+        self.assertNotEqual(run("git", "rev-parse", "--verify", "-q", "codex/work", cwd=self.remote).returncode, 0)
 
     def test_allow_other_overrides(self):
         self.commit(self.b, "learner/growth.md", "x", "codex: sanctioned")
@@ -104,7 +132,7 @@ class SyncTests(unittest.TestCase):
         self.commit(self.a, "curriculum/same.md", "from claude", "claude edit")
         self.commit(self.b, "curriculum/same.md", "from codex", "codex edit")
         self.assertEqual(self.sync(self.a, "claude").returncode, 0)
-        r = self.sync(self.b, "codex")
+        r = self.sync(self.b, "codex")  # main に入った変更と衝突
         self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
         self.assertEqual((self.b / "curriculum" / "same.md").read_text(), "from codex")  # 手元は無傷
         self.assertEqual(run("git", "status", "--porcelain", cwd=self.b).stdout.strip(), "")
