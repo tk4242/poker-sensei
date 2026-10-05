@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% from "_macros.html" import bars with context %}
+{% block body %}
+<h1>記録</h1>
+<div class="grid">
+  <div class="stat"><div class="k">実戦セッション</div><div class="v">{{ ss.n }}</div><div class="muted small">ITM {{ ss.itm }}回{% if ss.n %}（{{ (ss.itm_rate * 100)|round|int }}%）{% endif %}</div></div>
+  <div class="stat"><div class="k">プレイ時間</div><div class="v">{{ ss.hours|round(1) }}<span class="muted">h</span></div></div>
+  <div class="stat"><div class="k">今月の勉強</div><div class="v">{{ study_month }}<span class="muted">分</span></div></div>
+  <div class="stat"><div class="k">解いた問題</div><div class="v">{{ totals.n }}</div></div>
+</div>
+<p><a class="btn" href="{{ url_for('records.session_form') }}">＋ プレイを記録</a> <a class="btn ghost" href="{{ url_for('records.hand_form') }}">＋ ハンドを記録</a></p>
+
+<div class="panel"><h2>直近30日の問題数</h2>{{ bars(days) or '<p class="muted">まだありません</p>'|safe }}
+{% if tags %}<div class="scroll"><table><tr><th>テーマ（直近90日）</th><th>正解/出題</th><th>正答率</th></tr>
+{% for t in tags %}<tr><td><a href="{{ url_for('practice.tag', tag=t.tag) }}">{{ t.name }}</a></td><td>{{ t.c }}/{{ t.n }}</td><td class="{{ 'bad' if t.acc < 0.7 else 'ok' }}">{{ (t.acc * 100)|round|int }}%</td></tr>{% endfor %}
+</table></div>{% endif %}
+</div>
+
+<div class="panel"><h2>実戦セッション</h2>
+{% if sessions %}<div class="scroll"><table><tr><th>日付</th><th>場所</th><th>順位</th><th>ITM</th><th>体調</th><th>ティルト</th></tr>
+{% for s in sessions %}<tr><td><a href="{{ url_for('records.session_form', sid=s.id) }}">{{ s.date }}</a></td><td>{{ venues.get(s.venue, s.venue) }}<br><span class="muted small">{{ s.event }}</span></td>
+<td>{{ s.finish or '-' }}/{{ s.entries or '-' }}</td><td>{{ '○' if s.itm else '×' }}</td><td>{{ s.condition or '-' }}</td><td>{{ s.tilt or 0 }}</td></tr>{% endfor %}
+</table></div>{% else %}<p class="muted">まだありません。プレイしたら、結果より「判断の質」を記録しましょう。</p>{% endif %}
+</div>
+
+<div class="panel"><h2>ハンド</h2>
+{% if hands %}<ul class="list">{% for h in hands %}<li><a href="{{ url_for('records.hand_view', hid=h.id) }}">{{ h.date }} {{ h.title }}</a>
+<span class="muted small">{{ h.hero_pos }} {{ h.hero_cards }}{% if h.self_review %}・自己レビュー済{% endif %}{% if h.ai_review %}・AIレビュー済{% endif %}</span></li>{% endfor %}</ul>
+{% else %}<p class="muted">気になったハンドを記録して、自己レビュー → AI（またはチャットの /hand-review）で検討しましょう。</p>{% endif %}
+</div>
+
+<div class="panel"><h2>勉強時間</h2>
+<form method="post" action="{{ url_for('records.study') }}" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<div class="row3"><label>日付<input type="date" name="date"></label><label>分<input type="number" name="minutes" min="1" required></label><label>内容<input type="text" name="topic" placeholder="例: 動画、ソルバー"></label></div>
+<p><button class="btn small" type="submit">記録</button></p></form>
+{% if study %}<ul class="list small">{% for s in study %}<li>{{ s.date }} {{ s.minutes }}分 {{ s.topic }}</li>{% endfor %}</ul>{% endif %}
+</div>
+<p><a href="{{ url_for('main.export_page') }}">チャットのコーチに渡す要約 →</a></p>
+{% endblock %}

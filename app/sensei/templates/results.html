@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% from "_macros.html" import table, cards_block, label_tag, sources with context %}
+{% block title %}結果 | ポーカー先生{% endblock %}
+{% block body %}
+{% set r = b.result %}
+<h1>{{ b.title }}</h1>
+<div class="panel">
+  <div class="big-score {{ 'pass' if r.passed or (r.passed is none and r.score / r.total >= 0.8) else 'fail' }}">{{ r.score }} / {{ r.total }}</div>
+  {% if r.passed is true %}<p class="ok">🎉 合格！ 合格ラインをクリアしました。この調子で次へ。</p>
+  {% elif r.passed is false %}<p class="bad">あと {{ req.pass - r.score }} 問。間違えた問題は復習に入りました。解説を読んでから、もう一度挑戦しましょう。</p>
+  {% elif b.mode == 'lesson' %}{% if r.score / r.total >= 0.8 %}<p class="ok">レッスン完了！ 次のレッスンへ進みましょう。</p>{% else %}<p class="bad">8割に届かず。本文を読み直して、もう一度。</p>{% endif %}
+  {% else %}<p>{% if r.score == r.total %}全問正解、お見事！{% elif r.score / r.total >= 0.6 %}いい感じ。間違えた問題は復習に入りました。{% else %}伸びしろです。解説を読んで、もう1セットいきましょう。{% endif %}</p>{% endif %}
+  <p>
+    {% if b.req_id %}<a class="btn" href="{{ url_for('practice.exam', req_id=b.req_id) }}">もう一度受ける</a>{% endif %}
+    {% if b.lesson_id %}<a class="btn" href="{{ url_for('practice.lesson', lesson_id=b.lesson_id) }}">もう一度</a> <a class="btn ghost" href="{{ url_for('learn.lesson', lesson_id=b.lesson_id) }}">レッスンに戻る</a>{% endif %}
+    <a class="btn ghost" href="{{ url_for('main.home') }}">ホーム</a>
+  </p>
+</div>
+{% for item, res in pairs %}
+<div class="q">
+  <div class="num">第{{ loop.index }}問
+    {% if res.ok %}<span class="ok">○ 正解</span>{% elif res.slow %}<span class="bad">△ 正解だが時間切れ（{{ (res.ms / 1000)|round(1) }}秒）</span>{% elif res.dontknow %}<span class="bad">？ わからない</span>{% else %}<span class="bad">× 不正解</span>{% endif %}
+    {% if res.ms %}<span class="muted small">{{ (res.ms / 1000)|round(1) }}秒</span>{% endif %}
+    {{ label_tag(item.label) }}
+  </div>
+  <div class="text">{{ item.q }}</div>
+  {{ cards_block(item.get('cards')) }}
+  {{ table(item.get('diagram'), reveal=true) }}
+  <div class="choices">
+    {% for c in item.choices %}
+      <label class="{{ 'right' if loop.index0 == item.answer else ('wrong' if loop.index0 == res.chosen else '') }}">{{ c }}{% if loop.index0 == item.answer %} ✔{% endif %}</label>
+    {% endfor %}
+  </div>
+  <div class="explain">
+    <p>{{ item.explain }}</p>
+    <div class="why"><b>なぜ学ぶ？</b> {{ item.why }}</div>
+    {{ sources(item.source) }}
+    <p class="small muted">教材: {{ item.ref }}</p>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

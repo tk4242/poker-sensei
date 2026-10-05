@@ -1,0 +1,591 @@
+[
+  {
+    "id": "s6-mental-001",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "inchworm"
+    ],
+    "q": "Jared Tendler のインチワーム（尺取り虫）モデルで、安定して上達するために大切とされることは？",
+    "choices": [
+      "Aゲームを伸ばすだけでなく、Cゲーム（最低ライン）を引き上げる",
+      "Aゲーム（最高の状態）だけをひたすら伸ばす",
+      "Cゲームのときだけプレイする",
+      "調子の波は気にせず、プレイ量だけを増やす"
+    ],
+    "answer": 0,
+    "explain": "インチワームモデルでは、尺取り虫が前を伸ばして固定し後ろを引き寄せるように、Cゲーム（最悪の状態）を引き上げることで安定して上達します。Aだけ伸ばすと幅が広がり成績が不安定になります。",
+    "why": "最高の日を増やすより、最悪の日のミス（怒りのオールインなど）を減らすほうが、成績が安定しやすいと分かります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: The Inchworm Concept",
+        "url": "https://jaredtendler.com/the-inchworm-concept/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-mental-002",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "abc-game"
+    ],
+    "q": "Tendler の説明で、Cゲームとはどんな状態？",
+    "choices": [
+      "自分の最高の状態",
+      "自分のパフォーマンスの幅のうち最悪の状態（集中散漫・ティルト等）",
+      "平均的な普段の状態",
+      "Cランクの大会に出ている状態"
+    ],
+    "answer": 1,
+    "explain": "自分のパフォーマンスには幅（ベルカーブ）があり、A＝最高の状態、C＝最悪の状態（集中散漫・ティルト等）です。",
+    "why": "今の自分がどの状態かに気づけると、Cゲームで出やすいミスを意識して防げます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: The Inchworm Concept",
+        "url": "https://jaredtendler.com/the-inchworm-concept/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-mental-003",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "tilt"
+    ],
+    "q": "バッドビート（有利だったのに逆転負け）で「不公平だ」と怒りがわいた。Tendler の7種のティルト（tilt / 感情で判断が崩れる状態）のうち主にどれ？",
+    "choices": [
+      "Entitlement（特権意識）",
+      "Mistake（自分のミスへの怒り）",
+      "Injustice（不公平感）",
+      "Revenge（特定相手への報復）"
+    ],
+    "answer": 2,
+    "explain": "バッドビート由来の怒りは主に Injustice tilt（不公平感）です。連続した不運によるものは Running Bad tilt と呼びます。",
+    "why": "ティルトの種類に名前をつけられると、セッション後の振り返りで「自分がどこで崩れやすいか」が見えてきます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: Surprising Facts About Tilt",
+        "url": "https://jaredtendler.com/surprising-facts-about-tilt/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-mental-004",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "tilt"
+    ],
+    "q": "特定の相手にやられて「次は絶対やり返す」と思ってしまう。Tendler の7種のティルトのうちどれ？",
+    "choices": [
+      "Desperation（負けを取り返そうと焦る）",
+      "Hate-Losing（負けること自体が嫌）",
+      "Running Bad（不運の連続）",
+      "Revenge（特定相手への報復）"
+    ],
+    "answer": 3,
+    "explain": "Revenge tilt は特定の相手への報復の気持ちからくるティルトです。",
+    "why": "特定の相手に対して無理なプレイが増えていないかを、自分で点検できるようになります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: Surprising Facts About Tilt",
+        "url": "https://jaredtendler.com/surprising-facts-about-tilt/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-mental-005",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "tilt"
+    ],
+    "q": "負けを早く取り返そうと焦って、普段は出ない高額の大会や追加エントリーをしてしまう。Tendler の7種のティルトのうちどれ？",
+    "choices": [
+      "Desperation（負けを取り返そうと焦る）",
+      "Entitlement（「自分の方が上手いのに」という特権意識）",
+      "Mistake（自分のミスへの怒り）",
+      "Injustice（不公平感）"
+    ],
+    "answer": 0,
+    "explain": "Desperation tilt は、負けを取り返そうとする焦りからくるティルトです。",
+    "why": "負けを取り返そうとする焦りに名前をつけておくと、バンクロール（大会資金）を崩す前に気づけます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: Surprising Facts About Tilt",
+        "url": "https://jaredtendler.com/surprising-facts-about-tilt/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-mental-006",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "mhh"
+    ],
+    "q": "Tendler 本人の現行版メンタル・ハンドヒストリー（MHH）の5ステップで、最初のステップは？",
+    "choices": [
+      "その誤った論理への修正（Correction）を考える",
+      "問題（ミス）をできるだけ詳しく書く",
+      "修正がなぜ正しいのか説明する",
+      "なぜ自分がそう考え・感じ・行動するのが理にかなっているのか説明する"
+    ],
+    "answer": 1,
+    "explain": "現行版の5ステップは、①問題をできるだけ詳しく書く ②なぜそう考え・感じ・行動するのが理にかなっているのか説明 ③その論理のどこが間違っているか説明 ④修正を考える ⑤修正がなぜ正しいか説明、です。",
+    "why": "同じメンタルのミスを繰り返さないための、具体的な書き方の型が手に入ります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: Find the \"Rocks\" in Your Mind",
+        "url": "https://jaredtendler.com/find-the-rocks-in-your-mind/"
+      },
+      {
+        "title": "888poker: An Important Update to TMGP (Jared Tendler)",
+        "url": "https://www.888poker.com/magazine/poker-mental-strategy/an-important-update-to-tmgp"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-mental-007",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "mhh"
+    ],
+    "q": "Tendler の現行版MHHで、2番目のステップは？",
+    "choices": [
+      "修正を短い言葉にまとめてプレイ中に使う",
+      "問題（ミス）をできるだけ詳しく書く",
+      "なぜ自分がそう考え・感じ・行動するのが「理にかなっている」のか説明する",
+      "ステップ2の論理のどこが間違っているか説明する"
+    ],
+    "answer": 2,
+    "explain": "現行版の2番目は「なぜ自分がそう考え・感じ・行動するのは理にかなっているのか説明する」です。いきなり否定せず、まず理由を理解するのがポイントです。3番目でその論理の誤りを説明します。",
+    "why": "自分を責めるだけでは同じミスが繰り返されます。理由から分析する手順を知ると、改善が続きます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: Find the \"Rocks\" in Your Mind",
+        "url": "https://jaredtendler.com/find-the-rocks-in-your-mind/"
+      },
+      {
+        "title": "888poker: An Important Update to TMGP (Jared Tendler)",
+        "url": "https://www.888poker.com/magazine/poker-mental-strategy/an-important-update-to-tmgp"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-mental-008",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "learning"
+    ],
+    "q": "「学習の4段階」の正しい順番は？",
+    "choices": [
+      "意識的無能 → 無意識的無能 → 意識的有能 → 無意識的有能",
+      "無意識的無能 → 意識的有能 → 意識的無能 → 無意識的有能",
+      "無意識的有能 → 意識的有能 → 意識的無能 → 無意識的無能",
+      "無意識的無能 → 意識的無能 → 意識的有能 → 無意識的有能"
+    ],
+    "answer": 3,
+    "explain": "学習の4段階は、無意識的無能→意識的無能→意識的有能→無意識的有能です。元は一般的な「能力の4段階」モデルで、Tendler がポーカー学習に応用しています。",
+    "why": "「分からないことが分かってきた」段階は前進のしるしです。伸び悩みに見える時期も成長の途中だと理解できます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Poker Playbook: Tendler Mental Game of Poker Summary",
+        "url": "https://blog.pokerplaybook.pro/en/blog/tendler-mental-game-poker-summary/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-1"
+  },
+  {
+    "id": "s6-bankroll-001",
+    "stage": 6,
+    "tags": [
+      "bankroll",
+      "mtt"
+    ],
+    "q": "PokerListings が推奨する、ライブトーナメント向けのバンクロール（大会資金）の目安は？",
+    "choices": [
+      "100〜120バイイン",
+      "5〜10バイイン",
+      "20〜30バイイン",
+      "1,000バイイン以上"
+    ],
+    "answer": 0,
+    "explain": "PokerListings は、ライブトーナメントで100〜120バイイン、オンラインMTT（非ターボ）で150〜300バイインを推奨しています。出典によって推奨幅には差があります（vip-grinders は100〜200）。",
+    "why": "参加費（バイイン）の何倍の資金を持っておくかを決めておくと、負けが続いても無理をせずに済みます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "PokerListings: Bankroll Management",
+        "url": "https://www.pokerlistings.com/poker-strategies/bankroll-management"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-2"
+  },
+  {
+    "id": "s6-bankroll-002",
+    "stage": 6,
+    "tags": [
+      "bankroll",
+      "variance"
+    ],
+    "q": "vip-grinders によると、ROI 15%のプレイヤーでも起こりうることは？",
+    "choices": [
+      "毎大会必ず入賞する",
+      "50大会以上キャッシュ（入賞）なし",
+      "10大会に1回は必ず優勝する",
+      "負けが3大会以上続くことはない"
+    ],
+    "answer": 1,
+    "explain": "vip-grinders は、ROI（投資収益率）15%のプレイヤーでも50大会以上キャッシュなしはあり得るとしています。",
+    "why": "入賞できない期間が続いても、すぐに実力不足と決めつけずに、判断の質で振り返ることができます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "VIP-Grinders: Bankroll Management",
+        "url": "https://www.vip-grinders.com/poker-strategy/bankroll-management/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-2"
+  },
+  {
+    "id": "s6-bankroll-003",
+    "stage": 6,
+    "tags": [
+      "bankroll",
+      "variance"
+    ],
+    "q": "vip-grinders によると、MTTに必要なバンクロールは、同じくらいのステークのキャッシュゲームと比べて？",
+    "choices": [
+      "約半分",
+      "ほぼ同じ",
+      "約3〜5倍",
+      "約100倍"
+    ],
+    "answer": 2,
+    "explain": "vip-grinders の分散計算機の解説では、MTTは同等ステークのキャッシュの約3〜5倍のバンクロールが必要とされています。賞金構造がトップヘビー（上位に集中）で、長い負け期間が普通だからです。",
+    "why": "MTTの資金は多めに見ておく必要があると分かり、生活費に手をつけるような無理を防げます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "VIP-Grinders: MTT Variance Calculator",
+        "url": "https://www.vip-grinders.com/poker-calculators/mtt-variance-calculator/"
+      },
+      {
+        "title": "DeucesCracked: MTT Bankroll 2026",
+        "url": "https://www.deucescracked.com/blog/bankroll-management-online-mtt-grinders-2026-guide"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-2"
+  },
+  {
+    "id": "s6-mental-009",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "routine"
+    ],
+    "q": "Tendler の「勝てるルーティン」で、セッション後のクールダウンでやることは？",
+    "choices": [
+      "すぐに次の大会に登録する",
+      "結果の金額だけを記録する",
+      "何も考えずにすぐ寝て、記録はしない",
+      "戦略・技術・メンタル面の学びを書き出す（感情が大きく動いた日はMHH、最低でもブレインダンプ）"
+    ],
+    "answer": 3,
+    "explain": "クールダウンでは戦略・技術・メンタル面の学びを書き出します。感情が大きく動いた日はMHH、最低でもブレインダンプ（頭の中を書き出す）を行い、所要は5〜10分または20〜30分です。記憶は時間とともに消えるので書くことが重要です。",
+    "why": "プレイの直後にしか残っていない気づきを記録できると、次のセッションに確実につながります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: Building a Winning Routine",
+        "url": "https://jaredtendler.com/building-a-winning-routine/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-3"
+  },
+  {
+    "id": "s6-mental-010",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "routine"
+    ],
+    "q": "Tendler の「勝てるルーティン」で、セッション前のウォームアップに含まれるものは？",
+    "choices": [
+      "ティルトが起きたとき用の「修正ロジック」を手元に用意する",
+      "前回負けた分を取り返す目標額を決める",
+      "できるだけ多くの大会に同時登録する",
+      "ルーティンは上級者だけがやるので飛ばす"
+    ],
+    "answer": 0,
+    "explain": "ウォームアップは、気が散る要素の排除、意思決定プロセスの復習、今日の戦略プランと調整点の確認、ティルトが起きたとき用の修正ロジックを手元に用意すること、とされています。",
+    "why": "プレイ前に準備をしておくと、崩れそうになったときに立て直しやすくなります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Jared Tendler: Building a Winning Routine",
+        "url": "https://jaredtendler.com/building-a-winning-routine/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-3"
+  },
+  {
+    "id": "s6-mental-011",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "sleep"
+    ],
+    "q": "Frontiers in Psychiatry の研究（オンラインポーカー常連23名・28日間）で、起床から16時間以上たって終えたセッションでは何が起きた？",
+    "choices": [
+      "ティルトが減り、成績が良くなった",
+      "感情的・行動的ティルトが高くなり、純損益も有意に悪化した",
+      "認知的ティルトだけが大きく増えた",
+      "ティルトにも成績にも何の差もなかった"
+    ],
+    "answer": 1,
+    "explain": "この研究では、起床から16時間以上経過して終了したセッションで、感情的・行動的ティルト（および総ティルト）が高く、純損益も有意に悪化しました。認知的ティルトには有意差がありませんでした。",
+    "why": "社会人は平日夜の深夜MTTで睡眠不足になりやすいです。セッションの時間帯を決める根拠になります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Frontiers in Psychiatry: Sleep or Play Online Poker?",
+        "url": "https://www.frontiersin.org/journals/psychiatry/articles/10.3389/fpsyt.2020.600092/full"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-4"
+  },
+  {
+    "id": "s6-mental-012",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "resulting"
+    ],
+    "q": "Annie Duke『Thinking in Bets』の「Resulting（結果論）」とは？",
+    "choices": [
+      "結果をくわしく記録すること",
+      "確率で考えること",
+      "結果だけで判断の良し悪しを評価してしまう誤り",
+      "仲間と正確さを大事にして話し合うこと"
+    ],
+    "answer": 2,
+    "explain": "Resulting は結果だけで判断の良し悪しを評価する誤りです。良い判断でも運で負け、悪い判断でも運で勝つので、プロセスを評価します。",
+    "why": "バッドビートで負けた正しいコールを「失敗」と思い込まず、正しい判断を続けられるようになります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Graham Mann: Thinking in Bets notes",
+        "url": "https://grahammann.net/book-notes/thinking-in-bets-annie-duke"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-5"
+  },
+  {
+    "id": "s6-mental-013",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "resulting"
+    ],
+    "q": "オールインの時点で自分のエクイティ（勝率の取り分）が大きく有利だったが、リバーで逆転負けした。このプレイの評価として教材の考え方に合うのは？",
+    "choices": [
+      "負けたので間違った判断だった",
+      "結果が出るまで判断の良し悪しは決められない",
+      "逆転されたので次から同じ場面ではフォールドすべき",
+      "その時点の情報で有利だったので、正しい判断だった"
+    ],
+    "answer": 3,
+    "explain": "判断の評価は結果ではなく「その時点の情報での判断」で行います。オールイン時のエクイティが有利なら正しいベットです（Duke の考え方を教材で整理）。",
+    "why": "短期の結果で戦略を変えてしまうミスを防ぎ、長期で勝てる判断を続けられます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "Graham Mann: Thinking in Bets notes",
+        "url": "https://grahammann.net/book-notes/thinking-in-bets-annie-duke"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-6"
+  },
+  {
+    "id": "s6-mental-014",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "variance"
+    ],
+    "q": "GTO Wizard によると、一般的なMTTの典型的な配当構造では、参加者のどのくらいに賞金が支払われる？",
+    "choices": [
+      "15〜20%",
+      "約1%",
+      "約50%",
+      "約80%"
+    ],
+    "answer": 0,
+    "explain": "典型的な構造は参加者の15〜20%に支払い、賞金の大半はファイナルテーブルへ（上位3名で約30〜40%）とされています。",
+    "why": "入賞できるのは5〜7人に1人程度だと知っておくと、入賞できない日が多いのは当然だと受け止められます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "GTO Wizard: How Payout Structures Impact ICM",
+        "url": "https://blog.gtowizard.com/how-payout-structures-impact-icm/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md D"
+  },
+  {
+    "id": "s6-mental-015",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "variance",
+      "calc"
+    ],
+    "q": "入賞率15%で、大会結果がそれぞれ独立と仮定する。10大会連続でノーキャッシュ（入賞なし）になる確率はおよそ？",
+    "choices": [
+      "約1.5%",
+      "約19.7%",
+      "約50%",
+      "約85%"
+    ],
+    "answer": 1,
+    "explain": "0.85 の10乗 ≒ 0.197 なので約19.7% です（python3 で検算）。平均的な実力でも、5回に1回くらいは10大会連続で入賞なしが起こりえます。",
+    "why": "連続で入賞できなくても珍しくないと数字で分かると、焦りによるティルトを防げます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "VIP-Grinders: MTT Variance Calculator",
+        "url": "https://www.vip-grinders.com/poker-calculators/mtt-variance-calculator/"
+      },
+      {
+        "title": "GTO Wizard: How Payout Structures Impact ICM",
+        "url": "https://blog.gtowizard.com/how-payout-structures-impact-icm/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md D"
+  },
+  {
+    "id": "s6-mental-016",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "study"
+    ],
+    "q": "Dara O'Kearney が勧める、初心者の勉強とプレイの比率は？",
+    "choices": [
+      "勉強20 / プレイ80",
+      "勉強50 / プレイ50",
+      "勉強80 / プレイ20",
+      "勉強0 / プレイ100"
+    ],
+    "answer": 2,
+    "explain": "O'Kearney は初心者に勉強80/プレイ20を勧め、現ステークで勝てるようになったら理想50/50、最低でも勉強20%としています。ライブ中心のプレイヤーはオンラインより多く勉強すべきとも述べています。",
+    "why": "限られた時間をどう配分するかの目安になり、プレイばかりで成長が止まるのを防げます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "PokerStrategy: What should your study-to-play ratio be? (Dara O'Kearney)",
+        "url": "https://www.pokerstrategy.com/news/content/What-should-your-study-to-play-ratio-be_130067/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md B-1"
+  },
+  {
+    "id": "s6-mental-017",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "study"
+    ],
+    "q": "O'Kearney によると、ライブ中心のプレイヤーがオンライン中心のプレイヤーより多く勉強すべき理由は？",
+    "choices": [
+      "ライブの方がルールが難しいため",
+      "ライブではソルバーが使えるため",
+      "ライブの方が大会数が多いため",
+      "バイインが高く、改善の価値が大きいため"
+    ],
+    "answer": 3,
+    "explain": "O'Kearney は、ライブ中心のプレイヤーはバイインが高く改善の価値が大きいので、オンラインより多く勉強すべきとしています。",
+    "why": "海外ライブMTTを目標にするなら、1回の大会の重みが大きいので事前の勉強が特に大事だと分かります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "PokerStrategy: What should your study-to-play ratio be? (Dara O'Kearney)",
+        "url": "https://www.pokerstrategy.com/news/content/What-should-your-study-to-play-ratio-be_130067/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md B-1"
+  },
+  {
+    "id": "s6-mental-018",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "hand-review"
+    ],
+    "q": "SplitSuit のハンドヒストリー・レビュー手順で、最初にやることは？",
+    "choices": [
+      "記録（日付・ポジション・スタック・ホールカード・全アクションとサイズなど）",
+      "フォーラムやコーチに相談してリークを特定する",
+      "スタックや相手タイプを変えて応用する",
+      "結果だけを見て良かったか悪かったかを決める"
+    ],
+    "answer": 0,
+    "explain": "SplitSuit の手順は、①記録 ②一次分析（ポットサイズ、SPR、計算ツールで検証）③分岐点の特定 ④リーク特定 ⑤二次分析（変数を変えて応用）です。まず正確な記録から始めます。",
+    "why": "記録が不正確だと、レビューの結論も間違います。正しい手順を知れば、毎週のハンドレビューが効率よく進みます。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "SplitSuit: Review your own poker hands",
+        "url": "https://www.splitsuit.com/review-own-poker-hands-and-practice"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md B-2"
+  },
+  {
+    "id": "s6-mental-019",
+    "stage": 6,
+    "tags": [
+      "mental",
+      "hand-review"
+    ],
+    "q": "SplitSuit のレビュー手順の「一次分析」でやることは？",
+    "choices": [
+      "その日の気分を書き出す",
+      "ポットサイズやSPRを出し、各判断を計算ツールで検証する（直感に頼らない）",
+      "勝ったハンドだけを選んで見直す",
+      "相手の名前と特徴だけを記録する"
+    ],
+    "answer": 1,
+    "explain": "一次分析では、ポットサイズ、SPR、各判断を計算ツールで検証し、直感に頼らないことが求められます。",
+    "why": "感覚ではなく数字でハンドを振り返る習慣が、間違った知識を身につけないための防波堤になります。",
+    "label": "MENTAL",
+    "source": [
+      {
+        "title": "SplitSuit: Review your own poker hands",
+        "url": "https://www.splitsuit.com/review-own-poker-hands-and-practice"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md B-2"
+  }
+]

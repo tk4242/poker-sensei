@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "_macros.html" import table with context %}
+{% block body %}
+<p class="small"><a href="{{ url_for('learn.stage', n=s.stage) }}">← Stage {{ s.stage }}</a></p>
+<h1>{{ le.id }} {{ le.title }}</h1>
+{% if done %}<p class="ok">✔ 完了（理解チェック {{ done.score }}/{{ done.total }}）</p>{% endif %}
+{% if diagrams %}
+<div class="panel">
+  <h2>図で覚える（D＝ディーラーボタン、時計回りに行動）</h2>
+  {% for d in diagrams %}{{ table(d) }}{% endfor %}
+  <p class="small">合言葉: <b>BTN の左が SB、その左が BB、その左が UTG</b>。<b>CO はボタンの右隣</b>。フロップ以降は <b>後に動けるのが IP（有利）</b>。</p>
+</div>
+{% endif %}
+<div class="panel doc">{{ body|safe }}</div>
+<p class="panel"><a class="btn" href="{{ url_for('practice.lesson', lesson_id=le.id) }}">理解チェック（5問）へ</a>
+<span class="muted small">8割で完了。間違えた問題は復習に入ります。</span></p>
+{% endblock %}

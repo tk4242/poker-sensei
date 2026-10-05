@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<p class="small"><a href="{{ url_for('learn.stage', n=s.stage) }}">← Stage {{ s.stage }}</a></p>
+<h1>昇段試験</h1>
+<div class="panel">
+  <h2>{{ req.label }}</h2>
+  <p>{{ req.n }} 問中 <b>{{ req.pass }} 問以上</b>で合格{% if req.time_limit_s %}（各問 <b>{{ req.time_limit_s }} 秒以内</b>に正解した問題だけ数えます）{% endif %}。</p>
+  {% if req.note %}<div class="warn small">{{ req.note }}</div>{% endif %}
+  {% if status.tries %}<p class="muted">これまで {{ status.tries }} 回・最高 {{ status.best }} 点{% if status.passed %}・<span class="ok">合格済み</span>{% endif %}</p>{% endif %}
+  <form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn" type="submit">始める</button></form>
+  <p class="muted small">解説は最後にまとめて出ます。間違えた問題は復習に入ります。</p>
+</div>
+{% endblock %}

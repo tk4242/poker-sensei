@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "_macros.html" import bars, meter with context %}
+{% block body %}
+<p class="cheer">{{ cheer }}</p>
+<div class="grid">
+  <div class="stat"><div class="k">今日</div><div class="v">{{ today_n }}<span class="muted"> / {{ quota }}問</span></div><div class="ok">{{ meter(today_n, quota) }}</div></div>
+  <div class="stat"><div class="k">連続ノルマ達成</div><div class="v">{{ streak }}<span class="muted">日</span></div></div>
+  <div class="stat"><div class="k">復習待ち</div><div class="v">{{ due }}<span class="muted">問</span></div></div>
+  <div class="stat"><div class="k">累計正答率</div><div class="v">{% if totals.n %}{{ (totals.c / totals.n * 100)|round|int }}%{% else %}-{% endif %}</div><div class="muted small">{{ totals.n }}問</div></div>
+</div>
+
+<div class="panel">
+  <h2>今日のメニュー（上から順に）</h2>
+  <ol class="steps">
+  {% for s in steps %}<li><div><a href="{{ s.url }}">{{ s.title }}</a><div class="muted small">{{ s.why }}</div></div></li>{% endfor %}
+  </ol>
+</div>
+
+<div class="panel">
+  <h2>いまの現在地: Stage {{ cur.stage }}「{{ cur.title }}」</h2>
+  <p class="muted">{{ cur.goal }}</p>
+  <ul class="list">
+  {% for r in cur.reqs %}
+    <li>{% if r.status.passed %}<span class="ok">✔ 合格</span>{% else %}<span class="muted">□</span>{% endif %} {{ r.label }}
+      {% if not r.status.passed and r.status.best is not none %}<span class="muted small">（最高 {{ r.status.best }} / 合格 {{ r.status.target }}）</span>{% endif %}
+      {% if r.type == 'record' or r.type == 'setting' %}<span class="muted small">（現在 {{ r.status.value }} / {{ r.status.target }}）</span>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+  <p><a class="btn ghost small" href="{{ url_for('learn.stage', n=cur.stage) }}">このステージを開く</a></p>
+</div>
+
+{% if days %}
+<div class="panel"><h3>直近14日の問題数（緑＝正解）</h3>{{ bars(days) }}</div>
+{% endif %}
+
+{% if handover %}
+<div class="panel"><h3>チャットのコーチからの引き継ぎ（learner/active.md）</h3><div class="doc small">{{ handover|safe }}</div></div>
+{% endif %}
+{% endblock %}

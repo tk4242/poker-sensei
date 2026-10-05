@@ -1,0 +1,64 @@
+{% macro card(c) -%}
+<span class="card{{ ' red' if c.red }}">{{ c.rank }}<span class="s">{{ c.suit }}</span></span>
+{%- endmacro %}
+
+{% macro cardrow(label, cs) -%}
+{% if cs %}<div class="cards"><span class="lbl">{{ label }}</span>{% for c in cs %}{{ card(c) }}{% endfor %}</div>{% endif %}
+{%- endmacro %}
+
+{% macro cards_block(cs) -%}
+{% if cs %}
+  {{ cardrow('A', cs.get('A')) }}{{ cardrow('B', cs.get('B')) }}{{ cardrow('手札', cs.get('hole')) }}
+  {% if cs.get('board') %}{{ cardrow('ボード', cs.get('board')) }}{% endif %}
+{% endif %}
+{%- endmacro %}
+
+{% macro table(d, reveal=false) -%}
+{% if d %}
+{% set pts = seat_xy(d.n) %}
+<svg class="tablesvg" viewBox="0 0 400 300" role="img" aria-label="{{ d.n }}人卓の席の図">
+  <ellipse class="felt" cx="200" cy="148" rx="138" ry="80"/>
+  <text class="felt-text" x="200" y="142">行動は時計回り ↻</text>
+  <text class="felt-text" x="200" y="160">{{ d.n }}人卓</text>
+  {% for i in range(d.n) %}
+    {% set p = pts[i] %}
+    {% set m = d.marks.get(i|string) %}
+    <g class="seat{{ ' mark' if m }}">
+      <circle cx="{{ p.x }}" cy="{{ p.y }}" r="23"/>
+      {% if m %}<text x="{{ p.x }}" y="{{ p.y }}">{{ m }}</text>
+      {% elif d.show_labels or reveal %}<text x="{{ p.x }}" y="{{ p.y }}">{{ d.labels[i] }}</text>{% endif %}
+      {% if m and reveal %}<text class="ord" x="{{ p.x }}" y="{{ p.y + 33 }}">{{ d.labels[i] }}</text>{% endif %}
+    </g>
+  {% endfor %}
+  {% set b = pts[d.button] %}
+  <g class="dealer"><circle cx="{{ b.dx }}" cy="{{ b.dy }}" r="10"/><text x="{{ b.dx }}" y="{{ b.dy }}">D</text></g>
+</svg>
+{% endif %}
+{%- endmacro %}
+
+{% macro label_tag(label) -%}
+{% if label %}<span class="tag {{ label|lower }}">{{ LABEL_JP.get(label, label) }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro sources(src) -%}
+{% if src %}<p class="small muted">出典: {% for s in src %}<a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.title }}</a>{{ '、' if not loop.last }}{% endfor %}</p>{% endif %}
+{%- endmacro %}
+
+{% macro bars(days) -%}
+{% if days %}
+{% set mx = (days|map(attribute='n')|max) or 1 %}
+<svg class="chartbars" viewBox="0 0 {{ days|length * 24 }} 80" width="100%" height="90" preserveAspectRatio="none" role="img" aria-label="日ごとの解いた問題数">
+{% for d in days %}
+  {% set h = (d.n / mx * 60)|round(1) %}
+  {% set hc = ((d.c or 0) / mx * 60)|round(1) %}
+  <rect x="{{ loop.index0 * 24 + 4 }}" y="{{ 64 - h }}" width="16" height="{{ h }}"/>
+  <rect class="c" x="{{ loop.index0 * 24 + 4 }}" y="{{ 64 - hc }}" width="16" height="{{ hc }}"/>
+  <text x="{{ loop.index0 * 24 + 12 }}" y="76">{{ d.d[8:] }}</text>
+{% endfor %}
+</svg>
+{% endif %}
+{%- endmacro %}
+
+{% macro meter(v, total) -%}
+<svg viewBox="0 0 100 8" width="100%" height="8" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="8" rx="4" fill="currentColor" opacity=".15"/><rect width="{{ [100, (v / (total or 1) * 100)]|min }}" height="8" rx="4" fill="currentColor"/></svg>
+{%- endmacro %}

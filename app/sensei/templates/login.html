@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}ログイン | ポーカー先生{% endblock %}
+{% block body %}
+<div class="login panel">
+  <h1>ポーカー<span class="ok">先生</span></h1>
+  <p class="muted">初心者から海外MTTインマネへ。今日も1問から。</p>
+  <form method="post" class="stack">
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <label>ユーザー名 <input type="text" name="user" autocomplete="username" required autofocus></label>
+    <label>パスワード <input type="password" name="password" autocomplete="current-password" required></label>
+    <p><button class="btn" type="submit">ログイン</button></p>
+  </form>
+</div>
+{% endblock %}

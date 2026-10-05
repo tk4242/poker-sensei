@@ -1,0 +1,539 @@
+[
+  {
+    "id": "s2-math-001",
+    "stage": 2,
+    "tags": [
+      "math",
+      "pot-odds"
+    ],
+    "q": "ポットオッズ（pot odds）から求める「コールに必要な勝率」の式は？",
+    "choices": [
+      "コール額 ÷（相手のベットを含む現在のポット ＋ コール額）",
+      "コール額 ÷ 相手のベット額",
+      "現在のポット ÷ コール額",
+      "相手のベット額 ÷ ベット前のポット"
+    ],
+    "answer": 0,
+    "explain": "必要勝率 = コール額 ÷（相手のベットを含む現在のポット＋コール額）です。分母は「コールした後の合計ポット」です。自分のエクイティ（equity / 勝率の取り分）がこれを上回れば、コールは（インプライドオッズなどを除いて）+EVです。",
+    "why": "コールするかどうかを感覚でなく数字で決められるようになる、いちばん使う公式です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Pot odds",
+        "url": "https://en.wikipedia.org/wiki/Pot_odds"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.1"
+  },
+  {
+    "id": "s2-math-002",
+    "stage": 2,
+    "tags": [
+      "math",
+      "mdf"
+    ],
+    "q": "MDF（最小防御頻度 / minimum defense frequency）の式は？（ポットは相手のベット前の額）",
+    "choices": [
+      "ベット ÷（ポット ＋ ベット）",
+      "ポット ÷（ポット ＋ ベット）",
+      "ベット ÷ ポット",
+      "（ポット ＋ ベット）÷ ベット"
+    ],
+    "answer": 1,
+    "explain": "MDFは、相手のブラフを損益ゼロにするために継続（コール/レイズ）すべき最低頻度で、ポット ÷（ポット＋ベット）です。",
+    "why": "相手のベットに対して降りすぎていないかを確かめる物差しになります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: MDF & Alpha",
+        "url": "https://blog.gtowizard.com/mdf-alpha/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.2"
+  },
+  {
+    "id": "s2-math-003",
+    "stage": 2,
+    "tags": [
+      "math",
+      "alpha"
+    ],
+    "q": "ブラフが損益ゼロになるために必要な相手のフォールド率（アルファ / alpha）と、MDF の関係は？",
+    "choices": [
+      "アルファ ＝ MDF",
+      "アルファ ＝ MDF × 2",
+      "アルファ ＝ 1 − MDF（ベット ÷（ポット＋ベット））",
+      "アルファ ＝ 1 ÷ MDF"
+    ],
+    "answer": 2,
+    "explain": "アルファ = ベット ÷（ポット＋ベット）= 1 − MDF です。例えばポット100に60ベットなら、MDF 62.5%、アルファ 37.5% で、足すと100%になります。",
+    "why": "自分がブラフするとき、相手がどれだけ降りれば得になるかをすぐ判断できます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: MDF & Alpha",
+        "url": "https://blog.gtowizard.com/mdf-alpha/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.3"
+  },
+  {
+    "id": "s2-math-004",
+    "stage": 2,
+    "tags": [
+      "math",
+      "mdf"
+    ],
+    "q": "MDFの使い方の注意として、教材（GTO Wizard の記述）に合うのは？",
+    "choices": [
+      "MDFはどんな相手にも必ず守らなければならない最低ライン",
+      "相手がブラフをしない人なら、MDFより多く守るべき",
+      "MDFはオールインのときだけ使う数字",
+      "MDFは「ブラフにエクイティがない」前提で、実戦（特にOOP）ではGTOでもMDFより降りることが多い"
+    ],
+    "answer": 3,
+    "explain": "MDFは相手のブラフにエクイティがない前提の数字です。相手がブラフ不足なら守りすぎる必要はなく、実戦、特にOOPではGTOでもMDFより降りることが多いとされています。",
+    "why": "MDFを絶対視すると、相手が強い手しか打たない場面でも払いすぎてしまいます。前提を知って使い分けることが大切です。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: MDF & Alpha",
+        "url": "https://blog.gtowizard.com/mdf-alpha/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.2"
+  },
+  {
+    "id": "s2-math-005",
+    "stage": 2,
+    "tags": [
+      "math",
+      "outs",
+      "rule-of-2-4"
+    ],
+    "q": "「2と4のルール」（アウツ×4 / ×2で完成確率を概算）の誤差として正しいのは？",
+    "choices": [
+      "アウツが多いと×4は過大評価になる（例: 15アウツで ×4は60%、正確には約54.1%）",
+      "アウツが多いと×4は過小評価になる",
+      "どのアウツ数でも誤差はほぼゼロ",
+      "×2はいつも大きく過大評価になる"
+    ],
+    "answer": 0,
+    "explain": "2と4のルールは近似で、アウツが多いと×4は過大になります。15アウツでは×4=60%に対し正確値は54.1%です（tools/poker_math.py outs で検算）。×2は少しだけ過小評価です（9アウツで18%対19.6%）。",
+    "why": "大きなドローで「6割勝てる」と思い込んでオールインすると、思ったより不利なことがあります。近似の限界を知ると判断が正確になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerSkill: Rule of 2 and 4",
+        "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.5"
+  },
+  {
+    "id": "s2-math-006",
+    "stage": 2,
+    "tags": [
+      "math",
+      "outs"
+    ],
+    "q": "フロップで相手がベットしてきた。ドローでコールを考えるとき、通常どちらのオッズで考える？",
+    "choices": [
+      "リバーまで2枚見られる確率（アウツ×4）",
+      "次の1枚（ターン）で完成する確率",
+      "リバーの1枚だけで完成する確率",
+      "ボードが5枚そろったときの役の強さ"
+    ],
+    "answer": 1,
+    "explain": "フロップで相手がベットしてくる場合、通常保証されるのは次の1枚分です（9アウツならフロップ→ターンで約19.1%）。×4はオールインでリバーまで必ず見られるときに使います。",
+    "why": "ターンでまたベットされると、リバーまで見るのに追加の支払いが必要です。×4で計算すると払いすぎの原因になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerSkill: Rule of 2 and 4",
+        "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.5"
+  },
+  {
+    "id": "s2-math-007",
+    "stage": 2,
+    "tags": [
+      "math",
+      "spr"
+    ],
+    "q": "SPR（stack-to-pot ratio / スタック・ポット比）の定義は？",
+    "choices": [
+      "ポット ÷ エフェクティブスタック",
+      "自分のスタック ÷ BB",
+      "エフェクティブスタック ÷ ポット",
+      "ベット額 ÷ ポット"
+    ],
+    "answer": 2,
+    "explain": "SPR = エフェクティブスタック（effective stack / 関与するプレイヤー間で最も小さいスタック）÷ ポットです。例えばポット10、スタック100ならSPR 10です。",
+    "why": "SPRが分かると、そのハンドでオールインまで行ってよいかを事前に考えられます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: Stack-to-Pot Ratio (SPR)",
+        "url": "https://upswingpoker.com/glossary/stack-to-pot-ratio-spr/"
+      },
+      {
+        "title": "GTO Wizard: Stack-to-pot ratio",
+        "url": "https://blog.gtowizard.com/stack-to-pot-ratio/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.4"
+  },
+  {
+    "id": "s2-math-008",
+    "stage": 2,
+    "tags": [
+      "math",
+      "equity-realization"
+    ],
+    "q": "エクイティリアライゼーション（equity realization / EQR）について正しいのは？",
+    "choices": [
+      "自分のハンドの勝率そのもので、ポジションには関係ない",
+      "相手を降ろしたときに得られるポットの割合",
+      "OOPのほうが全般に高い",
+      "生のエクイティのうち実際に回収できる割合で、OOPでは全般に低い"
+    ],
+    "answer": 3,
+    "explain": "EQRは生のエクイティのうち実際に回収できる割合で、EV = エクイティ × EQR × ポット と表されます。100%超は過剰実現、未満は過少実現で、OOPでは全般に低くなります。",
+    "why": "同じ勝率のハンドでも、OOPでは勝ちを取り切れないことが多いと分かれば、ポジションを重視する理由が数字で理解できます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Equity Realization",
+        "url": "https://blog.gtowizard.com/equity-realization/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.4"
+  },
+  {
+    "id": "s2-math-009",
+    "stage": 2,
+    "tags": [
+      "math",
+      "blocker"
+    ],
+    "q": "A♠K♦ を持っていて、ボードが T♠6♠3♠。ブロッカー（blocker）として正しい説明は？",
+    "choices": [
+      "A♠を持っているので、相手がナッツフラッシュ（A♠入りのフラッシュ）を持つ可能性を消している",
+      "K♦を持っているので相手のフラッシュをすべて消している",
+      "スペードが3枚出ているので、自分はすでにフラッシュ",
+      "ブロッカーは手札がペアのときにしか働かない"
+    ],
+    "answer": 0,
+    "explain": "ブロッカーは、自分の手札が相手のレンジの一部を物理的に消す効果です。A♠を持っていると、相手はA♠を使ったナッツフラッシュを持てません。",
+    "why": "相手が強い手を持っている可能性を数える力は、ブラフやコールの判断を一段階正確にします。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Understanding Blockers in Poker",
+        "url": "https://blog.gtowizard.com/understanding-blockers-in-poker/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.4"
+  },
+  {
+    "id": "s2-math-010",
+    "stage": 2,
+    "tags": [
+      "math",
+      "implied-odds"
+    ],
+    "q": "インプライドオッズ（implied odds）とは？",
+    "choices": [
+      "今のポットだけで計算したオッズ",
+      "将来のストリートで追加で得られる見込みのチップも考慮したオッズ",
+      "将来のストリートで失う可能性のある額",
+      "相手がフォールドする確率"
+    ],
+    "answer": 1,
+    "explain": "インプライドオッズは、将来のストリートで追加で得られる見込みのチップも考慮したオッズです。逆に、将来失う可能性のある額はリバースインプライドオッズと呼びます。",
+    "why": "今の価格だけでは足りなくても、当たったときに大きく取れるならコールできる場面があることが分かります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Pot odds",
+        "url": "https://en.wikipedia.org/wiki/Pot_odds"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.4"
+  },
+  {
+    "id": "s2-math-011",
+    "stage": 2,
+    "tags": [
+      "math",
+      "implied-odds"
+    ],
+    "q": "リバースインプライドオッズ（reverse implied odds）とは？",
+    "choices": [
+      "将来のストリートで追加で得られる見込みのチップ",
+      "相手を降ろして得るポットの取り分",
+      "コール後、完成しても負けている・2番手の手で払い続けるなどで将来失う可能性のある額",
+      "ポットに対するスタックの比率"
+    ],
+    "answer": 2,
+    "explain": "リバースインプライドオッズは、コール後に将来のストリートで失う可能性のある額で、インプライドオッズの逆です。",
+    "why": "当たったつもりで大きく払い、もっと強い手に負けるパターンを避ける考え方です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: What are Reverse Implied Odds",
+        "url": "https://upswingpoker.com/reverse-implied-odds/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.4"
+  },
+  {
+    "id": "s2-math-012",
+    "stage": 2,
+    "tags": [
+      "math",
+      "fold-equity"
+    ],
+    "q": "フォールドエクイティ（fold equity）とは？",
+    "choices": [
+      "ショーダウンでの自分の勝率",
+      "フォールドしたときに戻ってくるチップ",
+      "相手がコールする確率",
+      "ベットで相手を降ろすことで平均的に得られるポットの取り分"
+    ],
+    "answer": 3,
+    "explain": "フォールドエクイティは、ベットで相手を降ろすことで平均的に得るポットの取り分です。",
+    "why": "ショーブやブラフが得になる理由は、勝率だけでなく相手が降りる分があるからです。トーナメントのオールイン判断の土台になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.4"
+  },
+  {
+    "id": "s2-math-013",
+    "stage": 2,
+    "tags": [
+      "math",
+      "pot-odds",
+      "calc"
+    ],
+    "q": "ポット100に相手が50ベットした。コールに必要な勝率は？",
+    "choices": [
+      "25%",
+      "33.3%",
+      "50%",
+      "20%"
+    ],
+    "answer": 0,
+    "explain": "相手のベットを含む現在のポットは150、コール額は50。必要勝率 = 50 ÷（150 + 50）= 25% です（tools/poker_math.py pot-odds --pot 150 --call 50 で検算）。",
+    "why": "ハーフポットのベットはよく見ます。25%という基準を覚えておくと、10秒で判断できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Pot odds",
+        "url": "https://en.wikipedia.org/wiki/Pot_odds"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.1"
+  },
+  {
+    "id": "s2-math-014",
+    "stage": 2,
+    "tags": [
+      "math",
+      "pot-odds",
+      "calc"
+    ],
+    "q": "ポット100に相手が100（ポットサイズ）ベットした。コールに必要な勝率は？",
+    "choices": [
+      "50%",
+      "33.3%",
+      "25%",
+      "66.7%"
+    ],
+    "answer": 1,
+    "explain": "現在のポットは200、コール額は100。必要勝率 = 100 ÷（200 + 100）= 33.3% です（tools/poker_math.py pot-odds --pot 200 --call 100 で検算）。",
+    "why": "ポットベットに対しては約3回に1回勝てればよい、と覚えておくと、大きなベットにも落ち着いて対応できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Pot odds",
+        "url": "https://en.wikipedia.org/wiki/Pot_odds"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.1"
+  },
+  {
+    "id": "s2-math-015",
+    "stage": 2,
+    "tags": [
+      "math",
+      "mdf",
+      "calc"
+    ],
+    "q": "ポット100に相手が60ベットした。MDF（最小防御頻度）は？",
+    "choices": [
+      "37.5%",
+      "60%",
+      "62.5%",
+      "40%"
+    ],
+    "answer": 2,
+    "explain": "MDF = ポット ÷（ポット＋ベット）= 100 ÷ 160 = 62.5% です（tools/poker_math.py mdf --pot 100 --bet 60 で検算、GTO Wizard の例と一致）。",
+    "why": "相手のベットに対して、自分のレンジのどれくらいを続けるべきかの目安がつかめます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: MDF & Alpha",
+        "url": "https://blog.gtowizard.com/mdf-alpha/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.2"
+  },
+  {
+    "id": "s2-math-016",
+    "stage": 2,
+    "tags": [
+      "math",
+      "alpha",
+      "calc"
+    ],
+    "q": "ポット100に自分が75ブラフでベットする。損益ゼロになるために相手が降りる必要がある割合（アルファ）は？",
+    "choices": [
+      "75%",
+      "約57.1%",
+      "約30%",
+      "約42.9%"
+    ],
+    "answer": 3,
+    "explain": "アルファ = ベット ÷（ポット＋ベット）= 75 ÷ 175 ≒ 42.9% です（tools/poker_math.py bluff --pot 100 --bet 75 で検算）。",
+    "why": "相手がこの割合より多く降りるならブラフは得、少ないなら損と判断できます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: MDF & Alpha",
+        "url": "https://blog.gtowizard.com/mdf-alpha/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.3"
+  },
+  {
+    "id": "s2-math-017",
+    "stage": 2,
+    "tags": [
+      "math",
+      "alpha",
+      "calc"
+    ],
+    "q": "ポット100に150のオーバーベットでブラフする。損益ゼロになるために必要な相手のフォールド率は？",
+    "choices": [
+      "60%",
+      "40%",
+      "150%",
+      "約33.3%"
+    ],
+    "answer": 0,
+    "explain": "アルファ = 150 ÷（100 + 150）= 60% です（tools/poker_math.py bluff --pot 100 --bet 150 で検算）。大きく打つほど、必要なフォールド率は上がります。",
+    "why": "大きなブラフは、相手がよく降りる場面でないと割に合わないことが数字で分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: MDF & Alpha",
+        "url": "https://blog.gtowizard.com/mdf-alpha/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.3"
+  },
+  {
+    "id": "s2-math-018",
+    "stage": 2,
+    "tags": [
+      "math",
+      "outs",
+      "calc"
+    ],
+    "q": "ターンでフラッシュドロー（アウツ9枚）。リバーの1枚で完成する正確な確率は？（未知のカードは46枚）",
+    "choices": [
+      "約35.0%",
+      "約19.6%",
+      "約9.0%",
+      "約36%"
+    ],
+    "answer": 1,
+    "explain": "ターン→リバーは 9 ÷ 46 ≒ 19.6% です（tools/poker_math.py outs --outs 9 --streets 1 で検算）。2と4のルールの×2（18%）は少しだけ過小評価です。",
+    "why": "フラッシュドローはよく出会う形です。約5回に1回しか完成しないと分かれば、払いすぎを防げます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerSkill: Rule of 2 and 4",
+        "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.5"
+  },
+  {
+    "id": "s2-math-019",
+    "stage": 2,
+    "tags": [
+      "math",
+      "outs",
+      "calc"
+    ],
+    "q": "フロップでフラッシュドロー（アウツ9枚）、オールインでリバーまで2枚見られる。完成する正確な確率は？（未知のカードは47枚）",
+    "choices": [
+      "約19.6%",
+      "約50%",
+      "約35.0%",
+      "約45.0%"
+    ],
+    "answer": 2,
+    "explain": "フロップ→リバーの正確な確率は 1 − C(38,2)/C(47,2) ≒ 35.0% です（tools/poker_math.py outs --outs 9 --streets 2 で検算）。×4の近似は36%でほぼ一致します。",
+    "why": "オールインの場面で、フラッシュドローは約3回に1回しか完成しないと分かれば、コールの判断がぶれにくくなります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerSkill: Rule of 2 and 4",
+        "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.5"
+  },
+  {
+    "id": "s2-math-020",
+    "stage": 2,
+    "tags": [
+      "math",
+      "spr",
+      "calc"
+    ],
+    "q": "ポット100、エフェクティブスタック500。SPRは？",
+    "choices": [
+      "0.2",
+      "50",
+      "600",
+      "5"
+    ],
+    "answer": 3,
+    "explain": "SPR = エフェクティブスタック ÷ ポット = 500 ÷ 100 = 5 です（tools/poker_math.py spr --stack 500 --pot 100 で検算）。",
+    "why": "SPRを素早く出せれば、ワンペアでオールインまで行ってよい場面かを判断する材料になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: Stack-to-Pot Ratio (SPR)",
+        "url": "https://upswingpoker.com/glossary/stack-to-pot-ratio-spr/"
+      },
+      {
+        "title": "GTO Wizard: Stack-to-pot ratio",
+        "url": "https://blog.gtowizard.com/stack-to-pot-ratio/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.4"
+  }
+]

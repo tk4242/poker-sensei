@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>{% block title %}ポーカー先生{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='icon.svg') }}" type="image/svg+xml">
+</head>
+<body>
+{% set ep = request.endpoint or '' %}
+{% if session.get('user') %}
+<header class="top"><div class="wrap">
+  <a class="brand" href="{{ url_for('main.home') }}">ポーカー<span>先生</span></a>
+  <nav>
+    <a href="{{ url_for('main.home') }}">ホーム</a>
+    <a href="{{ url_for('learn.stages') }}">カリキュラム</a>
+    <a href="{{ url_for('practice.menu') }}">練習</a>
+    <a href="{{ url_for('records.index') }}">記録</a>
+    <a href="{{ url_for('coach.index') }}">コーチ</a>
+    <a href="{{ url_for('learn.library') }}">教材</a>
+    <a href="{{ url_for('main.settings') }}">設定</a>
+  </nav>
+</div></header>
+{% endif %}
+<main class="wrap">
+{% with msgs = get_flashed_messages(with_categories=true) %}
+  {% for cat, m in msgs %}<div class="flash {{ cat }}">{{ m }}</div>{% endfor %}
+{% endwith %}
+{% block body %}{% endblock %}
+</main>
+<p class="legal">日本国内で現金を賭けるポーカーや、日本からのリアルマネー・オンラインポーカーは違法になりうるため勧めません（<a href="{{ url_for('learn.library_file', name='04-japan-and-overseas.md') }}">詳しく</a>）。教材の数字・戦略には出典があります（<a href="{{ url_for('learn.sources') }}">出典台帳</a>）。</p>
+{% if session.get('user') %}
+<nav class="bottom">
+  <a href="{{ url_for('main.home') }}" class="{{ 'on' if ep.startswith('main.') }}"><b>⌂</b>ホーム</a>
+  <a href="{{ url_for('learn.stages') }}" class="{{ 'on' if ep.startswith('learn.') }}"><b>☰</b>学ぶ</a>
+  <a href="{{ url_for('practice.menu') }}" class="{{ 'on' if ep.startswith('practice.') }}"><b>♠</b>練習</a>
+  <a href="{{ url_for('records.index') }}" class="{{ 'on' if ep.startswith('records.') }}"><b>✎</b>記録</a>
+  <a href="{{ url_for('coach.index') }}" class="{{ 'on' if ep.startswith('coach.') }}"><b>☺</b>コーチ</a>
+</nav>
+{% endif %}
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

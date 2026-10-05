@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+<p class="small"><a href="{{ url_for('records.index') }}">← 記録</a> ・ <a href="{{ url_for('records.hand_form', hid=h.id) }}">編集</a></p>
+<h1>{{ h.title }}</h1>
+<pre class="copy" id="handmd">{{ md }}</pre>
+<p><button class="btn ghost copy" type="button" data-target="handmd">チャット用にコピー（/hand-review）</button></p>
+{% if ai %}
+<form method="post" action="{{ url_for('coach.review_hand', hid=h.id) }}" class="busy"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn" type="submit">AIコーチにレビューしてもらう</button></form>
+{% else %}<p class="muted small">AIレビューを使うには VPS の .env に ANTHROPIC_API_KEY を設定します（手順書参照）。チャットの /hand-review でも同じ検討ができます。</p>{% endif %}
+{% if h.ai_review %}<div class="panel"><h2>AIコーチのレビュー</h2><div class="coach-a">{{ h.ai_review }}</div>
+<p class="muted small">AIの回答は間違うことがあります。出典リンクを開いて確かめ、納得できない点はチャットのコーチ（fact-checker）に確認しましょう。</p></div>{% endif %}
+{% endblock %}

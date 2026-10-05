@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>設定</h1>
+<div class="panel">
+<form method="post" class="stack">
+  <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+  <label>1日のノルマ（問）<input type="number" name="daily_quota" min="5" max="200" value="{{ quota }}"></label>
+  <label>1回に出す問題数（まとめ出題）<input type="number" name="batch_size" min="3" max="20" value="{{ batch_size }}"></label>
+  <p><button class="btn" type="submit">保存</button></p>
+</form>
+</div>
+<div class="panel">
+  <h2>データ</h2>
+  <ul class="list">
+    <li><a href="{{ url_for('main.export_page') }}">チャットのコーチに渡す要約（コピー用）</a></li>
+    <li><a href="{{ url_for('main.export_json') }}">全データのバックアップ（JSON）</a></li>
+  </ul>
+  <form method="post" action="{{ url_for('auth.logout') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn ghost" type="submit">ログアウト</button></form>
+</div>
+{% endblock %}

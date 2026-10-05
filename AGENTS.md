@@ -30,6 +30,7 @@ Codex は Git ルートの `AGENTS.md` を読む（出典: https://learn.chatgpt
 |---|---|---|
 | `tools/`、`tests/`（下の例外を除く） | **Codex** | `poker_math.py`・`context_budget.py` などの改善、テスト追加、機能拡張、学習支援ツール（`tools/practice/`）の新規作成 |
 | `tools/collab.py`、`tests/test_collab*`、`.collab/`、`.github/` | Claude | 衝突防止の仕組みそのもの。Codex は改善案を PR か提案で出し、ユーザー（または Claude）の確認後に反映 |
+| `app/`（Webアプリ）、`tests/test_app*` | Claude | Codex は改善案を PR で（例: ドリルの追加、表示の改善）。問題集の数値は `tools/poker_math.py` で検算 |
 | `learner/`、`hands/`、`.claude/`、`CLAUDE.md` | Claude | Codex は読むだけ。改善案は PR の説明か Claude への提案で出す |
 | `curriculum/`、`sources/`、`AGENTS.md` | 共有 | 本文・出典を変えるときは出典を付け、`fact-checker` を通す。Codex は誤りの指摘・提案が中心 |
 

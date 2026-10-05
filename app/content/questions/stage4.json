@@ -1,0 +1,548 @@
+[
+  {
+    "id": "s4-icm-001",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "definition"
+    ],
+    "q": "ICM（Independent Chip Model）とは？",
+    "choices": [
+      "トーナメントのチップ量を賞金の期待値（$EV）に変換するモデル。チップの価値は線形ではない",
+      "チップ量そのものを価値とみなす期待値（chipEV）",
+      "ブラインドの上がり方を決めるルール",
+      "テーブルの席替えの方法"
+    ],
+    "answer": 0,
+    "explain": "ICMはチップ量を賞金期待値（$EV）に変換するモデルで、チップを2倍にしても賞金の価値は2倍にならない（線形でない）のがポイントです。",
+    "why": "インマネ直前やファイナルテーブルでは、チップを増やすことより失わないことの価値が大きくなります。その理由を説明する道具がICMです。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: ICM Basics",
+        "url": "https://blog.gtowizard.com/icm-basics/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s4-icm-002",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "definition"
+    ],
+    "q": "チップEV（chip EV / cEV）と $EV の違いは？",
+    "choices": [
+      "チップEVは賞金ベース、$EVはチップ量ベース",
+      "チップEVはチップ量そのものを価値とみなし、$EVは賞金ベースで考える",
+      "どちらも同じ意味",
+      "チップEVはキャッシュゲームだけで使う"
+    ],
+    "answer": 1,
+    "explain": "チップEVはチップ量そのものを価値とみなす期待値でICMを考慮しません。$EVは賞金ベースの期待値です。",
+    "why": "プッシュ/フォールド表などがどちらを前提にしているかを見分けられると、バブルでの使い方を間違えません。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: ICM Basics",
+        "url": "https://blog.gtowizard.com/icm-basics/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s4-icm-003",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "risk-premium"
+    ],
+    "q": "GTO Wizard の例（3人・スタック500/300/200・賞金$50/$30/$20）。200点のBBが500点のSBのオールインにコールするとき、チップEVで37.5%必要な勝率は、ICMではおよそ何%になる？",
+    "choices": [
+      "約37.5%（変わらない）",
+      "約25%",
+      "約47%",
+      "約80%"
+    ],
+    "answer": 2,
+    "explain": "ICMでは、チップEVで必要な勝率に上乗せされる追加の必要勝率（リスクプレミアム / risk premium）があります。この例では37.5%から約47%に上がります。",
+    "why": "賞金が近い場面ではチップEVの感覚より強いハンドが必要になります。「普段ならコール」が損になる理由が分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: ICM Basics",
+        "url": "https://blog.gtowizard.com/icm-basics/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s4-icm-004",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "bubble-factor"
+    ],
+    "q": "バブルファクター（bubble factor / BF）の定義は？",
+    "choices": [
+      "相手を飛ばしたときの$EV獲得 ÷ スタックを失ったときの$EV損失",
+      "残り人数 ÷ 入賞人数",
+      "自分のスタック ÷ 平均スタック",
+      "スタックを失ったときの$EV損失 ÷ 相手を飛ばしたときの$EV獲得"
+    ],
+    "answer": 3,
+    "explain": "バブルファクターは、スタックを失ったときの$EV損失を、相手を飛ばしたときの$EV獲得で割った値です。1より大きいほど、負けたときの痛みが大きいことを表します。",
+    "why": "同じオールインでも、場面によってリスクの重さが違うことを数字で表せるようになります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: What is the Bubble Factor in poker tournaments?",
+        "url": "https://blog.gtowizard.com/what-is-the-bubble-factor-in-poker-tournaments/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s4-icm-005",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "bubble-factor",
+      "calc"
+    ],
+    "q": "バブルファクター1.18のとき、オールインへのコールに必要な勝率は？（等スタック・デッドマネー無しの単純化）",
+    "choices": [
+      "約54%",
+      "約50%",
+      "約46%",
+      "約118%"
+    ],
+    "answer": 0,
+    "explain": "必要勝率 = BF ÷（BF＋1）= 1.18 ÷ 2.18 ≒ 54% です（python3 で検算: 0.541）。チップEVなら50%で足ります。",
+    "why": "必要勝率がチップEVの50%から上がることを、感覚ではなく計算で確かめる練習になります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: What is the Bubble Factor in poker tournaments?",
+        "url": "https://blog.gtowizard.com/what-is-the-bubble-factor-in-poker-tournaments/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 4.6"
+  },
+  {
+    "id": "s4-icm-006",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "money-bubble"
+    ],
+    "q": "大人数MTTのマネーバブル（入賞直前）で、ICMの圧力が主にかかるのは？",
+    "choices": [
+      "チップリーダー",
+      "ショートスタック",
+      "全員に同じだけかかる",
+      "ミドルスタックだけ"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard によると、マネーバブルでICMの圧力は主にショートにかかります。ショートは慎重に、ビッグは中間スタックを攻めます。",
+    "why": "インマネ直前で、自分のスタックに合わせて慎重になるか攻めるかを決める基準になります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Money Bubble vs Final Table Bubble",
+        "url": "https://blog.gtowizard.com/money-bubble-vs-final-table-bubble/"
+      },
+      {
+        "title": "GTO Wizard: What is the Bubble Factor in poker tournaments?",
+        "url": "https://blog.gtowizard.com/what-is-the-bubble-factor-in-poker-tournaments/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-icm-007",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "ft-bubble"
+    ],
+    "q": "ファイナルテーブル・バブルでは、マネーバブルと比べてどう変わる？",
+    "choices": [
+      "マネーバブルと同じで、ショートが最も慎重になる",
+      "ICMの圧力はなくなる",
+      "逆転し、ショートが最もICM圧力が小さく、ダブルアップを狙ってやや大胆に打てる",
+      "ビッグスタックの圧力がゼロになる"
+    ],
+    "answer": 2,
+    "explain": "GTO Wizard によると、ファイナルテーブル・バブルでは逆転し、ショートが最もICM圧力が小さくなります。ビッグスタックはチップリーダー同士で最大の圧力を受けます。",
+    "why": "同じ「バブル」でも、どのバブルかで正しい戦い方が逆になることを知っておくと、終盤の判断ミスを防げます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Money Bubble vs Final Table Bubble",
+        "url": "https://blog.gtowizard.com/money-bubble-vs-final-table-bubble/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-icm-008",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "middle-stack"
+    ],
+    "q": "GTO Wizard のファイナルテーブル例で「ICMの棺桶」と呼ばれ、バブルファクターが最大（1.93）だったのは？",
+    "choices": [
+      "チップリーダー（41bb）",
+      "最もショートなスタック",
+      "全員が同じ値だった",
+      "中間スタック（29bb）"
+    ],
+    "answer": 3,
+    "explain": "ファイナルテーブル例では、中間スタック（29bb）のバブルファクターが最大1.93で「ICMの棺桶」と呼ばれます。チップリーダーは1.04〜1.11、ショートは1.28〜1.40でした。これはFTの例で、マネーバブルの例ではありません。",
+    "why": "ミドルスタックはラダー（順位の上昇）を優先し、ビッグスタックとの衝突を避ける理由が分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: What is the Bubble Factor in poker tournaments?",
+        "url": "https://blog.gtowizard.com/what-is-the-bubble-factor-in-poker-tournaments/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-icm-009",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "big-stack"
+    ],
+    "q": "ICMの考え方で、ビッグスタックの基本方針として GTO Wizard の記述に合うのは？",
+    "choices": [
+      "中間スタックを狙い、他のビッグスタックとの衝突は避ける",
+      "ほかのビッグスタックと積極的にオールインで戦う",
+      "ショートスタックとだけ戦い、中間スタックは避ける",
+      "バブルではフォールドだけをする"
+    ],
+    "answer": 0,
+    "explain": "ビッグスタックはバブルファクターが最小で、中間スタックを狙い、他のビッグスタックとは避けるのが方針です。",
+    "why": "チップリーダーになったときに、ただ大きく賭けるのではなく、誰を攻めるかを選べるようになります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: What is the Bubble Factor in poker tournaments?",
+        "url": "https://blog.gtowizard.com/what-is-the-bubble-factor-in-poker-tournaments/"
+      },
+      {
+        "title": "GTO Wizard: Money Bubble vs Final Table Bubble",
+        "url": "https://blog.gtowizard.com/money-bubble-vs-final-table-bubble/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-icm-010",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "small-field"
+    ],
+    "q": "小規模な大会（例: 200人）のマネーバブルの戦略は、どれに近くなる？",
+    "choices": [
+      "大人数MTTの序盤の戦略",
+      "ファイナルテーブル・バブルに近い戦略",
+      "キャッシュゲームの戦略",
+      "ICMを無視したチップEVの戦略"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard によると、200人程度の小規模大会のマネーバブルは、FT到達が現実的なためFTバブルに近い戦略になります。",
+    "why": "国内の大会は小規模なことも多いです。大会の規模によってバブルの戦い方を変える必要があると分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Money Bubble vs Final Table Bubble",
+        "url": "https://blog.gtowizard.com/money-bubble-vs-final-table-bubble/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-icm-011",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "postflop"
+    ],
+    "q": "ICMがかかる場面のポストフロップで、ソルバーのベットサイズはどうなる？",
+    "choices": [
+      "大きいサイズに寄る（オーバーベットが増える）",
+      "サイズはICMがない場面とまったく同じ",
+      "小さいサイズに寄る（ダウンワード・ドリフト）。カバーしている側がより攻撃的になる",
+      "カバーされている側がより攻撃的になる"
+    ],
+    "answer": 2,
+    "explain": "GTO Wizard によると、ICM下のポストフロップでソルバーは小さいサイズに寄り（ダウンワード・ドリフト / downward drift）、相手をカバーしている（スタックが大きい）側がより攻撃的になります。",
+    "why": "終盤のポストフロップで、普段どおりの大きなベットをしてリスクを取りすぎることを防げます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: How ICM Impacts Postflop Strategy",
+        "url": "https://blog.gtowizard.com/how-icm-impacts-postflop-strategy/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-icm-012",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "push-fold"
+    ],
+    "q": "GTO Wizard の解析で、ファーストイン（最初に入る）のミニレイズがショーブ（オールイン）に置き換わるのは何bb以下？",
+    "choices": [
+      "30bb以下",
+      "20bb以下",
+      "3bb以下",
+      "9bb以下"
+    ],
+    "answer": 3,
+    "explain": "GTO Wizard によると、9bb以下でミニレイズはショーブに置き換わり、AAも7bb以下ではショーブ側です。14bbではレイズに加えてショーブとリンプ（UTGで4.6%）が加わります。",
+    "why": "スタックが10bbを切ったら、中途半端なレイズではなくショーブかフォールドで戦う理由が分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: How Stack Sizes Change Your Range",
+        "url": "https://blog.gtowizard.com/how-stack-sizes-change-your-range/"
+      },
+      {
+        "title": "GTO Wizard: Playing Under 10bb (Part 1)",
+        "url": "https://blog.gtowizard.com/playing-under-10bb-part-1-cev/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-6"
+  },
+  {
+    "id": "s4-icm-013",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "push-fold"
+    ],
+    "q": "プッシュ/フォールドの開始ラインについて、教材での Upswing と GTO Wizard の見解は？",
+    "choices": [
+      "差がある。Upswing は約15bb以下、GTO Wizard は14bbでもレイズが残り、9bb以下でミニレイズがショーブに置き換わる",
+      "完全に一致していて、どちらも30bb以下",
+      "どちらもプッシュ/フォールドは使わないとしている",
+      "差がある。GTO Wizard の方が深い40bbから始めるとしている"
+    ],
+    "answer": 0,
+    "explain": "Upswing は「約15bb以下でプッシュ/フォールド」とし、2026年の更新で「MTTではミニレイズ戦略が好まれる」と付記しています。GTO Wizard は14bbでショーブとリンプが加わり（レイズも残る）、9bb以下でミニレイズがショーブに置き換わるとしています。",
+    "why": "情報源で開始ラインが違うことを知っておくと、チャートを丸暗記せず、スタックに応じて考えられます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: Push Fold Charts",
+        "url": "https://upswingpoker.com/push-fold-tournament-strategy-charts/"
+      },
+      {
+        "title": "GTO Wizard: How Stack Sizes Change Your Range",
+        "url": "https://blog.gtowizard.com/how-stack-sizes-change-your-range/"
+      },
+      {
+        "title": "GTO Wizard: Playing Under 10bb (Part 1)",
+        "url": "https://blog.gtowizard.com/playing-under-10bb-part-1-cev/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-6"
+  },
+  {
+    "id": "s4-icm-014",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "push-fold"
+    ],
+    "q": "プッシュ/フォールド表（ナッシュ）を使うときの注意として、教材に合うのは？",
+    "choices": [
+      "表はICMを考慮済みなので、バブルでもそのまま使える",
+      "表はchipEVが前提なので、バブルなどICMがかかる場面では締める必要がある",
+      "表は広げて使うほど得になる",
+      "ショートスタックでは表を使ってはいけない"
+    ],
+    "answer": 1,
+    "explain": "プッシュ/フォールドのチャートは「ナッシュ（chip EV）」が前提で、バブル等のICM下では締める必要があります。Upswing は「チャート丸暗記に頼るな」と警告しています。",
+    "why": "インマネ直前に表どおりにショーブして飛ぶ、という典型的なミスを防げます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: Push Fold Charts",
+        "url": "https://upswingpoker.com/push-fold-tournament-strategy-charts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-6"
+  },
+  {
+    "id": "s4-icm-015",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "push-fold"
+    ],
+    "q": "GTO Wizard の10bb未満の解析で、ショーブするハンドを選ぶときに重視されるのは？",
+    "choices": [
+      "スーテッドコネクターのプレイアビリティ",
+      "ポストフロップでのプレイのしやすさ",
+      "生のエクイティとブロッカー（Axo のようなAのオフスートがスーテッドより優先されやすい）",
+      "見た目がきれいなスーテッドハンド"
+    ],
+    "answer": 2,
+    "explain": "GTO Wizard によると、10bb未満のショーブレンジは生のエクイティとブロッカー重視で、Axo（Aのオフスート）がスーテッドより優先されやすくなります。",
+    "why": "オールインした後はポストフロップの腕が関係ないので、ハンドを選ぶ基準が普段と変わることが分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Playing Under 10bb (Part 1)",
+        "url": "https://blog.gtowizard.com/playing-under-10bb-part-1-cev/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-icm-016",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "exploit",
+      "bubble"
+    ],
+    "q": "ライブのバブルで、周りのプレイヤーが縮こまっている（降りがち）。Red Chip Poker の調整は？",
+    "choices": [
+      "自分も縮こまってフォールドを増やす",
+      "リンプを増やしてポットを小さくする",
+      "強いハンドでもチェックで回す",
+      "スチールと軽い3ベットを増やす（コーラーよりアグレッサー側に回る）"
+    ],
+    "answer": 3,
+    "explain": "Red Chip Poker は、バブルで周りが縮こまるならスチールと軽い3ベットを増やすとしています。これは母集団の傾向にもとづくエクスプロイトで、目の前の相手に当てはまるとは限りません。",
+    "why": "周りが縮こまっていると観察できたときに、チップを増やすチャンスにできます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Red Chip Poker: Tournaments #4: Mid Levels and the Bubble",
+        "url": "https://redchippoker.com/tournaments-4-mid-levels/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-tournament-001",
+    "stage": 4,
+    "tags": [
+      "tournament",
+      "pko"
+    ],
+    "q": "PKO（プログレッシブ・ノックアウト / progressive knockout）で相手を飛ばしたとき、相手のバウンティはどうなる？",
+    "choices": [
+      "半分を現金で獲得し、残り半分は自分のバウンティに加算される",
+      "全額を現金で獲得する",
+      "全額が自分のバウンティに加算される",
+      "賞金プールに戻される"
+    ],
+    "answer": 0,
+    "explain": "PKOでは、飛ばした相手のバウンティ（賞金首）の半分を現金で獲得し、残り半分は自分のバウンティに加算されます。",
+    "why": "仕組みを知らないと、PKOでどれだけ広く戦ってよいか判断できません。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerNews: Your GTO Wizard Guide to Knockout Poker Formats",
+        "url": "https://www.pokernews.com/strategy/your-guide-to-knockout-poker-formats-47675.htm"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s4-tournament-002",
+    "stage": 4,
+    "tags": [
+      "tournament",
+      "pko"
+    ],
+    "q": "PKOで相手をカバーしている（自分のスタックの方が大きい）とき、オールインへのコールの範囲は通常の大会と比べてどうなる？",
+    "choices": [
+      "バウンティがあるので、より狭くする",
+      "バウンティで必要エクイティが下がるので、広くコールできる",
+      "通常の大会とまったく同じ",
+      "カバーしているときはコールしてはいけない"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard によると、PKOではバウンティで必要エクイティが下がるため、カバーしているときは広くコールします。ただし「ペイアウト/バブルは締め、バウンティは広げる」のバランスです。例ではBBジャムへのコール率が classic 56.8% → PKO 88.4% になります（前提: UTG+1 25bb vs BB 12bb、双方ミニマムバウンティ、フィールド残り75%）。",
+    "why": "PKOで通常の大会と同じ範囲でしかコールしないと、バウンティで得られる分を取りこぼします。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Bringing It All Together: PKO Review",
+        "url": "https://blog.gtowizard.com/bringing-it-all-together-pko-review/"
+      },
+      {
+        "title": "GTO Wizard: PKO Versus Classic: Responding to a Preflop Open",
+        "url": "https://blog.gtowizard.com/pko-versus-classic-responding-to-a-preflop-open/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s4-tournament-003",
+    "stage": 4,
+    "tags": [
+      "tournament",
+      "mystery-bounty"
+    ],
+    "q": "ミステリーバウンティ（mystery bounty）とは？",
+    "choices": [
+      "相手のバウンティの半分が自分に加算される形式",
+      "バウンティの額が全員同じで固定の形式",
+      "バウンティの額が封筒などでランダムに決まる形式（賞金プールは通常賞金とバウンティに分かれる）",
+      "賞金がなくバウンティだけの形式"
+    ],
+    "answer": 2,
+    "explain": "ミステリーバウンティはバウンティ額が封筒等でランダムに決まる形式で、賞金プールは通常の賞金とバウンティに分割されるのが一般的です。",
+    "why": "大会の形式によって賞金の取り方が変わります。参加前に形式を見分けられると、戦い方を準備できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerNews: Your GTO Wizard Guide to Knockout Poker Formats",
+        "url": "https://www.pokernews.com/strategy/your-guide-to-knockout-poker-formats-47675.htm"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s4-icm-017",
+    "stage": 4,
+    "tags": [
+      "icm",
+      "bubble-factor"
+    ],
+    "q": "GTO Wizard の参考値で、Sunday Million の平均バブルファクターはマネーバブルで約いくつ？",
+    "choices": [
+      "約1.0",
+      "約0.5",
+      "約5.0",
+      "約1.6"
+    ],
+    "answer": 3,
+    "explain": "GTO Wizard の記事では、Sunday Million の平均バブルファクターはマネーバブルで約1.6、FT前で約1.7と紹介されています。",
+    "why": "バブルでは負けの痛みが勝ちの喜びより大きい、ということを具体的な数字で感じられます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: What is the Bubble Factor in poker tournaments?",
+        "url": "https://blog.gtowizard.com/what-is-the-bubble-factor-in-poker-tournaments/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  }
+]

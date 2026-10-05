@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>計算機</h1>
+<p class="muted">中身は <code>tools/poker_math.py</code>（テスト済み）と同じ計算です。</p>
+{% if error %}<div class="flash error">{{ error }}</div>{% endif %}
+{% macro f(name, label, val='') %}<label>{{ label }}<input type="text" inputmode="decimal" name="{{ name }}" value="{{ form.get(name, val) }}"></label>{% endmacro %}
+
+<div class="panel"><h2>ポットオッズ・MDF・ブラフの損益分岐</h2>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="pot">
+<div class="row2">{{ f('pot', 'ベット前のポット', '100') }}{{ f('bet', '相手（自分）のベット', '50') }}</div>
+<p><button class="btn" type="submit">計算</button></p></form>
+{% if res.kind == 'pot' %}<ul class="list">
+<li>コールに必要な勝率 <b>{{ '%.1f'|format(res.pot_odds * 100) }}%</b> = {{ res.bet|round(2) }} ÷ ({{ res.pot|round(2) }} + {{ res.bet|round(2) }} + {{ res.bet|round(2) }})</li>
+<li>MDF（守るべき最低頻度） <b>{{ '%.1f'|format(res.mdf * 100) }}%</b> = ポット ÷（ポット＋ベット）</li>
+<li>ブラフが損益分岐になる相手のフォールド率 <b>{{ '%.1f'|format(res.alpha * 100) }}%</b> = ベット ÷（ポット＋ベット）</li></ul>{% endif %}
+</div>
+
+<div class="panel"><h2>アウツ → 完成確率</h2>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="outs">
+{{ f('outs', 'アウツの枚数', '9') }}<p><button class="btn" type="submit">計算</button></p></form>
+{% if res.kind == 'outs' %}<ul class="list">
+<li>次の1枚で（ターン→リバー）: 正確 <b>{{ '%.1f'|format(res.one * 100) }}%</b> / 2のルール {{ '%.0f'|format(res.r1 * 100) }}%</li>
+<li>2枚で（フロップ→リバー、オールイン時）: 正確 <b>{{ '%.1f'|format(res.two * 100) }}%</b> / 4のルール {{ '%.0f'|format(res.r2 * 100) }}%</li></ul>
+<p class="small muted">相手がベットしてくる場面では、通常は次の1枚分のオッズしか保証されません。</p>{% endif %}
+</div>
+
+<div class="panel"><h2>SPR</h2>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="spr">
+<div class="row2">{{ f('stack', 'エフェクティブスタック', '900') }}{{ f('pot', 'ポット', '300') }}</div><p><button class="btn" type="submit">計算</button></p></form>
+{% if res.kind == 'spr' %}<p>SPR <b>{{ '%.2f'|format(res.spr) }}</b></p>{% endif %}
+</div>
+
+<div class="panel"><h2>EV（期待値）</h2>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="ev">
+<div class="row3">{{ f('p', '勝率（%）', '40') }}{{ f('win', '勝ったら +', '300') }}{{ f('lose', '負けたら −', '100') }}</div><p><button class="btn" type="submit">計算</button></p></form>
+{% if res.kind == 'ev' %}<p>EV <b>{{ '%+.2f'|format(res.ev) }}</b></p>{% endif %}
+</div>
+
+<div class="panel"><h2>エクイティ（ハンド同士の勝率）</h2>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="equity">
+{{ f('hands', 'ハンド（空白区切り、2〜4人）', 'AhKh QsQd') }}{{ f('board', 'ボード（空欄でプリフロップ）', '') }}
+<p><button class="btn" type="submit">計算</button></p></form>
+{% if res.kind == 'equity' %}<ul class="list">{% for h, e in res.rows %}<li>{{ h }}: <b>{{ '%.1f'|format(e * 100) }}%</b></li>{% endfor %}</ul>
+<p class="small muted">{{ res.n }} 通り（列挙できる量なら全列挙、多いときはランダム試行の近似）。</p>{% endif %}
+</div>
+
+<div class="panel"><h2>平均スタック（ストラクチャー表を読む）</h2>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="avg">
+<div class="row2">{{ f('entrants', '総エントリー数', '300') }}{{ f('start', '開始スタック', '30000') }}{{ f('remain', '残り人数', '40') }}{{ f('bb', 'いまの BB', '3000') }}</div>
+<p><button class="btn" type="submit">計算</button></p></form>
+{% if res.kind == 'avg' %}<p>平均スタック <b>{{ '{:,.0f}'.format(res.avg) }}</b>（<b>{{ '%.1f'|format(res.avg_bb) }}BB</b>）<span class="small muted">リエントリー分はエントリー数に含め、アドオンは開始スタックに足して入力。</span></p>{% endif %}
+</div>
+{% endblock %}

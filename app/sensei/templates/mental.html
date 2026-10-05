@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block body %}
+<p class="small"><a href="{{ url_for('coach.index') }}">← コーチ</a></p>
+<h1>メンタル</h1>
+
+<div class="panel"><h2>プレイ前チェック（ウォームアップ）</h2>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="pre">
+<div class="checks">{% for w in warmup %}<label><input type="checkbox" name="check" value="{{ w }}"> {{ w }}</label>{% endfor %}</div>
+<div class="row2"><label>起きてから何時間？<input type="number" step="0.5" name="awake" min="0" max="30"></label><label>何時間プレイする予定？<input type="number" step="0.5" name="planned" min="0" max="20"></label></div>
+<label>今日のプラン（1行）<input type="text" name="plan" placeholder="例: バブル前はショートで無理しない"></label>
+<p><button class="btn" type="submit">チェック</button></p></form>
+<p class="small muted">ウォームアップの項目: <a href="{{ warmup_src }}" target="_blank" rel="noopener noreferrer">Jared Tendler「Building a Winning Routine」</a>。
+16時間の目安: 起床から16時間以上たって終えたセッションで感情的・行動的ティルトが高く、成績も悪化した研究（オンライン常連23名・28日間）<a href="{{ sleep_src }}" target="_blank" rel="noopener noreferrer">Hamel ほか, Frontiers in Psychiatry 2021</a>。</p>
+</div>
+
+<div class="panel"><h2>Cゲームのサインと修正ロジック</h2>
+<p class="small">インチワームの考え方: Aゲームを伸ばすより先に、Cゲーム（最悪の状態）でやるミスを潰して最低ラインを上げる（<a href="https://jaredtendler.com/the-inchworm-concept/" target="_blank" rel="noopener noreferrer">Tendler</a>）。</p>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="signs">
+<label>Cゲームのサイン（1行に1つ。3つ以上で Stage 6 の合格ライン）<textarea name="c_game_signs" placeholder="例: バッドビートの直後にプリフロップで広く参加しはじめる">{{ signs }}</textarea></label>
+<label>サインが出たときの修正ロジック（プレイ中に読む短い言葉）<textarea name="correction" placeholder="例: 判断は正しかった。結果ではなく次の1ハンドの判断に集中">{{ correction }}</textarea></label>
+<p><button class="btn" type="submit">保存</button></p></form></div>
+
+<div class="panel" id="mhh"><h2>メンタル・ハンドヒストリー（5ステップ）</h2>
+{% if show_mhh %}<p class="warn small">ティルトが強めの日でした。忘れないうちに書きましょう（5〜10分でOK）。</p>{% endif %}
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="mhh">
+{% for s in mhh %}<label>{{ loop.index }}. {{ s }}<textarea name="step{{ loop.index }}"></textarea></label>{% endfor %}
+<p><button class="btn" type="submit">保存</button></p></form>
+<p class="small muted">手順: <a href="{{ mhh_src }}" target="_blank" rel="noopener noreferrer">Jared Tendler「Find the Rocks in Your Mind」</a></p></div>
+
+<div class="panel"><h2>予算とバンクロール計画（Stage 7）</h2>
+<p class="small">参考: MTT の推奨はオンライン（非ターボ）150〜300バイイン、ライブ 100〜120バイインなど出典で幅があります（<a href="https://www.pokerlistings.com/poker-strategies/bankroll-management" target="_blank" rel="noopener noreferrer">PokerListings</a>、<a href="https://www.vip-grinders.com/poker-strategy/bankroll-management/" target="_blank" rel="noopener noreferrer">VIP-Grinders</a>）。海外遠征の旅費・バイインは「娯楽予算」として別枠にするのが本教材の提案です（<a href="{{ url_for('learn.library_file', name='03-mental-training.md') }}">03 A-2</a>）。</p>
+<form method="post" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="budget">
+<label>計画<textarea name="budget_plan" placeholder="例: 目標大会、時期、バイイン、旅費、練習用の大会と予算、やめる基準">{{ budget }}</textarea></label>
+<p><button class="btn" type="submit">保存</button></p></form></div>
+
+{% if checkins %}<div class="panel"><h2>最近のチェックイン</h2><ul class="list small">
+{% for c in checkins %}<li>{{ c.ts }} {{ 'プレイ前' if c.kind == 'pre' else 'メンタル・ハンドヒストリー' }}{% if c.data.plan %}: {{ c.data.plan }}{% endif %}{% if c.data.step1 %}: {{ c.data.step1[:60] }}{% endif %}</li>{% endfor %}
+</ul></div>{% endif %}
+{% endblock %}
