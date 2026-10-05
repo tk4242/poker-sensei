@@ -328,13 +328,13 @@
     ],
     "q": "ライブでレイズするときの正しい手順は？（ストリングベットの禁止）",
     "choices": [
-      "先に口頭で「Raise」などと宣言してからチップを出す",
+      "レイズする額を先に口頭で宣言してからチップを出す（または全額を1回の動作で出す）",
       "何も言わずに、チップを少しずつ何回かに分けて出す",
       "先にチップを1枚出して相手の反応を見てから足す",
       "チップをポットに投げ込んでから額を言う"
     ],
     "answer": 0,
-    "explain": "ストリングベットは禁止です。先に口頭で宣言してからチップを出します。無言で複数回に分けて出すと、最初の動作のみ有効になります。",
+    "explain": "TDAルール（2026年版 Rule 44）では、ノーリミットのレイズは「全額を1回の動作で出す」か「チップを出す前に額を口頭で宣言する」のどちらかで行います。宣言とチップの両方を使ったときは、先にした方が有効です（Rule 42-A）。何も言わずにチップを何回かに分けて出すとストリングベットになり、最初の動作だけが有効とされます（VIP-Grinders）。",
     "why": "海外の大会で意図しない額のコール扱いにされないために、必ず身につけたい手順です。",
     "label": "RULE",
     "source": [
@@ -343,8 +343,8 @@
         "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
       },
       {
-        "title": "Poker TDA Rules 2015 (handout)",
-        "url": "https://www.pokertda.com/wp-content/uploads/2011/01/Poker-TDA-Rules-2015-Version-1.0-handout-size-PDF-3.pdf"
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
       }
     ],
     "ref": "curriculum/03-mental-training.md A-8"
@@ -364,7 +364,7 @@
       "ディーラーが代わりに決めてくれる"
     ],
     "answer": 1,
-    "explain": "順番に行動（Act in turn）が基本で、順番前のアクションは拘束される場合があります（TDAルール）。",
+    "explain": "順番に行動（Act in turn）が基本です。順番前のアクションはペナルティの対象で、自分の番が来るまでに前の人の行動で状況が変わらなければ、そのアクションは拘束されます（TDA 2026年版 Rule 55-A）。",
     "why": "順番を守ることは相手への礼儀であると同時に、自分の不利な行動を防ぐことにもつながります。",
     "label": "RULE",
     "source": [
@@ -373,8 +373,8 @@
         "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
       },
       {
-        "title": "Poker TDA Rules 2015 (handout)",
-        "url": "https://www.pokertda.com/wp-content/uploads/2011/01/Poker-TDA-Rules-2015-Version-1.0-handout-size-PDF-3.pdf"
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
       }
     ],
     "ref": "curriculum/03-mental-training.md A-8"
@@ -394,7 +394,7 @@
       "ディーラーに手渡しする"
     ],
     "answer": 2,
-    "explain": "チップをポットに投げ込むスプラッシュは禁止で、自分の前にそろえて置きます。",
+    "explain": "チップをポットに投げ込むスプラッシュは禁止で、自分の前（自分とポットの間）にそろえて置きます。TDA 2026年版 Rule 73 でも、ポットの上にチップをばらまくことや、ディーラーの手が届かない所に置くことはエチケット違反とされています。",
     "why": "額の確認でもめることを防ぎ、海外の大会でも気持ちよくプレイできます。",
     "label": "RULE",
     "source": [
@@ -403,8 +403,8 @@
         "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
       },
       {
-        "title": "Poker TDA Rules 2015 (handout)",
-        "url": "https://www.pokertda.com/wp-content/uploads/2011/01/Poker-TDA-Rules-2015-Version-1.0-handout-size-PDF-3.pdf"
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
       }
     ],
     "ref": "curriculum/03-mental-training.md A-8"
@@ -420,11 +420,11 @@
     "choices": [
       "自分のカードを自分で確認すること",
       "チップを数えること",
-      "ハンドが終わってから感想を話すこと",
+      "ハンド中に自分のカードをカードプロテクター（チップなど）で守ること",
       "ハンド中に他人へホールカードを見せたり助言したりすること"
     ],
     "answer": 3,
-    "explain": "One player to a hand は、ハンド中に他人へホールカードを見せたり助言したりしないというルールです。",
+    "explain": "One player to a hand は、ハンド中に他人へホールカードを見せたり助言したりしないというルールです。TDA 2026年版 Rule 69 では、ハンドに参加していない人も含めて、ハンドの中身を話すこと、いつであってもプレイに助言・批判をすること、表にされていないハンドを読み上げることが禁止されています。",
     "why": "友だちと一緒に大会に出るときにうっかり違反しないように、知っておく必要があります。",
     "label": "RULE",
     "source": [
@@ -433,8 +433,8 @@
         "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
       },
       {
-        "title": "Poker TDA Rules 2015 (handout)",
-        "url": "https://www.pokertda.com/wp-content/uploads/2011/01/Poker-TDA-Rules-2015-Version-1.0-handout-size-PDF-3.pdf"
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
       }
     ],
     "ref": "curriculum/03-mental-training.md A-8"

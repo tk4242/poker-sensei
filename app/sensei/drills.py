@@ -22,6 +22,7 @@ SRC = {
     "hands": {"title": "Wikipedia: List of poker hands", "url": "https://en.wikipedia.org/wiki/List_of_poker_hands"},
     "positions": {"title": "Poker.org: Poker table positions cheat sheet",
                   "url": "https://www.poker.org/poker-cheat-sheets/poker-table-positions-cheat-sheet-aN4rp4C1NZmu/"},
+    "positions2": {"title": "PokerCoaching: Poker Positions", "url": "https://pokercoaching.com/blog/poker-positions/"},
     "glossary": {"title": "Wikipedia: Glossary of poker terms", "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"},
     "tda": {"title": "Poker TDA Rules 2026 (Rule 45)", "url": "https://www.pokertda.com/view-poker-tda-rules/"},
     "potodds": {"title": "Wikipedia: Pot odds", "url": "https://en.wikipedia.org/wiki/Pot_odds"},
@@ -303,10 +304,12 @@ def gen_positions(rng):
     else:  # section（9人卓・8人卓）
         target = rng.choice([x for x in usable])
         correct = SECTION[target]
-        q = f"{target} はどの区分？"
+        q = f"{n}人卓。{target} はどの区分？"
         choices = ["アーリー（EP）", "ミドル（MP）", "レイト（LP）", "ブラインド"]
-        explain = "区分の目安: アーリー＝UTG〜UTG+2、ミドル＝LJ・HJ、レイト＝CO・BTN、ブラインド＝SB・BB。"
+        explain = ("区分の目安: アーリー＝UTG〜UTG+2、ミドル＝LJ・HJ、レイト＝CO・BTN、ブラインド＝SB・BB（PokerCoaching）。"
+                   "HJ をレイトに数える資料もあります（Poker.org）が、ここでは教材の区分に合わせています。")
         diagram = None
+        src = [SRC["positions2"]]
     return finish("positions", 0, "positions", q, choices, correct, explain, why, "RULE", src, ref, rng,
                   diagram=diagram)
 
@@ -428,7 +431,7 @@ def gen_min_raise(rng):
     while len(vals) < 4:
         vals.append(vals[-1] + bb)
     choices = [f"{v:,}" for v in vals]
-    explain = (f"最小レイズは「直前のフルのベット/レイズの上乗せ額」以上を上乗せ（TDA Rule 45）。"
+    explain = (f"最小レイズは「そのラウンドで最大のフルのベット/レイズの上乗せ額」以上を上乗せ（TDA Rule 45）。"
                f"上乗せは {open_to:,}−{bb:,}={raise_by:,} なので、最低 {open_to:,}+{raise_by:,}={correct_v:,}。")
     return finish("min_raise", 0, "rules", f"BB={bb:,}。UTG が {open_to:,} にレイズ。次にレイズするときの最小額（合計）は？",
                   choices, f"{correct_v:,}", explain, "ライブ大会で額を間違えると訂正されます。ルールどおりに迷わず出せるように。",
@@ -473,7 +476,7 @@ def gen_bb_defense(rng):
     return finish("bb_defense", 1, "preflop", f"BBA（BBアンティ=1BB）の大会。BTN が {open_to:g}BB にオープン、SB はフォールド。"
                   "BB のあなたがコールするのに必要な勝率は？", labels, correct, explain,
                   "BB のディフェンス範囲を決める出発点。アンティがあると必要勝率が下がることを数字で体感します。",
-                  "GTO", SRC["bbdef"], "curriculum/02-strategy.md 1-7", rng)
+                  "RULE", SRC["bbdef"], "curriculum/02-strategy.md 1-7", rng)
 
 
 def gen_3bet_size(rng):
@@ -484,7 +487,7 @@ def gen_3bet_size(rng):
     vals = [open_to * m for m in (2, 3, 4, 5)]
     choices = [f"約{v:g}BB" for v in vals]
     explain = (f"一般則は 3ベットを IP でオープンの約3倍、OOP で約4倍。{'IP' if ip else 'OOP'} なので "
-               f"{open_to:g}×{mult} = {open_to * mult:g}BB。ソルバー例（50bb）も IP 約3.2倍、OOP 約3.9〜4.3倍で概ね一致。"
+               f"{open_to:g}×{mult} = {open_to * mult:g}BB。ソルバー例も 50bb で IP 約3.2倍・OOP 約4.3倍（30bb では OOP 約3.9倍）で概ね一致。"
                )
     return finish("3bet_size", 1, "preflop",
                   f"相手が {open_to:g}BB にオープン。あなたは {'IP（相手より後に動ける）' if ip else 'OOP（ブラインドなど、先に動く）'}"

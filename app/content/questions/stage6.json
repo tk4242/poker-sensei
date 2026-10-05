@@ -289,10 +289,6 @@
       {
         "title": "VIP-Grinders: MTT Variance Calculator",
         "url": "https://www.vip-grinders.com/poker-calculators/mtt-variance-calculator/"
-      },
-      {
-        "title": "DeucesCracked: MTT Bankroll 2026",
-        "url": "https://www.deucescracked.com/blog/bankroll-management-online-mtt-grinders-2026-guide"
       }
     ],
     "ref": "curriculum/03-mental-training.md A-2"
@@ -525,7 +521,7 @@
       "バイインが高く、改善の価値が大きいため"
     ],
     "answer": 3,
-    "explain": "O'Kearney は、ライブ中心のプレイヤーはバイインが高く改善の価値が大きいので、オンラインより多く勉強すべきとしています。",
+    "explain": "O'Kearney は、ライブは移動の時間がかかりバイインも高いのでミスの痛みが大きく、またライブの方がエッジ（腕の差）が大きいので勉強するほどROIを伸ばせる、という理由で、ライブ中心のプレイヤーはオンラインより多く勉強すべきとしています。",
     "why": "海外ライブMTTを目標にするなら、1回の大会の重みが大きいので事前の勉強が特に大事だと分かります。",
     "label": "MENTAL",
     "source": [

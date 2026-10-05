@@ -190,3 +190,8 @@
 | youtube.com | https://www.youtube.com/@yokosawa | C | 03 | 2026-10-05 |  |
 | youtube.com | https://www.youtube.com/channel/UCIi-mr2N_ajHsgiqGUj3Kig | C | 03 | 2026-10-05 |  |
 | youtube.com | https://www.youtube.com/channel/UCIi-mr2N_ajHsgiqGUj3Kig（ポーカーの沼 | C | 03 | 2026-10-05 |  |
+| pokercoaching.com | https://pokercoaching.com/blog/poker-positions/ | B | app | 2026-10-05 |  |
+| pokerlistings.com | https://www.pokerlistings.com/poker-guides/poker-positions | B | app | 2026-10-05 |  |
+| news.ksb.co.jp | https://news.ksb.co.jp/ann/article/16242175 | C | app | 2026-10-05 | ○ |
+| prtimes.jp | https://prtimes.jp/main/html/rd/p/000000012.000133461.html | C | app | 2026-10-05 | ○ |
+| cardplayer.com | https://www.cardplayer.com/poker-news/1680417-2026-wsop-main-event-draws-9208-to-become-fourth-largest-in-history | B | app | 2026-10-05 | ○ |
