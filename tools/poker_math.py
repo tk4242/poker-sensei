@@ -42,10 +42,12 @@ def bluff_breakeven(pot, bet):
 
 def outs_probability(outs, streets, unseen=None):
     """アウツが少なくとも1枚出る正確な確率。
-    streets=1: 次の1枚（未知カード46枚=フロップ後のターン想定、47枚にしたい場合はunseen指定）
-    streets=2: フロップからリバーまで（未知47枚から2枚）"""
+    streets=1: フロップ後の次の1枚（未知47枚）。ターン後はunseen=46を指定。
+    streets=2: フロップからリバーまで（未知47枚から2枚）。"""
     if unseen is None:
-        unseen = 47 if streets == 2 else 46
+        unseen = 47
+    if streets not in (1, 2) or not 0 <= outs <= unseen or unseen < streets:
+        raise ValueError("アウツ、残りカード枚数、残りの公開枚数を確認してください")
     miss = comb(unseen - outs, streets) / comb(unseen, streets)
     return 1 - miss
 
@@ -171,6 +173,7 @@ def main():
     a = sub.add_parser("outs", help="アウツから完成確率")
     a.add_argument("--outs", type=int, required=True)
     a.add_argument("--streets", type=int, choices=[1, 2], default=1)
+    a.add_argument("--unseen", type=int, choices=[46, 47], help="フロップ後は47、ターン後は46（省略時47）")
     a = sub.add_parser("spr", help="SPR")
     a.add_argument("--stack", type=float, required=True)
     a.add_argument("--pot", type=float, required=True)
@@ -192,7 +195,7 @@ def main():
     elif args.cmd == "bluff":
         print(f"ブラフ損益分岐フォールド率: {bluff_breakeven(args.pot, args.bet):.1%}")
     elif args.cmd == "outs":
-        exact = outs_probability(args.outs, args.streets)
+        exact = outs_probability(args.outs, args.streets, args.unseen)
         approx = rule_of_2_and_4(args.outs, args.streets)
         print(f"正確な確率: {exact:.1%} / 2と4のルール近似: {approx:.0%} (差 {approx - exact:+.1%})")
     elif args.cmd == "spr":

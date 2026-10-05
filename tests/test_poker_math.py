@@ -18,7 +18,8 @@ class FormulaTests(unittest.TestCase):
     def test_outs(self):
         # フラッシュドロー9アウツ、ターン+リバー: 1 - C(38,2)/C(47,2) = 0.3497
         self.assertAlmostEqual(pm.outs_probability(9, 2), 1 - 703 / 1081, places=6)
-        self.assertAlmostEqual(pm.outs_probability(9, 1), 9 / 46)
+        self.assertAlmostEqual(pm.outs_probability(9, 1), 9 / 47)
+        self.assertAlmostEqual(pm.outs_probability(9, 1, unseen=46), 9 / 46)
 
 
 class HandTests(unittest.TestCase):
