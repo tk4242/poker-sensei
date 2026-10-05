@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch",
+      "Bash(python3 tools/poker_math.py *)",
+      "Bash(python3 -m unittest *)"
+    ]
+  }
+}
