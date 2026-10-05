@@ -9,7 +9,7 @@ TOOLS = Path(__file__).resolve().parent.parent / "tools"
 sys.path.insert(0, str(TOOLS))
 import collab  # noqa: E402
 
-OWNERS = {"learner/": "claude", "learner/special.md": "codex", "CLAUDE.md": "claude"}
+OWNERS = {"learner/": "claude", "learner/special.md": "codex", "CLAUDE.md": "claude", "tests/test_practice*": "codex"}
 
 
 class OwnerTests(unittest.TestCase):
@@ -19,6 +19,8 @@ class OwnerTests(unittest.TestCase):
         self.assertEqual(collab.owner_of("CLAUDE.md", OWNERS), "claude")
         self.assertIsNone(collab.owner_of("curriculum/01-terms.md", OWNERS))  # 共有
         self.assertIsNone(collab.owner_of("CLAUDE.md.bak", OWNERS))  # 完全一致のみ
+        self.assertEqual(collab.owner_of("tests/test_practice_quiz.py", OWNERS), "codex")  # * は前方一致
+        self.assertIsNone(collab.owner_of("tests/test_collab.py", OWNERS))
 
     def test_violations(self):
         files = ["learner/growth.md", "curriculum/a.md", "CLAUDE.md"]

@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # (パス, 最大行数)。CLAUDE.md は公式推奨の200行以内より厳しめに設定
 LIMITS = [
     ("CLAUDE.md", 100),
-    ("AGENTS.md", 40),
+    ("AGENTS.md", 45),
     ("learner/active.md", 30),
     ("learner/growth.md", 150),
     ("learner/weak-points.md", 40),

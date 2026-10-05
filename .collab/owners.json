@@ -1,9 +1,11 @@
 {
-  "_comment": "パスの担当表。末尾が / のものはディレクトリ全体、それ以外は完全一致。担当は claude / codex。載っていないパスは共有（誰でも編集可、pull --rebase 必須）。",
+  "_comment": "パスの担当表。末尾が / はディレクトリ全体、末尾が * は前方一致、それ以外は完全一致。担当は claude / codex。載っていないパスは共有（誰でも編集可。ただし codex は作業ブランチ+PR、claude は main）。",
   "owners": {
     "learner/": "claude",
     ".claude/": "claude",
     "CLAUDE.md": "claude",
-    "hands/": "claude"
+    "hands/": "claude",
+    "tools/practice/": "codex",
+    "tests/test_practice*": "codex"
   }
 }

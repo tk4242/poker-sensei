@@ -25,13 +25,15 @@ Codex は Git ルートの `AGENTS.md` を読む（出典: https://learn.chatgpt
 3. 他者のコミットを書き換えない（rebase は自分の未pushコミットだけ）。
 4. 他の担当のファイルは、頼まれない限り編集しない（下の担当表）。
 
-## 担当（暫定。ユーザーの回答で `.collab/owners.json` と一緒に更新する）
+## 担当（2026-10-05 ユーザー回答で確定: Codex は「ツール作りと、最強への近道の補助」）
 | 場所 | 担当 | 備考 |
 |---|---|---|
-| `learner/`、`hands/`（成長記録・進捗・ハンド検討） | Claude（`growth-tracker`） | Codex は読むだけ。短い間隔で小まめに push される |
-| `.claude/`、`CLAUDE.md` | Claude | Claude Code の設定 |
-| `curriculum/`、`sources/`、`tools/`、`tests/` | 共有 | 先に着手した側が優先。変更前に pull（`sync` が自動で行う）。教材を変えたら出典を付け、ファクトチェックを通す |
-| `AGENTS.md`、`.collab/`、`.github/` | 共有 | 変更理由をコミットメッセージに書く |
+| `tools/practice/`、`tests/test_practice*` | **Codex** | 学習支援ツール（練習・計算・記録の自動化など）。Claude は触らない |
+| `learner/`、`hands/`、`.claude/`、`CLAUDE.md` | Claude | Codex は読むだけ。改善案は PR の説明か Claude への提案で出す |
+| `curriculum/`、`sources/` | 共有 | 本文・出典を変えるときは出典を付け、`fact-checker` を通す。Codex は誤りの指摘・提案が中心 |
+| `tools/` のその他、`tests/` のその他、`AGENTS.md`、`.collab/`、`.github/` | 共有 | 既存ツールの変更は PR で。理由をコミットメッセージに書く |
+
+Codex に期待すること: 練習問題の自動出題、計算・レンジ表のドリル、学習記録の集計やグラフ化など、学習の効率を上げる道具の提案と実装。教材の中身を勝手に書き換えず、必要なら提案する。
 
 ## 教材の品質ルール（Codex も同じ）
 - 戦略・数値・ルール・法律の主張には出典を付ける。確認できない内容は書かず、`【要確認】` を付ける。

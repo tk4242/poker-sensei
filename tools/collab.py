@@ -44,7 +44,12 @@ def owner_of(path, owners):
     """パスの担当を返す。担当表になければ None（共有）。長い（具体的な）パターンを優先。"""
     best = None
     for pattern, who in owners.items():
-        hit = path.startswith(pattern) if pattern.endswith("/") else path == pattern
+        if pattern.endswith("/"):
+            hit = path.startswith(pattern)  # ディレクトリ全体
+        elif pattern.endswith("*"):
+            hit = path.startswith(pattern[:-1])  # 前方一致（例: tests/test_practice*）
+        else:
+            hit = path == pattern  # 完全一致
         if hit and (best is None or len(pattern) > len(best[0])):
             best = (pattern, who)
     return best[1] if best else None
