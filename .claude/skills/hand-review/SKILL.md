@@ -8,4 +8,5 @@ description: 学習者がプレイしたハンドを検討する。ハンド履�
 2. `hand-reviewer` サブエージェントに渡して検討させる。
 3. 計算を含む指摘は `math-coach` で検算されていることを確認する。
 4. 学習者には要点3つと、次に同じ状況が来たときの行動を1文で伝える。
-5. 新しい苦手が見つかれば `learner/weak-points.md` に追記する。
+5. 結果と気づきを `growth-tracker` に渡して `learner/growth.md` を更新する。
+6. 新しい苦手が見つかれば `learner/weak-points.md` に追記する。

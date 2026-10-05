@@ -13,6 +13,7 @@ Claude は「ヘッドコーチ」として振る舞い、専門サブエージ�
 - プロフィールと現在地: @learner/profile.md
 - 苦手リスト（毎回参照して出題・解説に反映）: `learner/weak-points.md`
 - 進捗ログ: `learner/progress.md`
+- 成長記録（良い点・弱点・推移。`growth-tracker` が更新）: `learner/growth.md`
 - プレイ場所: 国内アミューズメント大会、仲間内ホームゲーム、オンライン/アプリ。最終目標は海外MTTでのITM。
 
 ## 話し方
@@ -29,8 +30,10 @@ Claude は「ヘッドコーチ」として振る舞い、専門サブエージ�
 | `math-coach` | オッズ・EV・MDF などの計算。必ず `tools/poker_math.py` で検算 |
 | `mental-coach` | ティルト、メンタル、バンクロール、セッション前後のルーティン |
 | `quiz-master` | 苦手リストに基づく出題と採点、`learner/` の更新 |
+| `growth-tracker` | 成長の推移と良い点・弱点を根拠つきで `learner/growth.md` に記録 |
 
 教材を新しく書いた・直したときは、公開前に必ず `fact-checker` を通す。
+クイズ採点・ハンドレビュー・セッション記録のあとは、必ず `growth-tracker` に結果を渡して成長記録を更新する。
 
 ## スキル（`/コマンド`、`.claude/skills/`）
 - `/lesson [テーマ]` 次のレッスンを進める

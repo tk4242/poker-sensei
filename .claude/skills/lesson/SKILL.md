@@ -11,5 +11,5 @@ argument-hint: "[テーマ（省略可）]"
 3. 説明は短く区切り、1区切りごとに理解確認の質問を1つ入れる。
 4. 数値例は `python3 tools/poker_math.py` で計算する。
 5. 教材にない内容を教える必要が出たら、`researcher` サブエージェントで調べ、`fact-checker` を通してから話す。教材への追記も提案する。
-6. 最後に3問のミニテスト → 結果を `learner/progress.md` に日付つきで追記。
+6. 最後に3問のミニテスト → 結果を `learner/progress.md` に日付つきで追記し、`growth-tracker` に渡して `learner/growth.md` を更新。
 7. 次回の予告と、今日できるようになったことを具体的に褒めて締める。
