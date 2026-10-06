@@ -1,0 +1,442 @@
+[
+  {
+    "id": "s5-exploit-001",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "definition"
+    ],
+    "q": "エクスプロイト（exploit / exploitative play）とは？",
+    "choices": [
+      "相手の偏り（降りすぎ等）を突いて、GTOから意図的にずらす戦略",
+      "どんな相手にも搾取されない均衡戦略",
+      "ルール違反ぎりぎりのアングルショット",
+      "ソルバーの出力をそのまま使う戦略"
+    ],
+    "answer": 0,
+    "explain": "エクスプロイトは、相手の偏りを突いてGTO（Game Theory Optimal / どちらも一方的に戦略を変えて得できない均衡戦略）から意図的にずらす戦略です。",
+    "why": "GTOは土台、エクスプロイトは相手に合わせた調整、と区別できると、教材や解説の読み方がはっきりします。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "GTO Wizard: What is GTO in Poker?",
+        "url": "https://blog.gtowizard.com/what-is-gto-in-poker/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.5"
+  },
+  {
+    "id": "s5-exploit-002",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "live"
+    ],
+    "q": "Red Chip Poker によると、ライブ低〜中レートのトーナメント序盤のレク層（趣味のプレイヤー）によく見られる傾向と対策は？",
+    "choices": [
+      "すぐ降りる → ブラフを増やす",
+      "ポストフロップで粘着的でトップペアでスタックオフしすぎる → ブラフを控えバリュー重視",
+      "ポストフロップで降りすぎる → 小さいベットで何度もブラフ",
+      "プリフロップで3ベットしすぎる → 全部コールで受ける"
+    ],
+    "answer": 1,
+    "explain": "Red Chip Poker は、序盤のレク層はポストフロップで粘着的、深いスタックでトップペアでスタックオフしすぎ、と指摘し、序盤はブラフを控えバリュー重視を勧めています。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "海外ライブの序盤によくいる相手のタイプに合わせて、ブラフで損をせずバリューで稼ぐ方針を持てます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Red Chip Poker: Tournaments #3: Early Levels",
+        "url": "https://redchippoker.com/tournaments-3-early-levels/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-1"
+  },
+  {
+    "id": "s5-exploit-003",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "player-type"
+    ],
+    "q": "Jonathan Little によると、ルース・パッシブ（よく参加するがあまりレイズしない）相手への対応は？",
+    "choices": [
+      "ブラフを増やして降ろしにいく",
+      "強いハンドはチェックで隠し、相手にベットさせる",
+      "良いトップペア以上ならほぼ常にバリューベットを続け、相手が圧力をかけてきたらプレミアム以外は降りる",
+      "相手のレイズにはいつもコールする"
+    ],
+    "answer": 2,
+    "explain": "Jonathan Little は、ルース・パッシブ相手には良いトップペア以上でほぼ常にバリューベットを続け、相手が圧力をかけてきたらプレミアム以外は降りるとしています。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "めったにレイズしない相手のレイズは強い、と分かれば、大きな負けを避けつつ稼げます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Jonathan Little: Strategies for Beating Small Stakes Poker Tournaments (PDF)",
+        "url": "https://jonathanlittlepoker.com/pdf/Strategies.pdf"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-1"
+  },
+  {
+    "id": "s5-exploit-004",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "player-type"
+    ],
+    "q": "Jonathan Little によると、タイト・パッシブ（あまり参加せずレイズも少ない）相手への対応は？",
+    "choices": [
+      "薄いバリューベットを何度も打つ",
+      "相手のベットにはすべてコールする",
+      "プリフロップはリンプで参加する",
+      "レイトから広くスチールし、フロップのCベットで降ろす"
+    ],
+    "answer": 3,
+    "explain": "タイト・パッシブ相手には、レイトから広くスチール（ブラインドを奪うオープン）し、フロップCベットで降ろす、とされています。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "降りやすい相手から小さなポットを取る、という相手に合わせた方針を持てます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Jonathan Little: Strategies for Beating Small Stakes Poker Tournaments (PDF)",
+        "url": "https://jonathanlittlepoker.com/pdf/Strategies.pdf"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-1"
+  },
+  {
+    "id": "s5-exploit-005",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "amusement"
+    ],
+    "q": "ポーカーアカデミーの記事による、国内アミューズメントでよく見られる傾向は？",
+    "choices": [
+      "プリフロップでコール・リンプが多く、弱いハンドでもコールし続け、ブラフが極端に少ない",
+      "プリフロップで3ベットが多く、ブラフが非常に多い",
+      "全員がGTOどおりにプレイしている",
+      "ほとんど参加せず、すぐ降りる人が多い"
+    ],
+    "answer": 0,
+    "explain": "ポーカーアカデミーの記事では、国内アミューズメントの傾向として、コール・リンプが多い、弱いハンドでもコールし続ける、ブラフが極端に少ない、が挙げられています。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "学習者がいちばん多く打つ場の傾向を知っておくと、練習の場で勝ちやすい打ち方を選べます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "ポーカーアカデミー: アミューズメントカジノでの勝ち方",
+        "url": "https://pokeracademy.jp/amuse-how-to-win/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-3"
+  },
+  {
+    "id": "s5-exploit-006",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "amusement"
+    ],
+    "q": "国内アミューズメントの傾向（ポーカーアカデミーの記事）に合わせた対策として合うのは？",
+    "choices": [
+      "ブラフを増やし、強いハンドは小さく打つ",
+      "タイトにレイズし、強いハンドは大きめにバリューベット、ブラフは減らし、大きいベットには降りる",
+      "リンプで参加して安くフロップを見る",
+      "相手の大きいベットには必ずコールする"
+    ],
+    "answer": 1,
+    "explain": "対策は、タイトにレイズ、強いハンドは大きめにバリューベット、ブラフ削減、大きいベットには降りる、です。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "コールが多くブラフが少ない相手に、ブラフよりバリューを重視する理由が分かります。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "ポーカーアカデミー: アミューズメントカジノでの勝ち方",
+        "url": "https://pokeracademy.jp/amuse-how-to-win/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-3"
+  },
+  {
+    "id": "s5-exploit-007",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "river-bluff"
+    ],
+    "q": "「低レートではリバーのブラフが少ない」という傾向について、教材の情報源の見解は？",
+    "choices": [
+      "すべての情報源が一致して「ブラフは常にない」としている",
+      "すべての情報源が一致して「ブラフが多すぎる」としている",
+      "見解に差がある。一律に「ブラフがない」と決めつけない",
+      "どの情報源もこの点に触れていない"
+    ],
+    "answer": 2,
+    "explain": "国内アミューズの記事は「リバーの大きなベットはほとんどバリュー」とする一方、GTO Wizard（低レートのデータ）はターンプローブなど一部ラインはむしろオーバーブラフとし、Galfond は傾向が連鎖すると指摘しています。教材の落とし所は「全ラインで一律にブラフがないと決めつけない」です。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "ひとつの傾向を絶対視すると、別の場面で逆に搾取されます。複数の見方を比べる習慣が身につきます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "ポーカーアカデミー: アミューズメントカジノでの勝ち方",
+        "url": "https://pokeracademy.jp/amuse-how-to-win/"
+      },
+      {
+        "title": "GTO Wizard: Calling Down Over-Bluffed Lines in Lower Limits",
+        "url": "https://blog.gtowizard.com/calling-down-the-over-bluffed-lines-in-lower-limits/"
+      },
+      {
+        "title": "Phil Galfond: How Understanding Your Player Pool Can Boost Your Winrate",
+        "url": "https://www.philgalfond.com/articles/how-understanding-your-player-pool-can-boost-your-winrate"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-2"
+  },
+  {
+    "id": "s5-exploit-008",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "river-bluff"
+    ],
+    "q": "GTO Wizard の低レートのマスデータ分析で「むしろオーバーブラフ（ブラフが多すぎ）」とされたラインの例は？",
+    "choices": [
+      "リバーの大きなレイズ",
+      "プリフロップの4ベット",
+      "フロップのミニマムレイズ",
+      "ターンのプローブベット"
+    ],
+    "answer": 3,
+    "explain": "GTO Wizard は、ターンプローブや範囲ベット後のベット-チェック-ベットなど特定のラインはむしろオーバーブラフとしています（例: J♠6♠5♣T♥でのBBターンプローブ範囲の約56%がメイドしていないハンド）。ただし記事自体が「データ不足」と明記していて、ライブへの適用は【要確認】です。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "「低レートはブラフが少ない」と覚えたままにせず、ラインごとに考える視点が持てます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "GTO Wizard: Calling Down Over-Bluffed Lines in Lower Limits",
+        "url": "https://blog.gtowizard.com/calling-down-the-over-bluffed-lines-in-lower-limits/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-2"
+  },
+  {
+    "id": "s5-exploit-009",
+    "stage": 5,
+    "tags": [
+      "exploit",
+      "river-bluff"
+    ],
+    "q": "Phil Galfond の指摘として正しいのは？（$2/$5のライブの例）",
+    "choices": [
+      "アンダーブラフの傾向に周りが過剰フォールドで適応すると、今度はリバーブラフが効く局面が生まれうる",
+      "ライブではどんな場面でもブラフは効かない",
+      "アンダーブラフの相手には全部コールするべき",
+      "傾向は変わらないので一度決めた対策をずっと使えばよい"
+    ],
+    "answer": 0,
+    "explain": "Galfond は、アンダーブラフの傾向に対して周りが過剰にフォールドする適応が起こり、今度はリバーブラフが効く局面が生まれうると指摘しています（傾向は連鎖する）。これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "相手の傾向は固定ではないので、観察を続けて調整し直す必要があると分かります。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Phil Galfond: How Understanding Your Player Pool Can Boost Your Winrate",
+        "url": "https://www.philgalfond.com/articles/how-understanding-your-player-pool-can-boost-your-winrate"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 4-2"
+  },
+  {
+    "id": "s5-live-001",
+    "stage": 5,
+    "tags": [
+      "live",
+      "tells"
+    ],
+    "q": "Upswing の「よくあるライブ・テル（tell / 癖）」で、大きなベットの前に間（ためらい）がある相手はどちらの傾向？",
+    "choices": [
+      "弱いことが多い",
+      "強いことが多い（ブラフは淀みなく打つ傾向）",
+      "ドローであることが多い",
+      "必ずブラフ"
+    ],
+    "answer": 1,
+    "explain": "Upswing のリストでは、大きなベットで間がある場合は強いことが多く、ブラフは淀みなく打つ傾向があるとされています。ただしテルは文脈依存・個人差が大きく、これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "ライブでは相手の動作も情報になります。1つの判断材料として使えるようになります。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Upswing Poker: 7 Poker Tells",
+        "url": "https://upswingpoker.com/poker-tells-live-common-list/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-7"
+  },
+  {
+    "id": "s5-live-002",
+    "stage": 5,
+    "tags": [
+      "live",
+      "tells"
+    ],
+    "q": "Upswing のライブ・テルで、普段より速くコールしてきた相手はどんなハンドの傾向？",
+    "choices": [
+      "ナッツ級の強いハンド",
+      "セット以上の強いハンド",
+      "中〜弱いハンド（強い手はレイズを検討して時間をかける）",
+      "何も持っていないブラフ"
+    ],
+    "answer": 2,
+    "explain": "Upswing によると、普段より速いコールは中〜弱いハンドの傾向で、強い手はレイズを考えるので時間をかけることが多いとされています。テルは個人差が大きく、これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "次のストリートでベットするかどうかを考える材料が1つ増えます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Upswing Poker: 7 Poker Tells",
+        "url": "https://upswingpoker.com/poker-tells-live-common-list/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-7"
+  },
+  {
+    "id": "s5-live-003",
+    "stage": 5,
+    "tags": [
+      "live",
+      "tells"
+    ],
+    "q": "Upswing のライブ・テルで、弱気な発言をしながら大きくベットする相手のレンジは？",
+    "choices": [
+      "弱い",
+      "必ずブラフ",
+      "ドロー中心",
+      "強い"
+    ],
+    "answer": 3,
+    "explain": "Upswing のリストでは、弱気発言しながらの大ベットはレンジが強い傾向とされています。テルは個人差が大きく、これは母集団の傾向であり、目の前の相手に当てはまるとは限りません。",
+    "why": "言葉に惑わされずに、行動（大きなベット）を重く見る習慣がつきます。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Upswing Poker: 7 Poker Tells",
+        "url": "https://upswingpoker.com/poker-tells-live-common-list/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-7"
+  },
+  {
+    "id": "s5-live-004",
+    "stage": 5,
+    "tags": [
+      "live",
+      "etiquette"
+    ],
+    "q": "ライブでレイズするときの正しい手順は？（ストリングベットの禁止）",
+    "choices": [
+      "レイズする額を先に口頭で宣言してからチップを出す（または全額を1回の動作で出す）",
+      "何も言わずに、チップを少しずつ何回かに分けて出す",
+      "先にチップを1枚出して相手の反応を見てから足す",
+      "チップをポットに投げ込んでから額を言う"
+    ],
+    "answer": 0,
+    "explain": "TDAルール（2026年版 Rule 44）では、ノーリミットのレイズは「全額を1回の動作で出す」か「チップを出す前に額を口頭で宣言する」のどちらかで行います。宣言とチップの両方を使ったときは、先にした方が有効です（Rule 42-A）。何も言わずにチップを何回かに分けて出すとストリングベットになり、最初の動作だけが有効とされます（VIP-Grinders）。",
+    "why": "海外の大会で意図しない額のコール扱いにされないために、必ず身につけたい手順です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "VIP-Grinders: Poker Etiquette",
+        "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
+      },
+      {
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-8"
+  },
+  {
+    "id": "s5-live-005",
+    "stage": 5,
+    "tags": [
+      "live",
+      "etiquette"
+    ],
+    "q": "自分の順番が来る前にアクション（例: 先にフォールドやベット）をしてしまうとどうなる可能性がある？",
+    "choices": [
+      "必ず取り消されて何も起きない",
+      "順番前のアクションは拘束される場合がある",
+      "次のハンドで2回アクションできる",
+      "ディーラーが代わりに決めてくれる"
+    ],
+    "answer": 1,
+    "explain": "順番に行動（Act in turn）が基本です。順番前のアクションはペナルティの対象で、自分の番が来るまでに前の人の行動で状況が変わらなければ、そのアクションは拘束されます（TDA 2026年版 Rule 55-A）。",
+    "why": "順番を守ることは相手への礼儀であると同時に、自分の不利な行動を防ぐことにもつながります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "VIP-Grinders: Poker Etiquette",
+        "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
+      },
+      {
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-8"
+  },
+  {
+    "id": "s5-live-006",
+    "stage": 5,
+    "tags": [
+      "live",
+      "etiquette"
+    ],
+    "q": "ライブでチップをポットに出すときの正しいやり方は？",
+    "choices": [
+      "ポットの中に投げ込む",
+      "相手のスタックの上に置く",
+      "ポットに投げ込まず、自分の前にそろえて置く（スプラッシュ禁止）",
+      "ディーラーに手渡しする"
+    ],
+    "answer": 2,
+    "explain": "チップをポットに投げ込むスプラッシュは禁止で、自分の前（自分とポットの間）にそろえて置きます。TDA 2026年版 Rule 73 でも、ポットの上にチップをばらまくことや、ディーラーの手が届かない所に置くことはエチケット違反とされています。",
+    "why": "額の確認でもめることを防ぎ、海外の大会でも気持ちよくプレイできます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "VIP-Grinders: Poker Etiquette",
+        "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
+      },
+      {
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-8"
+  },
+  {
+    "id": "s5-live-007",
+    "stage": 5,
+    "tags": [
+      "live",
+      "etiquette"
+    ],
+    "q": "「One player to a hand（1つのハンドは1人で）」のルールで禁止されていることは？",
+    "choices": [
+      "自分のカードを自分で確認すること",
+      "チップを数えること",
+      "ハンド中に自分のカードをカードプロテクター（チップなど）で守ること",
+      "ハンド中に他人へホールカードを見せたり助言したりすること"
+    ],
+    "answer": 3,
+    "explain": "One player to a hand は、ハンド中に他人へホールカードを見せたり助言したりしないというルールです。TDA 2026年版 Rule 69 では、ハンドに参加していない人も含めて、ハンドの中身を話すこと、いつであってもプレイに助言・批判をすること、表にされていないハンドを読み上げることが禁止されています。",
+    "why": "友だちと一緒に大会に出るときにうっかり違反しないように、知っておく必要があります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "VIP-Grinders: Poker Etiquette",
+        "url": "https://www.vip-grinders.com/poker-strategy/etiquette/"
+      },
+      {
+        "title": "Poker TDA Rules 2026 (Version 1.0, 2026-09-07)",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/03-mental-training.md A-8"
+  }
+]

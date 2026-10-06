@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_macros.html" import table, cards_block with context %}
+{% block title %}{{ b.title }} | ポーカー先生{% endblock %}
+{% block body %}
+<h1>{{ b.title }}</h1>
+{% if limit %}<p class="warn small">各問 {{ limit }} 秒以内に答えてください（タイマーが赤くなったら時間切れ）。</p>{% endif %}
+<div class="progress"><span class="count">{{ b.questions|length }}問</span><div class="bar"><div class="fill"></div></div><span class="timer"></span></div>
+<form method="post" class="quiz" data-limit="{{ limit }}">
+  <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+  {% for item in b.questions %}
+  {% set i = loop.index0 %}
+  <div class="q">
+    <div class="num">第{{ loop.index }}問 <span class="tag">{{ TAG_JP.get(item.tag, item.tag) }}</span></div>
+    <div class="text">{{ item.q }}</div>
+    {{ cards_block(item.get('cards')) }}
+    {{ table(item.get('diagram')) }}
+    <div class="choices">
+      {% for c in item.choices %}
+      <label><input type="radio" name="a{{ i }}" value="{{ loop.index0 }}"><span>{{ c }}</span></label>
+      {% endfor %}
+      <label class="dk"><input type="radio" name="a{{ i }}" value="-1"><span>わからない</span></label>
+    </div>
+    <input type="hidden" class="t" name="t{{ i }}" value="">
+    {% if not loop.first %}<p><button type="button" class="btn ghost small back">← 前の問題</button></p>{% endif %}
+  </div>
+  {% endfor %}
+  <p class="submit"><button class="btn" type="submit">採点する</button></p>
+</form>
+{% endblock %}

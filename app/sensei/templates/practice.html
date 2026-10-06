@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>練習場</h1>
+{% if due %}<div class="panel"><b>復習が {{ due }} 問たまっています。</b> 先に片づけると定着が速い。<br><a class="btn" href="{{ url_for('practice.review') }}">復習する</a></div>{% endif %}
+
+<div class="panel">
+  <h2>自動生成ドリル（無限に出ます）</h2>
+  <p class="muted small">答えはすべて計算ツールで出しているので、何問解いても数字は正確です。</p>
+  <ul class="list">
+  {% for key, g in gens.items() %}
+    <li><a href="{{ url_for('practice.gen', name=key) }}">{{ g[1] }}</a> <span class="muted small">Stage {{ g[2] }}</span></li>
+  {% endfor %}
+  </ul>
+</div>
+
+<div class="panel">
+  <h2>問題集（出典つき・ファクトチェック済み）</h2>
+  <ul class="list">
+  {% for s in stages %}
+    {% if by_stage.get(s.stage) %}<li><a href="{{ url_for('practice.bank', stage=s.stage) }}">Stage {{ s.stage }} {{ s.title }}</a> <span class="muted small">{{ by_stage[s.stage] }}問</span></li>{% endif %}
+  {% endfor %}
+  </ul>
+</div>
+
+<div class="panel">
+  <h2>テーマ別（苦手つぶし）</h2>
+  <ul class="list">
+  {% for tag, n in tags %}
+    {% set st = stats.get(tag) %}
+    <li><a href="{{ url_for('practice.tag', tag=tag) }}">{{ TAG_JP.get(tag, tag) }}</a>
+      <span class="muted small">{{ n }}問{% if st %}・直近30日 {{ (st.acc * 100)|round|int }}%（{{ st.n }}回）{% endif %}</span></li>
+  {% endfor %}
+  </ul>
+</div>
+<p class="muted small">「わからない」は不正解として記録し、復習に回します（あとで必ず解き直せるように）。</p>
+{% endblock %}

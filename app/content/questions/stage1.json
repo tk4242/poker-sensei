@@ -1,0 +1,562 @@
+[
+  {
+    "id": "s1-preflop-001",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "open-size"
+    ],
+    "q": "GTO Wizard のソルバー比較（MTT・chipEV）で、100bbのときのオープンレイズの推奨サイズは？",
+    "choices": [
+      "2.3x（2.3BB）",
+      "4x（4BB）",
+      "1.5x（1.5BB）",
+      "5x（5BB）"
+    ],
+    "answer": 0,
+    "explain": "GTO Wizard のスタック深さ比較では、100bbでのオープン（RFI / 最初に入るレイズ）は2.3xです。ソルバー（solver / 均衡戦略を計算するソフト）の基準なのでGTOの数値です。",
+    "why": "オープンを大きくしすぎると、同じハンドでも負けるときの損が増えます。基準の大きさを知ることがプリフロップの第一歩です。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: How Stack Sizes Change Your Range",
+        "url": "https://blog.gtowizard.com/how-stack-sizes-change-your-range/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-1"
+  },
+  {
+    "id": "s1-preflop-002",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "open-size"
+    ],
+    "q": "ソルバー基準（GTO）で、スタックが浅くなるとオープンサイズはどう変わる？",
+    "choices": [
+      "大きくなる（浅いほど4x以上にする）",
+      "小さくなる（100bb 2.3x → 50bb 2.1x → 20bbでほぼミニレイズ）",
+      "スタックに関係なく常に3x",
+      "浅くなるとオープンせずリンプだけになる"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard の比較では、100bbで2.3x、50bbで2.1x、20bbではほぼミニレイズ（2x）と、浅いほど小さくなります。20bbについては「ソルバーはもっと小さく打てるならそうするだろう」と書かれています。",
+    "why": "トーナメントはブラインドが上がるとスタックがどんどん浅くなります。その場の深さに合わせてサイズを変えられると、無駄なチップを失いません。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: How Stack Sizes Change Your Range",
+        "url": "https://blog.gtowizard.com/how-stack-sizes-change-your-range/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-1"
+  },
+  {
+    "id": "s1-preflop-003",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "open-size"
+    ],
+    "q": "オープンサイズについて、ソルバー系（GTO Wizard）と Red Chip Poker の見解は一致している？",
+    "choices": [
+      "一致している。どちらも2.1〜2.3xを推奨",
+      "一致していない。Red Chip の方がソルバーより小さいサイズを推奨",
+      "一致していない。Red Chip は序盤ディープで約3xを推奨し、ソルバー系（2.1〜2.3x）より大きい",
+      "一致している。どちらも常に4xを推奨"
+    ],
+    "answer": 2,
+    "explain": "Red Chip Poker は「序盤のディープスタック時は約3xが大半の推奨」「約80bbを下回ったら2.5xに下げてよい」としており、ソルバー系の2.1〜2.3xより大きめです。教材では両方を載せています。",
+    "why": "情報源によって数字が違うことを知っておくと、1つの記事を「唯一の正解」と思い込まずに、相手や環境に合わせて選べます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: How Stack Sizes Change Your Range",
+        "url": "https://blog.gtowizard.com/how-stack-sizes-change-your-range/"
+      },
+      {
+        "title": "Red Chip Poker: Tournaments #3: Early Levels",
+        "url": "https://redchippoker.com/tournaments-3-early-levels/"
+      },
+      {
+        "title": "Red Chip Poker: Tournaments #4: Mid Levels and the Bubble",
+        "url": "https://redchippoker.com/tournaments-4-mid-levels/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-1"
+  },
+  {
+    "id": "s1-preflop-004",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "open-size",
+      "exploit"
+    ],
+    "q": "ライブの序盤で、ブラインドから降りない相手が多い卓。オープンを2.5〜3xと大きめにする調整は、GTOとEXPのどちら？",
+    "choices": [
+      "GTO（ソルバー基準そのもの）",
+      "RULE（大会のルールで決まっている）",
+      "どちらでもなく、どの卓でも常に正しい",
+      "EXP（相手層に合わせたエクスプロイト）"
+    ],
+    "answer": 3,
+    "explain": "教材の結論では、オンラインや強いフィールドは2〜2.3x、ライブで降りない相手が多い序盤は2.5〜3xも可で、後者はエクスプロイト（exploit / 相手の傾向を突く調整）です。これは母集団の傾向にもとづく調整であり、目の前の相手に当てはまるとは限りません。",
+    "why": "GTOを土台にしながら、相手を見て意図的にずらすという考え方は、ライブで勝つための大事な道具です。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      },
+      {
+        "title": "Red Chip Poker: Tournaments #3: Early Levels",
+        "url": "https://redchippoker.com/tournaments-3-early-levels/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-1"
+  },
+  {
+    "id": "s1-preflop-005",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet"
+    ],
+    "q": "一般則で、IP（相手より後に動ける側）から3ベットするときのサイズの目安は？",
+    "choices": [
+      "オープンの約3倍",
+      "オープンの約1.5倍",
+      "オープンの約6倍",
+      "常にオールイン"
+    ],
+    "answer": 0,
+    "explain": "Upswing と PokerCoaching の一般則では、IPの3ベットはオープンの約3倍です。ソルバー例でも 50bb BTN vs CO 2.1bb で6.82bb（約3.2倍）と、おおむね一致します。",
+    "why": "3ベットの大きさの基準があると、毎回迷わずに額を決められます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      },
+      {
+        "title": "PokerCoaching: Ultimate Guide to Preflop Bet Sizing",
+        "url": "https://pokercoaching.com/blog/preflop-strategy-guide-the-ultimate-guide-to-preflop-bet-sizing/"
+      },
+      {
+        "title": "GTO Wizard: Mastering Three-Bet Pots Out of Position in MTTs",
+        "url": "https://blog.gtowizard.com/mastering-three-bet-pots-out-of-position-in-mtts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-3"
+  },
+  {
+    "id": "s1-preflop-006",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet"
+    ],
+    "q": "一般則で、OOP（相手より先に動く側、例: ブラインド）から3ベットするときのサイズの目安は？",
+    "choices": [
+      "オープンの約2倍",
+      "オープンの約4倍",
+      "オープンの約3倍より小さく",
+      "オープンの約10倍"
+    ],
+    "answer": 1,
+    "explain": "一般則ではOOPの3ベットはオープンの約4倍で、IP（約3倍）より大きくします。ソルバー例でも 50bb BB vs CO 2.3bb で9.8bb（約4.3倍）です。",
+    "why": "BBやSBから3ベットする場面はよくあります。IPとOOPでサイズを変えると覚えておくと、迷いが減ります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      },
+      {
+        "title": "PokerCoaching: Ultimate Guide to Preflop Bet Sizing",
+        "url": "https://pokercoaching.com/blog/preflop-strategy-guide-the-ultimate-guide-to-preflop-bet-sizing/"
+      },
+      {
+        "title": "GTO Wizard: Mastering Three-Bet Pots In Position in MTTs",
+        "url": "https://blog.gtowizard.com/mastering-three-bet-pots-in-position-in-mtts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-3"
+  },
+  {
+    "id": "s1-preflop-007",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet",
+      "math"
+    ],
+    "q": "相手が2.5BBにオープン。あなたはIP（ボタン）から一般則どおり3ベットしたい。目安の額は？",
+    "choices": [
+      "約5BB",
+      "約10BB",
+      "約7.5BB",
+      "約15BB"
+    ],
+    "answer": 2,
+    "explain": "IPの3ベットはオープンの約3倍なので、2.5 × 3 = 7.5BB が目安です（python3 で検算）。",
+    "why": "倍率で覚えておけば、オープン額が変わっても素早く3ベット額を出せます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      },
+      {
+        "title": "PokerCoaching: Ultimate Guide to Preflop Bet Sizing",
+        "url": "https://pokercoaching.com/blog/preflop-strategy-guide-the-ultimate-guide-to-preflop-bet-sizing/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-3"
+  },
+  {
+    "id": "s1-preflop-008",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet",
+      "math"
+    ],
+    "q": "相手が2BBにオープン。あなたはBB（OOP）から一般則どおり3ベットしたい。目安の額は？",
+    "choices": [
+      "約4BB",
+      "約6BB",
+      "約16BB",
+      "約8BB"
+    ],
+    "answer": 3,
+    "explain": "OOPの3ベットはオープンの約4倍なので、2 × 4 = 8BB が目安です（python3 で検算）。",
+    "why": "BBやSBからの3ベットはIPより大きめ、という基準を持つと迷わず額を決められます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      },
+      {
+        "title": "PokerCoaching: Ultimate Guide to Preflop Bet Sizing",
+        "url": "https://pokercoaching.com/blog/preflop-strategy-guide-the-ultimate-guide-to-preflop-bet-sizing/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-3"
+  },
+  {
+    "id": "s1-preflop-009",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet"
+    ],
+    "q": "キャッシュゲームの標準的な3ベットサイズ（IP 3.5x / OOP 4.5x）と比べて、トーナメントでは？",
+    "choices": [
+      "スタックが浅くなるほど小さくしてよい",
+      "スタックが浅くなるほど大きくする",
+      "常にキャッシュと同じにする",
+      "トーナメントでは3ベットはしない"
+    ],
+    "answer": 0,
+    "explain": "Red Chip Poker は、キャッシュの標準（IP 3.5x / OOP 4.5x）より、トーナメントは浅くなるほど小さくしてよいとしています。",
+    "why": "キャッシュゲーム向けの記事の数字をそのまま使うと、トーナメントではチップを使いすぎることがあります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Red Chip Poker: Tournaments #4: Mid Levels and the Bubble",
+        "url": "https://redchippoker.com/tournaments-4-mid-levels/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-3"
+  },
+  {
+    "id": "s1-preflop-010",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet-shove"
+    ],
+    "q": "Red Chip Poker が「3ベットショーブ（オールインの3ベット）」が中心になる帯としている有効スタックは？",
+    "choices": [
+      "約40〜60bb",
+      "約10〜25bb",
+      "約60〜100bb",
+      "約3bb以下だけ"
+    ],
+    "answer": 1,
+    "explain": "Red Chip Poker は有効スタック約10〜25bbを3ベットショーブ帯としています（著者によって境界は多少異なります）。40bb以上では小さい3ベットが優位になりやすいとしています。",
+    "why": "スタックが減ってきたときに、オールインの3ベットを使える場面を見分けられます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Red Chip Poker: MTT Secrets: 3-Bet Shoves",
+        "url": "https://redchippoker.com/mtt-secrets-3-bet-shoves/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-4"
+  },
+  {
+    "id": "s1-preflop-011",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet-shove"
+    ],
+    "q": "Red Chip Poker の目安で、3ベットショーブが効率的とされるショーブ額の範囲は？",
+    "choices": [
+      "IPでもOOPでもオープンの3倍以内",
+      "IPでオープンの20倍以上",
+      "IPでオープンの10倍以内、OOPで12倍以内",
+      "OOPでオープンの2倍以内"
+    ],
+    "answer": 2,
+    "explain": "Red Chip Poker は、ショーブ額がオープンのIPで10倍以内、OOPで12倍以内なら効率的という目安を示しています。",
+    "why": "倍率で判断すれば、3ベットショーブが効率的な場面かすぐ分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Red Chip Poker: MTT Secrets: 3-Bet Shoves",
+        "url": "https://redchippoker.com/mtt-secrets-3-bet-shoves/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-4"
+  },
+  {
+    "id": "s1-preflop-012",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "4bet"
+    ],
+    "q": "Upswing の4ベットサイズの目安で、スタックが30bb以下のときの主な4ベットサイズは？",
+    "choices": [
+      "3ベットの約2.2倍の非オールイン",
+      "3ベットと同額のミニ4ベット",
+      "4ベットはせずコールのみ",
+      "オールイン"
+    ],
+    "answer": 3,
+    "explain": "Upswing によると、30bb以下ではオールインが主な4ベットサイズです。60bb以上ではIPで3ベットの約2.2倍、50bb前後では非オールインとオールインを混ぜます。",
+    "why": "スタックの深さによって4ベットの形が変わると知っておくと、迷わず額を決められます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: 4-Bet Size Strategy",
+        "url": "https://upswingpoker.com/4-bet-size-strategy/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-5"
+  },
+  {
+    "id": "s1-preflop-013",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "4bet"
+    ],
+    "q": "Upswing の目安で、60bb以上のトーナメントでIPから4ベットするときのサイズは？",
+    "choices": [
+      "3ベットの約2.2倍",
+      "3ベットの約5倍",
+      "常にオールイン",
+      "3ベットの約1.1倍"
+    ],
+    "answer": 0,
+    "explain": "Upswing は60bb以上のトーナメントで、IPは3ベットの約2.2倍、OOPは約2.6〜2.8倍を目安としています。",
+    "why": "深いスタックでの4ベットの基準額が分かり、迷わず額を決められます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: 4-Bet Size Strategy",
+        "url": "https://upswingpoker.com/4-bet-size-strategy/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-5"
+  },
+  {
+    "id": "s1-preflop-014",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "bb-defense",
+      "math"
+    ],
+    "q": "Upswing の例（ブラインド200-400・BBアンティ400、レイトポジションのプレイヤーが900にオープン、他は全員フォールド）。BBが500を足してコールするのに必要なエクイティ（勝率の取り分）は？",
+    "choices": [
+      "約33.3%",
+      "約20.8%",
+      "約50%",
+      "約10%"
+    ],
+    "answer": 1,
+    "explain": "コール前のポットは 900 + 200 + 400 + 400 = 1,900。コール額500なので、必要勝率 = 500 ÷（1,900 + 500）= 20.8% です（tools/poker_math.py pot-odds で検算）。",
+    "why": "BBはすでにチップを入れているので安くコールできます。必要勝率が低いことが分かると、降りすぎのミスを減らせます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: 7 Poker Tournament Tips",
+        "url": "https://upswingpoker.com/poker-tournament-tips-strategy-mtt/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-7"
+  },
+  {
+    "id": "s1-preflop-015",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "bb-defense"
+    ],
+    "q": "Upswing によると、レイトポジション（COやボタン）からのオープンに対して、BBはどのくらいディフェンスする（守る）べき？",
+    "choices": [
+      "5%程度（プレミアムハンドだけ）",
+      "100%（すべてのハンド）",
+      "最低40%程度（コール＋3ベット）",
+      "15%程度（ペアだけ）"
+    ],
+    "answer": 2,
+    "explain": "Upswing は、2.25BBオープンに対してBBは約20.8%のエクイティでコールが合う計算で、レイトのオープンには最低40%程度（コール＋3ベット）守るとしています。",
+    "why": "BBで降りすぎると、毎回ブラインドを盗まれてチップが減っていきます。守る目安を知ることが大切です。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: 7 Poker Tournament Tips",
+        "url": "https://upswingpoker.com/poker-tournament-tips-strategy-mtt/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-7"
+  },
+  {
+    "id": "s1-preflop-016",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "bba"
+    ],
+    "q": "BBA（ビッグブラインド・アンティ）で初期ポットが大きくなる影響として、教材に書かれているのは？",
+    "choices": [
+      "BBはポットが大きいのでディフェンスを狭くする",
+      "オープンはアンティの分だけ大きくする必要がある",
+      "ショートスタックのショーブは利益になりにくくなる",
+      "BBは安い価格で守れるので広くディフェンスする"
+    ],
+    "answer": 3,
+    "explain": "BBA構造では初期ポットが約2.5BBになり、①オープンは小さくても盗む価値が高い、②BBは安い価格で守れるので広くディフェンスする、③ショートのショーブ/リショーブが利益的になりやすい、という影響があります。",
+    "why": "BBAは現代のトーナメントの主流です。ポットが大きいことに合わせて、守る範囲と攻める範囲を調整できます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Red Chip Poker: MTT Secrets: 3-Bet Shoves",
+        "url": "https://redchippoker.com/mtt-secrets-3-bet-shoves/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 0"
+  },
+  {
+    "id": "s1-preflop-017",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "bb-defense"
+    ],
+    "q": "相手が4x〜7xのような大きいオープンをしてきた。ソルバーの考え方（キャッシュ125bbの解析を方向性として転用）では、BBはどうする？",
+    "choices": [
+      "ディフェンスを大幅に締める（より多くフォールドする）",
+      "価格が良くなったので、より広くコールする",
+      "サイズに関係なく、2xのオープンと同じ範囲で守る",
+      "必ずオールインで返す"
+    ],
+    "answer": 0,
+    "explain": "GTO Wizard の解析では、大きいオープンにはより多くフォールドします。ただしこの記事は125bb・レーキありのキャッシュゲームで、MTT/BBAの解析ではないため、方向性の参考として使います。",
+    "why": "ライブでは大きなオープンをする人が多いです。サイズに合わせて守る範囲を変えると、損な場面に入らずに済みます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: How To Respond to Large Preflop Raises",
+        "url": "https://blog.gtowizard.com/how-to-respond-to-large-preflop-raises-in-poker/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-7"
+  },
+  {
+    "id": "s1-preflop-018",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "bb-defense"
+    ],
+    "q": "GTO Wizard の解析（chipEV）で、7bbのBBが2xのオープンを受けたとき、BBはどうする？",
+    "choices": [
+      "ほぼ全部フォールドする",
+      "非常に広くコールする（96sでもコールが利益的）",
+      "AAとKKだけでコールする",
+      "必ずオールインで返し、コールはしない"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard の10bb未満の解析では、7bbでもBBは2xオープンに非常に広くコールし、96sがコールで利益になります。（この解析のアンティは各自0.125bbで、BBA構造ではありません）",
+    "why": "スタックが少ないほど「怖いから降りる」になりがちですが、BBの価格の良さを使えば得をする場面が多いと分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Playing Under 10bb (Part 1)",
+        "url": "https://blog.gtowizard.com/playing-under-10bb-part-1-cev/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-7"
+  },
+  {
+    "id": "s1-preflop-019",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "short-stack"
+    ],
+    "q": "スタックが約30bb以下のショートになったときのオープンレンジ（オープンするハンドの範囲）の変化として、教材の例に合うのは？",
+    "choices": [
+      "スーテッドコネクターと小さいポケットペアを増やす",
+      "オープンする範囲を2倍に広げる",
+      "スーテッドコネクターや小さいポケットペアを減らし、ハイカード寄りにする",
+      "オープンをやめて全部リンプにする"
+    ],
+    "answer": 2,
+    "explain": "Upswing によると、約30bb以下ではスーコネ・小ポケットを減らしハイカード寄りにします（HJのオープンが31.22%→24.6%に狭まる例）。",
+    "why": "スタックの深さによって、オープンに向くハンドの種類が変わることが分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: Open-Raising with a Short Stack",
+        "url": "https://upswingpoker.com/open-raising-with-a-short-stack-tournaments/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s1-preflop-020",
+    "stage": 1,
+    "tags": [
+      "preflop",
+      "3bet"
+    ],
+    "q": "Upswing によると、25〜40bbのスタックで K9s、KJo、A6s などを使うプレイは？",
+    "choices": [
+      "リンプ",
+      "オールインの4ベット",
+      "コールドコールのみ",
+      "オールインではない3ベットブラフ"
+    ],
+    "answer": 3,
+    "explain": "Upswing は25〜40bbで、K9s、KJo、A6s などで「オールインではない3ベットブラフ」を使うとしています。",
+    "why": "中くらいのスタックで3ベットブラフに使えるハンドの例を知ると、戦い方の幅が広がります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "Upswing Poker: 7 Poker Tournament Tips",
+        "url": "https://upswingpoker.com/poker-tournament-tips-strategy-mtt/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 1-3"
+  }
+]

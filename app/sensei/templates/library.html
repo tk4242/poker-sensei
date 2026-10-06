@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>教材ライブラリ</h1>
+<p class="muted">リポジトリの教材（ファクトチェック済み）をそのまま表示しています。各ファイルの末尾にファクトチェック記録があります。</p>
+<div class="panel"><ul class="list">
+{% for f, t in files %}<li><a href="{{ url_for('learn.library_file', name=f) }}">{{ t }}</a> <span class="muted small">{{ f }}</span></li>{% endfor %}
+<li><a href="{{ url_for('learn.sources') }}">出典台帳</a> <span class="muted small">sources/SOURCES.md</span></li>
+<li><a href="{{ url_for('learn.glossary') }}">用語集（検索）</a></li>
+<li><a href="{{ url_for('learn.cheatsheet') }}">チートシート（印刷用）</a></li>
+<li><a href="{{ url_for('learn.tools') }}">計算機</a></li>
+</ul></div>
+{% endblock %}

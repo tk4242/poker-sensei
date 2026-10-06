@@ -1,0 +1,124 @@
+{
+  "_comment": "curriculum/00-roadmap.md のステージと合格ラインをアプリ用にしたもの。レッスン本文は curriculum/ の該当節をそのまま表示する（ファクトチェック済みの教材だけを使うため）。requirement.type: exam_gen=自動生成ドリルの試験 / exam_bank=問題集の試験 / record=記録から自動判定 / setting=自分で書いて保存",
+  "stages": [
+    {
+      "stage": 0, "title": "ルールと用語", "weeks": "1〜2週",
+      "goal": "役の強さ、ベットラウンド、ブラインドとBBA、ポジション名、基本用語を迷わず言える",
+      "lessons": [
+        {"id": "L0-1", "title": "ゲームの流れとアクション順", "sections": [["01-terms.md", "### 1.1"]], "drill": {"bank": {"stage": 0, "tags": ["rules"]}, "gen": "min_raise"}},
+        {"id": "L0-2", "title": "役の強さ（ハンドランキング）", "sections": [["01-terms.md", "### 1.2"]], "drill": {"gen": "hand_strength"}},
+        {"id": "L0-3", "title": "ブラインドとアンティ（BBA）", "sections": [["01-terms.md", "### 1.3"]], "drill": {"bank": {"stage": 0, "tags": ["rules", "tournament"]}}},
+        {"id": "L0-4", "title": "ポジション（図で覚える）", "sections": [["01-terms.md", "### 1.4"], ["01-terms.md", "### 2.2"]], "diagram": true, "drill": {"gen": "positions"}},
+        {"id": "L0-5", "title": "アクションの用語", "sections": [["01-terms.md", "### 2.1"]], "drill": {"bank": {"stage": 0, "tags": ["terms"]}}},
+        {"id": "L0-6", "title": "ボードとハンドの用語", "sections": [["01-terms.md", "### 2.3"]], "drill": {"bank": {"stage": 0, "tags": ["terms"]}, "gen": "hand_name"}},
+        {"id": "L0-7", "title": "トーナメント用語と日本語スラング", "sections": [["01-terms.md", "### 2.6"], ["01-terms.md", "## 3."]], "drill": {"bank": {"stage": 0, "tags": ["tournament", "terms"]}, "gen": "bb_count"}},
+        {"id": "L0-8", "title": "法律の注意（最初に必ず読む）", "sections": [["04-japan-and-overseas.md", "## 1."]], "drill": {"bank": {"stage": 7, "tags": ["legal"]}}}
+      ],
+      "requirements": [
+        {"id": "s0-hands", "label": "役の強弱クイズ 10問中10問", "type": "exam_gen", "gen": "hand_strength", "n": 10, "pass": 10},
+        {"id": "s0-positions", "label": "ポジション名（9人卓・8人卓・6人卓）10問中10問", "type": "exam_gen", "gen": "positions", "n": 10, "pass": 10},
+        {"id": "s0-terms", "label": "用語クイズ（アクション・ポジション・トーナメント用語）20問で8割", "type": "exam_bank", "bank": {"stage": 0}, "n": 20, "pass": 16}
+      ]
+    },
+    {
+      "stage": 1, "title": "プリフロップの土台", "weeks": "3〜4週",
+      "goal": "ポジションの価値、オープンサイズ、3ベットサイズ、BBディフェンスを理由つきで言える",
+      "lessons": [
+        {"id": "L1-1", "title": "BBA で何が変わるか", "sections": [["02-strategy.md", "## 0."]], "drill": {"gen": "preflop_math"}},
+        {"id": "L1-2", "title": "オープンサイズとスタックの深さ", "sections": [["02-strategy.md", "### 1-1"], ["02-strategy.md", "### 1-2"]], "drill": {"bank": {"stage": 1, "tags": ["preflop"]}}},
+        {"id": "L1-3", "title": "3ベットのサイズ", "sections": [["02-strategy.md", "### 1-3"]], "drill": {"gen": "preflop_math", "bank": {"stage": 1, "tags": ["preflop"]}}},
+        {"id": "L1-4", "title": "BBディフェンス", "sections": [["02-strategy.md", "### 1-7"]], "drill": {"gen": "preflop_math"}},
+        {"id": "L1-5", "title": "初心者が最初に覚える10原則", "sections": [["02-strategy.md", "## 5."]], "drill": {"bank": {"stage": 1}}}
+      ],
+      "requirements": [
+        {"id": "s1-preflop", "label": "プリフロップの知識 20問で8割", "type": "exam_bank", "bank": {"stage": 1}, "n": 20, "pass": 16,
+         "note": "ロードマップの「この席・このスタックで最初に入るなら？」20問は、出典つきのオープンレンジ表が必要なため準備中。それまではサイズと原則の問題で代用します。"},
+        {"id": "s1-calc", "label": "3ベットサイズ・BBが必要なエクイティを自分で計算できる（10問で8割）", "type": "exam_gen", "gen": "preflop_math", "n": 10, "pass": 8}
+      ]
+    },
+    {
+      "stage": 2, "title": "ポーカー数学", "weeks": "2〜3週（Stage 1 と並行可）", "parallel_with": 1,
+      "goal": "ポットオッズ、アウツ、MDF、ブラフの損益分岐、SPR、EV を自分で計算できる",
+      "lessons": [
+        {"id": "L2-1", "title": "数学の用語", "sections": [["01-terms.md", "### 2.4"]], "drill": {"bank": {"stage": 2}}},
+        {"id": "L2-2", "title": "ポットオッズ", "sections": [["01-terms.md", "### 4.1"]], "drill": {"gen": "pot_odds"}},
+        {"id": "L2-3", "title": "MDF とブラフの損益分岐（α）", "sections": [["01-terms.md", "### 4.2"], ["01-terms.md", "### 4.3"]], "drill": {"gen": "mdf"}},
+        {"id": "L2-4", "title": "SPR", "sections": [["01-terms.md", "### 4.4"], ["02-strategy.md", "### 2-6"]], "drill": {"gen": "spr"}},
+        {"id": "L2-5", "title": "2と4のルール（とその誤差）", "sections": [["01-terms.md", "### 4.5"]], "drill": {"gen": "outs"}}
+      ],
+      "requirements": [
+        {"id": "s2-math", "label": "数値問題 10問で9割", "type": "exam_gen", "gen": "math", "n": 10, "pass": 9},
+        {"id": "s2-speed", "label": "ポットオッズを10秒以内に（10問中9問を正解かつ各10秒以内）", "type": "exam_gen", "gen": "pot_odds", "n": 10, "pass": 9, "time_limit_s": 10}
+      ]
+    },
+    {
+      "stage": 3, "title": "ポストフロップの基本", "weeks": "4〜6週",
+      "goal": "ボードを見て「小さく打つ／大きく打つ／チェック中心」を理由つきで説明できる",
+      "lessons": [
+        {"id": "L3-1", "title": "Cベットのサイズを決めるもの・ボードの質感", "sections": [["02-strategy.md", "### 2-1"], ["02-strategy.md", "### 2-2"]], "drill": {"bank": {"stage": 3}}},
+        {"id": "L3-2", "title": "ターン・リバー、オーバーベット、ブロックベット", "sections": [["02-strategy.md", "### 2-3"], ["02-strategy.md", "### 2-4"], ["02-strategy.md", "### 2-5"]], "drill": {"bank": {"stage": 3}}},
+        {"id": "L3-3", "title": "ハンドレビューのやり方", "sections": [["03-mental-training.md", "### B-2"]], "drill": {"bank": {"stage": 6, "tags": ["mental"]}}}
+      ],
+      "requirements": [
+        {"id": "s3-board", "label": "ポストフロップ 10問で8割", "type": "exam_bank", "bank": {"stage": 3}, "n": 10, "pass": 8},
+        {"id": "s3-hands", "label": "ハンドレビュー累計20ハンド（自己レビュー欄を書いたハンド）", "type": "record", "record": "reviewed_hands", "pass": 20}
+      ]
+    },
+    {
+      "stage": 4, "title": "トーナメント特有の戦略", "weeks": "4〜6週",
+      "goal": "スタックの深さ別の戦い方、ICM とバブル、ファイナルテーブル、PKO を説明できる",
+      "lessons": [
+        {"id": "L4-1", "title": "3ベットショーブ・4ベット・プッシュ/フォールド", "sections": [["02-strategy.md", "### 1-4"], ["02-strategy.md", "### 1-5"], ["02-strategy.md", "### 1-6"]], "drill": {"bank": {"stage": 4}}},
+        {"id": "L4-2", "title": "状況別アクション表（ICM・バブル・PKO）", "sections": [["02-strategy.md", "## 3."]], "drill": {"bank": {"stage": 4}, "gen": "icm"}},
+        {"id": "L4-3", "title": "ICM の必要勝率（バブルファクター）", "sections": [["01-terms.md", "### 4.6"]], "drill": {"gen": "icm"}}
+      ],
+      "requirements": [
+        {"id": "s4-concepts", "label": "トーナメント戦略 10問で8割", "type": "exam_bank", "bank": {"stage": 4}, "n": 10, "pass": 8,
+         "note": "ロードマップの「10〜15bbのショーブ/フォールド判断ドリル」は、出典つきのショーブ表（ナッシュ等）を用意できるまで準備中。"},
+        {"id": "s4-icm", "label": "ICM の必要勝率を計算できる（5問中5問）", "type": "exam_gen", "gen": "icm", "n": 5, "pass": 5}
+      ]
+    },
+    {
+      "stage": 5, "title": "相手を見る（エクスプロイト）とライブの技術", "weeks": "継続",
+      "goal": "相手のタイプを分けて調整できる。ライブのテルとエチケットを守れる",
+      "lessons": [
+        {"id": "L5-1", "title": "プレイヤー層別のエクスプロイト", "sections": [["02-strategy.md", "## 4."], ["02-strategy.md", "## 6."]], "drill": {"bank": {"stage": 5, "tags": ["exploit"]}}},
+        {"id": "L5-2", "title": "ライブ・テルとエチケット", "sections": [["03-mental-training.md", "### A-7"], ["03-mental-training.md", "### A-8"]], "drill": {"bank": {"stage": 5, "tags": ["live"]}}}
+      ],
+      "requirements": [
+        {"id": "s5-logs", "label": "セッション記録10回分（各回で「相手のタイプ分け」を書く）", "type": "record", "record": "sessions_with_opponents", "pass": 10},
+        {"id": "s5-itm", "label": "国内大会で入賞（アミューズメント等の合法な場で）", "type": "record", "record": "domestic_itm", "pass": 1},
+        {"id": "s5-quiz", "label": "エクスプロイトとライブ 10問で8割（アプリ追加）", "type": "exam_bank", "bank": {"stage": 5}, "n": 10, "pass": 8}
+      ]
+    },
+    {
+      "stage": 6, "title": "メンタルと習慣", "weeks": "全期間で並行", "always_open": true,
+      "goal": "Aゲーム/Cゲームを言語化し、結果ではなく判断の質で振り返れる",
+      "lessons": [
+        {"id": "L6-1", "title": "メンタルゲーム（ティルト7種・インチワーム）", "sections": [["03-mental-training.md", "### A-1"]], "drill": {"bank": {"stage": 6, "tags": ["mental"]}}},
+        {"id": "L6-2", "title": "バンクロール管理", "sections": [["03-mental-training.md", "### A-2"]], "drill": {"bank": {"stage": 6, "tags": ["bankroll"]}}},
+        {"id": "L6-3", "title": "ルーティン・睡眠・結果思考", "sections": [["03-mental-training.md", "### A-3"], ["03-mental-training.md", "### A-4"], ["03-mental-training.md", "### A-5"], ["03-mental-training.md", "### A-6"]], "drill": {"bank": {"stage": 6, "tags": ["mental"]}}},
+        {"id": "L6-4", "title": "分散（バリアンス）の現実", "sections": [["03-mental-training.md", "## D."]], "drill": {"bank": {"stage": 6}}},
+        {"id": "L6-5", "title": "勉強法・ツール・週間計画", "sections": [["03-mental-training.md", "### B-1"], ["03-mental-training.md", "### B-3"], ["03-mental-training.md", "## C."]], "drill": {"bank": {"stage": 6}}}
+      ],
+      "requirements": [
+        {"id": "s6-csigns", "label": "自分の「Cゲームのサイン」を3つ言語化（コーチ → メンタル で保存）", "type": "setting", "setting": "c_game_signs", "pass": 3},
+        {"id": "s6-quiz", "label": "メンタル・バンクロール・分散 10問で8割", "type": "exam_bank", "bank": {"stage": 6}, "n": 10, "pass": 8}
+      ]
+    },
+    {
+      "stage": 7, "title": "海外遠征の準備", "weeks": "目標の大会の数か月前から",
+      "goal": "大会を選び、ストラクチャー表を読み、予算とバンクロール計画を書面にする",
+      "lessons": [
+        {"id": "L7-1", "title": "国内のトーナメント事情とアプリ", "sections": [["04-japan-and-overseas.md", "## 2."]], "drill": {"bank": {"stage": 7}}},
+        {"id": "L7-2", "title": "初インマネを狙う海外大会", "sections": [["04-japan-and-overseas.md", "## 3."]], "drill": {"bank": {"stage": 7, "tags": ["overseas"]}, "gen": "structure"}},
+        {"id": "L7-3", "title": "税金・渡航・お金", "sections": [["04-japan-and-overseas.md", "## 4."]], "drill": {"bank": {"stage": 7}}}
+      ],
+      "requirements": [
+        {"id": "s7-structure", "label": "ストラクチャーから平均スタック（BB）を計算できる（5問中5問）", "type": "exam_gen", "gen": "structure", "n": 5, "pass": 5},
+        {"id": "s7-budget", "label": "予算とバンクロール計画を書面化（コーチ → メンタル で保存）", "type": "setting", "setting": "budget_plan", "pass": 1},
+        {"id": "s7-quiz", "label": "日本と海外の実務 10問で8割", "type": "exam_bank", "bank": {"stage": 7}, "n": 10, "pass": 8}
+      ]
+    }
+  ]
+}

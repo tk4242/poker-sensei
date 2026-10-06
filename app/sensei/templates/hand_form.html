@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<p class="small"><a href="{{ url_for('records.index') }}">← 記録</a></p>
+<h1>ハンドの記録</h1>
+{% macro t(name, label, ph='') %}<label>{{ label }}<input type="text" name="{{ name }}" value="{{ row[name] if row and row[name] is not none else '' }}" placeholder="{{ ph }}"></label>{% endmacro %}
+{% macro ta(name, label, ph='') %}<label>{{ label }}<textarea name="{{ name }}" placeholder="{{ ph }}">{{ row[name] if row and row[name] else '' }}</textarea></label>{% endmacro %}
+<form method="post" class="panel stack">
+  <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+  <div class="row2"><label>日付<input type="date" name="date" value="{{ row.date if row else today }}"></label>{{ t('title', '短い名前', '例: バブルでAJoをコール') }}</div>
+  <div class="row2">{{ t('event', '大会/種別') }}{{ t('phase', '段階', '序盤/バブル付近/ITM後/FT') }}</div>
+  <div class="row2">{{ t('blinds', 'ブラインド/アンテ', '例: 1000/2000 BBA2000') }}{{ t('eff_bb', '有効スタック（BB）', '例: 25') }}</div>
+  <div class="row2">{{ t('hero_pos', '自分のポジション', '例: CO') }}{{ t('hero_cards', '自分のハンド', '例: Ah Jd') }}</div>
+  {{ t('villain', '相手のポジション / 印象', '例: BB、よくコールする人') }}
+  {{ ta('preflop', 'プリフロップ', '例: CO 2.2BB オープン、BB コール') }}
+  {{ ta('flop', 'フロップ（ボードとアクション）') }}
+  {{ ta('turn', 'ターン') }}
+  {{ ta('river', 'リバー') }}
+  {{ t('result', '結果') }}
+  {{ ta('self_review', '自己レビュー（Stage 3 の合格ラインで数えます）', 'どこで迷った？ なぜその判断？ ポットオッズは？') }}
+  {{ ta('question', 'コーチに聞きたいこと') }}
+  <p><button class="btn" type="submit">保存</button></p>
+</form>
+{% if row %}<form method="post" action="{{ url_for('records.delete', kind='hand', rid=row.id) }}" data-confirm="このハンドを削除しますか？"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn danger small" type="submit">削除</button></form>{% endif %}
+{% endblock %}

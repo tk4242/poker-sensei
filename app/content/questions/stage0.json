@@ -1,0 +1,1623 @@
+[
+  {
+    "id": "s0-rules-001",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "flow"
+    ],
+    "q": "テキサスホールデムのベッティングラウンド（賭けの回）の正しい順番は？",
+    "choices": [
+      "プリフロップ → フロップ → ターン → リバー",
+      "フロップ → プリフロップ → ターン → リバー",
+      "プリフロップ → ターン → フロップ → リバー",
+      "プリフロップ → フロップ → リバー → ターン"
+    ],
+    "answer": 0,
+    "explain": "賭けの回は4回で、手札2枚が配られた直後のプリフロップ（preflop）、共通カード3枚のフロップ（flop）、4枚目のターン（turn）、5枚目のリバー（river）の順に進みます。",
+    "why": "今どのストリート（段階）かが分からないと、残りのカード枚数やオッズの計算ができません。すべての判断の土台です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-002",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "flow"
+    ],
+    "q": "フロップで一度に開かれる共通カード（コミュニティカード / board）は何枚？",
+    "choices": [
+      "1枚",
+      "3枚",
+      "2枚",
+      "5枚"
+    ],
+    "answer": 1,
+    "explain": "フロップでは共通カードが3枚まとめて開かれ、その後ターンとリバーで1枚ずつ増えて最大5枚になります。",
+    "why": "フロップ3枚の形（ボードテクスチャ）を読むことが、ポストフロップのベットサイズを決める出発点になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-003",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "hand"
+    ],
+    "q": "ボードの5枚がそのまま一番強い役になっている。自分の手札を1枚も使わずに、その5枚を自分の役としてよい？",
+    "choices": [
+      "だめ。必ず手札を2枚使う",
+      "だめ。必ず手札を1枚以上使う",
+      "よい（プレイ・ザ・ボード / playing the board）",
+      "ショーダウンでは使えず、チョップ扱いにもならない"
+    ],
+    "answer": 2,
+    "explain": "役は手札2枚とボード5枚の計7枚から最良の5枚で作り、手札を2枚・1枚・0枚のどれを使ってもかまいません。0枚の場合をプレイ・ザ・ボード（playing the board）と呼びます。",
+    "why": "「手札を必ず2枚使う」というオマハと混同すると、勝ちハンドを降りてしまうミスにつながります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-004",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "action-order"
+    ],
+    "q": "プリフロップ（preflop）で最初にアクションするのは誰？",
+    "choices": [
+      "SB（スモールブラインド）",
+      "ボタン（BTN）",
+      "BB（ビッグブラインド）",
+      "BBの左隣の人（UTG / アンダー・ザ・ガン）"
+    ],
+    "answer": 3,
+    "explain": "プリフロップはBBの左隣、UTG（アンダー・ザ・ガン / Under the Gun）から時計回りに進みます。SBとBBはすでに強制ベットを置いているので、順番は後回しになります。",
+    "why": "プリフロップで最初に動く席ほど後ろに多くの人が残っていて不利です。自分が何番目に動くかを即答できると、参加するハンドの選び方が変わります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      },
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-005",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "action-order",
+      "weak-bb-last"
+    ],
+    "q": "9人卓のプリフロップ。誰もレイズせずに順番が回るとき、最後にアクションする席は？",
+    "choices": [
+      "BB（ビッグブラインド）",
+      "ボタン（BTN）",
+      "SB（スモールブラインド）",
+      "UTG"
+    ],
+    "answer": 0,
+    "explain": "プリフロップはUTGから時計回りで、9人卓の順番は UTG → … → CO → BTN → SB → BB です。BBが9番目、つまり最後です。",
+    "why": "「ボタンが常に最後」と覚えているとプリフロップの順番を間違えます。プリフロップとポストフロップで順番が変わることを正しく押さえる第一歩です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      },
+      {
+        "title": "Poker.org: Poker table positions cheat sheet",
+        "url": "https://www.poker.org/poker-cheat-sheets/poker-table-positions-cheat-sheet-aN4rp4C1NZmu/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-rules-006",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "action-order",
+      "weak-bb-last"
+    ],
+    "q": "プリフロップでUTGがレイズし、ほかの全員がフォールドしてBBまで回った。この周回で最後に判断するのは？",
+    "choices": [
+      "UTG",
+      "BB",
+      "SB",
+      "ボタン（BTN）"
+    ],
+    "answer": 1,
+    "explain": "プリフロップの順番は UTG から時計回りで、BBが最後です。BBがコールすればプリフロップは終わり、フォールドすればUTGの勝ちです（BBがレイズした場合だけUTGにもう一度回ります）。",
+    "why": "BBのときに「自分の後ろには誰も残っていない」と分かっていれば、判断の前提を正しく置けます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      },
+      {
+        "title": "Poker.org: Poker table positions cheat sheet",
+        "url": "https://www.poker.org/poker-cheat-sheets/poker-table-positions-cheat-sheet-aN4rp4C1NZmu/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-007",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "action-order",
+      "weak-bb-last"
+    ],
+    "q": "9人卓のプリフロップの順番で、ボタン（BTN）の次にアクションするのは？",
+    "choices": [
+      "BB（ビッグブラインド）",
+      "UTG",
+      "SB（スモールブラインド）",
+      "CO（カットオフ）"
+    ],
+    "answer": 2,
+    "explain": "9人卓のプリフロップの順番は … CO → BTN → SB → BB で、ボタンの次はSB、その次が最後のBBです。",
+    "why": "ボタンでオープンしたとき、まだ後ろにSBとBBの2人が残っていることを意識できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker.org: Poker table positions cheat sheet",
+        "url": "https://www.poker.org/poker-cheat-sheets/poker-table-positions-cheat-sheet-aN4rp4C1NZmu/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-rules-008",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "action-order"
+    ],
+    "q": "フロップ以降、最初にアクションするのは誰？",
+    "choices": [
+      "プリフロップで最後にレイズした人",
+      "UTG",
+      "ボタン（BTN）",
+      "ボタンの左隣から数えて、まだ残っている最初の人（通常はSB）"
+    ],
+    "answer": 3,
+    "explain": "フロップ以降はボタンの左隣（残っている中で最初の人、通常SB）から時計回りに進みます。プリフロップとは順番が変わる点に注意です。",
+    "why": "ポストフロップで先に動くか後に動くかは勝率に大きく影響します。順番を正しく数えることが、IP/OOPの判断の土台です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-009",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "heads-up"
+    ],
+    "q": "ヘッズアップ（2人だけ）のとき、ボタンの人はどうなる？",
+    "choices": [
+      "ボタンがSBを払い、プリフロップは先に、フロップ以降は最後にアクションする",
+      "ボタンがBBを払い、プリフロップは最後にアクションする",
+      "ボタンがSBを払い、プリフロップもフロップ以降も最後にアクションする",
+      "ボタンはブラインドを払わず、常に最後にアクションする"
+    ],
+    "answer": 0,
+    "explain": "2人のときだけの例外で、ボタンがSBを払います。そのためプリフロップでは先に動き、フロップ以降は最後に動きます。",
+    "why": "トーナメントの終盤や最後の2人では必ずこの形になります。順番を間違えるとアクションの宣言ミスにつながります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-010",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "min-raise",
+      "math"
+    ],
+    "q": "BB=200。UTGが600にレイズした。次の人がレイズするとき、最低いくらにする必要がある？（Poker TDA Rule 45）",
+    "choices": [
+      "800",
+      "1,000",
+      "1,200",
+      "600"
+    ],
+    "answer": 1,
+    "explain": "レイズの上乗せ額は「直前のフルのベット/レイズの上乗せ額以上」が必要です。UTGは200→600で400上乗せしたので、次は600+400=1,000以上です。",
+    "why": "ライブの大会では額が足りないレイズは訂正されます。最小額を自分で計算できると、宣言ミスや損なサイズを防げます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker TDA Rules 2026 Version 1.0",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-011",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "min-raise",
+      "math"
+    ],
+    "q": "BB=100。COが300にオープンした。ボタンが3ベット（リレイズ）するとき、最低いくらにする必要がある？",
+    "choices": [
+      "400",
+      "600",
+      "500",
+      "300"
+    ],
+    "answer": 2,
+    "explain": "COは100→300で200上乗せしたので、最小レイズは300+200=500です（Poker TDA Rule 45：直前のフルの上乗せ額以上）。",
+    "why": "ミニマム3ベットの額をすぐ出せると、ライブで慌てずに正しい額を宣言できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker TDA Rules 2026 Version 1.0",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-012",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "blinds",
+      "weak-sb-bb"
+    ],
+    "q": "SB（スモールブラインド）とBB（ビッグブラインド）は、ボタンから見てどこに座っている？",
+    "choices": [
+      "BBはボタンの左1つ目、SBはボタンの左2つ目",
+      "SBはボタンの右隣、BBはボタンの左隣",
+      "SBもBBもボタンの右側",
+      "SBはボタンの左1つ目、BBはボタンの左2つ目"
+    ],
+    "answer": 3,
+    "explain": "ボタンの左1つ目がSB、2つ目がBBで、ここに強制ベットを置きます。時計回りに BTN → SB → BB の順です。",
+    "why": "SBとBBを取り違えると、プリフロップの順番もポストフロップの順番も全部ずれてしまいます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.3"
+  },
+  {
+    "id": "s0-rules-013",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "bba"
+    ],
+    "q": "BBA（ビッグブラインド・アンティ / Big Blind Ante）とはどんな方式？",
+    "choices": [
+      "BBの人がテーブル全員分のアンティをまとめて払う方式",
+      "全員が毎ハンド少しずつアンティを払う方式",
+      "ボタンの人が全員分のアンティを払う方式",
+      "BBが払う額を2倍にしてアンティをなくす方式"
+    ],
+    "answer": 0,
+    "explain": "BBAでは、BBのプレイヤーがテーブル全員分のアンティ（ante / 追加の強制ベット）をまとめて払います。集める手間が減り進行が速くなります。",
+    "why": "現代の主要トーナメントではBBAが主流です。ポットがどれだけ大きいかを正しく数える前提になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerNews: Big Blind Ante Definition",
+        "url": "https://www.pokernews.com/pokerterms/big-blind-ante.htm"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.3"
+  },
+  {
+    "id": "s0-rules-014",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "bba"
+    ],
+    "q": "現代の主要トーナメントで一般的なBBA（ビッグブラインド・アンティ）の額は？",
+    "choices": [
+      "BBの半分（例: 1,000/2,000 のレベルで BBA 1,000）",
+      "BBと同じ額（例: 1,000/2,000 のレベルで BBA 2,000）",
+      "SBと同じ額",
+      "BBの10分の1"
+    ],
+    "answer": 1,
+    "explain": "BBA額 = BB額 が一般的です（例: 1,000/2,000 のレベルで BB 2,000 + BBA 2,000）。ただし大会ごとに違う可能性があるので、ストラクチャー表で必ず確認します。",
+    "why": "初期ポットの大きさを見積もれると、スチール（ブラインドを奪うオープン）の価値を正しく判断できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Card Player: What Comes First, The Big Blind Or The Ante?",
+        "url": "https://www.cardplayer.com/cardplayer-poker-magazines/66420-cppt-live-casino-hotel-32-21/articles/23815-what-comes-first-the-big-blind-or-the-ante"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.3"
+  },
+  {
+    "id": "s0-rules-015",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "bba",
+      "math"
+    ],
+    "q": "BBA=1BB の構造で、プリフロップに誰もまだ参加していないときの初期ポットは何BB？",
+    "choices": [
+      "1.5BB",
+      "2BB",
+      "2.5BB",
+      "3BB"
+    ],
+    "answer": 2,
+    "explain": "SB 0.5BB + BB 1BB + アンティ 1BB = 2.5BB です。アンティの分だけ最初からポットが大きくなります。",
+    "why": "取れるポットが大きいほど、ブラインドを盗むオープンやBBのディフェンスが得になりやすくなります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Red Chip Poker: MTT Secrets: 3-Bet Shoves",
+        "url": "https://redchippoker.com/mtt-secrets-3-bet-shoves/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 0"
+  },
+  {
+    "id": "s0-rules-016",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "tda"
+    ],
+    "q": "トーナメントで採用されているボタンの扱い方は？（Poker TDA Rule 34）",
+    "choices": [
+      "毎ハンド、チップリーダーにボタンを移す方式",
+      "飛んだ人の席を詰めてボタンを動かす方式",
+      "ディーラーが毎ハンドくじで決める方式",
+      "デッドボタン（dead button）方式"
+    ],
+    "answer": 3,
+    "explain": "トーナメントはデッドボタン（dead button）方式で、脱落者が出てもボタン位置のルールを維持します（TDA Rule 34）。",
+    "why": "人が飛んだ直後にブラインドを誰が払うか混乱しやすい場面で、落ち着いて対応できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker TDA Rules 2026 Version 1.0",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-017",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "showdown"
+    ],
+    "q": "オールインが発生し、ほかの全員のアクションが終わった。ハンドはどう見せる？（Poker TDA Rule 17）",
+    "choices": [
+      "全員のハンドをすぐにオープンする",
+      "最後にベットした人だけが見せる",
+      "勝ったと思う人だけが見せる",
+      "リバーまで配り終えてから順番に見せる"
+    ],
+    "answer": 0,
+    "explain": "TDA Rule 17 では、オールインがあり他の全員のアクションが完了したら、全ハンドを即オープンします。",
+    "why": "トーナメントでオールインは日常です。ルールを知っていれば、カードを伏せたまま待つなどの手間取りを防げます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker TDA Rules 2026 Version 1.0",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-rules-018",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "showdown"
+    ],
+    "q": "オールインではないハンドで、リバーにベットがありコールされてショーダウンになった。先に手を見せるのは？（Poker TDA Rule 18-A）",
+    "choices": [
+      "最後にコールした人",
+      "最終ラウンドで最後にアグレッシブなアクション（ベット/レイズ）をした人",
+      "ボタンに一番近い人",
+      "チップが多い人"
+    ],
+    "answer": 1,
+    "explain": "TDA Rule 18-A では、オールインでない場合、最終ラウンドで最後にアグレッシブなアクションをした人が先に見せます。なお、リバーでベットがなかった（全員チェック）場合は、最終ラウンドで最初に行動する人（ボタンの左側で最初の人）が先に見せます。",
+    "why": "リバーでベットしてコールされたら自分から見せる、と知っていれば、海外の大会でも慌てません。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker TDA Rules 2026 Version 1.0",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.1"
+  },
+  {
+    "id": "s0-positions-001",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "weak-co"
+    ],
+    "q": "CO（カットオフ / Cutoff）はどこの席？",
+    "choices": [
+      "ボタンの左隣",
+      "BBの左隣",
+      "ボタンの右隣",
+      "SBの右隣"
+    ],
+    "answer": 2,
+    "explain": "COはボタンの右隣で、プリフロップではボタンの1つ前に動きます。",
+    "why": "COはボタンに次いで後ろの席です。後ろの席ほど相手の行動を見てから判断できて有利になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.2"
+  },
+  {
+    "id": "s0-positions-002",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "weak-co"
+    ],
+    "q": "9人卓のプリフロップで、ボタン（BTN）の1つ前（直前）にアクションする席は？",
+    "choices": [
+      "HJ（ハイジャック）",
+      "SB（スモールブラインド）",
+      "LJ（ロージャック）",
+      "CO（カットオフ）"
+    ],
+    "answer": 3,
+    "explain": "9人卓の順番は … LJ → HJ → CO → BTN → SB → BB です。ボタンの直前に動くのはCOです。",
+    "why": "自分がCOなら、後ろにボタンとブラインドの3人しか残っていないと分かり、オープンの判断に使えます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker.org: Poker table positions cheat sheet",
+        "url": "https://www.poker.org/poker-cheat-sheets/poker-table-positions-cheat-sheet-aN4rp4C1NZmu/"
+      },
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-positions-003",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "weak-co"
+    ],
+    "q": "CO（カットオフ）の左隣の席は？",
+    "choices": [
+      "ボタン（BTN）",
+      "HJ（ハイジャック）",
+      "SB（スモールブラインド）",
+      "UTG"
+    ],
+    "answer": 0,
+    "explain": "COはボタンの右隣なので、逆から見るとCOの左隣がボタンです。",
+    "why": "席の並びを左右どちらから聞かれても答えられると、実際の卓で自分の位置を一瞬で把握できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.2"
+  },
+  {
+    "id": "s0-positions-004",
+    "stage": 0,
+    "tags": [
+      "positions"
+    ],
+    "q": "HJ（ハイジャック / Hijack）はどこの席？",
+    "choices": [
+      "ボタンの右隣",
+      "COの右隣（ボタンの2つ右）",
+      "BBの左隣",
+      "SBの左隣"
+    ],
+    "answer": 1,
+    "explain": "HJはCOの右隣、つまりボタンから2つ右の席です。",
+    "why": "HJ・CO・BTNと後ろの席になるほど有利になります。並びを覚えるのが第一歩です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.2"
+  },
+  {
+    "id": "s0-positions-005",
+    "stage": 0,
+    "tags": [
+      "positions"
+    ],
+    "q": "UTG（アンダー・ザ・ガン）はどこの席？",
+    "choices": [
+      "ボタンの左隣",
+      "SBの左隣",
+      "BBの左隣",
+      "ボタンの右隣"
+    ],
+    "answer": 2,
+    "explain": "UTGはBBの左隣で、プリフロップで最初に行動する席です。",
+    "why": "UTGはプリフロップで最初に動くので、後ろに多くの人が残っています。自分の位置の有利・不利を知る基本です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.2"
+  },
+  {
+    "id": "s0-positions-006",
+    "stage": 0,
+    "tags": [
+      "positions"
+    ],
+    "q": "9人卓のプリフロップで4番目にアクションする席は？",
+    "choices": [
+      "HJ（ハイジャック）",
+      "UTG+2",
+      "CO（カットオフ）",
+      "LJ（ロージャック / Lojack）"
+    ],
+    "answer": 3,
+    "explain": "9人卓の順番は UTG → UTG+1 → UTG+2 → LJ → HJ → CO → BTN → SB → BB で、4番目はLJです。",
+    "why": "オンラインやアプリではLJ・HJなどの略称で席が表示されます。名前と順番が結びつくと、チャートや解説がすぐ読めます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker.org: Poker table positions cheat sheet",
+        "url": "https://www.poker.org/poker-cheat-sheets/poker-table-positions-cheat-sheet-aN4rp4C1NZmu/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-positions-007",
+    "stage": 0,
+    "tags": [
+      "positions"
+    ],
+    "q": "8人卓（8-max）の席の並びは、9人卓からどの席が抜けた形？",
+    "choices": [
+      "UTG+2",
+      "LJ（ロージャック）",
+      "HJ（ハイジャック）",
+      "CO（カットオフ）"
+    ],
+    "answer": 0,
+    "explain": "8-max は UTG, UTG+1, LJ, HJ, CO, BTN, SB, BB で、9人卓からUTG+2が抜けた形です。",
+    "why": "オンラインMTTは8人卓が多いので、表示される席名がどこを指すかすぐ分かるようになります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker.org: Poker table positions cheat sheet",
+        "url": "https://www.poker.org/poker-cheat-sheets/poker-table-positions-cheat-sheet-aN4rp4C1NZmu/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-positions-008",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "weak-sb-bb"
+    ],
+    "q": "ボタンから時計回り（左回り）に並ぶ席の順として正しいのは？",
+    "choices": [
+      "BTN → BB → SB → UTG",
+      "BTN → SB → BB → UTG",
+      "BTN → UTG → SB → BB",
+      "BTN → CO → SB → BB"
+    ],
+    "answer": 1,
+    "explain": "ボタンの左1つ目がSB、2つ目がBB、BBの左隣がUTGです。SB（小）がBB（大）より先に来ます。",
+    "why": "この並びが分かれば、プリフロップの順番（UTGから）もポストフロップの順番（SBから）も自分で組み立てられます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      },
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.3"
+  },
+  {
+    "id": "s0-positions-009",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "weak-sb-bb"
+    ],
+    "q": "ボタン（BTN）の左隣の席は？",
+    "choices": [
+      "BB（ビッグブラインド）",
+      "UTG",
+      "SB（スモールブラインド）",
+      "CO（カットオフ）"
+    ],
+    "answer": 2,
+    "explain": "SBはボタンの左1つ目、BBは左2つ目です。ボタンのすぐ左はSBです。",
+    "why": "SBとBBの取り違えは、ブラインドの支払い額や順番のミスに直結します。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.3"
+  },
+  {
+    "id": "s0-positions-010",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "weak-sb-bb"
+    ],
+    "q": "BB（ビッグブラインド）の右隣の席は？",
+    "choices": [
+      "UTG",
+      "ボタン（BTN）",
+      "CO（カットオフ）",
+      "SB（スモールブラインド）"
+    ],
+    "answer": 3,
+    "explain": "時計回りに BTN → SB → BB → UTG と並ぶので、BBの右隣はSB、左隣はUTGです。",
+    "why": "左右どちらから聞かれても並びを再現できれば、実際の卓でも迷わなくなります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      },
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.3"
+  },
+  {
+    "id": "s0-positions-011",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "ip-oop",
+      "weak-ip"
+    ],
+    "q": "IP（インポジション / in position）とはどういう状態？",
+    "choices": [
+      "ポストフロップで相手より後に行動できる",
+      "ポストフロップで相手より先に行動しなければならない",
+      "プリフロップで最初にレイズした",
+      "相手よりチップを多く持っている"
+    ],
+    "answer": 0,
+    "explain": "IPはポストフロップ（フロップ以降）で相手より後に行動できる状態、OOP（アウトオブポジション / out of position）は先に行動しなければならない状態です。後に動ける方が相手の行動を見てから決められるので有利です。",
+    "why": "同じハンドでもIPかOOPかで取れる利益が変わります。参加するハンドを選ぶときの基本的な物差しです。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      },
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-positions-012",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "ip-oop",
+      "weak-ip"
+    ],
+    "q": "ボタン（BTN）がオープンし、BBがコールしてフロップへ。IPなのはどちら？",
+    "choices": [
+      "BB",
+      "ボタン（BTN）",
+      "どちらでもない（交互に入れ替わる）",
+      "チップが多い方"
+    ],
+    "answer": 1,
+    "explain": "フロップ以降はボタンの左隣から順に動くので、BBが先、ボタンが後です。後に動けるボタンがIPです。",
+    "why": "プリフロップで最後に動くBBも、ポストフロップでは先に動くOOPになります。順番が入れ替わることを理解するのが大切です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      },
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-positions-013",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "ip-oop",
+      "weak-ip"
+    ],
+    "q": "COがオープンし、ボタンがコールしてフロップへ（ブラインドは降りた）。OOPなのはどちら？",
+    "choices": [
+      "ボタン（BTN）",
+      "どちらもIP",
+      "CO",
+      "プリフロップでレイズしたのでどちらでもない"
+    ],
+    "answer": 2,
+    "explain": "フロップ以降はボタンの左隣から数えて残っている人の順に動きます。COとボタンではCOが先に動くので、COがOOP、ボタンがIPです。",
+    "why": "レイズした側でも、相手が後ろの席ならOOPで戦うことになります。オープンする席を選ぶ理由がここにあります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      },
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-positions-014",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "ip-oop",
+      "weak-ip"
+    ],
+    "q": "SBとBBの2人でフロップへ進んだ。IPなのはどちら？",
+    "choices": [
+      "SB",
+      "SBとBBは毎ストリート交互に入れ替わる",
+      "プリフロップでレイズした方",
+      "BB"
+    ],
+    "answer": 3,
+    "explain": "フロップ以降は、ボタンの左隣から数えて残っている最初の人（通常SB）から動きます。SBが先、BBが後なので、BBがIPです。",
+    "why": "SBはポストフロップでほぼ常に先に動く不利な席です。SBから参加するときに慎重になる理由が分かります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.4"
+  },
+  {
+    "id": "s0-positions-015",
+    "stage": 0,
+    "tags": [
+      "positions",
+      "ip-oop"
+    ],
+    "q": "ポストフロップで、残っている相手全員より後に行動できる席は？",
+    "choices": [
+      "ボタン（BTN）",
+      "BB",
+      "UTG",
+      "SB"
+    ],
+    "answer": 0,
+    "explain": "ボタンはポストフロップで最後に行動する席です。フロップ以降はボタンの左隣から順に動くためです。",
+    "why": "ポストフロップで最後に動けることが、ボタンが有利な席である理由です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      },
+      {
+        "title": "Wikipedia: Texas hold 'em",
+        "url": "https://en.wikipedia.org/wiki/Texas_hold_%27em"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.2"
+  },
+  {
+    "id": "s0-terms-001",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "UTGがオープン、HJがコールした。そこでボタンが3ベットした。このプレイを何と呼ぶ？",
+    "choices": [
+      "アイソレーション（iso-raise）",
+      "スクイーズ（squeeze）",
+      "コールドコール（cold call）",
+      "ドンクベット（donk bet）"
+    ],
+    "answer": 1,
+    "explain": "スクイーズは、オープン＋1人以上のコーラーがいる状況での3ベットです。",
+    "why": "コーラーがいる場面は3ベットで大きなポットを取れるチャンスにもなります。名前を知ると解説記事が読めるようになります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: The Squeeze Play",
+        "url": "https://upswingpoker.com/glossary/squeeze-play/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-002",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "まだチップを入れていない人が、レイズに対してコールすることを何と呼ぶ？（例: COのオープンにボタンがコール）",
+    "choices": [
+      "リンプ（limp）",
+      "チェックレイズ（check-raise）",
+      "コールドコール（cold call）",
+      "オーバーリンプ（over-limp）"
+    ],
+    "answer": 2,
+    "explain": "コールドコールは、自分はまだチップを入れていない状態でレイズ（複数のベット分）にコールすることです。",
+    "why": "BBのようにすでにチップを入れている人のコールとは意味合いが違います。用語を区別すると戦略の解説が理解しやすくなります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-003",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "3ベット（3-bet）とは？",
+    "choices": [
+      "3人がコールしたこと",
+      "3回目のストリート（ターン）でのベット",
+      "BBの3倍のオープン",
+      "オープンレイズに対するリレイズ（ブラインドを1ベット目と数える）"
+    ],
+    "answer": 3,
+    "explain": "ブラインドを1ベット目、オープンを2ベット目と数えるので、オープンへのリレイズが3ベットです。その上が4ベット、5ベットです。",
+    "why": "プリフロップの解説はほぼすべて「オープン・3ベット・4ベット」で語られます。数え方を押さえると読み違えません。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-004",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "プリフロップでレイズせず、BBと同額をコールして参加することを何と呼ぶ？",
+    "choices": [
+      "リンプ（limp）",
+      "オープン（open）",
+      "ストラドル（straddle）",
+      "ブロックベット（block bet）"
+    ],
+    "answer": 0,
+    "explain": "リンプ（limp）は、プリフロップでレイズせずBBにコールして参加することです。",
+    "why": "国内のアミューズメントやホームゲームではリンプが多く見られます。相手のリンプに気づくことが対策の第一歩です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-005",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "リンパーがいるときに、その人とヘッズアップになることを狙ってレイズすることを何と呼ぶ？",
+    "choices": [
+      "スクイーズ（squeeze）",
+      "アイソレーション（iso-raise / isolate）",
+      "フロート（float）",
+      "プローブベット（probe bet）"
+    ],
+    "answer": 1,
+    "explain": "アイソレーションは、リンパー（またはBB）とヘッズアップになる目的で行うレイズです。",
+    "why": "リンプの多い卓で、弱い相手と1対1になる道具になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: What is Isolating in Poker?",
+        "url": "https://upswingpoker.com/glossary/isolate/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-006",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "BBがプリフロップのレイズにコールし、フロップでBBが先頭でベットした。このベットを何と呼ぶ？",
+    "choices": [
+      "Cベット（コンティニュエーションベット）",
+      "ディレイドCベット（delayed c-bet）",
+      "ドンクベット（donk bet / lead）",
+      "オーバーベット（overbet）"
+    ],
+    "answer": 2,
+    "explain": "ドンクベットは、前のラウンドで主導権がないOOPのプレイヤーが先頭でベットすることです。",
+    "why": "相手が普段と違うドンクベットをしてきたとき、それが珍しい行動だと気づけるようになります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-007",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "プリフロップでレイズした人が、フロップでも続けてベットすることを何と呼ぶ？",
+    "choices": [
+      "ドンクベット（donk bet）",
+      "プローブベット（probe bet）",
+      "チェックレイズ（check-raise）",
+      "Cベット（コンティニュエーションベット / c-bet）"
+    ],
+    "answer": 3,
+    "explain": "Cベットは、前のラウンドで主導権を持ったプレイヤーが続けて打つベットです。典型例はプリフロップのレイザーがフロップで打つベットです。",
+    "why": "ポストフロップの戦略で一番よく出てくる言葉です。サイズや頻度の話はここから始まります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-008",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "プリフロップでレイズした人がフロップをチェックで回し、ターンでベットした。このベットを何と呼ぶ？",
+    "choices": [
+      "ディレイドCベット（delayed c-bet）",
+      "ドンクベット（donk bet）",
+      "プローブベット（probe bet）",
+      "ストラドル（straddle）"
+    ],
+    "answer": 0,
+    "explain": "ディレイドCベットは、プリフロップのアグレッサーが前のストリート（通常フロップ）をチェックで回した後に打つベットです。",
+    "why": "フロップで打たなかった相手の後からのベットにも意味があると分かると、相手の行動を読みやすくなります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: What is a Delayed C-Bet",
+        "url": "https://upswingpoker.com/delayed-continuation-bet-c-bet-strategy/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-009",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "ボタンのオープンにBBがコールしてフロップへ。フロップは両者チェック。ターンでBBが先にベットした。このベットを何と呼ぶ？",
+    "choices": [
+      "ディレイドCベット（delayed c-bet）",
+      "プローブベット（probe bet）",
+      "Cベット（c-bet）",
+      "スクイーズ（squeeze）"
+    ],
+    "answer": 1,
+    "explain": "プローブベットは、前のストリートでプリフロップのアグレッサー（IP）がCベットせずチェックした後、OOP側が先にベットすることです。ターンかリバーでのみ起こります。",
+    "why": "相手がCベットしなかった弱さを突くための考え方です。名前を知ると解説記事のラインが追えるようになります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: What is a Probe Bet in Poker?",
+        "url": "https://upswingpoker.com/glossary/probe-bet/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-010",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "ポット100に150をベットした。このようなベットを何と呼ぶ？",
+    "choices": [
+      "ブロックベット（block bet）",
+      "ミニマムレイズ（min-raise）",
+      "オーバーベット（overbet）",
+      "Cベット（c-bet）"
+    ],
+    "answer": 2,
+    "explain": "ポットより大きいベットをオーバーベット（overbet）と呼びます。",
+    "why": "ベットの大きさをポットに対する割合で考える習慣が、ポストフロップのサイズ選びの基本です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-011",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "action"
+    ],
+    "q": "OOPのプレイヤーが小さめ（ポットの20〜40%）にベットして、相手の大きいベットを防ぐ狙いのベットを何と呼ぶ？",
+    "choices": [
+      "オーバーベット（overbet）",
+      "チェックレイズ（check-raise）",
+      "フロート（float）",
+      "ブロックベット（block bet）"
+    ],
+    "answer": 3,
+    "explain": "ブロックベットは、OOPのプレイヤーが小さめにベットして相手の大きいベットを防ぐものです。",
+    "why": "先に動く不利な立場でも、ショーダウンまでの値段を自分で決める方法があると知っておくと役立ちます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Upswing Poker: What is a Block Bet",
+        "url": "https://upswingpoker.com/block-bet/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.1"
+  },
+  {
+    "id": "s0-terms-012",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "hand"
+    ],
+    "q": "手札77、ボード 7-K-2。今の自分の役を何と呼ぶ？",
+    "choices": [
+      "セット（set）",
+      "トリップス（trips）",
+      "ツーペア（two pair）",
+      "オーバーペア（overpair）"
+    ],
+    "answer": 0,
+    "explain": "セットはポケットペア＋ボード1枚でできるスリーカードです。ボードのペア＋手札1枚でできるスリーカードはトリップスと呼び分けます。",
+    "why": "セットは相手から見えにくく、大きなポットを取りやすい強い形です。呼び方の違いが強さの違いにつながります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.3"
+  },
+  {
+    "id": "s0-terms-013",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "hand"
+    ],
+    "q": "手札A7、ボード 7-7-2。今の自分の役を何と呼ぶ？",
+    "choices": [
+      "セット（set）",
+      "トリップス（trips）",
+      "フルハウス（full house）",
+      "ツーペア（two pair）"
+    ],
+    "answer": 1,
+    "explain": "トリップスはボードのペア＋手札1枚でできるスリーカードです。手札のペアで作るセットとは区別します。",
+    "why": "ボードにペアがあると相手も同じ7を持っている可能性があり、キッカー（残りのカード）勝負になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.3"
+  },
+  {
+    "id": "s0-terms-014",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "hand",
+      "outs"
+    ],
+    "q": "手札9-8、ボード J-7-2。Tが来ればストレートになる。このドローを何と呼び、アウツ（当たりカード）は何枚？",
+    "choices": [
+      "オープンエンド（OESD）、8枚",
+      "ガットショット（gutshot）、8枚",
+      "ガットショット（gutshot）、4枚",
+      "フラッシュドロー、9枚"
+    ],
+    "answer": 2,
+    "explain": "7-8-9-J に対して真ん中のTだけで完成する中抜けのストレートドローをガットショットと呼びます。Tは4枚なのでアウツは4枚です。",
+    "why": "ドローの種類が分かればアウツの枚数が分かり、コールしてよいかを計算できるようになります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.3"
+  },
+  {
+    "id": "s0-terms-015",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "hand",
+      "outs"
+    ],
+    "q": "手札9-8、ボード 7-6-2。両側どちらでもストレートが完成する。このドローとアウツの枚数は？",
+    "choices": [
+      "ガットショット（gutshot）、4枚",
+      "オープンエンド（OESD）、4枚",
+      "バックドア（backdoor）、2枚",
+      "オープンエンド（OESD / open-ended）、8枚"
+    ],
+    "answer": 3,
+    "explain": "6-7-8-9 は5でもTでもストレートになる両側待ちで、オープンエンド（OESD）と呼びます。5とTが4枚ずつでアウツ8枚です。",
+    "why": "OESDはガットショットの2倍のアウツがあるので、続けてよい場面が増えます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.3"
+  },
+  {
+    "id": "s0-terms-016",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "board"
+    ],
+    "q": "フロップ K♠8♦3♣ のように、3枚がすべて違うスートのフロップを何と呼ぶ？",
+    "choices": [
+      "レインボー（rainbow）",
+      "モノトーン（monotone）",
+      "ペアボード（paired board）",
+      "ナッツ（nuts）"
+    ],
+    "answer": 0,
+    "explain": "全て異なるスートのフロップをレインボー（rainbow）と呼びます。フラッシュドローがまだ存在しない形です。",
+    "why": "ボードの形の呼び名を知ると、「ドライなボードは小さく打つ」といった戦略の説明が理解できます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.3"
+  },
+  {
+    "id": "s0-terms-017",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "hand"
+    ],
+    "q": "ナッツ（nuts）とは？",
+    "choices": [
+      "相手が降りやすいハンド",
+      "その時点で可能な最強のハンド",
+      "2番目に強いハンド",
+      "フロップでできたワンペア"
+    ],
+    "answer": 1,
+    "explain": "ナッツはその時点のボードで作れる最強のハンドです。",
+    "why": "自分が最強かどうかを確認する習慣は、大きなポットで負けを防ぐ基本です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.3"
+  },
+  {
+    "id": "s0-rules-019",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "hand"
+    ],
+    "q": "A♠K♦ と A♥Q♣ が勝負。ボードは A♦9♣7♥4♠2♦。勝つのはどちら？",
+    "choices": [
+      "A♥Q♣（ハートのAがスペードより強い）",
+      "引き分け（チョップ）",
+      "A♠K♦（キッカーのKがQより強い）",
+      "ボードがプレイされるので両者負け"
+    ],
+    "answer": 2,
+    "explain": "どちらもAのワンペアなので、キッカー（kicker / 残りのカード）で比べます。KがQより強いのでA♠K♦の勝ちです。スートに強弱はありません。",
+    "why": "キッカー負けはよくある負け方です。同じペアでもキッカーで勝敗が決まると分かると、弱いキッカーで大きく賭けるミスを防げます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: List of poker hands",
+        "url": "https://en.wikipedia.org/wiki/List_of_poker_hands"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.2"
+  },
+  {
+    "id": "s0-rules-020",
+    "stage": 0,
+    "tags": [
+      "rules",
+      "hand"
+    ],
+    "q": "A-2-3-4-5 と Q-K-A-2-3。ストレートとして成立するのは？",
+    "choices": [
+      "Q-K-A-2-3 だけ",
+      "どちらも成立する",
+      "どちらも成立しない",
+      "A-2-3-4-5 だけ"
+    ],
+    "answer": 3,
+    "explain": "Aは最強のカードですが、A-2-3-4-5（ホイール / wheel）の最下位ストレートにも使えます。Q-K-A-2-3のような回り込みはストレートではありません。",
+    "why": "ストレートの見落としや勘違いは、勝っている手を降りたり負けている手で払ったりする原因になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: List of poker hands",
+        "url": "https://en.wikipedia.org/wiki/List_of_poker_hands"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.2"
+  },
+  {
+    "id": "s0-tournament-001",
+    "stage": 0,
+    "tags": [
+      "tournament",
+      "terms"
+    ],
+    "q": "リエントリー（re-entry）とリバイ（rebuy）の違いとして正しいのは？",
+    "choices": [
+      "リエントリーは敗退後に新しいスタックで再参加、リバイは敗退前でもチップを買い足せる",
+      "リエントリーはプレイ中にチップを買い足す、リバイは敗退後に再参加する",
+      "どちらも同じ意味",
+      "リエントリーはサテライトで勝った人だけが使える"
+    ],
+    "answer": 0,
+    "explain": "リエントリーは敗退後に再度参加費を払って新規スタックで再参加すること、リバイは敗退前（プレイ中）でもチップを買い足せる制度です。",
+    "why": "大会の費用は「何回入るか」で大きく変わります。参加前にルールを確認し、予算を守る助けになります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerNews: Re-Entry",
+        "url": "https://www.pokernews.com/pokerterms/re-entry.htm"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s0-tournament-002",
+    "stage": 0,
+    "tags": [
+      "tournament",
+      "terms"
+    ],
+    "q": "サテライト（satellite / サテ）とはどんな大会？",
+    "choices": [
+      "賞金が出ない練習用の大会",
+      "賞品が上位大会の参加権になっている大会",
+      "ファイナルテーブルだけを行う大会",
+      "参加者が10人以下の大会"
+    ],
+    "answer": 1,
+    "explain": "サテライトは、賞品が上位大会の参加権の大会です。",
+    "why": "高額な海外大会に、安い参加費から挑戦する道があることを知っておくと計画が立てやすくなります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s0-tournament-003",
+    "stage": 0,
+    "tags": [
+      "tournament",
+      "terms"
+    ],
+    "q": "トーナメントの「バブル（bubble）」とは？",
+    "choices": [
+      "最初のブラインドレベル",
+      "ファイナルテーブルの1位",
+      "入賞（賞金圏）の直前の段階、またはその直前で敗退する順位",
+      "休憩時間"
+    ],
+    "answer": 2,
+    "explain": "バブルは入賞直前の段階、またはその直前で敗退する順位です。日本語では「バブる」とも言います。",
+    "why": "バブル付近は戦い方が大きく変わる場面です。用語を知ることが、ICM（賞金を考えた判断）を学ぶ入口になります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      },
+      {
+        "title": "JCSH ポーカー用語集",
+        "url": "https://jcsh.jp/play/poker-terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s0-tournament-004",
+    "stage": 0,
+    "tags": [
+      "tournament",
+      "terms"
+    ],
+    "q": "ハンド・フォー・ハンド（hand-for-hand / H4H）とは？",
+    "choices": [
+      "1ハンドごとにブラインドが上がる方式",
+      "全員がオールインする最後のハンド",
+      "1人で2つの手札を持つ方式",
+      "バブル付近で全卓が1ハンドずつそろえて進行する方式"
+    ],
+    "answer": 3,
+    "explain": "H4Hはバブル付近で全卓が1ハンドずつ同期して進む方式で、わざと遅くプレイして順位を操作することを防ぎます。TDAは手順を RP-8 で定めています。",
+    "why": "海外の大会でH4Hが始まったら「入賞直前」の合図です。場面を正しく理解して判断を切り替えられます。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Poker TDA Rules 2026 Version 1.0",
+        "url": "https://www.pokertda.com/view-poker-tda-rules/"
+      },
+      {
+        "title": "PokerNews: Hand-for-Hand Definition",
+        "url": "https://www.pokernews.com/pokerterms/hand-for-hand.htm"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s0-tournament-005",
+    "stage": 0,
+    "tags": [
+      "tournament",
+      "terms"
+    ],
+    "q": "トーナメント終盤の「ディール（deal / chop）」について正しいのは？",
+    "choices": [
+      "残りのプレイヤー全員の合意が必要で、できるかどうかは会場・主催者のルール次第",
+      "チップリーダーが1人で決められる",
+      "TDAルールで必ず行うと決まっている",
+      "ディーラーが賞金配分を決める"
+    ],
+    "answer": 0,
+    "explain": "ディールは残ったプレイヤーが賞金配分を合意することです。全員の合意が必要で、可否や手続きは会場・主催者のポリシー次第です（TDAルールには規定がありません）。",
+    "why": "終盤に提案されたとき、断る権利があることと、大会ごとにルールを確認すべきことを知っておくと損をしません。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "PokerNews: How to Make a Deal in Poker",
+        "url": "https://www.pokernews.com/strategy/to-chop-or-not-to-chop-explaining-standard-deal-making-metho-33148.htm"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 2.6"
+  },
+  {
+    "id": "s0-terms-018",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "slang"
+    ],
+    "q": "日本語の「インマネ」は英語の何に当たる？",
+    "choices": [
+      "all-in（全チップを賭けること）",
+      "ITM（in the money / 賞金圏に入ること）",
+      "buy-in（参加費）",
+      "satellite（予選大会）"
+    ],
+    "answer": 1,
+    "explain": "インマネは in the money（ITM）の略で、トーナメントで入賞すること（賞金圏に入ること）です。",
+    "why": "最終目標の「海外MTTでインマネ」を英語でも言えると、海外の大会情報や記事が読めるようになります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "JCSH ポーカー用語集",
+        "url": "https://jcsh.jp/play/poker-terms"
+      },
+      {
+        "title": "Wikipedia: Glossary of poker terms",
+        "url": "https://en.wikipedia.org/wiki/Glossary_of_poker_terms"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 3"
+  },
+  {
+    "id": "s0-terms-019",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "slang"
+    ],
+    "q": "日本語の「プリフロ」「ポスフロ」はそれぞれ何の略？",
+    "choices": [
+      "プリフロップとポケットフラッシュ",
+      "プライズフロアとポジションフロア",
+      "プリフロップ（preflop）とポストフロップ（postflop / フロップ以降）",
+      "プレイヤーフロアとポストファイナル"
+    ],
+    "answer": 2,
+    "explain": "プリフロはプリフロップ、ポスフロはポストフロップ（フロップ以降）の略です。",
+    "why": "国内の解説動画や仲間との会話でよく出る略語です。意味が分かれば学習のスピードが上がります。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "WPT JAPAN ポーカー用語集",
+        "url": "https://wptevent.jp/poker/poker-word-list/"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 3"
+  },
+  {
+    "id": "s0-terms-020",
+    "stage": 0,
+    "tags": [
+      "terms",
+      "slang"
+    ],
+    "q": "日本語の「スリーカード」を英語で言うと？",
+    "choices": [
+      "three card",
+      "three pair",
+      "triple flush",
+      "three of a kind（set / trips）"
+    ],
+    "answer": 3,
+    "explain": "日本語のスリーカードは英語では three of a kind です。ポーカーの文脈で set や trips とも呼ばれます。",
+    "why": "海外の大会でディーラーや相手と役の話をするときに通じる言い方を知っておくと安心です。",
+    "label": "RULE",
+    "source": [
+      {
+        "title": "Wikipedia: List of poker hands",
+        "url": "https://en.wikipedia.org/wiki/List_of_poker_hands"
+      }
+    ],
+    "ref": "curriculum/01-terms.md 1.2"
+  }
+]

@@ -1,0 +1,544 @@
+[
+  {
+    "id": "s3-postflop-001",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "cbet-size"
+    ],
+    "q": "GTO Wizard によると、Cベット（c-bet / プリフロップのレイザーが続けて打つベット）のサイズを決める主な要因は？",
+    "choices": [
+      "ナッツアドバンテージとフォールドエクイティ",
+      "自分のハンドがペアかどうかだけ",
+      "直前のハンドで勝ったかどうか",
+      "相手のプレイ歴の長さ"
+    ],
+    "answer": 0,
+    "explain": "GTO Wizard のメカニクス記事では、Cベットサイズの主要因はナッツアドバンテージ（nut advantage / 最強クラスのコンボを多く持つこと）とフォールドエクイティ（fold equity / 相手を降ろして得る取り分）です。",
+    "why": "なぜ大きく打つのか・小さく打つのかの理由が分かれば、初めて見るボードでもサイズを決められます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: The Mechanics of C-Bet Sizing",
+        "url": "https://blog.gtowizard.com/the-mechanics-of-c-bet-sizing/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-1"
+  },
+  {
+    "id": "s3-postflop-002",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "cbet"
+    ],
+    "q": "GTO Wizard の MTT ヒューリスティクスで、Cベット戦略を最も大きく動かすとされているのは？",
+    "choices": [
+      "ボードテクスチャ（ボードの形）だけ",
+      "ボードテクスチャよりもプリフロップのレンジ構成",
+      "自分の手札1つの強さだけ",
+      "直前のハンドの結果"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard の MTT 向け記事では、Cベット戦略を最も動かすのは「ボードテクスチャよりプリフロップのレンジ構成」とされています。",
+    "why": "誰がどの席からどんなレンジで来たかを先に考える習慣がつき、ボードだけを見る判断から一歩進めます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Flop Heuristics: IP C-Betting in MTTs",
+        "url": "https://blog.gtowizard.com/flop-heuristics-ip-c-betting-in-mtts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-1"
+  },
+  {
+    "id": "s3-postflop-003",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "board-texture"
+    ],
+    "q": "ドライなボード（GTO Wizard の例 Q♥Q♣6♦）でのCベットサイズについて、GTO Wizard と Upswing の方向性は？",
+    "choices": [
+      "どちらも大きめ（75%以上）",
+      "GTO Wizard は小さめ、Upswing はオーバーベット",
+      "どちらも小さめ（GTO Wizard 概ね33%、Upswing 25〜35%）",
+      "どちらもCベットはしないとしている"
+    ],
+    "answer": 2,
+    "explain": "ドライボード（ドローが少ないボード）では、GTO Wizard は概ね33%、Upswing は25〜35%と、どちらも小さめです。ただし GTO Wizard の例はキャッシュ100bb・BB vs BTN のシングルレイズポットです。",
+    "why": "ドライボードは小さく打つ、という基本を押さえると、サイズ選びで迷いにくくなります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: The Mechanics of C-Bet Sizing",
+        "url": "https://blog.gtowizard.com/the-mechanics-of-c-bet-sizing/"
+      },
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-004",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "board-texture"
+    ],
+    "q": "ウェットなボード（例 K♥J♥7♦）のCベットサイズについて、教材での GTO Wizard と Upswing の関係は？",
+    "choices": [
+      "どちらも小さめの33%で一致している",
+      "GTO Wizard は小さめ、Upswing は大きめで方向が逆",
+      "どちらもまったく同じ数値を推奨している",
+      "どちらも大きめだが、具体的な数値は異なる（GTO Wizard 75%と125%、Upswing 55〜80%）"
+    ],
+    "answer": 3,
+    "explain": "ウェットボード（ドローが多いボード）では、GTO Wizard は75%と125%（オーバーベットは125%の方）が主なサイズ、Upswing は55〜80%で、方向は同じでも数値が違います。GTO Wizard の例はキャッシュ100bbの解析で、MTTでは数値が変わりえます。",
+    "why": "情報源ごとの違いを知っておくと、1つの数字を絶対視せず、前提（スタック・形式）を確認する癖がつきます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: The Mechanics of C-Bet Sizing",
+        "url": "https://blog.gtowizard.com/the-mechanics-of-c-bet-sizing/"
+      },
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-005",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "board-texture"
+    ],
+    "q": "超ウェットなボード（例 Q♦J♦T♦ のモノトーン連結）で、GTO Wizard が示すCベットサイズとその理由は？",
+    "choices": [
+      "小さめ（33%）。相手にナッツが多く、自分のミドルハンドを守る必要があるため",
+      "大きめ（125%）。ウェットなボードは常に大きく打つため",
+      "オールイン。ドローを降ろすため",
+      "75%。ボードの最高札がQだから"
+    ],
+    "answer": 0,
+    "explain": "GTO Wizard の例では、超ウェットボードは小さく（33%）打ちます。相手のコールレンジにナッツが多く（29.4%がストレート/フラッシュ）、自分のミドルハンドを守る必要があるためです。",
+    "why": "「ウェット＝大きく」と単純に覚えると、超ウェットなボードで大きな失敗をします。例外を知っておくと判断の精度が上がります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: The Mechanics of C-Bet Sizing",
+        "url": "https://blog.gtowizard.com/the-mechanics-of-c-bet-sizing/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-006",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "board-texture"
+    ],
+    "q": "GTO Wizard のメカニクス記事にあるCベットサイズの例（ドライ33%など）の前提は？",
+    "choices": [
+      "MTTの20bb・3ベットポット",
+      "キャッシュゲーム100bb・BB vs BTN のシングルレイズポット",
+      "マルチウェイ（3人以上）のポット",
+      "ヘッズアップのファイナルテーブル"
+    ],
+    "answer": 1,
+    "explain": "教材の注意書きのとおり、GTO Wizard のメカニクス記事の例はすべてキャッシュ100bb・BB vs BTN のシングルレイズポットです。MTT（40bb等）では数値が変わりえます。",
+    "why": "ソルバーの数値には必ず前提があります。前提を確認する習慣が「間違った方向で覚える」ことを防ぎます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: The Mechanics of C-Bet Sizing",
+        "url": "https://blog.gtowizard.com/the-mechanics-of-c-bet-sizing/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-007",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "board-texture"
+    ],
+    "q": "GTO Wizard の MTT ヒューリスティクスで、Cベットに「最悪」とされるフロップは？",
+    "choices": [
+      "ペアのフロップ",
+      "レインボーのAハイのフロップ",
+      "ミドルカードのフロップ",
+      "どのフロップも同じ"
+    ],
+    "answer": 2,
+    "explain": "GTO Wizard の MTT 向け記事では、ペアやレインボーのボードはベットしやすく、ミドルカードのフロップがCベットに最悪とされています。",
+    "why": "Cベットしにくいボードの種類を知ると、なんとなく全部Cベットするクセを直す手がかりになります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Flop Heuristics: IP C-Betting in MTTs",
+        "url": "https://blog.gtowizard.com/flop-heuristics-ip-c-betting-in-mtts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-008",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "3bet-pot"
+    ],
+    "q": "MTTの3ベットポットで多用されるCベットサイズは？（GTO Wizard）",
+    "choices": [
+      "150%のオーバーベット",
+      "常にオールイン",
+      "Cベットはほとんどしない",
+      "25%ポットの小さいCベット（深いときは50%も）"
+    ],
+    "answer": 3,
+    "explain": "GTO Wizard によると、MTTの3ベットポットでは25%ポットの小さいCベットが多用されます（深いときは50%も）。Upswing も「3ベットポットは25〜40%」としています。",
+    "why": "3ベットポットでは普段より小さいサイズが基準になると分かり、打ちすぎを防げます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Mastering Three-Bet Pots In Position in MTTs",
+        "url": "https://blog.gtowizard.com/mastering-three-bet-pots-in-position-in-mtts/"
+      },
+      {
+        "title": "Upswing Poker: Bet Sizing Strategy: 8 Rules",
+        "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-009",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "bb-defense"
+    ],
+    "q": "BBがオープンにコールしてフロップへ。GTO Wizard の MTT 解析で、BBの基本的な振る舞いは？",
+    "choices": [
+      "ほぼ全てのフロップでアグレッサーにチェックする（ドンクは平均2%程度）",
+      "ほぼ全てのフロップで先にベット（ドンク）する",
+      "半分のフロップでオールインする",
+      "ボードに関係なく必ずチェックレイズする"
+    ],
+    "answer": 0,
+    "explain": "GTO Wizard によると、BB側は「ほぼ全てのフロップでアグレッサーにチェック」します。40bbのBTN vs BB の解析では、BBのドンクベット頻度は全フロップ平均で2%程度（ストレートができる連結ボードでも約7%）です。",
+    "why": "OOPのBBから先に打つ場面は限られていると知っておくと、無理なドンクベットでチップを失うのを防げます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Flop Heuristics for Defending the Blinds in MTTs",
+        "url": "https://blog.gtowizard.com/flop-heuristics-for-defending-the-blinds-in-mtts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-010",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "bb-defense"
+    ],
+    "q": "BBが相手のCベットに直面。GTO Wizard によると、相手のベットが大きいほどBBの対応はどう変わる？",
+    "choices": [
+      "フォールドが減り、レイズが増える",
+      "フォールドが増え、レイズは減り、レイズサイズは小さくなる",
+      "ベットの大きさに関係なく同じ",
+      "必ずオールインで返す"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard は、相手のベットが大きいほどBBはフォールドが増え、レイズは減り、レイズサイズは小さくなるとしています。",
+    "why": "相手のベットサイズに合わせて守り方を変えることで、払いすぎや降りすぎを減らせます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Flop Heuristics for Defending the Blinds in MTTs",
+        "url": "https://blog.gtowizard.com/flop-heuristics-for-defending-the-blinds-in-mtts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-2"
+  },
+  {
+    "id": "s3-postflop-011",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "river"
+    ],
+    "q": "GTO Wizard によると、リバーのベットレンジの形は？",
+    "choices": [
+      "ミドルの強さのハンドが中心になる",
+      "ブラフだけで構成される",
+      "大きく二極化する（強いバリュー＋ブラフで、ミドルが少ない）",
+      "強いハンドはリバーでベットしない"
+    ],
+    "answer": 2,
+    "explain": "GTO Wizard によると、リバーのベットレンジは大きく二極化（ポラライズド / polarized）し、強いバリューとブラフが中心でミドルは少なくなります。最強ハンドは基本的に最大サイズです。",
+    "why": "リバーではベットする手が強い手とブラフに分かれると分かり、中くらいの手の扱いを考える基本になります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Principles of River Play",
+        "url": "https://blog.gtowizard.com/principles-of-river-play/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-3"
+  },
+  {
+    "id": "s3-postflop-012",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "value-bet"
+    ],
+    "q": "バリューベット（value bet）が成り立つ条件として、GTO Wizard と Jonathan Little が挙げているのは？",
+    "choices": [
+      "相手がフォールドする確率が50%を超える",
+      "自分がナッツを持っている",
+      "ポットが自分のスタックより大きい",
+      "コールされたときに50%超勝てる"
+    ],
+    "answer": 3,
+    "explain": "GTO Wizard は「コールされたとき50%超勝てる」ことをバリューベットの条件とし、Jonathan Little も「悪いハンドに50%以上コールされる必要」としています。",
+    "why": "「たぶん勝っている」だけで打つのではなく、コールしてくる手に勝てるかで考えると、薄すぎるベットで損をしなくなります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Principles of River Play",
+        "url": "https://blog.gtowizard.com/principles-of-river-play/"
+      },
+      {
+        "title": "Jonathan Little: Strategies for Beating Small Stakes Poker Tournaments (PDF)",
+        "url": "https://jonathanlittlepoker.com/pdf/Strategies.pdf"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-3"
+  },
+  {
+    "id": "s3-postflop-013",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "spr"
+    ],
+    "q": "GTO Wizard によると、SPR 1 のときオールインにコールするのに必要なエクイティはおよそ？",
+    "choices": [
+      "約33%",
+      "約10%",
+      "約50%",
+      "約45%"
+    ],
+    "answer": 0,
+    "explain": "SPR 1（ポット100、エフェクティブスタック100）では、オールインにコールするには 100 ÷ 300 ≒ 33% の勝率が必要です（tools/poker_math.py で検算）。トップペア以上でスタックオフでき、フラッシュドローも多くがコール可能です。",
+    "why": "SPRが低い場面では、ワンペアでも迷わずオールインしてよいことが多いと分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Stack-to-pot ratio",
+        "url": "https://blog.gtowizard.com/stack-to-pot-ratio/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-6"
+  },
+  {
+    "id": "s3-postflop-014",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "spr"
+    ],
+    "q": "GTO Wizard によると、SPR 約5 のときのオープンエンド・ストレートドロー（OESD）の扱いは？",
+    "choices": [
+      "必ずオールインする",
+      "純粋なフォールド（必要エクイティは約45%）",
+      "必要エクイティは約33%なのでコールできる",
+      "SPRに関係なくコールする"
+    ],
+    "answer": 1,
+    "explain": "SPR約5では、オールインにコールするための必要エクイティは約45%（5/11、tools/poker_math.py で検算）です。ナッツフラッシュドローも微妙になり、OESDは純粋なフォールドとされています。",
+    "why": "同じドローでも、SPRが高いとオールインまで追いかけられないことが分かります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Stack-to-pot ratio",
+        "url": "https://blog.gtowizard.com/stack-to-pot-ratio/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-6"
+  },
+  {
+    "id": "s3-postflop-015",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "spr"
+    ],
+    "q": "10原則6（GTO）で、ワンペアでのスタックオフ（全チップを賭けること）が危うくなるとされるSPRの目安は？",
+    "choices": [
+      "SPR 1 以下のとき",
+      "SPR 2 のとき",
+      "SPR 4 を超えるとき",
+      "SPRに関係なく常に安全"
+    ],
+    "answer": 2,
+    "explain": "GTO Wizard によると、SPR4を超えるとワンペアでのスタックオフが危うくなり、SPR16以上ではトップペアでもコール/フォールドが無差別に近くなります。逆にSPRが低いほどトップペアでスタックオフしやすくなります。",
+    "why": "トップペアで大きなポットを失う典型的なミスを防ぐための物差しになります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Stack-to-pot ratio",
+        "url": "https://blog.gtowizard.com/stack-to-pot-ratio/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 5"
+  },
+  {
+    "id": "s3-postflop-016",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "spr",
+      "3bet-pot"
+    ],
+    "q": "MTTの3ベットポット（50bb）では、フロップのSPRが3未満になる。このときトップペアは？",
+    "choices": [
+      "弱いハンドなので基本的に降りる",
+      "SPRに関係なくチェックだけする",
+      "必ずフォールドする",
+      "強いハンドとして扱える"
+    ],
+    "answer": 3,
+    "explain": "GTO Wizard の記事では、MTTの3ベットポット（50bb）ではフロップSPRが3未満になり、トップペアは強いハンドとされています。",
+    "why": "3ベットポットでトップペアを持ったときに、怖がって降りすぎないための根拠になります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Mastering Three-Bet Pots Out of Position in MTTs",
+        "url": "https://blog.gtowizard.com/mastering-three-bet-pots-out-of-position-in-mtts/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-6"
+  },
+  {
+    "id": "s3-postflop-017",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "multiway"
+    ],
+    "q": "マルチウェイ（3人以上のポット）での戦い方として、GTO Wizard の記事に合うのは？",
+    "choices": [
+      "ブラフを減らし、バリューの基準を上げ、小さめのサイズで打つ",
+      "人数が多いのでブラフを増やす",
+      "レンジ全体で必ずベットする（レンジベット）",
+      "オーバーベットを多用する"
+    ],
+    "answer": 0,
+    "explain": "GTO Wizard の10のヒントでは、マルチウェイではレンジベット禁止、ゴミは諦める、バリュー基準を上げる、小さめのサイズ、ナッツ性重視、ポジションの価値が増す、とされています。",
+    "why": "リンプやコールが多い卓では3人以上のポットになりやすいです。ヘッズアップと同じ打ち方をしないことが大切です。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: 10 Tips for Multiway Pots",
+        "url": "https://blog.gtowizard.com/10-tips-multiway-pots-in-poker/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 3"
+  },
+  {
+    "id": "s3-postflop-018",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "multiway"
+    ],
+    "q": "GTO Wizard によると、マルチウェイでオーバーベットしてよいのはどんなとき？",
+    "choices": [
+      "ブラフしたいときはいつでも",
+      "大きなナッツアドバンテージがあるときだけ",
+      "人数が多いときほど積極的に",
+      "ボードがドライなときは常に"
+    ],
+    "answer": 1,
+    "explain": "GTO Wizard は、マルチウェイでは「大きなナッツアドバンテージがある時以外はオーバーベットしない」としています。",
+    "why": "人数が多いほど誰かが強い手を持っています。大きく打つ場面を絞ることで、大きな失敗を防げます。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: 10 Tips for Multiway Pots",
+        "url": "https://blog.gtowizard.com/10-tips-multiway-pots-in-poker/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-4"
+  },
+  {
+    "id": "s3-postflop-019",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "block-bet"
+    ],
+    "q": "GTO Wizard のリバーの例で、OOPプレイヤーが使う小さいブロックベットのサイズは？",
+    "choices": [
+      "ポットの100%",
+      "ポットの200%",
+      "ポットの10%程度",
+      "オールイン"
+    ],
+    "answer": 2,
+    "explain": "GTO Wizard の例では、OOPプレイヤーが10%ポット程度の小さいブロックベットを、よく構成されたレンジ（ブラフ・トップペア・ツーペア・セット）で使っています。",
+    "why": "先に動く不利な立場でも、小さなベットで主導権を取る方法があることを知っておくと、選択肢が広がります。",
+    "label": "GTO",
+    "source": [
+      {
+        "title": "GTO Wizard: Principles of River Play",
+        "url": "https://blog.gtowizard.com/principles-of-river-play/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 2-5"
+  },
+  {
+    "id": "s3-postflop-020",
+    "stage": 3,
+    "tags": [
+      "postflop",
+      "value-bet",
+      "exploit"
+    ],
+    "q": "10原則9（EXP）で、コーリングステーション（よくコールする相手）への打ち方として合うのは？",
+    "choices": [
+      "ブラフを増やし、強いハンドは小さく打つ",
+      "強いハンドはスロープレイ（チェック）で隠す",
+      "どんなハンドでも常にオールインする",
+      "強いハンドは大きめ、薄いバリューは小さめ（約25%ポット）で打ち、ブラフは減らす"
+    ],
+    "answer": 3,
+    "explain": "教材の10原則9では、コーリングステーションには強いハンドは大きめ、薄いバリューは小さめ（Jonathan Little：約25%ポット）でベットし、ブラフは減らします。これは母集団の傾向にもとづくエクスプロイトで、目の前の相手に当てはまるとは限りません。",
+    "why": "降りにくい相手にはブラフを減らしてバリューで取る、という相手に合わせた考え方の練習になります。",
+    "label": "EXP",
+    "source": [
+      {
+        "title": "Jonathan Little: Strategies for Beating Small Stakes Poker Tournaments (PDF)",
+        "url": "https://jonathanlittlepoker.com/pdf/Strategies.pdf"
+      },
+      {
+        "title": "ポーカーアカデミー: アミューズメントカジノでの勝ち方",
+        "url": "https://pokeracademy.jp/amuse-how-to-win/"
+      }
+    ],
+    "ref": "curriculum/02-strategy.md 5"
+  }
+]

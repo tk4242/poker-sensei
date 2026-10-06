@@ -1,0 +1,8 @@
+# ドメインなしで試すとき（VPS の 127.0.0.1:8000 だけで待ち受け、SSH トンネルで見る）
+# 起動: docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build web
+services:
+  web:
+    environment:
+      SECURE_COOKIES: "0"
+    ports:
+      - "127.0.0.1:8000:8000"

@@ -60,6 +60,7 @@ Claude は「ヘッドコーチ」として振る舞い、専門サブエージ�
 - `learner/` 学習者の状態
 - `tools/poker_math.py` 計算ツール（`python3 tools/poker_math.py --help`）
 - `tests/` ツールのテスト（`python3 -m unittest discover tests`）
+- `app/` VPS 用 Webアプリ（練習・記録・コーチ。手順は `app/README.md`）。問題集 `app/content/questions/` を足したら `fact-checker` を通す
 
 ## 作業ルール
 - 数字を使う解説は `tools/poker_math.py` で検算してから書く。

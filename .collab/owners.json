@@ -10,6 +10,9 @@
     "tools/collab.py": "claude",
     "tests/test_collab*": "claude",
     "tools/": "codex",
-    "tests/": "codex"
+    "tests/": "codex",
+    "app/": "claude",
+    "tests/test_app*": "claude",
+    ".dockerignore": "claude"
   }
 }

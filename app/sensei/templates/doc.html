@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block body %}
+<p class="small"><a href="{{ url_for('learn.library') }}">← 教材ライブラリ</a> <span class="muted">{{ name }}</span></p>
+<div class="panel doc">{{ body|safe }}</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>用語集</h1>
+<form method="get" class="panel"><input type="text" name="q" value="{{ q }}" placeholder="例: 3ベット、IP、バブル"></form>
+<p class="muted small">{{ items|length }} 語（curriculum/01-terms.md の表から）。[S#] は出典番号です。</p>
+{% set cat = namespace(v='') %}
+<div class="panel">
+{% for g in items %}
+  {% if g.category != cat.v %}{% set cat.v = g.category %}<h3>{{ g.category }}</h3>{% endif %}
+  <p><b>{{ g.term }}</b><br>{{ g.def }}{% if g.ex %}<br><span class="muted small">例: {{ g.ex }}</span>{% endif %}</p>
+{% else %}<p>見つかりませんでした。</p>{% endfor %}
+</div>
+<div class="panel small"><h3>出典番号</h3>
+{% for k, s in srcs.items() %}<div>[{{ k }}] <a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.title }}</a></div>{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block body %}
+<p class="small"><a href="{{ url_for('learn.stages') }}">← カリキュラム</a></p>
+<h1>Stage {{ s.stage }}　{{ s.title }}</h1>
+<p class="muted">{{ s.goal }}（目安 {{ s.weeks }}）</p>
+{% if not s.unlocked %}<div class="warn">まだ未開放です。読むのは自由ですが、昇段試験は Stage {{ current }} の合格後に受けられます。</div>{% endif %}
+<div class="panel">
+  <h2>レッスン</h2>
+  <ul class="list">
+  {% for le in s.lessons_st %}
+    <li>{% if le.done %}<span class="ok">✔</span>{% else %}<span class="muted">□</span>{% endif %}
+      <a href="{{ url_for('learn.lesson', lesson_id=le.id) }}">{{ le.id }} {{ le.title }}</a></li>
+  {% endfor %}
+  </ul>
+  <p class="muted small">各レッスンは「読む → 理解チェック5問（8割で完了）」。</p>
+</div>
+<div class="panel">
+  <h2>合格ライン（昇段試験）</h2>
+  <ul class="list">
+  {% for r in s.reqs %}
+    <li>
+      {% if r.status.passed %}<span class="ok">✔ 合格</span>{% else %}<span class="muted">□</span>{% endif %} {{ r.label }}
+      {% if r.type.startswith('exam') %}
+        <div class="small muted">{{ r.n }}問中{{ r.pass }}問以上{% if r.time_limit_s %}・各{{ r.time_limit_s }}秒以内{% endif %}{% if r.status.tries %}・受験 {{ r.status.tries }} 回・最高 {{ r.status.best }}{% endif %}</div>
+        {% if s.unlocked %}<a class="btn small" href="{{ url_for('practice.exam', req_id=r.id) }}">受ける</a>{% endif %}
+      {% elif r.type == 'record' %}
+        <div class="small muted">現在 {{ r.status.value }} / {{ r.status.target }}（<a href="{{ url_for('records.index') }}">記録</a>から自動で数えます）</div>
+      {% else %}
+        <div class="small muted">現在 {{ r.status.value }} / {{ r.status.target }}（<a href="{{ url_for('coach.mental') }}">コーチ → メンタル</a>で保存）</div>
+      {% endif %}
+      {% if r.note %}<div class="warn small">{{ r.note }}</div>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}

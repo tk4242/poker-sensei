@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>チャットのコーチに渡す</h1>
+<p class="muted">Claude のチャット（プロジェクト）に貼ると、成長記録（growth-tracker）や /session-log・/hand-review に引き継げます。</p>
+<p><button class="btn copy" data-target="exportmd" type="button">コピー</button> <a class="btn ghost" href="{{ url_for('main.export_md') }}">ファイルで保存</a></p>
+<pre class="copy" id="exportmd">{{ md }}</pre>
+{% endblock %}

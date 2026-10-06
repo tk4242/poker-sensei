@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>コーチ</h1>
+<div class="panel"><h2>記録から見たアドバイス</h2>
+<ul class="list">{% for a in advice %}<li><b><a href="{{ a.url }}">{{ a.title }}</a></b><br><span class="small">{{ a.body }}</span>
+{% if a.src %}<span class="small muted">（<a href="{{ a.src }}" target="_blank" rel="noopener noreferrer">出典</a>）</span>{% endif %}</li>{% endfor %}</ul>
+<p><a class="btn ghost small" href="{{ url_for('coach.mental') }}">メンタル（プレイ前チェック・Cゲームのサイン・予算）</a></p>
+</div>
+
+<div class="panel"><h2>AIコーチに質問</h2>
+{% if ai %}
+<form method="post" action="{{ url_for('coach.ask') }}" class="stack busy"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<textarea name="question" required placeholder="例: BTN で 25BB、CO が 2.2BB でオープン。A5s はどうする？"></textarea>
+<p><button class="btn" type="submit">聞く</button></p></form>
+<p class="muted small">信頼できるサイト（Poker TDA、GTO Wizard、Upswing、法令など）だけを検索して、出典つきで答えます。AIは間違うことがあるので、出典を開いて確かめましょう。</p>
+{% else %}
+<p class="muted">AIコーチは未設定です。VPS の <code>app/.env</code> に <code>ANTHROPIC_API_KEY</code> を入れると使えます（費用は Anthropic API の従量課金。手順書を参照）。未設定でも、上のアドバイス・練習・記録はすべて使えます。</p>
+{% endif %}
+</div>
+
+{% for l in logs %}
+<div class="panel"><p class="muted small">{{ l.ts }}</p><p><b>Q.</b> {{ l.question }}</p><div class="coach-a">{{ l.answer }}</div>
+{% if l.cites %}<p class="small muted">出典: {% for c in l.cites %}<a href="{{ c.url }}" target="_blank" rel="noopener noreferrer">{{ c.title }}</a>{{ '、' if not loop.last }}{% endfor %}</p>{% endif %}</div>
+{% endfor %}
+
+<div class="panel small"><h3>コーチが見ているあなたの状態</h3><pre class="copy">{{ summary }}</pre></div>
+{% endblock %}

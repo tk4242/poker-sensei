@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% from "_macros.html" import table with context %}
+{% block body %}
+<h1>チートシート</h1>
+<p class="muted noprint">教材の要点をそのまま1枚に。印刷（またはPDF保存）して持ち歩けます。</p>
+<div class="panel"><h2>ポジション（D＝ボタン、時計回り）</h2>{% for d in diagrams %}{{ table(d) }}{% endfor %}
+<p class="small">BTN → SB → BB → UTG …（時計回り）。プリフロップは UTG から、最後は BB。フロップ以降は SB から、最後は BTN。後に動けるのが IP。</p></div>
+{% for t, b in parts %}<div class="panel doc"><h2>{{ t }}</h2>{{ b|safe }}</div>{% endfor %}
+{% endblock %}

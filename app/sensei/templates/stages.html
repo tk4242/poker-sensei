@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>スパルタ・カリキュラム</h1>
+<p class="muted">合格ラインを満たすと次のステージが開きます（Stage 2 は Stage 1 と並行、Stage 6 は最初からずっと並行）。期間は目安。急がず、でも毎日。</p>
+{% for s in stages %}
+<a class="panel stage-card{{ ' locked' if not s.unlocked }}" href="{{ url_for('learn.stage', n=s.stage) }}">
+  <div class="st">Stage {{ s.stage }}　{{ s.title }}
+    {% if s.passed %}<span class="badge done">合格</span>{% elif s.current %}<span class="badge now">いまここ</span>{% elif not s.unlocked %}<span class="badge lock">未開放</span>{% endif %}
+  </div>
+  <div class="muted small">{{ s.goal }}（目安 {{ s.weeks }}）</div>
+  <div class="small">レッスン {{ s.lessons_done }}/{{ s.lessons|length }}・合格ライン {{ s.reqs|selectattr('status.passed')|list|length }}/{{ s.reqs|length }}</div>
+</a>
+{% endfor %}
+<div class="panel">
+  <h2>教材と道具</h2>
+  <ul class="list">
+    <li><a href="{{ url_for('learn.library') }}">教材ライブラリ（全文）</a></li>
+    <li><a href="{{ url_for('learn.glossary') }}">用語集（検索）</a></li>
+    <li><a href="{{ url_for('learn.cheatsheet') }}">チートシート（印刷用）</a></li>
+    <li><a href="{{ url_for('learn.tools') }}">計算機（ポットオッズ・MDF・アウツ・エクイティ・平均スタック）</a></li>
+  </ul>
+</div>
+{% endblock %}
