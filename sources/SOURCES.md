@@ -195,3 +195,7 @@
 | news.ksb.co.jp | https://news.ksb.co.jp/ann/article/16242175 | C | app | 2026-10-05 | ○ |
 | prtimes.jp | https://prtimes.jp/main/html/rd/p/000000012.000133461.html | C | app | 2026-10-05 | ○ |
 | cardplayer.com | https://www.cardplayer.com/poker-news/1680417-2026-wsop-main-event-draws-9208-to-become-fourth-largest-in-history | B | app | 2026-10-05 | ○ |
+| pokerskill.com | https://www.pokerskill.com/poker-glossary/expected-value-ev/ | B | 05, app | 2026-10-10 |  |
+| simplypsychology.org | https://www.simplypsychology.org/asch-conformity.html | B | 05 | 2026-10-10 |  |
+| pokernews.com | https://www.pokernews.com/strategy/the-1-mistake-in-small-stakes-cash-games-fancy-play-syndrome-23917.htm | B | 05 | 2026-10-10 |  |
+| pokernews.com | https://www.pokernews.com/strategy/strategy-with-kristy-jared-tendler-on-mental-game-of-poker-11700.htm | B | 05 | 2026-10-10 |  |
