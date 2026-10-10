@@ -38,8 +38,7 @@
       const missing = qs.findIndex((q, i) => !answered(i));
       if (missing >= 0) { e.preventDefault(); show(missing); }
     });
-    const back = form.querySelector(".back");
-    if (back) back.addEventListener("click", () => { if (cur > 0) show(cur - 1); });
+    form.querySelectorAll(".back").forEach((back) => back.addEventListener("click", () => { if (cur > 0) show(cur - 1); }));
     if (timer) {
       setInterval(() => {
         const s = (performance.now() - started) / 1000;
@@ -49,6 +48,20 @@
     }
     show(0);
   }
+
+  // トレーニング: 問題を表示してから答えるまでの時間を送る（5秒以内の正解は「かいしん」）
+  const train = document.querySelector("form.train");
+  if (train) {
+    const t0 = performance.now();
+    let sent = false;
+    train.addEventListener("submit", (e) => {
+      if (sent) { e.preventDefault(); return; }
+      sent = true;
+      train.querySelector("input[name=t]").value = Math.round(performance.now() - t0);
+    });
+  }
+  const next = document.querySelector(".cmd a[autofocus]");
+  if (next) next.focus({ preventScroll: true });
 
   document.querySelectorAll("button.copy").forEach((b) => {
     b.addEventListener("click", async () => {

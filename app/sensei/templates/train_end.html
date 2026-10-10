@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from "_macros.html" import status_win with context %}
+{% block title %}けっか | トレーニング{% endblock %}
+{% block body %}
+<h1>たたかいの きろく</h1>
+<div class="panel">
+  <p>{{ t.name }}（{{ t.monster }}）</p>
+  <div class="big-score">{{ b.c }} / {{ b.n }}</div>
+  <p>たおした まもの: {{ b.defeated }}　さいこう れんぞく せいかい: {{ b.best }}</p>
+  <p>{% if b.n == 0 %}まだ 1問も といていません。1問だけでも いきましょう！{% elif b.c == b.n %}ぜんもん せいかい！ おみごと！{% elif b.c / b.n >= 0.8 %}いい ちょうし！ この調子で つみあげよう。{% else %}のびしろ たっぷり。まちがえた問題は 復習に 入っています。{% endif %}</p>
+  <p><a class="btn" href="{{ url_for('train.fight', topic=b.topic) }}">もういちど</a> <a class="btn ghost" href="{{ url_for('train.index') }}">べつの あいて</a> <a class="btn ghost" href="{{ url_for('main.home') }}">ホーム</a></p>
+</div>
+{{ status_win(st, session.get('user')) }}
+{% endblock %}

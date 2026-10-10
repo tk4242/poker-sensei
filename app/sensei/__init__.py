@@ -42,9 +42,9 @@ def create_app(**overrides):
     app.teardown_appcontext(db.close_db)
     app.before_request(auth.csrf_protect)
 
-    from .views import coach_bp, learn_bp, main_bp, practice_bp, records_bp
+    from .views import coach_bp, learn_bp, main_bp, practice_bp, records_bp, train_bp
     app.register_blueprint(auth.bp)
-    for bp in (main_bp, learn_bp, practice_bp, records_bp, coach_bp):
+    for bp in (main_bp, learn_bp, practice_bp, records_bp, coach_bp, train_bp):
         app.register_blueprint(bp)
 
     @app.before_request

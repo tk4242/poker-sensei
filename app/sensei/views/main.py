@@ -1,6 +1,6 @@
 from flask import Blueprint, Response, flash, redirect, render_template, request, url_for
 
-from .. import content, practice, progress, summary
+from .. import content, practice, progress, summary, train
 from ..db import get_setting, set_setting
 
 bp = Blueprint("main", __name__)
@@ -39,7 +39,8 @@ def home():
     handover = content.extract_section(content.learner_file("active.md"), "## 再発防止")
     return render_template("home.html", quota=quota, due=due, today_n=today_n, steps=steps, cur=cur,
                            streak=streak, days=days, weak=weak, totals=practice.totals(),
-                           cheer=cheer(today_n, quota, streak, recent_acc),
+                           cheer=cheer(today_n, quota, streak, recent_acc), st=train.status(),
+                           qo=progress.quest_overview(),
                            handover=content.render_md(handover) if handover else "")
 
 

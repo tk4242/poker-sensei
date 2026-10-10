@@ -12,11 +12,13 @@
 {% set ep = request.endpoint or '' %}
 {% if session.get('user') %}
 <header class="top"><div class="wrap">
-  <a class="brand" href="{{ url_for('main.home') }}">ポーカー<span>先生</span></a>
+  <a class="brand" href="{{ url_for('main.home') }}"><img class="px" src="{{ url_for('static', filename='sprites/sensei.svg') }}" alt="" width="28" height="28">ポーカー<span>先生</span></a>
   <nav>
     <a href="{{ url_for('main.home') }}">ホーム</a>
     <a href="{{ url_for('learn.stages') }}">カリキュラム</a>
+    <a href="{{ url_for('train.index') }}">トレーニング</a>
     <a href="{{ url_for('practice.menu') }}">練習</a>
+    <a href="{{ url_for('train.quest') }}">クエスト</a>
     <a href="{{ url_for('records.index') }}">記録</a>
     <a href="{{ url_for('coach.index') }}">コーチ</a>
     <a href="{{ url_for('learn.library') }}">教材</a>
@@ -35,6 +37,7 @@
 <nav class="bottom">
   <a href="{{ url_for('main.home') }}" class="{{ 'on' if ep.startswith('main.') }}"><b>⌂</b>ホーム</a>
   <a href="{{ url_for('learn.stages') }}" class="{{ 'on' if ep.startswith('learn.') }}"><b>☰</b>学ぶ</a>
+  <a href="{{ url_for('train.index') }}" class="{{ 'on' if ep.startswith('train.') }}"><b>⚔</b>たたかう</a>
   <a href="{{ url_for('practice.menu') }}" class="{{ 'on' if ep.startswith('practice.') }}"><b>♠</b>練習</a>
   <a href="{{ url_for('records.index') }}" class="{{ 'on' if ep.startswith('records.') }}"><b>✎</b>記録</a>
   <a href="{{ url_for('coach.index') }}" class="{{ 'on' if ep.startswith('coach.') }}"><b>☺</b>コーチ</a>

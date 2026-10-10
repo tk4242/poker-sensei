@@ -1,7 +1,21 @@
 {% extends "base.html" %}
-{% from "_macros.html" import bars, meter with context %}
+{% from "_macros.html" import bars, meter, status_win, gauge with context %}
 {% block body %}
-<p class="cheer">{{ cheer }}</p>
+<div class="cheer"><img class="px" src="{{ url_for('static', filename='sprites/sensei.svg') }}" alt="先生" width="64" height="64"><p>{{ cheer }}</p></div>
+{{ status_win(st, session.get('user')) }}
+<div class="panel">
+  <h2>すきま時間に たたかう</h2>
+  <p class="small">1問ずつ、すぐに答え合わせ。1分でも1問でもOK。間違えた問題は復習に回ります。</p>
+  <p><a class="btn" href="{{ url_for('train.fight', topic='auto') }}">おまかせで たたかう</a> <a class="btn ghost" href="{{ url_for('train.index') }}">あいてを えらぶ</a></p>
+</div>
+{% if qo.next %}
+<div class="panel quest-week now">
+  <img class="px" src="{{ url_for('static', filename='sprites/' ~ qo.next.sprite ~ '.svg') }}" alt="" width="48" height="48">
+  <div><h3>苦手克服クエスト 第{{ qo.next.week }}週「{{ qo.next.title }}」</h3>
+  <p class="small">{{ qo.next.req.label }}（{{ qo.cleared }} / {{ qo.weeks|length }} クリア）</p>
+  <a class="btn small" href="{{ url_for('train.quest') }}">クエストを ひらく</a></div>
+</div>
+{% endif %}
 <div class="grid">
   <div class="stat"><div class="k">今日</div><div class="v">{{ today_n }}<span class="muted"> / {{ quota }}問</span></div><div class="ok">{{ meter(today_n, quota) }}</div></div>
   <div class="stat"><div class="k">連続ノルマ達成</div><div class="v">{{ streak }}<span class="muted">日</span></div></div>
