@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}苦手克服クエスト | ポーカー先生{% endblock %}
+{% block body %}
+<h1>{{ qo.title }}</h1>
+<div class="cheer"><img class="px" src="{{ url_for('static', filename='sprites/sensei.svg') }}" alt="先生" width="64" height="64"><p>{{ qo.intro }}</p></div>
+<p class="muted small">出典: {{ qo.source }}。<a href="{{ url_for('learn.library_file', name='05-numbers-and-confidence.md') }}">教材 05 を読む</a></p>
+{% for w in qo.weeks %}
+<div class="panel quest-week{{ ' now' if w.now }}{{ ' cleared' if w.status.passed }}">
+  <img class="px" src="{{ url_for('static', filename='sprites/' ~ w.sprite ~ '.svg') }}" alt="" width="48" height="48">
+  <div class="grow">
+    <h3>{% if w.week %}第{{ w.week }}週{% endif %}「{{ w.title }}」 <span class="muted small">ボス: {{ w.boss }}</span>
+      {% if w.status.passed %}<span class="badge done">クリア</span>{% elif w.now %}<span class="badge now">いまここ</span>{% endif %}</h3>
+    <ol class="steps">
+      <li><div>{% if w.lesson_done %}<span class="ok">✔</span> {% endif %}<a href="{{ url_for('learn.lesson', lesson_id=w.lesson) }}">レッスン {{ w.lesson }} を読んで理解チェック</a></div></li>
+      <li><div><a href="{{ url_for('train.fight', topic=w.train) }}">{{ w.boss }}と たたかって 練習（すきま時間に）</a></div></li>
+      <li><div>試練: {{ w.req.label }}
+        {% if w.req.type.startswith('exam') %}
+          {% if w.status.tries %}<div class="muted small">挑戦 {{ w.status.tries }} 回・最高 {{ w.status.best }}</div>{% endif %}
+          <div><a class="btn small" href="{{ url_for('practice.exam', req_id=w.req.id) }}">試練を うける</a></div>
+        {% else %}
+          <div class="muted small">現在 {{ w.status.value }} / {{ w.status.target }}（<a href="{{ url_for('records.session_form') }}">プレイの記録</a>の「周りに合わせて決めたハンドの数」から数えます）</div>
+        {% endif %}</div></li>
+    </ol>
+    {% if not w.week and conform %}
+      <p class="small">周りに合わせたハンドの数（古い順）: {% for c in conform %}{{ c.date[5:] }} <b>{{ c.conformed }}</b>{{ ' → ' if not loop.last }}{% endfor %}</p>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+<p class="muted small">週の分け方と合格の目安は教材 05 の提案で、外部の出典に基づく固定値ではありません。数字の答えはすべて計算ツールで出しています。</p>
+{% endblock %}

@@ -17,7 +17,8 @@ def stage(n):
     s = next((x for x in items if x["stage"] == n), None)
     if not s:
         abort(404)
-    return render_template("stage.html", s=s, current=current)
+    from .. import knowledge
+    return render_template("stage.html", s=s, current=current, kcards=knowledge.cards("approved", n, limit=10))
 
 
 @bp.route("/learn/lesson/<lesson_id>")

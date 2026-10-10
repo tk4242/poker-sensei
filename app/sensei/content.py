@@ -13,6 +13,7 @@ CURRICULUM_FILES = [
     ("02-strategy.md", "戦略（サイズと状況別アクション）"),
     ("03-mental-training.md", "メンタルとトレーニング"),
     ("04-japan-and-overseas.md", "日本と海外（法律・大会・税金）"),
+    ("05-numbers-and-confidence.md", "苦手克服（期待値・ベットの大きさ・オッズ・周りに流されない）"),
 ]
 
 FIRST_TAGS = ["terms", "positions", "rules", "preflop", "math", "postflop", "tournament", "icm",
@@ -21,15 +22,24 @@ TAG_JP = {
     "terms": "用語", "positions": "ポジション", "rules": "ルール", "preflop": "プリフロップ", "math": "数学",
     "postflop": "ポストフロップ", "tournament": "トーナメント", "icm": "ICM", "exploit": "エクスプロイト",
     "live": "ライブ", "mental": "メンタル", "bankroll": "バンクロール", "legal": "法律", "overseas": "海外",
-    "hands": "役の強さ",
+    "hands": "役の強さ", "news": "最新の知識",
 }
 LABEL_JP = {"GTO": "GTO（ソルバー基準）", "EXP": "エクスプロイト（相手層への調整）", "RULE": "ルール・定義",
-            "MENTAL": "メンタル"}
+            "MENTAL": "メンタル", "THEORY": "一般則（戦略サイトの目安。ソルバー出力ではない）"}
 
 
 @lru_cache(maxsize=1)
+def _stages_file():
+    return json.loads((CONTENT_DIR / "stages.json").read_text(encoding="utf-8"))
+
+
 def stages():
-    return json.loads((CONTENT_DIR / "stages.json").read_text(encoding="utf-8"))["stages"]
+    return _stages_file()["stages"]
+
+
+def quest():
+    """苦手克服クエスト（curriculum/05 の4週間プラン）。"""
+    return _stages_file()["quest"]
 
 
 def stage(n):
@@ -48,10 +58,14 @@ def lesson(lesson_id):
 
 
 def requirement(req_id):
+    """(ステージ, 合格ライン)。クエストの課題はステージに属さないので (None, 課題)。"""
     for s in stages():
         for r in s["requirements"]:
             if r["id"] == req_id:
                 return s, r
+    for w in quest()["weeks"]:
+        if w["req"]["id"] == req_id:
+            return None, w["req"]
     return None, None
 
 

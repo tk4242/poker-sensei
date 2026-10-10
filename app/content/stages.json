@@ -1,5 +1,22 @@
 {
   "_comment": "curriculum/00-roadmap.md のステージと合格ラインをアプリ用にしたもの。レッスン本文は curriculum/ の該当節をそのまま表示する（ファクトチェック済みの教材だけを使うため）。requirement.type: exam_gen=自動生成ドリルの試験 / exam_bank=問題集の試験 / record=記録から自動判定 / setting=自分で書いて保存",
+  "quest": {
+    "title": "苦手克服クエスト（4週間）",
+    "intro": "期待値・ベットの大きさ・オッズ・「周りに合わせてしまう」をまとめて克服する道のり。数字の物差しを持つと、周りに流されにくくなります。",
+    "source": "curriculum/05-numbers-and-confidence.md 1章（週の分け方と合格の目安はこのリポジトリの提案）",
+    "weeks": [
+      {"week": 1, "title": "期待値（EV）", "lesson": "L2-6", "sprite": "ghost", "boss": "イーブイゴースト", "train": "ev",
+       "req": {"id": "q-w1", "label": "期待値（EV）ドリル 5問中4問", "type": "exam_gen", "gen": "ev", "n": 5, "pass": 4}},
+      {"week": 2, "title": "ベットの大きさ＝値段", "lesson": "L2-7", "sprite": "bat", "boss": "ベットバット", "train": "bet",
+       "req": {"id": "q-w2", "label": "早見表を見ずに言える（必要勝率ドリル 10問中9問・各10秒以内）", "type": "exam_gen", "gen": "bet_price", "n": 10, "pass": 9, "time_limit_s": 10}},
+      {"week": 3, "title": "自分の勝率を数える", "lesson": "L2-8", "sprite": "goblin", "boss": "アウツゴブリン", "train": "outs",
+       "req": {"id": "q-w3", "label": "アウツと完成確率 5問中4問", "type": "exam_gen", "gen": "outs", "n": 5, "pass": 4}},
+      {"week": 4, "title": "まとめて判断する", "lesson": "L2-8", "sprite": "knight", "boss": "オッズナイト", "train": "call",
+       "req": {"id": "q-w4", "label": "コール？フォールド？（EVで判断）10問で8割", "type": "exam_gen", "gen": "call_decision", "n": 10, "pass": 8}},
+      {"week": 0, "title": "毎回: 周りに流されない", "lesson": "L6-6", "sprite": "golem", "boss": "ドウチョウゴーレム", "train": "mental",
+       "req": {"id": "q-conform", "label": "「周りに合わせたハンドの数」を書いたプレイ記録 3回分", "type": "record", "record": "sessions_with_conform", "pass": 3}}
+    ]
+  },
   "stages": [
     {
       "stage": 0, "title": "ルールと用語", "weeks": "1〜2週",
@@ -44,11 +61,16 @@
         {"id": "L2-2", "title": "ポットオッズ", "sections": [["01-terms.md", "### 4.1"]], "drill": {"gen": "pot_odds"}},
         {"id": "L2-3", "title": "MDF とブラフの損益分岐（α）", "sections": [["01-terms.md", "### 4.2"], ["01-terms.md", "### 4.3"]], "drill": {"gen": "mdf"}},
         {"id": "L2-4", "title": "SPR", "sections": [["01-terms.md", "### 4.4"], ["02-strategy.md", "### 2-6"]], "drill": {"gen": "spr"}},
-        {"id": "L2-5", "title": "2と4のルール（とその誤差）", "sections": [["01-terms.md", "### 4.5"]], "drill": {"gen": "outs"}}
+        {"id": "L2-5", "title": "2と4のルール（とその誤差）", "sections": [["01-terms.md", "### 4.5"]], "drill": {"gen": "outs"}},
+        {"id": "L2-6", "title": "期待値（EV）＝繰り返したときの平均", "quest": 1, "sections": [["05-numbers-and-confidence.md", "## 2."]], "drill": {"gen": "ev", "bank": {"stage": 2, "tags": ["ev"]}}},
+        {"id": "L2-7", "title": "ベットの大きさ＝相手に出す「値段」（早見表）", "quest": 2, "sections": [["05-numbers-and-confidence.md", "## 3."]], "drill": {"gen": "bet_price", "bank": {"stage": 2, "tags": ["bet-size"]}}},
+        {"id": "L2-8", "title": "自分の勝率を数えて、数字で決める", "quest": 3, "sections": [["05-numbers-and-confidence.md", "## 4."]], "drill": {"gen": "call_decision", "bank": {"stage": 2, "tags": ["outs"]}}}
       ],
       "requirements": [
         {"id": "s2-math", "label": "数値問題 10問で9割", "type": "exam_gen", "gen": "math", "n": 10, "pass": 9},
-        {"id": "s2-speed", "label": "ポットオッズを10秒以内に（10問中9問を正解かつ各10秒以内）", "type": "exam_gen", "gen": "pot_odds", "n": 10, "pass": 9, "time_limit_s": 10}
+        {"id": "s2-speed", "label": "ポットオッズを10秒以内に（10問中9問を正解かつ各10秒以内）", "type": "exam_gen", "gen": "pot_odds", "n": 10, "pass": 9, "time_limit_s": 10},
+        {"id": "s2-decision", "label": "コール？フォールド？をEVで判断（10問で8割）", "type": "exam_gen", "gen": "call_decision", "n": 10, "pass": 8,
+         "note": "合格の目安は curriculum/05 の4週間プラン（第4週）の提案値です。"}
       ]
     },
     {
@@ -99,7 +121,8 @@
         {"id": "L6-2", "title": "バンクロール管理", "sections": [["03-mental-training.md", "### A-2"]], "drill": {"bank": {"stage": 6, "tags": ["bankroll"]}}},
         {"id": "L6-3", "title": "ルーティン・睡眠・結果思考", "sections": [["03-mental-training.md", "### A-3"], ["03-mental-training.md", "### A-4"], ["03-mental-training.md", "### A-5"], ["03-mental-training.md", "### A-6"]], "drill": {"bank": {"stage": 6, "tags": ["mental"]}}},
         {"id": "L6-4", "title": "分散（バリアンス）の現実", "sections": [["03-mental-training.md", "## D."]], "drill": {"bank": {"stage": 6}}},
-        {"id": "L6-5", "title": "勉強法・ツール・週間計画", "sections": [["03-mental-training.md", "### B-1"], ["03-mental-training.md", "### B-3"], ["03-mental-training.md", "## C."]], "drill": {"bank": {"stage": 6}}}
+        {"id": "L6-5", "title": "勉強法・ツール・週間計画", "sections": [["03-mental-training.md", "### B-1"], ["03-mental-training.md", "### B-3"], ["03-mental-training.md", "## C."]], "drill": {"bank": {"stage": 6}}},
+        {"id": "L6-6", "title": "周りに流されない（同調を減らす3つの道具）", "quest": 4, "sections": [["05-numbers-and-confidence.md", "## 5."]], "drill": {"bank": {"stage": 6, "tags": ["conformity"]}}}
       ],
       "requirements": [
         {"id": "s6-csigns", "label": "自分の「Cゲームのサイン」を3つ言語化（コーチ → メンタル で保存）", "type": "setting", "setting": "c_game_signs", "pass": 3},

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% from "_macros.html" import table, cards_block, label_tag, sources, gauge with context %}
+{% block title %}{{ t.name }} | トレーニング{% endblock %}
+{% block body %}
+{% set done = row is defined and row %}
+<div class="field">
+  <div class="ename"><span>{{ t.monster }} Lv{{ b.mlv }}</span>{{ gauge(b.mhp, b.mmax, 'ehp') }}</div>
+  <img class="px mon{{ ' hit' if done and row.correct }}{{ ' down' if b.over }}" src="{{ url_for('static', filename='sprites/' ~ t.sprite ~ '.svg') }}" alt="{{ t.monster }}" width="128" height="128">
+</div>
+<div class="win party">
+  <span>{{ session.get('user') }}　Lv{{ st.lv }}</span>
+  <span>HP {{ b.php }}/5</span>
+  <span>{{ b.c }}/{{ b.n }}問</span>
+  <span>れんぞく {{ b.streak }}</span>
+</div>
+{% if msgs %}<div class="win msg">{% for m in msgs %}<p>{{ m }}</p>{% endfor %}</div>{% endif %}
+
+<div class="q">
+  <div class="num"><span class="tag">{{ TAG_JP.get(item.tag, item.tag) }}</span>{{ label_tag(item.label) if done }}</div>
+  <div class="text">{{ item.q }}</div>
+  {{ cards_block(item.get('cards')) }}
+  {{ table(item.get('diagram'), reveal=done) }}
+  {% if not done %}
+  <form method="post" action="{{ url_for('train.answer', qid=qid) }}" class="train">
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="t" value="">
+    <div class="choices">
+      {% for c in item.choices %}<button type="submit" name="a" value="{{ loop.index0 }}">{{ c }}</button>{% endfor %}
+      <button type="submit" name="a" value="-1" class="dk">わからない</button>
+    </div>
+  </form>
+  {% else %}
+  <div class="choices">
+    {% for c in item.choices %}<div class="ans {{ 'right' if loop.index0 == item.answer else ('wrong' if loop.index0 == row.chosen else '') }}">{{ c }}{% if loop.index0 == item.answer %} ✔{% endif %}</div>{% endfor %}
+  </div>
+  <p>{% if row.correct %}<span class="ok">○ せいかい！</span>{% elif row.chosen is none or row.chosen < 0 %}<span class="bad">？ わからない（復習に入りました）</span>{% else %}<span class="bad">× ざんねん（復習に入りました）</span>{% endif %}
+    {% if row.elapsed_ms %}<span class="muted small">{{ (row.elapsed_ms / 1000)|round(1) }}秒</span>{% endif %}</p>
+  <div class="explain">
+    <p>{{ item.explain }}</p>
+    <div class="why"><b>なぜ学ぶ？</b> {{ item.why }}</div>
+    {{ sources(item.source) }}
+    <p class="small muted">教材: {{ item.ref }}</p>
+  </div>
+  {% endif %}
+</div>
+<div class="cmd noprint">
+  {% if done and not b.over %}<a class="btn" href="{{ url_for('train.fight', topic=topic) }}" autofocus>つぎへ</a>{% endif %}
+  {% if done and b.over %}<a class="btn" href="{{ url_for('train.fight', topic=topic) }}">もういちど たたかう</a>{% endif %}
+  <form method="post" action="{{ url_for('train.end') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn ghost small" type="submit">{{ 'けっかを みる' if b.over else 'にげる（ここまでの けっか）' }}</button></form>
+</div>
+{% endblock %}

@@ -86,7 +86,7 @@ def exam(req_id):
     if not req or not req["type"].startswith("exam"):
         abort(404)
     stages, current = progress.overview()
-    st = next(x for x in stages if x["stage"] == s["stage"])
+    st = next(x for x in stages if x["stage"] == s["stage"]) if s else {"unlocked": True}  # クエストは常に受けられる
     if not st["unlocked"]:
         flash(f"先に Stage {current} を合格しましょう。順番に積み上げるのが最短です。", "error")
         return redirect(url_for("learn.stage", n=s["stage"]))

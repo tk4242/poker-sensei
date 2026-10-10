@@ -1,0 +1,539 @@
+[
+ {
+  "id": "w05-001",
+  "stage": 2,
+  "tags": [
+   "math",
+   "ev"
+  ],
+  "q": "期待値（EV / expected value）の意味として正しいのは？",
+  "choices": [
+   "その行動を何度も繰り返したときの、平均の損益",
+   "その1回で一番ありそうな結果",
+   "勝ったときにもらえる額",
+   "勝つ確率そのもの"
+  ],
+  "answer": 0,
+  "explain": "EV は「同じ判断を何度も繰り返したら、平均で1回あたりいくら得（損）するか」。1回の結果ではなく平均です。",
+  "why": "1回の勝ち負けに振り回されず、判断の良し悪しを測る物差しになります。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "PokerSkill: Expected Value (EV)",
+    "url": "https://www.pokerskill.com/poker-glossary/expected-value-ev/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 2章"
+ },
+ {
+  "id": "w05-002",
+  "stage": 2,
+  "tags": [
+   "math",
+   "ev"
+  ],
+  "q": "表なら+200、裏なら−100 のコイン投げ（表裏は半々）。EV は？",
+  "choices": [
+   "+50",
+   "+100",
+   "0",
+   "+150"
+  ],
+  "answer": 0,
+  "explain": "EV ＝ 0.5×200 − 0.5×100 ＝ +50（`poker_math.py ev` で検算）。1回やって裏なら−100でも、判断としては正しい。",
+  "why": "「負けた＝悪い判断」ではないことを、いちばん簡単な例で体に入れます。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "PokerSkill: Expected Value (EV)",
+    "url": "https://www.pokerskill.com/poker-glossary/expected-value-ev/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 2章"
+ },
+ {
+  "id": "w05-003",
+  "stage": 2,
+  "tags": [
+   "math",
+   "ev"
+  ],
+  "q": "ポット100に相手が50ベット。勝率30%でコールしたときのEVは？（この後のベットは考えない）",
+  "choices": [
+   "+10",
+   "−10",
+   "0",
+   "+30"
+  ],
+  "answer": 0,
+  "explain": "勝てば相手のベット込みのポット150をもらい、負ければコール額50を失う。EV ＝ 0.3×150 − 0.7×50 ＝ 45 − 35 ＝ +10（検算済み）。",
+  "why": "勝率が分かれば、コールが得か損かを数字1つで言えるようになります。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "PokerSkill: Expected Value (EV)",
+    "url": "https://www.pokerskill.com/poker-glossary/expected-value-ev/"
+   },
+   {
+    "title": "Wikipedia: Pot odds",
+    "url": "https://en.wikipedia.org/wiki/Pot_odds"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 2章"
+ },
+ {
+  "id": "w05-004",
+  "stage": 2,
+  "tags": [
+   "math",
+   "ev"
+  ],
+  "q": "ポット100に相手が50ベット。コールのEVがちょうど0になる勝率は？",
+  "choices": [
+   "25%",
+   "33.3%",
+   "50%",
+   "20%"
+  ],
+  "answer": 0,
+  "explain": "0.25×150 − 0.75×50 ＝ 37.5 − 37.5 ＝ 0。EVがゼロになる勝率が「必要勝率（ポットオッズ）」そのもの＝ 50 ÷ 200 ＝ 25%。",
+  "why": "EV とポットオッズが同じものの表と裏だと分かると、計算が1つで済みます。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "PokerSkill: Expected Value (EV)",
+    "url": "https://www.pokerskill.com/poker-glossary/expected-value-ev/"
+   },
+   {
+    "title": "Wikipedia: Pot odds",
+    "url": "https://en.wikipedia.org/wiki/Pot_odds"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 2章"
+ },
+ {
+  "id": "w05-005",
+  "stage": 2,
+  "tags": [
+   "math",
+   "ev"
+  ],
+  "q": "良い判断をしたのに運で負けたとき、その判断を「悪かった」と決めつける誤りを何と呼ぶ？",
+  "choices": [
+   "結果論（resulting）",
+   "ティルト（tilt）",
+   "インプライドオッズ",
+   "ポットコミット"
+  ],
+  "answer": 0,
+  "explain": "結果だけで判断の良し悪しを決める誤りを「結果論（resulting）」と呼ぶ（Annie Duke『Thinking in Bets』）。",
+  "why": "負けた日に正しいプレーまで変えてしまうのを防げます。",
+  "label": "MENTAL",
+  "source": [
+   {
+    "title": "Thinking in Bets 要約（Graham Mann）",
+    "url": "https://grahammann.net/book-notes/thinking-in-bets-annie-duke"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 2章"
+ },
+ {
+  "id": "w05-006",
+  "stage": 2,
+  "tags": [
+   "math",
+   "pot-odds"
+  ],
+  "q": "ポット100に相手が50ベット。必要勝率を「50÷150＝33%」と計算した。どこが間違い？",
+  "choices": [
+   "分母に自分のコール額50を足し忘れている（正しくは 50÷200＝25%）",
+   "分子は相手のベットではなくポットにする",
+   "正しい（33%で合っている）",
+   "分母は元のポット100だけにする"
+  ],
+  "answer": 0,
+  "explain": "必要勝率 ＝ コール額 ÷（相手のベット込みのポット＋コール額）＝ 50 ÷（150＋50）＝ 25%。分母に自分のコール額を足し忘れるのがよくある間違い。",
+  "why": "よくある計算ミスを先に知っておくと、本番で必要勝率を高く見積もりすぎずに済みます。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "Wikipedia: Pot odds",
+    "url": "https://en.wikipedia.org/wiki/Pot_odds"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 3-1"
+ },
+ {
+  "id": "w05-007",
+  "stage": 2,
+  "tags": [
+   "math",
+   "bet-size"
+  ],
+  "q": "相手がポットの1/3をベット。コールに必要な勝率は？",
+  "choices": [
+   "20%",
+   "25%",
+   "33.3%",
+   "14.3%"
+  ],
+  "answer": 0,
+  "explain": "ポット3に1ベット → 1 ÷（3＋1＋1）＝ 20%（`poker_math.py pot-odds` で検算）。早見表: 1/3→20%、半分→25%、2/3→28.6%、ポット→33.3%。",
+  "why": "小さいベットは「安い値段」。安いほど弱めの手でもコールしやすい、を数字で覚えます。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "Wikipedia: Pot odds",
+    "url": "https://en.wikipedia.org/wiki/Pot_odds"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 3-2"
+ },
+ {
+  "id": "w05-008",
+  "stage": 2,
+  "tags": [
+   "math",
+   "bet-size"
+  ],
+  "q": "相手がポットと同じ額（ポットサイズ）をベット。コールに必要な勝率は？",
+  "choices": [
+   "33.3%",
+   "50%",
+   "25%",
+   "40%"
+  ],
+  "answer": 0,
+  "explain": "ポット1に1ベット → 1 ÷（1＋1＋1）＝ 33.3%（検算済み）。",
+  "why": "大きいベットほど高い値段。強い手が必要になる理由が数字で分かります。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "Wikipedia: Pot odds",
+    "url": "https://en.wikipedia.org/wiki/Pot_odds"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 3-2"
+ },
+ {
+  "id": "w05-009",
+  "stage": 2,
+  "tags": [
+   "math",
+   "bet-size"
+  ],
+  "q": "あなたがポットの半分でブラフする。損益ゼロになるには、相手が何%以上降りればいい？",
+  "choices": [
+   "33.3%",
+   "25%",
+   "50%",
+   "20%"
+  ],
+  "answer": 0,
+  "explain": "必要フォールド率 ＝ ベット ÷（ポット＋ベット）＝ 0.5 ÷ 1.5 ＝ 33.3%（`poker_math.py bluff` で検算）。早見表: 1/3→25%、半分→33.3%、2/3→40%、ポット→50%。",
+  "why": "自分のブラフのサイズを選ぶときに「この相手はそんなに降りる？」と考える物差しになります。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "GTO Wizard: MDF & Alpha",
+    "url": "https://blog.gtowizard.com/mdf-alpha/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 3-2"
+ },
+ {
+  "id": "w05-010",
+  "stage": 2,
+  "tags": [
+   "math",
+   "bet-size"
+  ],
+  "q": "ベットの大きさと、コールする側に必要な勝率の関係で正しいのは？",
+  "choices": [
+   "ベットが大きいほど、コールに必要な勝率は上がる",
+   "ベットが大きいほど、必要な勝率は下がる",
+   "ベットの大きさは必要な勝率に関係ない",
+   "ポットの半分のときがいちばん高い"
+  ],
+  "answer": 0,
+  "explain": "1/3→20%、半分→25%、2/3→28.6%、3/4→30%、ポット→33.3%、1.5倍→37.5%（検算済み）。大きいベットは相手にとって「高い値段」。",
+  "why": "相手のベットサイズを見た瞬間に、どれくらい強い手が要るかの見当がつきます。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "Wikipedia: Pot odds",
+    "url": "https://en.wikipedia.org/wiki/Pot_odds"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 3-2"
+ },
+ {
+  "id": "w05-011",
+  "stage": 2,
+  "tags": [
+   "math",
+   "bet-size"
+  ],
+  "q": "[戦略サイトの一般則] ドローが多い（ウェットな）ボードで強い手を持っているとき、ベットの大きさの目安は？",
+  "choices": [
+   "大きめ（目安55〜80%ポット）",
+   "小さめ（目安25〜35%ポット）",
+   "必ずオールイン",
+   "ベットせずチェックのみ"
+  ],
+  "answer": 0,
+  "explain": "後から逆転されやすいウェットなボードでは、強い手は大きめに打つのが一般則（Upswing Rule #4。戦略サイトの一般則で、ソルバー出力そのものではない）。ドライなボードでは小さめ（25〜35%）でも降ろせることが多い（Rule #3）。",
+  "why": "ボードを見て「大きく／小さく」を決める最初の物差しです。万能のサイズはない、も合わせて覚えます。",
+  "label": "THEORY",
+  "source": [
+   {
+    "title": "Upswing Poker: Bet Sizing Rules",
+    "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 3-3"
+ },
+ {
+  "id": "w05-012",
+  "stage": 2,
+  "tags": [
+   "math",
+   "outs"
+  ],
+  "q": "ターンでフラッシュドロー（アウツ9枚）。リバー1枚で完成する正確な確率は？",
+  "choices": [
+   "19.6%",
+   "35.0%",
+   "9%",
+   "25%"
+  ],
+  "answer": 0,
+  "explain": "残り46枚中9枚 → 9/46 ≒ 19.6%（`poker_math.py outs` で検算）。2と4のルールなら 9×2＝18% のおおよそ。",
+  "why": "自分の勝率（エクイティ）を数えられないと、必要勝率と比べられません。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "PokerSkill: Rule of 2 and 4",
+    "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 4章"
+ },
+ {
+  "id": "w05-013",
+  "stage": 2,
+  "tags": [
+   "math",
+   "outs"
+  ],
+  "q": "ポット100に相手が50ベット（必要勝率25%）。ターンでフラッシュドローだけ（完成19.6%）。数字の上での判断は？",
+  "choices": [
+   "フォールド（19.6% ＜ 25%）。ただし完成後に追加で取れる見込みが大きければ例外になりうる",
+   "コール（19.6% ＞ 25%）",
+   "必ずオールイン",
+   "どちらでも同じ"
+  ],
+  "answer": 0,
+  "explain": "自分の勝率 19.6% は必要勝率 25% に届かないので、数字の上ではフォールド。完成したあとに相手から追加で取れる見込み（インプライドオッズ）が大きければ例外になりうる。",
+  "why": "「必要勝率」と「自分の勝率」を比べる、が判断の基本形。周りの雰囲気ではなく数字で決める練習です。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "Wikipedia: Pot odds",
+    "url": "https://en.wikipedia.org/wiki/Pot_odds"
+   },
+   {
+    "title": "PokerSkill: Rule of 2 and 4",
+    "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 4章"
+ },
+ {
+  "id": "w05-014",
+  "stage": 2,
+  "tags": [
+   "math",
+   "outs"
+  ],
+  "q": "2と4のルールで「×4」を使ってよいのはどんなとき？",
+  "choices": [
+   "フロップで、リバーまで2枚とも見られるとき（例: オールイン）",
+   "ターンからリバーまでのとき",
+   "どんなときでも",
+   "プリフロップのとき"
+  ],
+  "answer": 0,
+  "explain": "×4 はフロップ→リバーの2枚とも見られるとき（例: オールイン）。1回のコールで2枚見られる保証はないので、相手がターンでまたベットしてくるなら×2で考える。",
+  "why": "×4 を使いすぎると勝率を高く見積もり、コールしすぎの原因になります。",
+  "label": "RULE",
+  "source": [
+   {
+    "title": "PokerSkill: Rule of 2 and 4",
+    "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 4章"
+ },
+ {
+  "id": "w05-015",
+  "stage": 6,
+  "tags": [
+   "mental",
+   "conformity"
+  ],
+  "q": "アッシュの同調実験で、周りの全員が間違えたとき、少なくとも1回は周りに合わせた参加者の割合は？",
+  "choices": [
+   "約75%",
+   "約5%",
+   "約12.5%",
+   "約95%"
+  ],
+  "answer": 0,
+  "explain": "約75%が少なくとも1回は周りに合わせた。ただし味方が1人いると同調は5%まで、答えを紙に書く形だと約12.5%まで下がった。ポーカーの研究ではないが「流されるのは人間の性質で、仕組みで減らせる」という示唆になる（この応用は本書の提案）。",
+  "why": "「合わせてしまう自分」を責めずに、仕組みで減らす発想を持てます。",
+  "label": "MENTAL",
+  "source": [
+   {
+    "title": "Simply Psychology: Asch Conformity",
+    "url": "https://www.simplypsychology.org/asch-conformity.html"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 5-1"
+ },
+ {
+  "id": "w05-016",
+  "stage": 6,
+  "tags": [
+   "mental",
+   "conformity"
+  ],
+  "q": "アッシュの実験で、同調が約12.5%まで下がったのはどんな条件？",
+  "choices": [
+   "答えを紙に書く（人前で言わない）形にしたとき",
+   "制限時間を短くしたとき",
+   "参加者を増やしたとき",
+   "報酬を上げたとき"
+  ],
+  "answer": 0,
+  "explain": "答えを紙に書く形だと約12.5%、味方が1人いると5%まで下がった。本書ではこれを「自分の番が来る前に、この額ならコール/フォールドと先に決める」に応用している（本書の提案）。",
+  "why": "テーブルで流されないための「先に決める」習慣の根拠です。",
+  "label": "MENTAL",
+  "source": [
+   {
+    "title": "Simply Psychology: Asch Conformity",
+    "url": "https://www.simplypsychology.org/asch-conformity.html"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 5-1 / 5-4"
+ },
+ {
+  "id": "w05-017",
+  "stage": 6,
+  "tags": [
+   "exploit",
+   "conformity",
+   "live"
+  ],
+  "q": "[EXP] 国内アミューズメントで、リバーに大きいベット/レイズが来た。一般的な傾向として正しいのは？",
+  "choices": [
+   "ほとんどがバリュー（強い手）",
+   "ほとんどがブラフであることが多い",
+   "大きいほど上手い人のプレー",
+   "サイズは手の強さと関係ない"
+  ],
+  "answer": 0,
+  "explain": "アミューズではコールが多すぎる人が多く、大きいポットほどブラフは極端に少なく、特にリバーの大きいベット/レイズはほとんどバリュー、という観察（筆者の偏見（主観）に基づくので現地で確認を、と明記）。母集団の傾向で、個々の相手に当てはまる保証はない。",
+  "why": "「自信ありげ＝上手い」ではなく「大きいベット＝強い手のことが多い」と読み替えられます。",
+  "label": "EXP",
+  "source": [
+   {
+    "title": "ポーカーアカデミー: アミューズで勝つ方法",
+    "url": "https://pokeracademy.jp/amuse-how-to-win/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 5-2"
+ },
+ {
+  "id": "w05-018",
+  "stage": 6,
+  "tags": [
+   "exploit",
+   "conformity"
+  ],
+  "q": "[EXP] 低レートの相手の多くに対する基本方針として、出典が勧めているのは？",
+  "choices": [
+   "凝ったプレーより、シンプルに強い手でバリューを取る",
+   "ブラフを増やして降ろす",
+   "毎回大きなオーバーベットで圧をかける",
+   "相手に合わせて同じようにプレーする"
+  ],
+  "answer": 0,
+  "explain": "低レートの相手の多くは自分の手しか考えず（レベル1の思考）、降りるのを嫌う。だから凝ったプレー（Fancy Play）より、シンプルに強い手でバリューを取るのが基本（BlackRain79 / PokerNews）。（出典は低レートのキャッシュゲームの記事。母集団の傾向で、個々の相手に当てはまる保証はない）",
+  "why": "周りの派手なプレーに合わせる必要がない理由になります。",
+  "label": "EXP",
+  "source": [
+   {
+    "title": "PokerNews: Fancy Play Syndrome",
+    "url": "https://www.pokernews.com/strategy/the-1-mistake-in-small-stakes-cash-games-fancy-play-syndrome-23917.htm"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 5-2"
+ },
+ {
+  "id": "w05-019",
+  "stage": 6,
+  "tags": [
+   "mental",
+   "conformity"
+  ],
+  "q": "メンタルコーチ Jared Tendler が理想とする「自信」の状態は？",
+  "choices": [
+   "高すぎも低すぎもせず、安定している",
+   "常にできるだけ高い",
+   "負けた後は低くしておく",
+   "相手より高ければよい"
+  ],
+  "answer": 0,
+  "explain": "Tendler は、自信は上下しないこと（安定）が大事だと述べている。「何でもできる気がする」ときも「何もうまくいかない気がする」ときも現実より極端。「みんな強そう」は自信が下に振れたサインなので、根拠（数字）に戻ればいい（この読み替えは本書の提案）。",
+  "why": "「周りが強く見える」日の立て直し方が分かります。",
+  "label": "MENTAL",
+  "source": [
+   {
+    "title": "PokerNews: Jared Tendler インタビュー Part 2",
+    "url": "https://www.pokernews.com/strategy/strategy-with-kristy-jared-tendler-on-mental-game-of-poker-11700.htm"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 5-3"
+ },
+ {
+  "id": "w05-020",
+  "stage": 6,
+  "tags": [
+   "mental",
+   "conformity"
+  ],
+  "q": "本書の「3つの道具」のうち、プレイ後にやるものは？",
+  "choices": [
+   "周りに合わせて決めたハンドの数と一言を記録する",
+   "数字カードを見る",
+   "自分の番の前にコール/フォールドを先に決める",
+   "相手の手を当てるまで考える"
+  ],
+  "answer": 0,
+  "explain": "①数字カード（セッション前、Tendler のウォームアップに沿う）②先に決める（プレイ中）③合わせたハンド記録（プレイ後。繰り返すものはメンタル・ハンドヒストリー5段階で書く）。道具の組み立ては本書の提案。",
+  "why": "前・中・後の3か所に仕組みを置くと、意志の力に頼らず同調を減らせます。",
+  "label": "MENTAL",
+  "source": [
+   {
+    "title": "Jared Tendler: Building a Winning Routine",
+    "url": "https://jaredtendler.com/building-a-winning-routine/"
+   },
+   {
+    "title": "Jared Tendler: Find the Rocks in Your Mind",
+    "url": "https://jaredtendler.com/find-the-rocks-in-your-mind/"
+   }
+  ],
+  "ref": "curriculum/05-numbers-and-confidence.md 5-4"
+ }
+]

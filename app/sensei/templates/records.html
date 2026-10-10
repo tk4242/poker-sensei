@@ -17,10 +17,11 @@
 </div>
 
 <div class="panel"><h2>実戦セッション</h2>
-{% if sessions %}<div class="scroll"><table><tr><th>日付</th><th>場所</th><th>順位</th><th>ITM</th><th>体調</th><th>ティルト</th></tr>
+{% if sessions %}<div class="scroll"><table><tr><th>日付</th><th>場所</th><th>順位</th><th>ITM</th><th>体調</th><th>ティルト</th><th>合わせた</th></tr>
 {% for s in sessions %}<tr><td><a href="{{ url_for('records.session_form', sid=s.id) }}">{{ s.date }}</a></td><td>{{ venues.get(s.venue, s.venue) }}<br><span class="muted small">{{ s.event }}</span></td>
-<td>{{ s.finish or '-' }}/{{ s.entries or '-' }}</td><td>{{ '○' if s.itm else '×' }}</td><td>{{ s.condition or '-' }}</td><td>{{ s.tilt or 0 }}</td></tr>{% endfor %}
+<td>{{ s.finish or '-' }}/{{ s.entries or '-' }}</td><td>{{ '○' if s.itm else '×' }}</td><td>{{ s.condition or '-' }}</td><td>{{ s.tilt or 0 }}</td><td>{{ s.conformed if s.conformed is not none else '-' }}</td></tr>{% endfor %}
 </table></div>{% else %}<p class="muted">まだありません。プレイしたら、結果より「判断の質」を記録しましょう。</p>{% endif %}
+{% if conform %}<p class="small">周りに合わせて決めたハンドの数（古い順）: {% for c in conform %}{{ c.date[5:] }} <b>{{ c.conformed }}</b>{{ ' → ' if not loop.last }}{% endfor %}。減っていけば「数字で決める」が身についてきた証拠です。</p>{% endif %}
 </div>
 
 <div class="panel"><h2>ハンド</h2>

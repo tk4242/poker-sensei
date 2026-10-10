@@ -25,6 +25,8 @@
     <label>体調（1〜5）<input type="number" name="condition" min="1" max="5" value="{{ row.condition if row and row.condition is not none else '' }}"></label>
     <label>ティルトの強さ（0〜5）<input type="number" name="tilt" min="0" max="5" value="{{ row.tilt if row and row.tilt is not none else 0 }}"></label>
   </div>
+  <label>周りに合わせて決めたハンドの数（自分の判断より、周りの雰囲気で決めたハンド）<input type="number" name="conformed" min="0" max="200" value="{{ row.conformed if row and row.conformed is not none else '' }}" placeholder="例: 2（数えていなければ空欄）"></label>
+  <p class="muted small">数えるだけで減っていきます。3回以上なら、いちばん引っかかった1つをメンタル・ハンドヒストリーに書きましょう（<a href="{{ url_for('learn.library_file', name='05-numbers-and-confidence.md') }}">教材 05 の 5-4</a>）。</p>
   <label>出たティルトの種類（Tendler の7種）</label>
   <div class="checks">{% for t in tilt_types %}<label><input type="checkbox" name="tilt_types" value="{{ t }}" {{ 'checked' if row and t in (row.tilt_types or '') }}> {{ t }}</label>{% endfor %}</div>
   <label>相手のタイプ分け（Stage 5 の合格ラインで数えます）</label>
