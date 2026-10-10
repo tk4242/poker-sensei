@@ -22,7 +22,7 @@ TAG_JP = {
     "terms": "用語", "positions": "ポジション", "rules": "ルール", "preflop": "プリフロップ", "math": "数学",
     "postflop": "ポストフロップ", "tournament": "トーナメント", "icm": "ICM", "exploit": "エクスプロイト",
     "live": "ライブ", "mental": "メンタル", "bankroll": "バンクロール", "legal": "法律", "overseas": "海外",
-    "hands": "役の強さ",
+    "hands": "役の強さ", "news": "最新の知識",
 }
 LABEL_JP = {"GTO": "GTO（ソルバー基準）", "EXP": "エクスプロイト（相手層への調整）", "RULE": "ルール・定義",
             "MENTAL": "メンタル", "THEORY": "一般則（戦略サイトの目安。ソルバー出力ではない）"}

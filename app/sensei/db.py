@@ -37,6 +37,11 @@ CREATE TABLE IF NOT EXISTS coach_log(
   id INTEGER PRIMARY KEY, ts TEXT NOT NULL, question TEXT, answer TEXT, citations TEXT);
 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY, value TEXT);
 CREATE TABLE IF NOT EXISTS login_failures(ip TEXT, ts TEXT);
+CREATE TABLE IF NOT EXISTS kcards(
+  id INTEGER PRIMARY KEY, created TEXT NOT NULL, topic TEXT, stage INTEGER, title TEXT, summary TEXT, why TEXT,
+  label TEXT, claims TEXT, quiz TEXT, status TEXT NOT NULL, verify_note TEXT, checked_at TEXT, approved_at TEXT);
+CREATE TABLE IF NOT EXISTS kruns(
+  id INTEGER PRIMARY KEY, ts TEXT NOT NULL, kind TEXT, topic TEXT, cost_usd REAL, n_cards INTEGER, error TEXT);
 CREATE TABLE IF NOT EXISTS train_q(
   id INTEGER PRIMARY KEY, created TEXT NOT NULL, topic TEXT NOT NULL, question TEXT NOT NULL,
   chosen INTEGER, correct INTEGER, elapsed_ms INTEGER, answered TEXT);

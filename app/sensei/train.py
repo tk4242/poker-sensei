@@ -34,6 +34,8 @@ TOPICS = {
                 "spec": {"gen": "preflop_math", "bank": {"stage": 1}}, "desc": "3ベットサイズ・BBディフェンス・原則"},
     "icm": {"name": "ICM・バブル", "monster": "バブルドラゴン", "sprite": "dragon",
             "spec": {"gen": "icm", "bank": {"stage": 4}}, "desc": "海外MTTのインマネ直前で効く"},
+    "news": {"name": "最新の知識（承認済みカード）", "monster": "しんぶんゴブリン", "sprite": "goblin",
+             "spec": {"kc": True}, "desc": "AIが集めて検証し、あなたが承認した最新の知識から出題"},
     "mental": {"name": "メンタル・同調", "monster": "ドウチョウゴーレム", "sprite": "golem",
                "spec": {"bank": {"stage": 6}}, "desc": "ティルト・バンクロール・周りに流されない"},
 }
@@ -77,6 +79,10 @@ def status():
 # ---------------------------------------------------------------- 出題
 
 def _spec_item(spec, rng, avoid):
+    if spec.get("kc"):
+        from . import knowledge
+        pool = [i for i in knowledge.quiz_items() if i["key"] not in avoid]
+        return rng.choice(pool) if pool else None
     kinds = [k for k in ("gen", "bank") if spec.get(k)]
     rng.shuffle(kinds)
     for kind in kinds:
@@ -96,6 +102,10 @@ def _auto_item(rng, avoid):
         for item in practice.due_items(10):
             if item["key"] not in avoid:
                 return item
+    if rng.random() < 0.15:
+        item = _spec_item({"kc": True}, rng, avoid)
+        if item:
+            return item
     weak = practice.weak_tags()
     if weak and rng.random() < 0.7:
         from .views.practice import TAG_GEN

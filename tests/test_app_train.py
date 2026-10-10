@@ -43,6 +43,8 @@ class TestTrain(unittest.TestCase):
     def test_every_topic_has_questions(self):
         from sensei import train
         for topic in train.TOPICS:
+            if topic == "news":  # 承認済みの知識カードがあるときだけ出る（test_app_knowledge で確認）
+                continue
             r, qid, item = self.open_question(topic)
             self.assertIn(item["q"][:10], r.text.replace("&#39;", "'").replace("&amp;", "&").replace("&lt;", "<"))
 

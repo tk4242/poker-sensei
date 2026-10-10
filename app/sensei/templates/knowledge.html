@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% from "_macros.html" import label_tag with context %}
+{% block title %}知識ベース | ポーカー先生{% endblock %}
+{% block body %}
+<h1>知識ベース（自動で育つ）</h1>
+<div class="cheer"><img class="px" src="{{ url_for('static', filename='sprites/sensei.svg') }}" alt="先生" width="64" height="64"><p>AI が信頼できるサイトから最新の知識を集め、出典ページを開いて検証します。あなたが承認したものだけが教材と問題になります。</p></div>
+
+{% if not ai %}<div class="warn small">AI が未設定です。VPS の <code>app/.env</code> に <code>ANTHROPIC_API_KEY</code> を書いて再起動すると使えます（API の料金は別にかかります。このチャットの利用制限は減りません）。</div>{% endif %}
+
+<div class="panel">
+  <h2>集める</h2>
+  <p class="small">今月の料金の目安: <b>${{ '%.2f'|format(cost) }}</b> / 上限 ${{ '%.2f'|format(budget) }}（上限に達すると止まります。目安は .env の単価で計算）</p>
+  {% if running %}<p class="warn small">収集中です。数分後に再読み込みしてください。</p>{% endif %}
+  {% if ai %}
+  <form method="post" action="{{ url_for('knowledge.run') }}" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <label>テーマ<select name="topic"><option value="">おまかせ（いちばん古いテーマから）</option>{% for t in topics %}<option value="{{ t.key }}">Stage {{ t.stage }}: {{ t.q }}</option>{% endfor %}</select></label>
+    <p><button class="btn" type="submit" {{ 'disabled' if running }}>いま1回 集める（最大3枚）</button></p>
+  </form>
+  {% endif %}
+  <form method="post" action="{{ url_for('knowledge.budget') }}" class="stack"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <label>月の上限（USD）<input type="number" step="0.5" min="0" max="200" name="budget" value="{{ budget }}"></label>
+    <p><button class="btn ghost small" type="submit">保存</button></p></form>
+  <p class="muted small">自動で週1回まわすには、VPS の cron に登録します（手順は app/README.md）。</p>
+</div>
+
+<div class="panel">
+  <h2>承認待ち（{{ pending|length }}）</h2>
+  {% for c in pending %}
+  <div class="q">
+    <div class="num">Stage {{ c.stage }} {{ label_tag(c.label) }} {% if c.status == 'verified' %}<span class="ok">✔ 検証OK</span>{% else %}<span class="bad">△ 要修正</span>{% endif %}</div>
+    <div class="text">{{ c.title }}</div>
+    <p class="small">{{ c.summary }}</p>
+    <ul class="small">{% for x in c.claims %}<li>{{ x.text }}<br><span class="muted">「{{ x.quote }}」</span> <a href="{{ x.url }}" target="_blank" rel="noopener noreferrer">出典</a></li>{% endfor %}</ul>
+    {% if c.quiz %}<p class="small">確認問題: {{ c.quiz.q }}（正解: {{ c.quiz.choices[c.quiz.answer] }}）</p>{% endif %}
+    {% if c.verify_note %}<p class="muted small">検証メモ: {{ c.verify_note }}</p>{% endif %}
+    <div class="cmd">
+      {% for a, lbl in [('approve', '承認する'), ('verify', 'もう一度検証'), ('reject', '却下')] %}
+      <form method="post" action="{{ url_for('knowledge.act', cid=c.id, action=a) }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn small{{ ' ghost' if a != 'approve' }}" type="submit">{{ lbl }}</button></form>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}<p class="muted">ありません。</p>{% endfor %}
+</div>
+
+<div class="panel">
+  <h2>承認済みの知識</h2>
+  <p class="small">{% for s in range(1, 8) %}<a href="{{ url_for('knowledge.index', stage=s) }}">Stage {{ s }}</a>{{ '・' if not loop.last }}{% endfor %}{% if stage is not none %}・<a href="{{ url_for('knowledge.index') }}">すべて</a>{% endif %}
+  ／ <a href="{{ url_for('train.fight', topic='news') }}">最新の知識で たたかう</a></p>
+  <ul class="list">
+  {% for c in approved %}
+    <li><span class="muted small">Stage {{ c.stage }}</span> {{ label_tag(c.label) }} {{ c.title }}{% if c.stale %} <span class="bad small">要再確認（90日超え）</span>{% endif %}
+      <div class="small">{{ c.summary }}</div>
+      <div class="small">{% for x in c.claims %}<a href="{{ x.url }}" target="_blank" rel="noopener noreferrer">出典{{ loop.index }}</a> {% endfor %}<span class="muted">確認 {{ (c.checked_at or c.created)[:10] }}</span></div>
+      {% if c.stale and ai %}<form method="post" action="{{ url_for('knowledge.act', cid=c.id, action='verify') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn ghost small" type="submit">再検証</button></form>{% endif %}
+    </li>
+  {% else %}<li class="muted">まだありません。</li>{% endfor %}
+  </ul>
+</div>
+
+{% if runs %}<div class="panel"><h3>最近の実行</h3><ul class="list small">
+{% for r in runs %}<li>{{ r.ts }} {{ '収集' if r.kind == 'collect' else '検証' }} {{ r.topic }}・{{ r.n_cards }}件・${{ '%.3f'|format(r.cost_usd or 0) }}{% if r.error %} <span class="bad">{{ r.error }}</span>{% endif %}</li>{% endfor %}
+</ul></div>{% endif %}
+<p class="muted small">AI が集めた内容は、検証と承認を通っても誤りが残ることがあります。重要な判断の前は出典を開いて確認してください。GTO（ソルバー基準）とエクスプロイトはラベルで区別しています。</p>
+{% endblock %}
