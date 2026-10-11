@@ -3,7 +3,8 @@
 新しい順。変更したら、その PR の中でこのファイルの先頭に追記する（日付・PR・何を・どこを・残っている宿題）。
 細かい差分は `git log` と各 PR を見る。教材のファクトチェック記録は各ファイルの末尾と `app/content/FACT-CHECK.md` にある。
 
-## 2026-10-11 Codex：クイズの回答を見直せる移動操作（PR番号は作成後追記）
+## 2026-10-11 Codex：クイズの回答を見直せる移動操作（PR #4）
+https://github.com/tk4242/poker-sensei/pull/4
 - main（a23a0f1）から `codex/quiz-navigation` を作成。前回の改善はClaudeのPR #3に取り込み済みのため再実装しない。
 - `app/sensei/static/app.js`：全問の「前の問題」を動作させ、回答済みなら答えを変更せず「次の問題」で進める。戻る操作時に予約済みの自動移動を解除し、勝手に次へ飛ぶことを防ぐ。
 - `app/sensei/templates/quiz.html` と `static/style.css`：移動ボタン、回答済み数、問題移動時のフォーカスを追加。JavaScriptなしでは全問表示し、移動ボタンは隠す。
