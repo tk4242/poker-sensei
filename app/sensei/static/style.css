@@ -131,3 +131,28 @@ pre.copy { white-space: pre-wrap; background: var(--panel); border: 1px solid va
 @media print { nav.bottom, header.top, .noprint { display: none !important; } body { background: #fff; padding: 0; } .panel { box-shadow: none; break-inside: avoid; } }
 .js .hide { display: none !important; }
 .bar .fill { height: 100%; background: var(--accent); width: 0; transition: width .2s; }
+
+/* スマホで読む・触る・確かめる数字の基礎。既存のテーマ色に追従。 */
+.basics { font-family: system-ui, -apple-system, "Hiragino Sans", sans-serif; overflow-wrap: anywhere; }
+.basics h1 { line-height: 1.5; }
+.basics-hero { border-top: 5px solid var(--accent); }
+.basics-path { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.basics-path .panel { margin: 0; }
+.basics .btn { min-height: 48px; max-width: 100%; }
+.basics fieldset { min-width: 0; margin: 16px 0; padding: 12px; border: 1px solid var(--line); }
+.basics-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.basics-options label { display: flex; align-items: center; gap: 5px; min-height: 48px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; margin: 0 !important; }
+.basics-options label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.basics :focus-visible, .basics-options label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 3px; }
+.pot-parts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.pot-parts div { border: 1px solid var(--line); border-radius: 8px; padding: 12px 4px; text-align: center; }
+.pot-parts span, .basics-numbers span { display: block; font-size: .85rem; }
+.pot-parts strong { display: block; font-size: 1.25rem; }
+.basics-total { text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 12px; }
+.basics-numbers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.basics-numbers strong { display: block; font-size: 1.6rem; color: var(--accent); }
+.basics-numbers div { background: var(--accent-soft); padding: 12px; border-radius: 8px; }
+.basics-checklist { padding-left: 1.5em; }
+.basics-checklist li { margin-bottom: 12px; }
+.basics select { font-size: 16px; min-height: 48px; }
+@media (max-width: 520px) { .basics-path, .basics-numbers { grid-template-columns: 1fr; } .basics-action .btn { width: 100%; } }

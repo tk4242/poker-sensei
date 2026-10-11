@@ -8,3 +8,18 @@
 - ドリル（`sensei/drills.py`）: 席の並び・行動順・IP判定・BBディフェンス（2.25BB→20.8%）・BF/(BF+1)・アウツは教材と一致。直した点: ポジション区分の出典を PokerCoaching に（Poker.org は HJ をレイトに数える旨を注記）、3ベットのソルバー例の倍率、最小レイズの言い回し（Rule 45「そのラウンドで最大のフル」）、BBディフェンスのラベルを RULE に。
 - 未確認のまま: s7-overseas-002（非居住者のギャンブル損失控除。IRS Pub. 519 本文を取得できず）、string bet の「最初の動作のみ有効」（TDA 条文では未確認）、s4-icm-003 の 37.5%（GTO Wizard の数字をそのまま使用）。
 - 教材側の宿題: `curriculum/03-mental-training.md` A-8 のエチケットの出典が2015年版 TDA。2026年版に更新が必要。`curriculum/01-terms.md` 1.4 の区分と IP/OOP の行に出典を付ける。
+
+## 2026-10-11 数字の基礎コース
+
+対象：`sensei/foundations.py`、`templates/basics*.html`。リポジトリのfact-checker手順に沿って別エージェントが公式3ページと照合し、`tools/poker_math.py`で30条件を検算。
+- EVの定義、判断時点を基準にした比較、チップEVと大会価値：正しい。
+- コール額÷コール後ポット、将来ベットがある場合の限界：正しい。相手1人・追加ベット/引き分け/レーキなし・仮の勝率を明記。
+- サイズ25/50/75/100/150%の必要勝率は16.7/25.0/30.0/33.3/37.5%。最適サイズの推奨表ではない。
+- Strategyの頻度・EV・EQとInfoboxの説明：公式Study Modeと一致。
+- 指摘：ベット教材のGTO Wizard機能説明にStudy Modeの出典を追加 → 反映済み。
+- 学習手順と4/5の目安はアプリ独自のものと明記。GTO解・賞金EVの最適化・有料機能の利用権を提供する主張はしない。
+
+根拠：
+- https://blog.gtowizard.com/what-is-expected-value-in-poker/
+- https://blog.gtowizard.com/what-are-pot-odds-in-poker/
+- https://help.gtowizard.com/study-mode/

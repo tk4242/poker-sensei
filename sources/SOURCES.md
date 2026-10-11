@@ -195,3 +195,13 @@
 | news.ksb.co.jp | https://news.ksb.co.jp/ann/article/16242175 | C | app | 2026-10-05 | ○ |
 | prtimes.jp | https://prtimes.jp/main/html/rd/p/000000012.000133461.html | C | app | 2026-10-05 | ○ |
 | cardplayer.com | https://www.cardplayer.com/poker-news/1680417-2026-wsop-main-event-draws-9208-to-become-fourth-largest-in-history | B | app | 2026-10-05 | ○ |
+
+## 数字の基礎コース（2026-10-11確認）
+
+| タイトル | URL | 信頼度 | 用途 | 取得日 |
+|---|---|---|---|---|
+| GTO Wizard: What Is Expected Value in Poker? | https://blog.gtowizard.com/what-is-expected-value-in-poker/ | B | EVの定義・比較基準・チップEVと大会価値・ベットとチェックの比較 | 2026-10-11 |
+| GTO Wizard: What Are Pot Odds in Poker? | https://blog.gtowizard.com/what-are-pot-odds-in-poker/ | B | コール後のポット・必要勝率・将来ベットがある場合の限界 | 2026-10-11 |
+| GTO Wizard Help: Study Mode | https://help.gtowizard.com/study-mode/ | A（機能の公式説明） | Strategy / EV / EQ・Infobox・公式画面への学習導線 | 2026-10-11 |
+
+実装：`app/sensei/foundations.py` と `templates/basics*.html`。例題は独自に作成し `tools/poker_math.py` で計算・検算。特定のGTO解や推奨ベット頻度は掲載しない。
