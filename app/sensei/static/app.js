@@ -12,25 +12,46 @@
     const limit = parseInt(form.dataset.limit || "0", 10);
     let cur = 0;
     let started = performance.now();
+    let pending = null;
 
-    function show(i) {
+    function refresh() {
+      const completed = qs.filter((q, i) => answered(i)).length;
+      if (count) count.textContent = (cur + 1) + " / " + qs.length + "問（回答済み " + completed + "問）";
+      if (fill) fill.style.width = Math.round((completed / qs.length) * 100) + "%";
+      const next = qs[cur].querySelector(".next");
+      if (next) next.disabled = !answered(cur);
+      submit.classList.toggle("hide", cur !== qs.length - 1 || !answered(cur));
+    }
+    function show(i, focus = true) {
+      clearTimeout(pending);
+      pending = null;
       qs.forEach((q, j) => q.classList.toggle("hide", j !== i));
       cur = i;
       started = performance.now();
-      if (count) count.textContent = (i + 1) + " / " + qs.length;
-      if (fill) fill.style.width = Math.round((i / qs.length) * 100) + "%";
-      submit.classList.toggle("hide", i !== qs.length - 1 || !answered(i));
+      refresh();
+      if (focus) qs[i].querySelector(".text").focus({ preventScroll: true });
       window.scrollTo({ top: 0 });
     }
     function answered(i) { return !!qs[i].querySelector("input[type=radio]:checked"); }
 
     qs.forEach((q, i) => {
+      const back = q.querySelector(".back");
+      if (back) {
+        back.hidden = false;
+        back.addEventListener("click", () => show(i - 1));
+      }
+      const next = q.querySelector(".next");
+      if (next) {
+        next.hidden = false;
+        next.addEventListener("click", () => { if (answered(i)) show(i + 1); });
+      }
       q.querySelectorAll("input[type=radio]").forEach((r) => {
         r.addEventListener("change", () => {
           const t = q.querySelector("input.t");
           if (t && !t.value) t.value = Math.round(performance.now() - started);
-          if (i < qs.length - 1) setTimeout(() => show(i + 1), 220);
-          else { submit.classList.remove("hide"); if (fill) fill.style.width = "100%"; }
+          refresh();
+          clearTimeout(pending);
+          if (i < qs.length - 1) pending = setTimeout(() => show(i + 1), 220);
         });
       });
     });
@@ -38,7 +59,6 @@
       const missing = qs.findIndex((q, i) => !answered(i));
       if (missing >= 0) { e.preventDefault(); show(missing); }
     });
-    form.querySelectorAll(".back").forEach((back) => back.addEventListener("click", () => { if (cur > 0) show(cur - 1); }));
     if (timer) {
       setInterval(() => {
         const s = (performance.now() - started) / 1000;
@@ -46,7 +66,7 @@
         timer.classList.toggle("bad", limit > 0 && s > limit);
       }, 100);
     }
-    show(0);
+    show(0, false);
   }
 
   // トレーニング: 問題を表示してから答えるまでの時間を送る（5秒以内の正解は「かいしん」）

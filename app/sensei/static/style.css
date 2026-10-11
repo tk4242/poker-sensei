@@ -217,3 +217,10 @@ header.top nav { flex-wrap: wrap; }
   .focus-grid { grid-template-columns: 1fr; }
   .learning-start { padding: 16px; }
 }
+
+/* 回答を見直すための移動操作。JSなしでは全問表示のまま。 */
+.quiz-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 12px; }
+.quiz-nav [hidden] { display: none; }
+.quiz-nav .btn { min-height: 44px; }
+.quiz-nav .btn:focus-visible, .choices label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 3px; }
+.q .text:focus { outline: 2px solid var(--accent); outline-offset: 4px; }
