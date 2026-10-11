@@ -18,6 +18,7 @@
 <div class="q">
   <div class="num"><span class="tag">{{ TAG_JP.get(item.tag, item.tag) }}</span>{{ label_tag(item.label) if done }}</div>
   <div class="text">{{ item.q }}</div>
+  {% if item.why %}<div class="why"><b>なぜ学ぶ？</b> {{ item.why }}</div>{% endif %}
   {{ cards_block(item.get('cards')) }}
   {{ table(item.get('diagram'), reveal=done) }}
   {% if not done %}
@@ -45,6 +46,6 @@
 <div class="cmd noprint">
   {% if done and not b.over %}<a class="btn" href="{{ url_for('train.fight', topic=topic) }}" autofocus>つぎへ</a>{% endif %}
   {% if done and b.over %}<a class="btn" href="{{ url_for('train.fight', topic=topic) }}">もういちど たたかう</a>{% endif %}
-  <form method="post" action="{{ url_for('train.end') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn ghost small" type="submit">{{ 'けっかを みる' if b.over else 'にげる（ここまでの けっか）' }}</button></form>
+  <form method="post" action="{{ url_for('train.end') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn ghost small" type="submit">{{ 'けっかを みる' if b.over else 'ここまでの結果を見る' }}</button></form>
 </div>
 {% endblock %}

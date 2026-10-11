@@ -12,6 +12,7 @@
   <div class="q">
     <div class="num">第{{ loop.index }}問 <span class="tag">{{ TAG_JP.get(item.tag, item.tag) }}</span></div>
     <div class="text">{{ item.q }}</div>
+    {% if item.why %}<div class="why"><b>なぜ学ぶ？</b> {{ item.why }}</div>{% endif %}
     {{ cards_block(item.get('cards')) }}
     {{ table(item.get('diagram')) }}
     <div class="choices">

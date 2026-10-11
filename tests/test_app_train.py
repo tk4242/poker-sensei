@@ -170,3 +170,42 @@ class TestAssets(unittest.TestCase):
         root = Path(make_app().template_folder)
         for p in root.glob("*.html"):
             self.assertNotIn('style="', p.read_text(encoding="utf-8"), p.name)
+
+@unittest.skipUnless(HAVE_FLASK, "Flask 未インストール")
+class TestQuickPractice(unittest.TestCase):
+    def test_five_questions_independent_of_settings_and_saved(self):
+        app = make_app()
+        c = app.test_client()
+        login(c)
+        from sensei import practice
+        from sensei.db import set_setting
+        with app.app_context():
+            set_setting("batch_size", 20)
+        for focus in ("positions", "ev", "bet", "call", "mental"):
+            response = c.get(f"/practice/quick/{focus}")
+            self.assertEqual(response.status_code, 302)
+            url = response.headers["Location"]
+            with app.app_context():
+                batch = practice.load_batch(int(url.rsplit("/", 1)[1]))
+            self.assertEqual(len(batch["questions"]), 5, focus)
+            page = c.get(url)
+            self.assertIn("なぜ学ぶ？", page.text)
+            answers = {f"a{i}": str(q["answer"]) for i, q in enumerate(batch["questions"])}
+            answers["csrf"] = csrf(page.text)
+            result = c.post(url, data=answers, follow_redirects=True)
+            self.assertIn("5 / 5", result.text)
+            with app.app_context():
+                self.assertTrue(practice.load_batch(batch["id"])["graded"])
+        self.assertEqual(c.get("/practice/quick/unknown").status_code, 404)
+
+    def test_home_prioritizes_due_review(self):
+        app = make_app()
+        c = app.test_client()
+        login(c)
+        self.assertIn("席と順番を5問", c.get("/").text)
+        url = c.get("/practice/quick/positions").headers["Location"]
+        c.post(url, data={"csrf": csrf(c.get(url).text)})
+        from sensei.db import ex
+        with app.app_context():
+            ex("UPDATE srs SET due='2000-01-01T00:00:00+00:00'")
+        self.assertIn("間違えた問題を復習する", c.get("/").text)

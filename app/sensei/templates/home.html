@@ -3,11 +3,30 @@
 {% block body %}
 <div class="cheer"><img class="px" src="{{ url_for('static', filename='sprites/sensei.svg') }}" alt="先生" width="64" height="64"><p>{{ cheer }}</p></div>
 {{ status_win(st, session.get('user')) }}
-<div class="panel">
-  <h2>すきま時間に たたかう</h2>
-  <p class="small">1問ずつ、すぐに答え合わせ。1分でも1問でもOK。間違えた問題は復習に回ります。</p>
-  <p><a class="btn" href="{{ url_for('train.fight', topic='auto') }}">おまかせで たたかう</a> <a class="btn ghost" href="{{ url_for('train.index') }}">あいてを えらぶ</a></p>
-</div>
+<section class="panel learning-start" aria-labelledby="start-title">
+  <p class="eyebrow">目標：海外MTTでインマネへ</p>
+  <h1 id="start-title">今日も、ひとつ判断できる自分へ。</h1>
+  {% if due %}
+  <p>復習待ちが {{ due }} 問あります。まずは前に迷った問題から。</p>
+  <a class="btn primary" href="{{ url_for('practice.review') }}">間違えた問題を復習する</a>
+  {% elif cur.stage == 0 %}
+  <p>まずは苦手な「席と動く順番」を図つきで。5問ずつ確認しましょう。</p>
+  <a class="btn primary" href="{{ url_for('practice.quick', focus='positions') }}">席と順番を5問</a>
+  {% else %}
+  <p>Stage {{ cur.stage }}「{{ cur.title }}」の続きを進めましょう。</p>
+  <a class="btn primary" href="{{ url_for('learn.stage', n=cur.stage) }}">今のステージを学ぶ</a>
+  {% endif %}
+  <p class="small muted">4択で練習 → 理由を確認 → 間違いを復習。わからないも、次の一歩です。</p>
+</section>
+<section class="panel" aria-labelledby="focus-title">
+  <h2 id="focus-title">苦手をひとつ、5問だけ</h2>
+  <div class="focus-grid">
+    {% for key, title, desc in [('positions', '席と順番', '図を見て、自分の番を確認'), ('ev', '期待値（EV）', '一度の結果から、平均へ'), ('bet', 'ベットの大きさ', '金額と必要勝率をつなぐ'), ('call', 'オッズで判断', '数字を比べて行動を選ぶ'), ('mental', '周りに流されない', '自分の判断を持つ練習')] %}
+    <a class="focus-card" href="{{ url_for('practice.quick', focus=key) }}"><strong>{{ title }}</strong><span>{{ desc }}</span><span class="small">5問を始める →</span></a>
+    {% endfor %}
+  </div>
+  <p><a href="{{ url_for('train.index') }}">1問ずつ遊べるトレーニングへ →</a></p>
+</section>
 {% if qo.next %}
 <div class="panel quest-week now">
   <img class="px" src="{{ url_for('static', filename='sprites/' ~ qo.next.sprite ~ '.svg') }}" alt="" width="48" height="48">

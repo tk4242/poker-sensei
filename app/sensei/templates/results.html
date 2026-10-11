@@ -13,7 +13,8 @@
   <p>
     {% if b.req_id %}<a class="btn" href="{{ url_for('practice.exam', req_id=b.req_id) }}">もう一度受ける</a>{% endif %}
     {% if b.lesson_id %}<a class="btn" href="{{ url_for('practice.lesson', lesson_id=b.lesson_id) }}">もう一度</a> <a class="btn ghost" href="{{ url_for('learn.lesson', lesson_id=b.lesson_id) }}">レッスンに戻る</a>{% endif %}
-    <a class="btn ghost" href="{{ url_for('main.home') }}">ホーム</a>
+    {% if r.score < r.total %}<a class="btn" href="{{ url_for('practice.review') }}">復習する</a>{% endif %}
+    <a class="btn ghost" href="{{ url_for('main.home') }}">今日はここまで・ホーム</a>
   </p>
 </div>
 {% for item, res in pairs %}
