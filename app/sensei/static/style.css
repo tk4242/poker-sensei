@@ -131,3 +131,10 @@ pre.copy { white-space: pre-wrap; background: var(--panel); border: 1px solid va
 @media print { nav.bottom, header.top, .noprint { display: none !important; } body { background: #fff; padding: 0; } .panel { box-shadow: none; break-inside: avoid; } }
 .js .hide { display: none !important; }
 .bar .fill { height: 100%; background: var(--accent); width: 0; transition: width .2s; }
+
+/* 回答を見直すための移動操作。JSなしでは全問表示のまま。 */
+.quiz-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 12px; }
+.quiz-nav [hidden] { display: none; }
+.quiz-nav .btn { min-height: 44px; }
+.quiz-nav .btn:focus-visible, .choices label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 3px; }
+.q .text:focus { outline: 2px solid var(--accent); outline-offset: 4px; }
