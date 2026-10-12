@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% from "_macros.html" import sources as source_links %}
+{% block title %}{{ lesson.short }} | 数字の基礎{% endblock %}
+{% block body %}
+<div class="basics">
+  <a href="{{ url_for('learn.basics') }}">← 4つのステップ</a>
+  <p class="small">STEP {{ lessons.index(topic) + 1 }} / 4 · {{ lesson.goal }}</p>
+  <h1>{{ lesson.title }}</h1>
+  {% for heading, body in lesson.points %}
+  <section class="panel">
+    <h2>{{ heading }}</h2><p>{{ body }}</p>
+    {{ source_links([sources[lesson.source], sources.wizard] if topic == 'bet' and loop.last else [sources[lesson.source]]) }}
+  </section>
+  {% endfor %}
+  {% if topic != 'wizard' %}
+  <section class="panel" id="lab" aria-labelledby="lab-title">
+    <span class="tag">触って理解する</span>
+    <h2 id="lab-title">サイズが変わると、値段はどう変わる？</h2>
+    <p class="small">{{ assumptions }}</p>
+    <form method="get" action="#lab" class="stack">
+      <fieldset><legend>① 相手のベット（元のポットは100）</legend>
+        <div class="basics-options">
+          {% for size in [25, 50, 75, 100, 150] %}<label><input type="radio" name="size" value="{{ size }}" {{ 'checked' if example.bet == size }}> {{ size }}%ポット</label>{% endfor %}
+        </div>
+      </fieldset>
+      <label>② 仮の勝率
+        <select name="equity">{% for equity in [10, 20, 25, 30, 40, 60] %}<option value="{{ equity }}" {{ 'selected' if example.equity == equity }}>{{ equity }}%</option>{% endfor %}</select>
+      </label>
+      <p><button class="btn" type="submit">この条件で比べる</button></p>
+    </form>
+    <div class="pot-parts" aria-label="コール後のポットの内訳">
+      <div><span>元のポット</span><strong>{{ example.pot }}</strong></div>
+      <div><span>相手のベット</span><strong>＋ {{ example.bet }}</strong></div>
+      <div><span>自分のコール</span><strong>＋ {{ example.bet }}</strong></div>
+    </div>
+    <p class="basics-total">コール後の合計 <strong>{{ example.total }}</strong> チップ</p>
+    <div class="basics-numbers">
+      <div><span>コールに必要な勝率</span><strong>{{ '%.1f'|format(example.required) }}%</strong><span>{{ example.bet }} ÷ {{ example.total }} × 100</span></div>
+      <div><span>コールの期待値（EV）</span><strong>{{ '%+g'|format(example.ev) }} チップ</strong><span>{{ example.equity }}% × {{ example.win }} − {{ 100 - example.equity }}% × {{ example.lose }}</span></div>
+    </div>
+    <p>{% if example.ev > 0 %}この前提では、コールのチップEVはフォールドより高くなります。{% elif example.ev < 0 %}この前提では、フォールドのほうがチップEVは高くなります。{% else %}この前提では、コールとフォールドのチップEVは同じです。{% endif %}</p>
+    <p class="small">今フォールドする場合を0として比較。勝ったときに増えるのは元のポット＋相手のベットです。自分のコール分は利益に含めません。大会の賞金判断や将来のベットがある場面には、そのまま当てはめません。</p>
+    {{ source_links([sources.odds, sources.ev]) }}
+    <p class="small muted">数値は tools/poker_math.py で計算・検算。学習用の例であり、GTO Wizardのソルバー出力ではありません。</p>
+  </section>
+  {% if topic == 'bet' %}
+  <section class="panel"><h2>ベットの値段を並べてみよう</h2>
+    <p>元のポット100。上の計算と同じ前提です。これは最適なベットサイズの推奨表ではありません。</p>
+    <table><thead><tr><th scope="col">相手のサイズ</th><th scope="col">コールの必要勝率</th></tr></thead><tbody>
+    {% for s in prices %}<tr><td>{{ s.bet }}%ポット</td><td>{{ '%.1f'|format(s.required) }}%</td></tr>{% endfor %}
+    </tbody></table>{{ source_links([sources.odds]) }}
+  </section>
+  {% endif %}
+  {% else %}
+  <section class="panel">
+    <h2>公式画面で1つの局面を見てみよう</h2>
+    <p>この順番は、このコースの学習手順です。必要な情報が見つからないときは、公式ヘルプを確認しましょう。</p>
+    <ol class="basics-checklist"><li>大会形式・スタック・ポジション・ボード・それまでのアクションをメモ。チップEVとICMの設定も確認。</li><li>まず自分ならどうするかを決める。</li><li>同じ条件のハンドで、アクションの頻度とEVを別々に見る。</li><li>予想との違いを「なぜ？」で1つ説明する。</li></ol>
+    <p><a class="btn" href="https://app.gtowizard.com/" target="_blank" rel="noopener noreferrer">GTO Wizardを開く ↗</a></p>
+    <p class="small">別タブで開きます。ログイン・利用範囲はGTO Wizard側の案内に従ってください。このアプリの基礎説明と5問チェックは、外部サービスにログインせず進められます。</p>
+    {{ source_links([sources.wizard, sources.ev]) }}
+  </section>
+  {% endif %}
+  <section class="panel basics-action">
+    <h2>5問で確かめる</h2>
+    <p>4択＋「わからない」。間違えた問題は復習に入ります。</p>
+    <form method="post" action="{{ url_for('learn.basics_practice', topic=topic) }}">
+      <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+      <button class="btn" type="submit">{{ lesson.short }}を5問練習</button>
+    </form>
+  </section>
+  <p class="small muted">出典確認日：2026-10-11。公式教材をもとにした独自の入門説明です。</p>
+</div>
+{% endblock %}

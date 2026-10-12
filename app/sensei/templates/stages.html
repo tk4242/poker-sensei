@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block body %}
+<section class="panel basics-entry">
+  <h2>スマホで学ぶ、数字の基礎</h2>
+  <p>期待値・オッズ・ベットサイズを、短い説明と5問で。GTO Wizardの読み方まで順番に学べます。</p>
+  <a class="btn" href="{{ url_for('learn.basics') }}">基礎から始める・続きを学ぶ →</a>
+</section>
 <h1>スパルタ・カリキュラム</h1>
 <p class="muted">合格ラインを満たすと次のステージが開きます（Stage 2 は Stage 1 と並行、Stage 6 は最初からずっと並行）。期間は目安。急がず、でも毎日。</p>
 {% for s in stages %}

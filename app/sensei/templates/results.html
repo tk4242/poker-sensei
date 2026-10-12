@@ -11,6 +11,10 @@
   {% elif b.mode == 'lesson' %}{% if r.score / r.total >= 0.8 %}<p class="ok">レッスン完了！ 次のレッスンへ進みましょう。</p>{% else %}<p class="bad">8割に届かず。本文を読み直して、もう一度。</p>{% endif %}
   {% else %}<p>{% if r.score == r.total %}全問正解、お見事！{% elif r.score / r.total >= 0.6 %}いい感じ。間違えた問題は復習に入りました。{% else %}伸びしろです。解説を読んで、もう1セットいきましょう。{% endif %}</p>{% endif %}
   <p>
+    {% if b.questions and b.questions[0].get('foundation') %}
+    <a class="btn" href="{{ url_for('learn.basics') }}">次のステップへ</a>
+    <a class="btn ghost" href="{{ url_for('learn.basics_lesson', topic=b.questions[0].foundation) }}">説明と計算を見直す</a>
+    {% endif %}
     {% if b.req_id %}<a class="btn" href="{{ url_for('practice.exam', req_id=b.req_id) }}">もう一度受ける</a>{% endif %}
     {% if b.lesson_id %}<a class="btn" href="{{ url_for('practice.lesson', lesson_id=b.lesson_id) }}">もう一度</a> <a class="btn ghost" href="{{ url_for('learn.lesson', lesson_id=b.lesson_id) }}">レッスンに戻る</a>{% endif %}
     {% if r.score < r.total %}<a class="btn" href="{{ url_for('practice.review') }}">復習する</a>{% endif %}

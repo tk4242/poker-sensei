@@ -18,3 +18,17 @@
   - w05-018: 出典がキャッシュゲームの記事であることと「保証ではない」を追記
   - w05-019: 「みんな強そう＝自信が下に振れたサイン」は本書の読み替えであると明記
 - 教材側の宿題: `curriculum/05` 3-3 にも「ソルバーの傾向に基づく一般則」という同じ言い回しがある（Upswing 原文にソルバーの言及はない）。
+## 2026-10-11 数字の基礎コース
+
+対象：`sensei/foundations.py`、`templates/basics*.html`。リポジトリのfact-checker手順に沿って別エージェントが公式3ページと照合し、`tools/poker_math.py`で30条件を検算。
+- EVの定義、判断時点を基準にした比較、チップEVと大会価値：正しい。
+- コール額÷コール後ポット、将来ベットがある場合の限界：正しい。相手1人・追加ベット/引き分け/レーキなし・仮の勝率を明記。
+- サイズ25/50/75/100/150%の必要勝率は16.7/25.0/30.0/33.3/37.5%。最適サイズの推奨表ではない。
+- Strategyの頻度・EV・EQとInfoboxの説明：公式Study Modeと一致。
+- 指摘：ベット教材のGTO Wizard機能説明にStudy Modeの出典を追加 → 反映済み。
+- 学習手順と4/5の目安はアプリ独自のものと明記。GTO解・賞金EVの最適化・有料機能の利用権を提供する主張はしない。
+
+根拠：
+- https://blog.gtowizard.com/what-is-expected-value-in-poker/
+- https://blog.gtowizard.com/what-are-pot-odds-in-poker/
+- https://help.gtowizard.com/study-mode/

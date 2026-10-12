@@ -35,6 +35,11 @@
   <a class="btn small" href="{{ url_for('train.quest') }}">クエストを ひらく</a></div>
 </div>
 {% endif %}
+<section class="panel basics-entry">
+  <h2>スマホで学ぶ、数字の基礎</h2>
+  <p>期待値・オッズ・ベットサイズを、短い説明と5問で。GTO Wizardの読み方まで順番に学べます。</p>
+  <a class="btn" href="{{ url_for('learn.basics') }}">基礎から始める・続きを学ぶ →</a>
+</section>
 <div class="grid">
   <div class="stat"><div class="k">今日</div><div class="v">{{ today_n }}<span class="muted"> / {{ quota }}問</span></div><div class="ok">{{ meter(today_n, quota) }}</div></div>
   <div class="stat"><div class="k">連続ノルマ達成</div><div class="v">{{ streak }}<span class="muted">日</span></div></div>

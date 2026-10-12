@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}数字の基礎から学ぶ | ポーカー先生{% endblock %}
+{% block body %}
+<div class="basics">
+  <section class="panel basics-hero">
+    <p class="small">はじめてのポーカー数学</p>
+    <h1>「なんとなく」を、<br>理由のある判断へ。</h1>
+    <p>期待値 → オッズ → ベットサイズ → GTO Wizard。まず1テーマから。説明を読んで、数字を動かし、5問で確かめましょう。</p>
+    {% if next_lesson %}<a class="btn" href="{{ url_for('learn.basics_lesson', topic=next_lesson.topic) }}">{{ '続きから' if lessons|selectattr('completed')|list else '期待値から始める' }} →</a>
+    {% else %}<p class="ok">4テーマの直近チェックで4/5以上！ 苦手なテーマをもう一度練習できます。</p>{% endif %}
+    <p class="small muted">進み具合はログイン中の学習記録に保存。スマホでも同じアカウントで続きを確認できます。</p>
+  </section>
+  <ol class="basics-path">
+    {% for le in lessons %}
+    <li class="panel">
+      <span class="tag">STEP {{ loop.index }}</span>
+      <h2><a href="{{ url_for('learn.basics_lesson', topic=le.topic) }}">{{ le.short }}</a></h2>
+      <p>{{ le.goal }}</p>
+      <p class="small">{% if le.score is not none %}直近 {{ le.score }}/5 · {{ '確認できました' if le.completed else 'もう一度、理由を確認しよう' }}{% else %}まだチェックしていません{% endif %}</p>
+      <a class="btn ghost" href="{{ url_for('learn.basics_lesson', topic=le.topic) }}">{{ '復習する' if le.completed else '学ぶ' }}</a>
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="small muted">4/5はこのコースの復習目安です。大会成績やGTO習熟度を判定するものではありません。</p>
+</div>
+{% endblock %}
