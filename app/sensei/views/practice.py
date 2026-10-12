@@ -37,6 +37,22 @@ def menu():
                            stats={s["tag"]: s for s in practice.tag_stats()})
 
 
+@bp.route("/practice/quick/<focus>")
+def quick(focus):
+    """設定の問題数に関係なく、苦手を5問だけ練習する。"""
+    focuses = {
+        "positions": ("席と動く順番", {"gen": "positions"}),
+        "ev": ("期待値", {"gen": "ev"}),
+        "bet": ("ベットの大きさ", {"gen": "bet_price"}),
+        "call": ("オッズで判断", {"gen": "call_decision"}),
+        "mental": ("周りに流されない", {"bank": {"stage": 6, "tags": ["conformity"]}}),
+    }
+    if focus not in focuses:
+        abort(404)
+    title, spec = focuses[focus]
+    return start("practice", f"5問集中: {title}", spec, n=5)
+
+
 @bp.route("/practice/review")
 def review():
     if not practice.due_count():
@@ -86,7 +102,7 @@ def exam(req_id):
     if not req or not req["type"].startswith("exam"):
         abort(404)
     stages, current = progress.overview()
-    st = next(x for x in stages if x["stage"] == s["stage"])
+    st = next(x for x in stages if x["stage"] == s["stage"]) if s else {"unlocked": True}  # クエストは常に受けられる
     if not st["unlocked"]:
         flash(f"先に Stage {current} を合格しましょう。順番に積み上げるのが最短です。", "error")
         return redirect(url_for("learn.stage", n=s["stage"]))

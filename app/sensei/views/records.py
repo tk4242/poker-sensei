@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
 
-from .. import practice, summary
+from .. import practice, progress, summary
 from ..db import ex, iso, now, q, today
 
 bp = Blueprint("records", __name__)
@@ -32,7 +32,7 @@ def index():
     hands = q("SELECT * FROM hands ORDER BY date DESC, id DESC LIMIT 50")
     study = q("SELECT * FROM study_log ORDER BY date DESC, id DESC LIMIT 20")
     minutes = q("SELECT COALESCE(SUM(minutes),0) m FROM study_log WHERE date>=?", (today()[:8] + "01",), one=True)["m"]
-    return render_template("records.html", sessions=sessions, hands=hands, study=study, venues=VENUES,
+    return render_template("records.html", conform=progress.conform_trend(), sessions=sessions, hands=hands, study=study, venues=VENUES,
                            ss=summary.session_stats(), tags=practice.tag_stats(90), days=practice.daily_counts(30),
                            study_month=minutes, totals=practice.totals())
 
@@ -52,15 +52,23 @@ def session_form(sid=None):
                 1 if f.get("itm") else 0, num(f.get("prize")), num(f.get("hours")), num(f.get("condition"), int),
                 num(f.get("tilt"), int) or 0, "、".join(f.getlist("tilt_types")),
                 "、".join(f.getlist("opp_types")) + ((" / " + f["opponents"].strip()) if f.get("opponents", "").strip() else ""),
-                f.get("good", "").strip(), f.get("improve", "").strip(), f.get("notes", "").strip())
+                f.get("good", "").strip(), f.get("improve", "").strip(), f.get("notes", "").strip(),
+                num(f.get("conformed"), int))
         if sid:
             ex("""UPDATE play_sessions SET date=?,venue=?,event=?,buyin=?,currency=?,entries=?,finish=?,itm=?,prize=?,
-                  hours=?,condition=?,tilt=?,tilt_types=?,opponents=?,good=?,improve=?,notes=? WHERE id=?""", vals + (sid,))
+                  hours=?,condition=?,tilt=?,tilt_types=?,opponents=?,good=?,improve=?,notes=?,conformed=? WHERE id=?""",
+               vals + (sid,))
         else:
             sid = ex("""INSERT INTO play_sessions(date,venue,event,buyin,currency,entries,finish,itm,prize,hours,condition,
-                        tilt,tilt_types,opponents,good,improve,notes,created) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                        tilt,tilt_types,opponents,good,improve,notes,conformed,created)
+                        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                      vals + (iso(now()),))
         tilt = num(f.get("tilt"), int) or 0
+        conformed = num(f.get("conformed"), int) or 0
+        if conformed >= 3:
+            flash(f"周りに合わせたハンドが {conformed} 回。いちばん引っかかった1つを、メンタル・ハンドヒストリーで書いておきましょう"
+                  "（curriculum/05 5-4）。数えられた時点で前進です！", "ok")
+            return redirect(url_for("coach.mental", mhh=1))
         if tilt >= 3:
             flash("ティルトが強めの日でした。メンタル・ハンドヒストリー（5ステップ）を書いておくと次に活きます。", "ok")
             return redirect(url_for("coach.mental", mhh=1))

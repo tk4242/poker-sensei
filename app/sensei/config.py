@@ -23,6 +23,10 @@ class Config:
         self.ANTHROPIC_API_KEY = env.get("ANTHROPIC_API_KEY", "")
         self.COACH_MODEL = env.get("COACH_MODEL", "claude-opus-5-5")
         self.COACH_EFFORT = env.get("COACH_EFFORT", "medium")
+        # 知識ベースの料金の目安（USD / 100万トークン、検索1回）。最新の料金は公式の料金ページで確認
+        self.KNOWLEDGE_PRICE_IN = env.get("KNOWLEDGE_PRICE_IN", "4")
+        self.KNOWLEDGE_PRICE_OUT = env.get("KNOWLEDGE_PRICE_OUT", "20")
+        self.KNOWLEDGE_PRICE_SEARCH = env.get("KNOWLEDGE_PRICE_SEARCH", "0.01")
         self.TESTING = False
         for k, v in overrides.items():
             setattr(self, k, v)

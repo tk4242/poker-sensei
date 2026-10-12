@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block body %}
-<p class="small"><a href="{{ url_for('learn.stage', n=s.stage) }}">← Stage {{ s.stage }}</a></p>
-<h1>昇段試験</h1>
+{% if s %}<p class="small"><a href="{{ url_for('learn.stage', n=s.stage) }}">← Stage {{ s.stage }}</a></p>
+<h1>昇段試験</h1>{% else %}<p class="small"><a href="{{ url_for('train.quest') }}">← 苦手克服クエスト</a></p>
+<h1>クエストの試練</h1>{% endif %}
 <div class="panel">
   <h2>{{ req.label }}</h2>
   <p>{{ req.n }} 問中 <b>{{ req.pass }} 問以上</b>で合格{% if req.time_limit_s %}（各問 <b>{{ req.time_limit_s }} 秒以内</b>に正解した問題だけ数えます）{% endif %}。</p>

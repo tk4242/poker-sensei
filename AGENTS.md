@@ -20,7 +20,7 @@ Codex は Git ルートの `AGENTS.md` を読む（出典: https://learn.chatgpt
 3. 内容は Claude の `fact-checker` がレビューし、マージはユーザーが決める。マージ後、Codex は次の作業の前に `sync` で最新の main を取り込む。
 
 ## 基本ルール
-1. 作業を始める前に `python3 tools/collab.py status` で、相手の最近の変更を確認する。
+1. 作業を始める前に `python3 tools/collab.py status` と `CHANGELOG.md`（修正履歴と残りの宿題）で、相手の最近の変更を確認する。変更したら、その PR の中で `CHANGELOG.md` の先頭に追記する。
 2. 変更は小さく、1コミット1目的。変更したらすぐ `sync` して、手元に溜めない。
 3. 他者のコミットを書き換えない（rebase は自分の未pushコミットだけ）。
 4. 他の担当のファイルは、頼まれない限り編集しない（下の担当表）。

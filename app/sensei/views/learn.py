@@ -17,7 +17,8 @@ def stage(n):
     s = next((x for x in items if x["stage"] == n), None)
     if not s:
         abort(404)
-    return render_template("stage.html", s=s, current=current)
+    from .. import knowledge
+    return render_template("stage.html", s=s, current=current, kcards=knowledge.cards("approved", n, limit=10))
 
 
 @bp.route("/learn/lesson/<lesson_id>")
@@ -114,3 +115,36 @@ def tools():
     except (KeyError, ValueError, ZeroDivisionError):
         error = "入力を確認してください（カードは Ah Kd のように、ランク23456789TJQKA＋スートcdhs）。"
     return render_template("tools.html", res=res, error=error, form=f)
+
+
+@bp.route('/learn/basics')
+def basics():
+    from .. import foundations
+    lessons = foundations.overview()
+    next_lesson = next((le for le in lessons if not le['completed']), None)
+    return render_template('basics.html', lessons=lessons, next_lesson=next_lesson)
+
+
+@bp.route('/learn/basics/<topic>')
+def basics_lesson(topic):
+    from .. import foundations
+    if topic not in foundations.LESSONS:
+        abort(404)
+    try:
+        example = foundations.scenario(int(request.args.get('size', 50)), int(request.args.get('equity', 40)))
+    except (ValueError, TypeError):
+        abort(400, description='練習用のサイズと勝率を選び直してください。')
+    return render_template('basics_lesson.html', topic=topic, lesson=foundations.LESSONS[topic],
+                           example=example, assumptions=foundations.ASSUMPTIONS, sources=foundations.SOURCES,
+                           lessons=list(foundations.LESSONS),
+                           prices=[foundations.scenario(s) for s in (25, 50, 75, 100, 150)])
+
+
+@bp.route('/learn/basics/<topic>/practice', methods=['POST'])
+def basics_practice(topic):
+    from flask import redirect, url_for
+    from .. import foundations, practice
+    if topic not in foundations.LESSONS:
+        abort(404)
+    bid = practice.create_batch('practice', foundations.title(topic), foundations.questions(topic))
+    return redirect(url_for('practice.batch', batch_id=bid))

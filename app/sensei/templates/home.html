@@ -1,7 +1,45 @@
 {% extends "base.html" %}
-{% from "_macros.html" import bars, meter with context %}
+{% from "_macros.html" import bars, meter, status_win, gauge with context %}
 {% block body %}
-<p class="cheer">{{ cheer }}</p>
+<div class="cheer"><img class="px" src="{{ url_for('static', filename='sprites/sensei.svg') }}" alt="先生" width="64" height="64"><p>{{ cheer }}</p></div>
+{{ status_win(st, session.get('user')) }}
+<section class="panel learning-start" aria-labelledby="start-title">
+  <p class="eyebrow">目標：海外MTTでインマネへ</p>
+  <h1 id="start-title">今日も、ひとつ判断できる自分へ。</h1>
+  {% if due %}
+  <p>復習待ちが {{ due }} 問あります。まずは前に迷った問題から。</p>
+  <a class="btn primary" href="{{ url_for('practice.review') }}">間違えた問題を復習する</a>
+  {% elif cur.stage == 0 %}
+  <p>まずは苦手な「席と動く順番」を図つきで。5問ずつ確認しましょう。</p>
+  <a class="btn primary" href="{{ url_for('practice.quick', focus='positions') }}">席と順番を5問</a>
+  {% else %}
+  <p>Stage {{ cur.stage }}「{{ cur.title }}」の続きを進めましょう。</p>
+  <a class="btn primary" href="{{ url_for('learn.stage', n=cur.stage) }}">今のステージを学ぶ</a>
+  {% endif %}
+  <p class="small muted">4択で練習 → 理由を確認 → 間違いを復習。わからないも、次の一歩です。</p>
+</section>
+<section class="panel" aria-labelledby="focus-title">
+  <h2 id="focus-title">苦手をひとつ、5問だけ</h2>
+  <div class="focus-grid">
+    {% for key, title, desc in [('positions', '席と順番', '図を見て、自分の番を確認'), ('ev', '期待値（EV）', '一度の結果から、平均へ'), ('bet', 'ベットの大きさ', '金額と必要勝率をつなぐ'), ('call', 'オッズで判断', '数字を比べて行動を選ぶ'), ('mental', '周りに流されない', '自分の判断を持つ練習')] %}
+    <a class="focus-card" href="{{ url_for('practice.quick', focus=key) }}"><strong>{{ title }}</strong><span>{{ desc }}</span><span class="small">5問を始める →</span></a>
+    {% endfor %}
+  </div>
+  <p><a href="{{ url_for('train.index') }}">1問ずつ遊べるトレーニングへ →</a></p>
+</section>
+{% if qo.next %}
+<div class="panel quest-week now">
+  <img class="px" src="{{ url_for('static', filename='sprites/' ~ qo.next.sprite ~ '.svg') }}" alt="" width="48" height="48">
+  <div><h3>苦手克服クエスト 第{{ qo.next.week }}週「{{ qo.next.title }}」</h3>
+  <p class="small">{{ qo.next.req.label }}（{{ qo.cleared }} / {{ qo.weeks|length }} クリア）</p>
+  <a class="btn small" href="{{ url_for('train.quest') }}">クエストを ひらく</a></div>
+</div>
+{% endif %}
+<section class="panel basics-entry">
+  <h2>スマホで学ぶ、数字の基礎</h2>
+  <p>期待値・オッズ・ベットサイズを、短い説明と5問で。GTO Wizardの読み方まで順番に学べます。</p>
+  <a class="btn" href="{{ url_for('learn.basics') }}">基礎から始める・続きを学ぶ →</a>
+</section>
 <div class="grid">
   <div class="stat"><div class="k">今日</div><div class="v">{{ today_n }}<span class="muted"> / {{ quota }}問</span></div><div class="ok">{{ meter(today_n, quota) }}</div></div>
   <div class="stat"><div class="k">連続ノルマ達成</div><div class="v">{{ streak }}<span class="muted">日</span></div></div>

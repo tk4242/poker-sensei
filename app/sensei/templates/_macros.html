@@ -62,3 +62,18 @@
 {% macro meter(v, total) -%}
 <svg viewBox="0 0 100 8" width="100%" height="8" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="8" rx="4" fill="currentColor" opacity=".15"/><rect width="{{ [100, (v / (total or 1) * 100)]|min }}" height="8" rx="4" fill="currentColor"/></svg>
 {%- endmacro %}
+
+{% macro gauge(v, total, cls='hp', label='') -%}
+<div class="gauge">{% if label %}<span>{{ label }}</span>{% endif %}<svg viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="10" fill="#000" stroke="#fff" stroke-width="2"/><rect class="{{ cls }}" x="1" y="1" width="{{ [98, (v / (total or 1) * 98)]|min|round(1) }}" height="8"/></svg><span>{{ v }}/{{ total }}</span></div>
+{%- endmacro %}
+
+{% macro status_win(st, name) -%}
+<div class="panel status">
+  <img class="px" src="{{ url_for('static', filename='sprites/hero.svg') }}" alt="" width="56" height="56">
+  <div class="grow">
+    <div><span class="nm">{{ name }}</span>　<span class="muted small">{{ st.title }}</span></div>
+    <div class="lv">Lv {{ st.lv }}</div>
+    {{ gauge(st.cur, st.need, 'exp', 'けいけんち') }}
+  </div>
+</div>
+{%- endmacro %}

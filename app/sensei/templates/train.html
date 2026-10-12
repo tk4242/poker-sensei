@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "_macros.html" import status_win with context %}
+{% block title %}トレーニング | ポーカー先生{% endblock %}
+{% block body %}
+<h1>トレーニング（すきま時間の反復練習）</h1>
+{{ status_win(st, session.get('user')) }}
+<div class="win small">1問ずつ すぐに答え合わせ。正解で まものに ダメージ、5秒以内の正解は「かいしんのいちげき」（2ダメージ）。まちがえると HP が へり、0 で おしまい。どこでやめても 記録は のこり、まちがえた問題は 復習に 入ります。</div>
+{% if battle %}<p><a class="btn" href="{{ url_for('train.fight', topic=battle.topic) }}">つづきから（{{ topics[battle.topic].name }}・HP {{ battle.php }}）</a></p>{% endif %}
+<div class="topics">
+{% for key, t in topics.items() %}
+  <a href="{{ url_for('train.fight', topic=key) }}"><div class="panel tp">
+    <img class="px" src="{{ url_for('static', filename='sprites/' ~ t.sprite ~ '.svg') }}" alt="" width="48" height="48">
+    <div><div class="nm">{{ t.name }}</div><div class="small">{{ t.monster }}</div><div class="muted small">{{ t.desc }}</div></div>
+  </div></a>
+{% endfor %}
+</div>
+<p class="muted small">問題は、計算ツールで答えを出す自動生成ドリルと、出典つき・ファクトチェック済みの問題集からだけ出します。まものの名前・絵・ルール（HP・かいしん）はこのアプリのオリジナルの遊びの部分です。</p>
+{% endblock %}

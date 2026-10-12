@@ -2,7 +2,7 @@ import json
 
 from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
 
-from .. import coach, practice, summary
+from .. import coach, content, practice, progress, summary
 from ..db import ex, get_setting, iso, now, q, set_setting
 
 bp = Blueprint("coach", __name__)
@@ -41,6 +41,11 @@ def advice():
     if nostreak:
         out.append({"title": "ノルマが途切れています", "body": "今日は5問だけでもOK。ゼロの日を作らないのが一番の近道です。",
                     "url": "/practice"})
+    conf = progress.conform_trend(3)
+    if conf and conf[-1]["conformed"] >= 3:
+        out.append({"title": f"前回のプレイで、周りに合わせて決めたハンドが {conf[-1]['conformed']} 回",
+                    "body": "プレイ前に数字カード（早見表）を見て、自分の番の前に「この額ならコール/フォールド」を先に決めましょう。",
+                    "url": "/coach/mental"})
     if not out:
         out.append({"title": "いい流れです", "body": "このまま今日のメニューを上から順に進めましょう。", "url": "/"})
     return out
@@ -123,4 +128,11 @@ def mental():
     return render_template("mental.html", warmup=WARMUP, warmup_src=WARMUP_SRC, sleep_src=SLEEP_SRC,
                            mhh=MHH_STEPS, mhh_src=MHH_SRC, signs=get_setting("c_game_signs", ""),
                            correction=get_setting("correction", ""), budget=get_setting("budget_plan", ""),
-                           checkins=checkins, show_mhh=request.args.get("mhh"))
+                           checkins=checkins, show_mhh=request.args.get("mhh"), numbers_card=numbers_card())
+
+
+def numbers_card():
+    """セッション前に見る「数字カード」＝ curriculum/05 3-2 の早見表（ファクトチェック済みの本文をそのまま表示）。"""
+    text = content.read_curriculum("05-numbers-and-confidence.md") or ""
+    sec = content.extract_section(text, "### 3-2")
+    return content.render_md(sec) if sec else ""

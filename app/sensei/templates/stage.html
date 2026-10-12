@@ -14,6 +14,11 @@
   </ul>
   <p class="muted small">各レッスンは「読む → 理解チェック5問（8割で完了）」。</p>
 </div>
+{% if kcards %}<div class="panel">
+  <h2>最新の知識（承認済み）</h2>
+  <ul class="list">{% for c in kcards %}<li>{{ c.title }}{% if c.stale %} <span class="bad small">要再確認</span>{% endif %}<div class="small muted">{{ c.summary[:120] }}…</div></li>{% endfor %}</ul>
+  <p><a class="btn ghost small" href="{{ url_for('knowledge.index', stage=s.stage) }}">知識ベースで読む</a></p>
+</div>{% endif %}
 <div class="panel">
   <h2>合格ライン（昇段試験）</h2>
   <ul class="list">

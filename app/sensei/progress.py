@@ -8,6 +8,8 @@ def record_value(kind):
         return q("SELECT COUNT(*) c FROM hands WHERE TRIM(COALESCE(self_review,''))<>''", one=True)["c"]
     if kind == "sessions_with_opponents":
         return q("SELECT COUNT(*) c FROM play_sessions WHERE TRIM(COALESCE(opponents,''))<>''", one=True)["c"]
+    if kind == "sessions_with_conform":
+        return q("SELECT COUNT(*) c FROM play_sessions WHERE conformed IS NOT NULL", one=True)["c"]
     if kind == "domestic_itm":
         return q("SELECT COUNT(*) c FROM play_sessions WHERE itm=1 AND venue IN ('amusement','domestic_live')",
                  one=True)["c"]
@@ -67,6 +69,26 @@ def overview():
     return out, current
 
 
+def quest_overview():
+    """苦手克服クエストの各週の状態。最初の未クリアの週（「毎回」の課題を除く）が now。"""
+    qd = content.quest()
+    done = lessons_done()
+    weeks = []
+    for w in qd["weeks"]:
+        weeks.append(dict(w, status=requirement_status(w["req"]), lesson_done=w["lesson"] in done))
+    nxt = next((w for w in weeks if w["week"] and not w["status"]["passed"]), None)
+    for w in weeks:
+        w["now"] = w is nxt
+    return {**qd, "weeks": weeks, "cleared": sum(w["status"]["passed"] for w in weeks), "next": nxt}
+
+
+def conform_trend(n=8):
+    """「周りに合わせて決めたハンドの数」の推移（古い順）。"""
+    rows = q("SELECT date, conformed FROM play_sessions WHERE conformed IS NOT NULL ORDER BY date DESC, id DESC LIMIT ?",
+             (n,))
+    return [dict(r) for r in rows][::-1]
+
+
 def next_steps(quota, due, today_n, weak):
     """今日のメニュー（上から順にやる）。"""
     stages, current = overview()
@@ -87,6 +109,11 @@ def next_steps(quota, due, today_n, weak):
         url = f"/practice/exam/{req['id']}" if req["type"].startswith("exam") else "/learn"
         steps.append({"title": f"合格ライン: {req['label']}", "url": url,
                       "why": f"Stage {current} を突破する条件です。"})
+    qo = quest_overview()
+    if qo["next"]:
+        w = qo["next"]
+        steps.append({"title": f"苦手克服クエスト 第{w['week']}週「{w['title']}」: {w['req']['label']}",
+                      "url": "/quest", "why": "期待値・ベットの大きさ・オッズは、周りに流されないための物差しになります。"})
     if today_n < quota:
         steps.append({"title": f"今日のノルマ あと {quota - today_n} 問", "url": "/practice",
                       "why": "毎日続けることが最優先。短くても途切れさせない。"})
