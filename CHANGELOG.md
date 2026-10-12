@@ -3,7 +3,8 @@
 新しい順。変更したら、その PR の中でこのファイルの先頭に追記する（日付・PR・何を・どこを・残っている宿題）。
 細かい差分は `git log` と各 PR を見る。教材のファクトチェック記録は各ファイルの末尾と `app/content/FACT-CHECK.md` にある。
 
-## 2026-10-11 Codex：スマホで学ぶ数字の基礎（PR作成後に番号追記）
+## 2026-10-11〜12 Codex：スマホで学ぶ数字の基礎（PR #5）
+https://github.com/tk4242/poker-sensei/pull/5
 - 目的：初心者が期待値→オッズ→ベットサイズ→GTO Wizardの読み方を順に学べるようにする。
 - `/learn/basics` と4テーマの説明・計算例・各5問チェックを追加。`app/sensei/foundations.py`、`views/learn.py`、`templates/basics*.html`。進み具合は既存batchesから算出し、誤答は既存SRSへ。DB変更なし。
 - ベット額と仮の勝率を選択すると、ポットの内訳・必要勝率・コールEVを比較。追加ベットなし等の前提と、チップEV/賞金価値の違いを明記。公式サービスとの自動連携はしない。
