@@ -47,12 +47,18 @@ def home():
 @bp.route("/settings", methods=["GET", "POST"])
 def settings():
     if request.method == "POST":
+        raw_quota = request.form.get("daily_quota", "")
+        raw_batch = request.form.get("batch_size", "")
         try:
-            quota = max(5, min(200, int(request.form.get("daily_quota", 30))))
+            quota, batch_size = int(raw_quota), int(raw_batch)
+            if not 5 <= quota <= 200 or not 3 <= batch_size <= 20:
+                raise ValueError
         except ValueError:
-            quota = 30
+            flash("保存していません。1日のノルマは5〜200、まとめ出題は3〜20の整数を入力してください。", "error")
+            return render_template("settings.html", quota=raw_quota, batch_size=raw_batch), 400
+        # 両方を検証してから保存。不正入力で一方だけ更新しない。
         set_setting("daily_quota", quota)
-        set_setting("batch_size", max(3, min(20, int(request.form.get("batch_size", 5) or 5))))
+        set_setting("batch_size", batch_size)
         flash("保存しました。", "ok")
         return redirect(url_for("main.settings"))
     return render_template("settings.html", quota=summary.quota(), batch_size=get_setting("batch_size", 5))
