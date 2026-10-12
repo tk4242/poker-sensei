@@ -29,6 +29,7 @@ SRC = {
     "mdf": {"title": "GTO Wizard: MDF & Alpha", "url": "https://blog.gtowizard.com/mdf-alpha/"},
     "spr": {"title": "GTO Wizard: Stack-to-pot ratio", "url": "https://blog.gtowizard.com/stack-to-pot-ratio/"},
     "outs": {"title": "PokerSkill: Rule of 2 and 4", "url": "https://www.pokerskill.com/poker-glossary/rule-of-2-and-4/"},
+    "ev": {"title": "PokerSkill: Expected Value (EV)", "url": "https://www.pokerskill.com/poker-glossary/expected-value-ev/"},
     "bf": {"title": "GTO Wizard: What is the Bubble Factor", "url": "https://blog.gtowizard.com/what-is-the-bubble-factor-in-poker-tournaments/"},
     "bbdef": {"title": "Upswing Poker: Poker Tournament Tips", "url": "https://upswingpoker.com/poker-tournament-tips-strategy-mtt/"},
     "3bet": {"title": "Upswing Poker: Bet Sizing Tips", "url": "https://upswingpoker.com/bet-size-strategy-tips-rules/"},
@@ -457,8 +458,65 @@ def gen_ev(rng):
                   "RULE", SRC["glossary"], "curriculum/01-terms.md 2.4", rng)
 
 
+BET_SIZES = [("ポットの1/4", 1, 4), ("ポットの1/3", 1, 3), ("ポットの半分", 1, 2), ("ポットの2/3", 2, 3),
+             ("ポットの3/4", 3, 4), ("ポットと同じ額（ポットサイズ）", 1, 1), ("ポットの1.5倍（オーバーベット）", 3, 2)]
+
+
+def gen_bet_price(rng):
+    name, num, den = rng.choice(BET_SIZES)
+    pot, bet = 12 * den, 12 * num  # 整数で計算（例: 1/3 → ポット36にベット12）
+    call_need = pm.pot_odds(pot + bet, bet)
+    alpha = pm.bluff_breakeven(pot, bet)
+    if rng.random() < 0.6:
+        labels, correct = pct_choices(call_need, [alpha, bet / pot, 1 - call_need], rng)
+        q = f"相手が{name}をベットしてきた。コールに必要な勝率は？"
+        explain = (f"ポットを{pot}とすると、ベット{bet}。必要勝率 = {bet} ÷ ({pot}+{bet}+{bet}) = {pct(call_need)}。"
+                   "早見表: 1/3→20%、半分→25%、2/3→28.6%、ポット→33.3%。ベットが大きいほど、コールに必要な勝率は上がります。")
+        why = "ベットの大きさは「相手に提示する値段」。サイズを見た瞬間に必要勝率がわかれば、迷わずコール/フォールドを決められます。"
+        src = SRC["potodds"]
+    else:
+        labels, correct = pct_choices(alpha, [call_need, bet / pot, 1 - alpha], rng)
+        q = f"あなたがブラフで{name}をベットする。損益ゼロになるには、相手が何%以上降りればいい？"
+        explain = (f"ポットを{pot}とすると、ベット{bet}。必要フォールド率 = {bet} ÷ ({pot}+{bet}) = {pct(alpha)}。"
+                   "早見表: 1/3→25%、半分→33.3%、2/3→40%、ポット→50%。大きく打つブラフほど、たくさん降りてもらう必要があります。")
+        why = "自分でサイズを選ぶときの物差しです。「この相手はそんなに降りるか？」を数字で考えられるようになります。"
+        src = SRC["mdf"]
+    return finish("bet_price", 2, "math", q, labels, correct, explain, why, "RULE", src,
+                  "curriculum/05-numbers-and-confidence.md 3-2", rng)
+
+
+def gen_call_decision(rng):
+    while True:
+        pot, bet = _pot_and_bet(rng)
+        need = pm.pot_odds(pot + bet, bet)
+        eq = rng.choice([x / 100 for x in range(10, 61, 5)])
+        v = pm.ev(eq, pot + bet, bet)
+        if abs(eq - need) >= 0.03 and abs(v) >= 1:
+            break
+
+    def lab(x):
+        return f"{'コール' if x > 0 else 'フォールド'}（コールのEV {x:+.0f}）"
+
+    out = [lab(v)]
+    for x in (pm.ev(eq, pot, bet), eq * (pot + bet), -v, v + 20, v - 20, v + 40):
+        if abs(x) >= 1 and lab(x) not in out:
+            out.append(lab(x))
+        if len(out) == 4:
+            break
+    explain = (f"必要勝率 = {bet} ÷ ({pot}+{bet}+{bet}) = {pct(need)}。あなたの勝率 {eq:.0%} は"
+               f"{'上回る→コールが得' if eq > need else '足りない→フォールド'}。"
+               f"EV = 勝率×（相手のベット込みのポット）− 負ける確率×コール額 = {eq:.2f}×{pot + bet} − {1 - eq:.2f}×{bet} = {v:+.0f}。"
+               "（ドローが完成したあとに追加で取れる分＝インプライドオッズや、この後のベットは考えない単純化）")
+    return finish("call_decision", 2, "math",
+                  f"ポット {pot} に相手が {bet} をベット。あなたの勝率（エクイティ）は {eq:.0%}。どうする？",
+                  out, lab(v), explain,
+                  "期待値とポットオッズを1つの判断にまとめる練習。周りの雰囲気ではなく数字で決める習慣の土台です。",
+                  "RULE", [SRC["ev"], SRC["potodds"]], "curriculum/05-numbers-and-confidence.md 2章・3章", rng)
+
+
 def gen_math(rng):
-    return rng.choice([gen_pot_odds, gen_pot_odds, gen_mdf, gen_alpha, gen_outs, gen_spr, gen_ev])(rng)
+    return rng.choice([gen_pot_odds, gen_pot_odds, gen_mdf, gen_alpha, gen_outs, gen_spr, gen_ev,
+                       gen_bet_price, gen_call_decision])(rng)
 
 
 # ---------------------------------------------------------------- プリフロップ（Stage 1）
@@ -571,6 +629,9 @@ GENERATORS = {
     "preflop_math": (gen_preflop_math, "BBディフェンス・3ベットサイズ", 1),
     "math": (gen_math, "ポーカー数学ミックス", 2),
     "pot_odds": (gen_pot_odds, "ポットオッズ（10秒）", 2),
+    "bet_price": (gen_bet_price, "ベットの大きさ→必要勝率（早見表）", 2),
+    "ev": (gen_ev, "期待値（EV）", 2),
+    "call_decision": (gen_call_decision, "コール？フォールド？（EVで判断）", 2),
     "mdf": (gen_mdf, "MDF", 2),
     "alpha": (gen_alpha, "ブラフの損益分岐", 2),
     "outs": (gen_outs, "アウツと完成確率", 2),
