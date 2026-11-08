@@ -64,5 +64,5 @@ def export_markdown():
 
 def export_json():
     tables = ["attempts", "srs", "exams", "lessons_done", "play_sessions", "hands", "checkins", "study_log",
-              "coach_log", "settings"]
+              "coach_log", "settings", "arena_runs"]
     return json.dumps({t: [dict(r) for r in q(f"SELECT * FROM {t}")] for t in tables}, ensure_ascii=False, indent=1)

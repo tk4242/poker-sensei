@@ -209,3 +209,12 @@
 | GTO Wizard Help: Study Mode | https://help.gtowizard.com/study-mode/ | A（機能の公式説明） | Strategy / EV / EQ・Infobox・公式画面への学習導線 | 2026-10-11 |
 
 実装：`app/sensei/foundations.py` と `templates/basics*.html`。例題は独自に作成し `tools/poker_math.py` で計算・検算。特定のGTO解や推奨ベット頻度は掲載しない。
+
+## 2026-11-08 卓トレーニング
+| 出典 | 確認範囲 | 信頼度 | 使用箇所 |
+|---|---|---|---|
+| https://www.holdemresources.net/hune | HU push/fold限定モデル、ブラインド前effective stack、Raw Data 5/8/10bbの169ハンド頻度。原CSVの条件メタデータ不足を明記 | A（作成元の一次データ。ゲーム全体の解としない） | arena.py / ranges/hrc-hu.json |
+| https://blog.gtowizard.com/what-are-pot-odds-in-poker/ | all-inで追加ベットなしの場合の必要EQ・計算の限界 | A（公式解説） | arena.py / flop-examples.json |
+| https://www.pokertda.com/view-poker-tda-rules/ | HUでSBがボタン、preflop先・postflop後に行動 | A | 卓の行動順 |
+| https://pokercoaching.com/blog/poker-positions/ | 席の名称と行動順（6max UTG/LJ表記） | B | 卓の行動順 |
+| https://upswingpoker.com/wp-content/uploads/2023/01/Preflop-Guide-for-RFI-v21-2023.pdf | 冊子p.4〜5のコンボ数：pair6/suited4/offsuit12。レンジ表の転載なし | A（公式教材の記述確認） | レンジ表の読み方 |

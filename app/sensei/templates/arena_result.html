@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block body %}
+<section class="table-summary"><p class="eyebrow">SESSION COMPLETE</p><h1>おつかれさま。<br>今日の判断を、次の力に。</h1><div class="score-circle">{{ score }}<small>/ {{ run.questions|length }}問</small></div><p>{{ formats[run.config.format] }}・今回の正答数</p>
+<form method="post" action="{{ url_for('arena.retry', run_id=run.id) }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn primary">{{ '間違えたハンドだけ、もう一度' if score < run.questions|length else '新しい5問に挑戦する' }}</button></form>
+<p><a href="{{ url_for('arena.index', format=run.config.format) }}">練習メニューへ</a> · <a href="{{ url_for('arena.ranges', format=run.config.format) }}">レンジ表を見る</a></p></section>
+{% for it in run.questions %}<details class="panel"><summary>{{ '✓' if run.answers[loop.index0].correct else '↻' }} {{ loop.index }}. {{ it.prompt }}</summary><p>答え：{{ it.choices[it.answer] }}</p><p>{{ it.explain }}</p><p>{% for src in it.sources %}<a href="{{ src.url }}">{{ src.title }}</a> {% endfor %}</p></details>{% endfor %}
+<p class="muted small">採点は今回の教材への正答です。実戦での強さやEV損失の推定ではありません。回答は学習記録に保存しました。</p>
+{% endblock %}

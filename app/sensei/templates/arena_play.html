@@ -1,0 +1,34 @@
+{% extends 'base.html' %}{% from '_table.html' import table %}
+{% block title %}{{ item.street }}の練習 | ポーカー先生{% endblock %}
+{% block body_class %}table-playing {{ 'answering' if not result }}{% endblock %}
+{% block body %}
+<div class="play-top"><a href="{{ url_for('arena.index', format=run.config.format) }}">← 練習メニュー</a><span class="hand-counter">HAND <b>{{ index+1 }}</b> / {{ run.questions|length }}</span></div>
+<progress class="table-progress" value="{{ index + (1 if result else 0) }}" max="{{ run.questions|length }}" aria-label="回答の進み具合"></progress>
+<div class="play-layout">
+<section class="table-stage" aria-label="ポーカー卓">
+<div class="table-badges"><span>{{ formats[run.config.format] }}</span><span>{{ item.players }}人</span><span>{{ item.street }}</span>{% if item.mode == 'range' %}<span>{{ run.config.stack }}bb</span>{% endif %}</div>
+{{ table(item) }}
+<div class="animation-tools"><button type="button" class="btn ghost small" data-replay>↻ 配り直して見る</button><label><input type="checkbox" data-motion> 動きを減らす</label></div>
+</section>
+<section class="decision-panel">
+<p class="eyebrow">{{ item.label }}</p>
+{% if item.mode == 'flop' %}<p class="action-history">{{ item.history[-1] }}</p><details class="table-hint"><summary>ここまでのアクション</summary><ol>{% for action in item.history[:-1] %}<li>{{ action }}</li>{% endfor %}</ol></details>{% else %}<ol class="action-history">{% for action in item.history %}<li>{{ action }}</li>{% endfor %}</ol>{% endif %}
+{% if item.villain %}<p class="opponent-hand">相手の公開手札：{% for card in item.villain_view %}<span class="opponent-card {{ 'red-card' if card.red }}">{{ card.rank }}{{ card.suit }}</span> {% endfor %}</p>{% endif %}
+<h1 id="decision-title">{{ item.prompt }}</h1>
+{% if item.mode == 'flop' %}<p class="coach-tip">{{ item.hint }}</p>{% else %}<details class="table-hint"><summary>ヒントを見る</summary><p>{{ item.hint }}</p></details>{% endif %}
+{% if result %}
+<div class="table-feedback {{ 'correct' if result.correct else 'incorrect' }}" role="status">
+<h2>{{ '✓ いい判断！' if result.correct else 'ここが覚えるチャンス。' }}</h2>
+<p>あなたの回答：{{ item.choices[result.chosen] }}<br>答え：<strong>{{ item.choices[item.answer] }}</strong></p>
+<p>{{ item.explain }}</p>
+</div>
+<a class="btn primary start-table" href="{{ url_for('arena.play', run_id=run.id, q=index+1) }}">{{ '今回の結果を見る' if index+1 == run.questions|length else '次のハンドへ →' }}</a>
+{% else %}
+<div class="decision-dock"><p class="dock-prompt">{{ item.prompt }}</p><form action="{{ url_for('arena.answer', run_id=run.id) }}" method="post" class="table-actions">
+<input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="index" value="{{ index }}">
+{% for choice in item.choices %}<button class="btn {{ 'ghost' if loop.first or item.mode == 'positions' else 'primary' }}" type="submit" name="choice" value="{{ loop.index0 }}">{{ choice }}</button>{% endfor %}
+</form></div>
+{% endif %}
+<details class="model-note"><summary>条件・出典と学習範囲</summary><p>{{ item.condition }}</p><ul>{% for source in item.sources %}<li><a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.title }}</a></li>{% endfor %}</ul><p>レンジ：公開HU限定モデルの採用頻度。原CSVにレーキ・賞金条件の記載はありません。EV損失・実戦勝率は算出していません。フロップ：相手の手札が既知のチップEV計算。MTTの賞金価値やリングのレーキは別途考慮が必要です。</p></details>
+</section></div>
+{% endblock %}

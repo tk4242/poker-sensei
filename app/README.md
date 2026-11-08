@@ -80,3 +80,21 @@ docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --build w
 - テスト: `pip install -r app/requirements.txt && python3 -m unittest discover tests`
 - ローカルで試す: `cd app && SECRET_KEY=$(python3 -c "import secrets;print(secrets.token_hex(32))") APP_PASSWORD=test-password-123 SECURE_COOKIES=0 flask --app sensei:create_app run`
 - 担当: `app/` は Claude（`.collab/owners.json`）。Codex は改善案を PR で。
+
+
+## 卓トレーニング（2026-11-08）
+- `/table`：トーナメント／リング別に5問、途中再開・結果・誤答だけの再練習。回答は既存の学習合計にも加算。
+- `/table/ranges`：HRCの公開HU push/fold限定モデル（5/8/10bb、SB/BB）の原頻度を収録。純粋戦略と混合を分けて学習。通常のMTT、多人数卓、レーキ込みリングの解ではない。未検証の6/8人レンジは出題しない。
+- 2/6/8人の席・手番、既知の相手の2枚に対するフロップall-in計算は別教材。実戦GTO解やEV損失と表示しない。
+- JSなしでもフォームによる出題・採点・レンジ閲覧が可能。JSは配牌・チップの演出と入力補助。OSの動きを減らす設定にも対応。
+- SQLite `arena_runs` を起動時に追加する。既存テーブルのデータ削除なし。`/export.json` に新しい練習履歴も含める。
+- ログイン画面の「この端末でログインを保持する」を選ぶと90日間のCookie（アクセスで更新）。共有端末では外す。認証済みで `/login` を開いてもホームへ戻る。
+- 再デプロイで毎回ログインが切れる場合は `.env` の `SECRET_KEY` を同じ値で維持する。Cookie削除、別ブラウザ、シークレットモードでは保持できない。HTTPS / HttpOnly / SameSite=Lax / CSRF対策は継続。
+- 教材検証：`app/content/FACT-CHECK.md`、データ出典と抽出範囲：`app/content/ranges/README.md`。
+
+
+### UI v2・最大8人（PR #7）
+- テーマはダーク／紫、青い卓とプレイヤーアイコン。スマホの回答ボタンは画面下に固定し、卓の表示を広げています。
+- 新しい卓は2/6/8人のみ。従来の席ドリルも6/8人、問題集の9人設問は8人へ更新。古い9人卓の履歴は残し、再練習は人数選択へ戻します。旧9人ドリルのSRSは進捗キーを保って6/8人の問題へ差し替えます。
+- 配備確認：ログイン画面に `TABLE LAB · 最大8人卓`、HTMLのmeta `sensei-ui-version=table-v2-8max` が出ます。PRの作成/pushだけではVPSは更新されません。
+- ユーザーがPRをマージした後、VPSのリポジトリで `git checkout main && git pull origin main`、続けて `cd app && docker compose up -d --build` を実施してください。既存の `.env`（特にSECRET_KEY）とデータボリュームを維持してください。

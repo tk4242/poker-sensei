@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}レンジを覚える | ポーカー先生{% endblock %}
+{% block body %}
+<div class="table-heading"><p class="eyebrow">RANGE LAB</p><h1>ハンドの地図を、覚えよう。</h1><p class="muted">マスを押すと、そのハンドの採用頻度がわかります。</p></div>
+<nav class="format-tabs" aria-label="ゲーム形式">{% for key,title in formats.items() %}<a href="{{ url_for('arena.ranges', format=key) }}" class="{{ 'selected' if fmt == key }}">{{ title }}</a>{% endfor %}</nav>
+<section class="panel range-panel">
+<h2>HU（2人）・push/fold限定モデル</h2>
+<p class="small">{{ 'トーナメント終盤のHUを学ぶ入口。多人数卓やICMの表ではありません。' if fmt == 'mtt' else 'リングで使う前に、HU限定モデルで頻度を学ぶ練習。レーキ込みのリング用レンジではありません。' }}</p>
+<form method="get" class="range-controls"><input type="hidden" name="format" value="{{ fmt }}"><label>深さ<select name="stack">{% for n in [5,8,10] %}<option {{ 'selected' if stack == n }} value="{{ n }}">{{ n }}bb</option>{% endfor %}</select></label><label>ポジション<select name="position"><option value="BTN/SB" {{ 'selected' if position == 'BTN/SB' }}>BTN / SB：先に判断</option><option value="BB" {{ 'selected' if position == 'BB' }}>BB：オールインに対応</option></select></label><button class="btn" type="submit">表示する</button></form>
+<p class="range-legend"><span class="legend-action">■ {{ action }}</span> <span>■ フォールド</span> <span>▨ 混合</span></p>
+<label class="range-zoom"><input type="checkbox" data-range-zoom> マスを大きくする（横にスクロール）</label>
+<div class="range-scroll"><div class="range-grid" aria-label="169種類のハンドレンジ">
+{% for cell in cells %}<a class="range-cell {{ 'chosen' if cell.hand == hand }}" href="{{ url_for('arena.ranges', format=fmt, stack=stack, position=position, hand=cell.hand) }}#hand-detail" aria-label="{{ cell.hand }}、{{ action }} {{ (cell.freq*100)|round(2) }}%" data-hand="{{ cell.hand }}" data-frequency="{{ cell.freq }}"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="100" class="cell-fold"/><rect width="{{ cell.freq*100 }}" height="100" class="cell-action"/></svg><span>{{ cell.hand }}</span></a>{% endfor %}
+</div></div>
+<p class="small muted">斜め＝ペア · 右上の s＝同じマーク · 左下の o＝違うマーク。色の割合は勝率ではなく、行動を選ぶ頻度です。</p>
+<div class="hand-detail" id="hand-detail" tabindex="-1" aria-live="polite"><strong id="range-hand">{{ hand }}</strong><span id="range-detail" data-action="{{ action }}">{{ action }} {{ (freq*100)|round(2) }}% / フォールド {{ ((1-freq)*100)|round(2) }}%</span></div>
+<p class="small">全1,326コンボに対する{{ action }}頻度：{{ (share*100)|round(1) }}%。ペア6・同じマーク4・異なるマーク12コンボで重み付け。相手がオールインした後の実際のコール率を表すものではありません。</p>
+<form action="{{ url_for('arena.start') }}" method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="mode" value="range"><input type="hidden" name="format" value="{{ fmt }}"><input type="hidden" name="players" value="2"><input type="hidden" name="stack" value="{{ stack }}"><input type="hidden" name="position" value="{{ position }}"><button class="btn primary start-table">この条件を5問で覚える →</button></form>
+</section>
+<section class="panel"><h2>条件まで、セットで覚える</h2><p>bb＝ビッグブラインドを1とする単位。s＝同じマーク、o＝違うマーク、T＝10。レンジは、ある場面で選ぶ手札の集まりです。</p><p>スタックはブラインドを払う前。SBはオールインかフォールド、BBはコールかフォールドだけ。通常のレイズ・リンプ、アンティ付きの多人数戦、バブルの判断へそのまま広げないでください。</p><p>公開表の「No Ante」と照合しています。原CSV自体にはレーキ・賞金条件の記載がないため、それらの条件が異なる実戦への適用はしません。</p><p>データ：<a href="{{ source.url }}">HRC公式・Raw Data</a>（2026-11-08確認）。公開表は簡略版のため、原データの混合頻度と差がある場合があります。</p><p class="small muted">6・8人卓や、レーキ込みリングゲームのレンジは検証済みデータ未収録。確認前の表は暗記問題にしていません。</p><p><a href="https://upswingpoker.com/wp-content/uploads/2023/01/Preflop-Guide-for-RFI-v21-2023.pdf" target="_blank" rel="noopener noreferrer">コンボの数え方：Upswing公式ガイド（冊子p.4〜5） ↗</a></p><a href="https://help.gtowizard.com/study-mode/" rel="noopener noreferrer" target="_blank">GTO WizardのStudy画面で条件を確認する ↗</a></section>
+{% endblock %}

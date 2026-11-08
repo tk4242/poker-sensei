@@ -3,11 +3,14 @@
 {% block body %}
 <div class="login panel">
   <h1>ポーカー<span class="ok">先生</span></h1>
+  <p class="release-badge">TABLE LAB · 最大8人卓</p>
   <p class="muted">初心者から海外MTTインマネへ。今日も1問から。</p>
   <form method="post" class="stack">
     <input type="hidden" name="csrf" value="{{ csrf_token() }}">
     <label>ユーザー名 <input type="text" name="user" autocomplete="username" required autofocus></label>
     <label>パスワード <input type="password" name="password" autocomplete="current-password" required></label>
+    <label class="remember"><input type="checkbox" name="remember" value="yes" checked> この端末でログインを保持する（90日）</label>
+    <p class="small muted">自分の端末だけで使ってください。次回はホームのURLからすぐに再開できます。Cookieを消した場合は再ログインが必要です。</p>
     <p><button class="btn" type="submit">ログイン</button></p>
   </form>
 </div>

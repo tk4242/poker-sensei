@@ -33,7 +33,7 @@ def create_app(**overrides):
         APP_PASSWORD_HASH=cfg.APP_PASSWORD_HASH, DB_PATH=cfg.DB_PATH, TESTING=cfg.TESTING,
         ANTHROPIC_API_KEY=cfg.ANTHROPIC_API_KEY, COACH_MODEL=cfg.COACH_MODEL, COACH_EFFORT=cfg.COACH_EFFORT,
         SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax", SESSION_COOKIE_SECURE=cfg.SECURE_COOKIES,
-        SESSION_COOKIE_NAME="sensei_session", PERMANENT_SESSION_LIFETIME=timedelta(days=30),
+        SESSION_COOKIE_NAME="sensei_session", PERMANENT_SESSION_LIFETIME=timedelta(days=90),
         MAX_CONTENT_LENGTH=1024 * 1024,
     )
     # Caddy（リバースプロキシ）1段の後ろで動かす前提
@@ -43,6 +43,8 @@ def create_app(**overrides):
     app.before_request(auth.csrf_protect)
 
     from .views import coach_bp, learn_bp, main_bp, practice_bp, records_bp, train_bp, knowledge_bp
+    from .views.arena import bp as arena_bp
+    app.register_blueprint(arena_bp)
     app.register_blueprint(auth.bp)
     for bp in (main_bp, learn_bp, practice_bp, records_bp, coach_bp, train_bp, knowledge_bp):
         app.register_blueprint(bp)

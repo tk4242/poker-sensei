@@ -81,6 +81,8 @@ def login_required(view):
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
+    if session.get("user") and request.method == "GET":
+        return redirect(url_for("main.home"))
     if request.method == "POST":
         ip = client_ip()
         if locked(ip):
@@ -89,7 +91,7 @@ def login():
         if check_credentials(request.form.get("user", ""), request.form.get("password", "")):
             ex("DELETE FROM login_failures WHERE ip=?", (ip,))
             session.clear()
-            session.permanent = True
+            session.permanent = request.form.get("remember") == "yes"
             session["user"] = current_app.config["APP_USER"]
             nxt = request.args.get("next", "")
             # 自サイト内のパスだけ許可（オープンリダイレクト対策）

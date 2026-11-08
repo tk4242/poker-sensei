@@ -1,0 +1,87 @@
+[
+  {
+    "hero": [
+      "As",
+      "Ks"
+    ],
+    "villain": [
+      "Qh",
+      "Qd"
+    ],
+    "board": [
+      "Js",
+      "Ts",
+      "2c"
+    ],
+    "equity": 0.5606060606060606,
+    "runouts": 990
+  },
+  {
+    "hero": [
+      "Ad",
+      "Kd"
+    ],
+    "villain": [
+      "7s",
+      "7h"
+    ],
+    "board": [
+      "7c",
+      "2d",
+      "3s"
+    ],
+    "equity": 0.043434343434343436,
+    "runouts": 990
+  },
+  {
+    "hero": [
+      "Ah",
+      "Qh"
+    ],
+    "villain": [
+      "Kd",
+      "Ks"
+    ],
+    "board": [
+      "Qd",
+      "7c",
+      "2s"
+    ],
+    "equity": 0.20202020202020202,
+    "runouts": 990
+  },
+  {
+    "hero": [
+      "As",
+      "Ad"
+    ],
+    "villain": [
+      "Kc",
+      "Kd"
+    ],
+    "board": [
+      "7h",
+      "4s",
+      "2c"
+    ],
+    "equity": 0.9161616161616162,
+    "runouts": 990
+  },
+  {
+    "hero": [
+      "8c",
+      "9c"
+    ],
+    "villain": [
+      "Ad",
+      "As"
+    ],
+    "board": [
+      "6d",
+      "7h",
+      "2s"
+    ],
+    "equity": 0.3424242424242424,
+    "runouts": 990
+  }
+]
