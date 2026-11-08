@@ -106,6 +106,12 @@ def due_items(n):
         item = json.loads(r["snapshot"])
         if item["kind"] == "bank" and item["id"] in bank:
             item = bank[item["id"]]  # 問題集が直されていたら最新版で出す
+        if (item.get("gen") == "positions" and
+                ((item.get("diagram") or {}).get("n", 0) > 8 or "9人卓" in item.get("q", ""))):
+            # 過去の復習進捗は維持し、出題だけを現在の最大8人へ差し替える。
+            old_key = item["key"]
+            item = drills.gen_positions(random.Random(old_key))
+            item["key"] = old_key
         out.append(item)
     return out
 

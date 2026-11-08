@@ -231,7 +231,7 @@ def _order_text(n):
 
 
 def gen_positions(rng):
-    n = rng.choice([9, 9, 8, 6])
+    n = rng.choice([8, 8, 6])
     button = rng.randrange(n)
     layout = seat_layout(n, button)
     names = [layout[i] for i in range(n)]

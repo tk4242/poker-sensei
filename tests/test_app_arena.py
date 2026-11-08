@@ -21,6 +21,35 @@ class ArenaTests(unittest.TestCase):
             {'mode':'range','format':'mtt','players':'2','position':'BB','stack':'8'}, **kw)))
         return int(r.location.split('/')[-1])
 
+    def test_max_eight_players(self):
+        self.assertEqual(set(arena.POSITIONS), {2, 6, 8})
+        with self.assertRaises(ValueError):
+            arena.config_from(dict(mode='positions', format='mtt', players=9, stack=8, position='random'))
+        from sensei import drills
+        for seed in range(100):
+            item = drills.gen_positions(random.Random(seed))
+            self.assertNotIn('9人卓', item['q'])
+        # 古い9人卓の履歴は残すが、再出題には使わない。
+        from sensei.db import ex
+        with self.app.app_context():
+            rid = ex('INSERT INTO arena_runs(created,config,questions,answers) VALUES(?,?,?,?)',
+                     ('2026-11-08', json.dumps(dict(mode='positions',format='mtt',players=9)), '[]', '[]'))
+        tok = csrf(self.c.get('/table').text)
+        result = self.c.post(f'/table/run/{rid}/retry', data={'csrf':tok})
+        self.assertIn('/table?format=mtt', result.location)
+
+    def test_legacy_nine_player_review_uses_supported_table(self):
+        from sensei import drills, practice
+        with self.app.app_context():
+            old = drills.gen_positions(random.Random(1))
+            old['q'] = '9人卓の順番は？'
+            old['key'] = 'gen:positions:legacy-nine'
+            practice.update_srs(old, False)
+            new = practice.due_items(1)[0]
+            self.assertEqual(new['key'], old['key'])
+            self.assertNotIn('9人卓', new['q'])
+            self.assertLessEqual((new.get('diagram') or {}).get('n', 0), 8)
+
     def test_conditions_and_no_unsupported_ranges(self):
         for url in ['/table','/table?format=cash','/table/ranges','/table/ranges?format=cash&position=BB&stack=10']:
             self.assertEqual(self.c.get(url).status_code, 200)
@@ -91,7 +120,7 @@ class ArenaTests(unittest.TestCase):
         self.assertEqual(arena.category(0),0)
         self.assertEqual(arena.category(1),1)
         self.assertEqual(arena.post_order(2),['BB','BTN/SB'])
-        self.assertEqual(arena.post_order(9)[-1],'BTN')
+        self.assertEqual(arena.post_order(8)[-1],'BTN')
 
     def test_flop_exact_equities_and_allin_accounting(self):
         # 独立した全列挙の再計算。シードやモンテカルロ推定ではない。

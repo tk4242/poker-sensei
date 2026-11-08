@@ -59,6 +59,9 @@ def retry(run_id):
     if not run:
         abort(404)
     wrong = [it for it, a in zip(run['questions'], run['answers']) if not a['correct']]
+    if run['config']['players'] not in arena.POSITIONS:
+        flash('新しい卓は最大8人です。人数を選んで始めてください。', 'error')
+        return redirect(url_for('arena.index', format=run['config']['format']))
     rid = arena.create_run(run['config'], wrong or None)
     return redirect(url_for('arena.play', run_id=rid))
 

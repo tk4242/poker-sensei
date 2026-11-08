@@ -13,7 +13,6 @@ POSITIONS = {
     2: ['BTN/SB', 'BB'],
     6: ['UTG', 'HJ', 'CO', 'BTN', 'SB', 'BB'],
     8: ['UTG', 'UTG+1', 'LJ', 'HJ', 'CO', 'BTN', 'SB', 'BB'],
-    9: ['UTG', 'UTG+1', 'UTG+2', 'LJ', 'HJ', 'CO', 'BTN', 'SB', 'BB'],
 }
 FORMATS = {'mtt': 'トーナメント', 'cash': 'リングゲーム'}
 MODES = {'positions': '席と動く順番', 'range': 'GTOレンジ暗記', 'flop': 'フロップのコール判断'}

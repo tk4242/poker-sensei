@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="sensei-ui-version" content="table-v2-8max">
 <meta name="robots" content="noindex, nofollow">
 <title>{% block title %}ポーカー先生{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="icon" href="{{ url_for('static', filename='icon.svg') }}" type="image/svg+xml">
 <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='studio.css', v='8max-2') }}">
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 {% macro navigation_links() -%}
 
     <a href="{{ url_for('main.home') }}">ホーム</a>

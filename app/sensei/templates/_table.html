@@ -1,20 +1,30 @@
 {% macro table(item) %}
 <svg class="poker-table" viewBox="0 0 420 470" role="img" aria-label="{{ item.players }}人卓。あなたは{{ item.hero }}。{{ item.street }}。{{ item.history|join('。') }}">
+  <defs>
+    <linearGradient id="rail-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9299b9"/><stop offset=".48" stop-color="#30334c"/><stop offset="1" stop-color="#62698d"/></linearGradient>
+    <radialGradient id="felt-gradient"><stop offset="0" stop-color="#213b65"/><stop offset="1" stop-color="#11223f"/></radialGradient>
+    <pattern id="felt-pattern" width="38" height="38" patternUnits="userSpaceOnUse"><path d="M19 6 29 19 19 32 9 19Z" fill="none" stroke="#ffffff" stroke-opacity=".025"/></pattern>
+  </defs>
+  <ellipse class="table-shadow" cx="210" cy="224" rx="166" ry="178"/>
   <ellipse class="table-rail" cx="210" cy="218" rx="164" ry="175"/>
   <ellipse class="table-felt" cx="210" cy="218" rx="150" ry="160"/>
+  <ellipse cx="210" cy="218" rx="148" ry="158" fill="url(#felt-pattern)"/>
   <ellipse class="table-line" cx="210" cy="218" rx="126" ry="136"/>
   <text class="felt-brand" x="210" y="150" text-anchor="middle">POKER SENSEI</text>
   {% if item.pot is not none %}<g class="pot-chip"><rect x="158" y="169" width="104" height="29" rx="14"/><text x="210" y="189" text-anchor="middle">POT {{ item.pot }} bb</text></g>{% endif %}
   {% for card in item.board_view %}<g class="dealt board-card card-{{ loop.index }}" transform="translate({{ 141+loop.index0*47 }},216)"><rect width="43" height="60" rx="5"/><text x="21" y="26" text-anchor="middle" class="{{ 'red-card' if card.red }}">{{ card.rank }}</text><text x="21" y="48" text-anchor="middle" class="{{ 'red-card' if card.red }}">{{ card.suit }}</text></g>{% endfor %}
   {% if not item.board %}<text class="street-label" x="210" y="246" text-anchor="middle">PRE FLOP</text>{% endif %}
   {% for seat in item.seats %}<g class="seat {{ 'hero-seat' if seat.hero }} {{ 'folded-seat' if seat.folded }}" transform="translate({{ seat.x }},{{ seat.y }})">
-    <rect x="-36" y="-23" width="72" height="47" rx="12"/>
-    <text class="seat-name" x="0" y="-4" text-anchor="middle">{{ seat.pos }}</text>
-    <text class="seat-stack" x="0" y="15" text-anchor="middle">{{ 'FOLD' if seat.folded else seat.stack|string ~ ' bb' }}</text>
-    {% if seat.button %}<circle class="dealer" cx="40" cy="-23" r="10"/><text class="dealer-text" x="40" y="-19" text-anchor="middle">D</text>{% endif %}
-    {% if seat.hero %}<text class="you-label" x="0" y="-32" text-anchor="middle">YOU</text>{% endif %}
+    <circle class="avatar-ring" cx="0" cy="-26" r="22"/>
+    <circle class="avatar-head" cx="0" cy="-31" r="7"/>
+    <path class="avatar-body" d="M-13,-12 C-13,-28 13,-28 13,-12 Z"/>
+    <rect x="-38" y="-7" width="76" height="38" rx="8"/>
+    <text class="seat-name" x="0" y="9" text-anchor="middle">{{ seat.pos }}</text>
+    <text class="seat-stack" x="0" y="25" text-anchor="middle">{{ 'FOLD' if seat.folded else seat.stack|string ~ ' bb' }}</text>
+    {% if seat.button %}<circle class="dealer" cx="29" cy="-35" r="10"/><text class="dealer-text" x="29" y="-31" text-anchor="middle">D</text>{% endif %}
+    {% if seat.hero %}<text class="you-label" x="0" y="-55" text-anchor="middle">あなた</text>{% endif %}
   </g>{% endfor %}
   {% for seat in item.seats %}{% if seat.bet %}<circle class="chip-fly" cx="{{ seat.x }}" cy="{{ seat.y }}" r="7" data-chip aria-hidden="true"/>{% endif %}{% endfor %}
-  {% for card in item.cards_view %}<g class="dealt hero-hole card-{{ loop.index }}" transform="translate({{ 159+loop.index0*53 }},402)"><rect width="49" height="62" rx="6"/><text x="24" y="28" text-anchor="middle" class="{{ 'red-card' if card.red }}">{{ card.rank }}</text><text x="24" y="52" text-anchor="middle" class="{{ 'red-card' if card.red }}">{{ card.suit }}</text></g>{% endfor %}
+  {% for card in item.cards_view %}<g class="dealt hero-hole card-{{ loop.index }}" transform="translate({{ 159+loop.index0*53 }},406)"><rect width="49" height="62" rx="6"/><text x="24" y="28" text-anchor="middle" class="{{ 'red-card' if card.red }}">{{ card.rank }}</text><text x="24" y="52" text-anchor="middle" class="{{ 'red-card' if card.red }}">{{ card.suit }}</text></g>{% endfor %}
 </svg>
 {% endmacro %}
