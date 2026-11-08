@@ -11,6 +11,7 @@
 <div class="home-progress"><div><span>今日の練習</span><strong>{{ today_n }} <small>/ {{ quota }}問</small></strong>{{ meter(today_n, quota) }}</div><div><span>連続ノルマ達成</span><strong>{{ streak }} <small>日</small></strong></div></div>
 <section class="panel learning-start">
   <p class="eyebrow">YOUR NEXT STEP</p><h2>今日の小さな一歩</h2>
+  {% if table_due %}<p>卓で間違えた問題が {{ table_due }} 問。前に迷った場面を、卓でもう一度。</p><form method="post" action="{{ url_for('arena.review') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn primary">卓の間違いを復習する</button></form>{% endif %}
   {% if due %}<p>復習待ちが {{ due }} 問。前に迷った問題を、自信に変えよう。</p><a class="btn primary" href="{{ url_for('practice.review') }}">間違えた問題を復習する</a>
   {% elif cur.stage == 0 %}<p>はじめてなら、席と順番から。自分の番がわかると、卓を見るのが楽しくなります。</p><a class="btn" href="{{ url_for('practice.quick', focus='positions') }}">席と順番を5問</a>
   {% else %}<p>Stage {{ cur.stage }}「{{ cur.title }}」の続きへ。</p><a class="btn" href="{{ url_for('learn.stage', n=cur.stage) }}">今のステージを学ぶ</a>{% endif %}

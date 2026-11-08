@@ -117,7 +117,7 @@ def mental():
                     awake_end = 0
                 if awake_end >= 16:
                     warn.append(f"終了時には起床から約{awake_end:.0f}時間。16時間を超えるとティルトが増え成績も悪化した研究があります。短くするか別の日に。")
-                if len(data["checked"]) < len(WARMUP):
+                if not set(WARMUP).issubset(data["checked"]):
                     warn.append("ウォームアップが全部そろっていません。座る前に残りを片づけましょう。")
                 flash(" ".join(warn) if warn else "準備完了！ Aゲームで行きましょう。", "error" if warn else "ok")
             else:

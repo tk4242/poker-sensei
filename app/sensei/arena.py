@@ -213,7 +213,7 @@ def stats(fmt):
 
 
 def recent_runs(fmt):
-    rows = q('SELECT * FROM arena_runs ORDER BY id DESC LIMIT 30')
+    rows = q('SELECT * FROM arena_runs ORDER BY id DESC')
     out = []
     for row in rows:
         cfg = json.loads(row['config'])
@@ -226,3 +226,33 @@ def recent_runs(fmt):
         if len(out) == 5:
             break
     return out
+
+
+def review_groups(fmt=None):
+    """最新回答が誤答の卓問題。回答時系列で解消し、形式と条件は混ぜない。"""
+    latest = {}
+    for row in q("SELECT id, mode, qkey, correct FROM attempts WHERE mode IN ('arena-mtt','arena-cash') ORDER BY id"):
+        if fmt is None or row['mode'] == 'arena-' + fmt:
+            latest[(row['mode'], row['qkey'])] = dict(row)
+    pending = {key: row for key, row in latest.items() if not row['correct']}
+    snapshots = {}
+    for row in q('SELECT config, questions FROM arena_runs ORDER BY id DESC'):
+        cfg = json.loads(row['config'])
+        if cfg['players'] not in POSITIONS:
+            continue
+        for item in json.loads(row['questions']):
+            key = ('arena-' + cfg['format'], item['key'])
+            if key in pending and key not in snapshots:
+                snapshots[key] = (cfg, item)
+    groups = {}
+    for key in sorted(snapshots, key=lambda k: pending[k]['id']):
+        cfg, item = snapshots[key]
+        group_key = json.dumps(cfg, sort_keys=True)
+        group = groups.setdefault(group_key, dict(config=cfg, questions=[], count=0))
+        group['questions'].append(item)
+        group['count'] += 1
+    return list(groups.values())
+
+
+def review_count(fmt=None):
+    return sum(group['count'] for group in review_groups(fmt))
