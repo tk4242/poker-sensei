@@ -32,3 +32,13 @@
 - https://blog.gtowizard.com/what-is-expected-value-in-poker/
 - https://blog.gtowizard.com/what-are-pot-odds-in-poker/
 - https://help.gtowizard.com/study-mode/
+
+## 2026-11-08 Codex：卓トレーニング / レンジ暗記
+- 対象：`sensei/arena.py`、`templates/arena*.html`、`templates/_table.html`、`content/ranges/`。
+- 独立したfact-checkerによる原典照合：HRCの全1,014頻度（5/8/10bb×SB/BB×169）を公式Raw Dataと比較して一致。混合を過半数で純粋戦略に丸めていない。
+- HUのstack/pot（SB判断1.5bb、BB判断S+1bb）、2/6/8/9人のpre/post行動順、手札・169表の対応を確認。
+- 5つのフロップ対決の全990runoutsを `poker_math.equity` で独立に再計算。数値一致。元ポット6/6.5、bet3/6/9のEV・必要EQを検算。
+- 修正指摘を反映：多人数フロップのSB 0.5bbを座席の投資と履歴へ追加。「必要勝率」を引き分けの取り分込みの「必要エクイティ」に訂正。
+- 追加対決 8c9c vs AdAs / 6d7h2s：EQ34.242424%。元ポット6bbでcall EV +1.1091/+0.1636/-0.7818bb、6.5bbで+1.2803/+0.3348/-0.6106bb（bet3/6/9）。価格でcall/foldが変わることを確認。
+- 最終判定：教材ファクトチェック合格。一般のMTT/リングへ限定HU解を適用しない表示、原CSVの条件メタデータ不足の表示を維持。6/8/9人のレンジやGTOフロップ頻度は未検証のため収録しない。架空のEV損失を表示しない。
+- 原データの明示的なオープンライセンスは未確認。正確性の検証と利用許諾の判断は区別。ART/GTOのデータは採用しない。

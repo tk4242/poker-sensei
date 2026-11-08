@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}卓トレーニング | ポーカー先生{% endblock %}
+{% block body %}
+<div class="table-heading"><p class="eyebrow">PLAY · LEARN · REPEAT</p><h1>卓で、ひとつずつ。</h1><p class="muted">5問の小さな練習。選んだら、その場で理由がわかる。</p></div>
+<nav class="format-tabs" aria-label="ゲーム形式">{% for key, title in formats.items() %}<a class="{{ 'selected' if key == fmt }}" href="{{ url_for('arena.index', format=key) }}" {% if key == fmt %}aria-current="page"{% endif %}>{{ title }}</a>{% endfor %}</nav>
+<div class="table-metrics"><span>この形式の練習 <b>{{ stats.n }}問</b></span><span>正答率 <b>{{ (stats.c / stats.n * 100)|round|int ~ '%' if stats.n else '—' }}</b></span></div>
+{% if recent %}<details class="panel"><summary>前の練習を再開・振り返る</summary><ul class="list">{% for r in recent %}<li><a href="{{ url_for('arena.play', run_id=r.id) }}">{{ r.title }}：{{ '結果を見る' if r.complete else '続きから' }}</a> <span class="small muted">{{ r.answered }}/{{ r.total }}問・正解{{ r.correct }}問</span></li>{% endfor %}</ul></details>{% endif %}
+<form action="{{ url_for('arena.start') }}" method="post" class="panel table-setup" id="table-setup">
+<input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="format" value="{{ fmt }}">
+<h2>今日は何を鍛える？</h2>
+<div class="mode-options">
+{% for key,title,icon,desc in [('positions','席と動く順番','◎','2・6・8・9人卓で、自分の番をつかむ'),('range','GTOレンジ暗記','▦','HUの公開解で、降りる・進む・混ぜるを覚える'),('flop','フロップの判断','♠','見えている手札と数字で、コールを判断')] %}
+<label class="mode-option"><input type="radio" name="mode" value="{{ key }}" {{ 'checked' if key == 'positions' }}><span class="mode-icon">{{ icon }}</span><span><strong>{{ title }}</strong><small>{{ desc }}</small></span></label>
+{% endfor %}
+</div>
+<div class="setup-fields">
+<label>卓の人数<select name="players" id="table-players">{% for n in positions %}<option value="{{ n }}" {{ 'selected' if n == 6 }}>{{ n }}人 {{ '（HU）' if n == 2 }}</option>{% endfor %}</select></label>
+<label>自分のポジション<select name="position" id="table-position"><option value="random">いろいろ練習</option>{% for n,ps in positions.items() %}<optgroup label="{{ n }}人卓" data-players="{{ n }}">{% for p in ps %}<option value="{{ p }}">{{ p }}</option>{% endfor %}</optgroup>{% endfor %}</select></label>
+<label>HUレンジの深さ<select name="stack"><option value="5">5bb</option><option value="8" selected>8bb</option><option value="10">10bb</option></select></label>
+</div>
+<p class="small muted" id="setup-note">席の名前を見ながら練習できます。6人卓の最初の席はUTG（LJとも表記）。</p>
+<details class="model-note"><summary>練習の条件と、収録範囲</summary>
+<p>bbはビッグブラインドを1とする単位。ポジションは席の名前、BTNは配り手のボタン、SB/BBはブラインドを払う席です。</p><p>GTOレンジはHRCのHU push/fold限定モデル。SBのオールイン／フォールド、BBのコール／フォールドだけを扱います。6・8・9人卓のGTOレンジは未収録です。</p>
+<p>フロップは相手の2枚を公開した計算練習です。ポジションはBTN（2人卓ではBTN/SB）固定。勝率を推測する問題やGTOソルバーの解ではありません。</p>
+<p>{{ '賞金差・バブル・アンティ付きの判断は対象外です。' if fmt == 'mtt' else 'HUモデルはレーキ込みのリング戦略ではありません。フロップの計算もレーキなしの教材です。' }} ラベルで「GTO・限定モデル」「ルール練習」「計算練習」を区別します。</p>
+</details>
+<button type="submit" class="btn primary start-table">5問、はじめる →</button>
+</form>
+<div class="table-links"><a href="{{ url_for('arena.ranges', format=fmt) }}">▦ レンジ表で予習</a><a href="{{ url_for('learn.basics') }}">？ オッズ・EVの基礎</a><a href="{{ url_for('train.index') }}">⚔ これまでのトレーニング</a></div>
+{% endblock %}

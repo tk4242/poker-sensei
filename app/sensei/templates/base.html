@@ -7,12 +7,15 @@
 <title>{% block title %}ポーカー先生{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="icon" href="{{ url_for('static', filename='icon.svg') }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
 </head>
 <body>
 {% macro navigation_links() -%}
 
     <a href="{{ url_for('main.home') }}">ホーム</a>
     <a href="{{ url_for('learn.stages') }}">カリキュラム</a>
+    <a href="{{ url_for('arena.index') }}">卓トレ</a>
+    <a href="{{ url_for('arena.ranges') }}">レンジ</a>
     <a href="{{ url_for('train.index') }}">トレーニング</a>
     <a href="{{ url_for('practice.menu') }}">練習</a>
     <a href="{{ url_for('train.quest') }}">クエスト</a>
@@ -46,12 +49,13 @@
 <nav class="bottom">
   <a href="{{ url_for('main.home') }}" class="{{ 'on' if ep == 'main.home' }}"><b>⌂</b>ホーム</a>
   <a href="{{ url_for('learn.stages') }}" class="{{ 'on' if ep.startswith('learn.') }}"><b>☰</b>学ぶ</a>
-  <a href="{{ url_for('train.index') }}" class="{{ 'on' if ep.startswith('train.') }}"><b>⚔</b>たたかう</a>
-  <a href="{{ url_for('practice.menu') }}" class="{{ 'on' if ep.startswith('practice.') }}"><b>♠</b>練習</a>
+  <a href="{{ url_for('arena.index') }}" class="{{ 'on' if ep.startswith('arena.') and ep != 'arena.ranges' }}"><b>♠</b>卓トレ</a>
+  <a href="{{ url_for('arena.ranges') }}" class="{{ 'on' if ep == 'arena.ranges' }}"><b>▦</b>レンジ</a>
   <a href="{{ url_for('records.index') }}" class="{{ 'on' if ep.startswith('records.') }}"><b>✎</b>記録</a>
   <a href="{{ url_for('coach.index') }}" class="{{ 'on' if ep.startswith('coach.') }}"><b>☺</b>コーチ</a>
 </nav>
 {% endif %}
 <script src="{{ url_for('static', filename='app.js') }}"></script>
+<script src="{{ url_for('static', filename='table.js') }}"></script>
 </body>
 </html>

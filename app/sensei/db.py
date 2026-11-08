@@ -6,6 +6,9 @@ from datetime import datetime, timedelta
 from flask import current_app, g
 
 SCHEMA = """
+CREATE TABLE IF NOT EXISTS arena_runs(
+  id INTEGER PRIMARY KEY, created TEXT NOT NULL, config TEXT NOT NULL,
+  questions TEXT NOT NULL, answers TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS attempts(
   id INTEGER PRIMARY KEY, ts TEXT NOT NULL, mode TEXT NOT NULL, kind TEXT NOT NULL,
   qkey TEXT NOT NULL, tag TEXT NOT NULL, stage INTEGER, correct INTEGER NOT NULL,
