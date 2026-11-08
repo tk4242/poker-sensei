@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="sensei-ui-version" content="table-v2-8max">
+<meta name="sensei-ui-version" content="usability-v3">
 <meta name="robots" content="noindex, nofollow">
 <title>{% block title %}ポーカー先生{% endblock %}</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='usability-v3') }}">
 <link rel="icon" href="{{ url_for('static', filename='icon.svg') }}" type="image/svg+xml">
-<link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='studio.css', v='8max-2') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='table.css', v='usability-v3') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='studio.css', v='usability-v3') }}">
 </head>
 <body class="{% block body_class %}{% endblock %}">
 {% macro navigation_links() -%}
@@ -57,7 +57,7 @@
   <a href="{{ url_for('coach.index') }}" class="{{ 'on' if ep.startswith('coach.') }}"><b>☺</b>コーチ</a>
 </nav>
 {% endif %}
-<script src="{{ url_for('static', filename='app.js') }}"></script>
-<script src="{{ url_for('static', filename='table.js') }}"></script>
+<script src="{{ url_for('static', filename='app.js', v='usability-v3') }}"></script>
+<script src="{{ url_for('static', filename='table.js', v='usability-v3') }}"></script>
 </body>
 </html>

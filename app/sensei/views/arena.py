@@ -10,7 +10,7 @@ def index():
     if fmt not in arena.FORMATS:
         abort(404)
     return render_template('arena.html', fmt=fmt, formats=arena.FORMATS, positions=arena.POSITIONS,
-                           stats=arena.stats(fmt), modes=arena.MODES, recent=arena.recent_runs(fmt))
+                           review_count=arena.review_count(fmt), stats=arena.stats(fmt), modes=arena.MODES, recent=arena.recent_runs(fmt))
 
 
 @bp.route('/start', methods=['POST'])
@@ -85,3 +85,17 @@ def ranges():
     return render_template('arena_ranges.html', fmt=fmt, formats=arena.FORMATS, stack=stack,
                            position=position, cells=cells, hand=hand, freq=fs[hand], share=share,
                            action='オールイン' if position == 'BTN/SB' else 'コール', source=arena.HRC)
+
+
+@bp.route('/review', methods=['POST'])
+def review():
+    fmt = request.form.get('format') or None
+    if fmt is not None and fmt not in arena.FORMATS:
+        abort(400)
+    groups = arena.review_groups(fmt)
+    if not groups:
+        flash('卓の復習待ちはありません。新しい5問に挑戦しましょう。', 'ok')
+        return redirect(url_for('arena.index', format=fmt or 'mtt'))
+    group = groups[0]
+    rid = arena.create_run(group['config'], group['questions'][:5])
+    return redirect(url_for('arena.play', run_id=rid))

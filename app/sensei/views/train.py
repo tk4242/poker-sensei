@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, flash, redirect, render_template, request, session, url_for
 
 from .. import progress, train
 
@@ -23,10 +23,16 @@ def index():
 def fight(topic):
     if topic not in train.TOPICS:
         abort(404)
+    previous_battle = session.get("battle")
     b = _battle(topic)
     qid, item = train.new_question(topic, avoid=b["recent"])
     if not qid:
-        return render_template("error.html", message="このテーマの問題がまだありません。"), 404
+        if previous_battle is None:
+            session.pop("battle", None)
+        else:
+            session["battle"] = previous_battle
+        flash("このテーマの問題はまだありません。知識ページで検証済みカードを確認・承認すると練習できます。", "ok")
+        return redirect(url_for("knowledge.index"))
     return render_template("battle.html", t=train.TOPICS[topic], topic=topic, b=b, qid=qid, item=item,
                            st=train.status(), msgs=[f"{train.TOPICS[topic]['monster']} Lv{b['mlv']} が あらわれた！"]
                            if b["n"] == 0 else [])

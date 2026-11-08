@@ -1,6 +1,6 @@
 from flask import Blueprint, Response, flash, redirect, render_template, request, url_for
 
-from .. import content, practice, progress, summary, train
+from .. import arena, content, practice, progress, summary, train
 from ..db import get_setting, set_setting
 
 bp = Blueprint("main", __name__)
@@ -37,7 +37,7 @@ def home():
     recent_acc = (sum(d["c"] for d in recent) / rn) if rn else None
     streak = practice.streak(quota)
     handover = content.extract_section(content.learner_file("active.md"), "## 再発防止")
-    return render_template("home.html", quota=quota, due=due, today_n=today_n, steps=steps, cur=cur,
+    return render_template("home.html", quota=quota, due=due, table_due=arena.review_count(), today_n=today_n, steps=steps, cur=cur,
                            streak=streak, days=days, weak=weak, totals=practice.totals(),
                            cheer=cheer(today_n, quota, streak, recent_acc), st=train.status(),
                            qo=progress.quest_overview(),

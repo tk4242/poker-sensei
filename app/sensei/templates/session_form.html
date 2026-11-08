@@ -30,8 +30,8 @@
   <label>出たティルトの種類（Tendler の7種）</label>
   <div class="checks">{% for t in tilt_types %}<label><input type="checkbox" name="tilt_types" value="{{ t }}" {{ 'checked' if row and t in (row.tilt_types or '') }}> {{ t }}</label>{% endfor %}</div>
   <label>相手のタイプ分け（Stage 5 の合格ラインで数えます）</label>
-  <div class="checks">{% for t in opp_types %}<label><input type="checkbox" name="opp_types" value="{{ t }}" {{ 'checked' if row and t in (row.opponents or '') }}> {{ t }}</label>{% endfor %}</div>
-  <label>相手についてのメモ<input type="text" name="opponents" placeholder="例: 左の人はリバーの大きいベットが全部バリューだった"></label>
+  <div class="checks">{% for t in opp_types %}<label><input type="checkbox" name="opp_types" value="{{ t }}" {{ 'checked' if t in selected_opponents }}> {{ t }}</label>{% endfor %}</div>
+  <label>相手についてのメモ<input type="text" name="opponents" value="{{ opponent_note }}" placeholder="例: 左の人はリバーの大きいベットが全部バリューだった"></label>
   <label>良かった判断<textarea name="good">{{ row.good if row else '' }}</textarea></label>
   <label>改善したい判断<textarea name="improve">{{ row.improve if row else '' }}</textarea></label>
   <label>メモ<textarea name="notes">{{ row.notes if row else '' }}</textarea></label>

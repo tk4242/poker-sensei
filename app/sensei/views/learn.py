@@ -1,3 +1,5 @@
+import math
+
 from flask import Blueprint, abort, render_template, request
 
 from .. import content, drills, progress
@@ -28,7 +30,7 @@ def lesson(lesson_id):
         abort(404)
     diagrams = []
     if le.get("diagram"):
-        for n in (9, 8, 6):
+        for n in (8, 6):
             diagrams.append({"n": n, "button": 0, "labels": [drills.seat_layout(n, 0)[i] for i in range(n)],
                              "show_labels": True, "marks": {}})
     done = progress.lessons_done().get(lesson_id)
@@ -73,7 +75,7 @@ def cheatsheet():
              ("主要公式", content.extract_section(terms, "## 4.")),
              ("初心者が最初に覚える10原則", content.extract_section(strat, "## 5."))]
     diagrams = [{"n": n, "button": 0, "labels": [drills.seat_layout(n, 0)[i] for i in range(n)],
-                 "show_labels": True, "marks": {}} for n in (9, 6)]
+                 "show_labels": True, "marks": {}} for n in (8, 6)]
     return render_template("cheatsheet.html", parts=[(t, content.render_md(b)) for t, b in parts],
                            diagrams=diagrams)
 
@@ -84,10 +86,19 @@ def tools():
     res = {}
     f = request.form
     error = None
+
+    def number(name, *, positive=False, maximum=None):
+        value = float(f[name])
+        if not math.isfinite(value) or value < 0 or (positive and value == 0):
+            raise ValueError
+        if maximum is not None and value > maximum:
+            raise ValueError
+        return value
+
     try:
         kind = f.get("kind")
         if kind == "pot":
-            pot, bet = float(f["pot"]), float(f["bet"])
+            pot, bet = number("pot", positive=True), number("bet", positive=True)
             res = {"kind": kind, "pot_odds": pm.pot_odds(pot + bet, bet), "mdf": pm.mdf(pot, bet),
                    "alpha": pm.bluff_breakeven(pot, bet), "pot": pot, "bet": bet}
         elif kind == "outs":
@@ -98,9 +109,9 @@ def tools():
                    "two": pm.outs_probability(outs, 2), "r1": pm.rule_of_2_and_4(outs, 1),
                    "r2": pm.rule_of_2_and_4(outs, 2)}
         elif kind == "spr":
-            res = {"kind": kind, "spr": pm.spr(float(f["stack"]), float(f["pot"]))}
+            res = {"kind": kind, "spr": pm.spr(number("stack"), number("pot", positive=True))}
         elif kind == "ev":
-            res = {"kind": kind, "ev": pm.ev(float(f["p"]) / 100, float(f["win"]), float(f["lose"]))}
+            res = {"kind": kind, "ev": pm.ev(number("p", maximum=100) / 100, number("win"), number("lose"))}
         elif kind == "equity":
             hands = [pm.parse_cards(h) for h in f["hands"].split()]
             board = pm.parse_cards(f.get("board", "")) if f.get("board", "").strip() else []
@@ -109,7 +120,9 @@ def tools():
             eqs, n = pm.equity(hands, board, trials=8000)
             res = {"kind": kind, "rows": list(zip(f["hands"].split(), eqs)), "n": n}
         elif kind == "avg":
-            entrants, start, remain, bb = (float(f[k]) for k in ("entrants", "start", "remain", "bb"))
+            entrants, start, remain, bb = (number(k, positive=True) for k in ("entrants", "start", "remain", "bb"))
+            if not entrants.is_integer() or not remain.is_integer() or remain > entrants:
+                raise ValueError
             avg = entrants * start / remain
             res = {"kind": kind, "avg": avg, "avg_bb": avg / bb}
     except (KeyError, ValueError, ZeroDivisionError):

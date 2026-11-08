@@ -19,6 +19,17 @@ OPP_TYPES = ["ルース・パッシブ（よくコール）", "タイト・パ�
              "タイト・アグレッシブ（固い・攻撃的）", "コーリングステーション", "ニット（極端に固い）", "不明"]
 
 
+def opponent_fields(value):
+    """Split saved type labels from the free-text note without discarding legacy text."""
+    value = value or ""
+    labels, separator, note = value.partition(" / ")
+    selected = [part for part in labels.split("、") if part in OPP_TYPES]
+    unknown = [part for part in labels.split("、") if part and part not in OPP_TYPES]
+    if unknown:
+        note = "、".join(unknown) + ((" / " + note) if separator else "")
+    return selected, note
+
+
 def num(v, cast=float):
     try:
         return cast(v) if v not in (None, "") else None
@@ -74,8 +85,9 @@ def session_form(sid=None):
             return redirect(url_for("coach.mental", mhh=1))
         flash("記録しました。おつかれさまでした！ 判断の質で振り返れたら今日は勝ちです。", "ok")
         return redirect(url_for("records.index"))
+    selected_opponents, opponent_note = opponent_fields(row["opponents"] if row else "")
     return render_template("session_form.html", row=row, venues=VENUES, tilt_types=TILT_TYPES, opp_types=OPP_TYPES,
-                           today=today())
+                           selected_opponents=selected_opponents, opponent_note=opponent_note, today=today())
 
 
 @bp.route("/records/hand/new", methods=["GET", "POST"])
