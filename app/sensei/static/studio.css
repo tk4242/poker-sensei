@@ -76,7 +76,7 @@ nav.bottom a.on::before { content: none; }
 .seat-stack { fill: #c4c9dc; font-size: 12px; font-variant-numeric: tabular-nums; }
 .seat .avatar-ring { fill: #30374d; stroke: #8891ac; stroke-width: 2; }
 .seat .avatar-head, .seat .avatar-body { fill: #aab3cb; }
-.hero-seat .seat .avatar-ring { fill: #493056; stroke: #e0a2f3; stroke-width: 3; }
+.hero-seat.seat .avatar-ring { fill: #493056; stroke: #e0a2f3; stroke-width: 3; }
 .hero-seat .avatar-head, .hero-seat .avatar-body { fill: #f0ccff; }
 .hero-seat rect { fill: #392742; stroke: #dfa7ee; stroke-width: 2; }
 .you-label { fill: #f4beff; font-size: 11px; letter-spacing: 1px; }
