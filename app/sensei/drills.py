@@ -450,8 +450,12 @@ def gen_ev(rng):
         s = f"{x:+.0f}"
         if s not in out:
             out.append(s)
+    offset = 25
     while len(out) < 4:
-        out.append(f"{v + 25 * len(out):+.0f}")
+        candidate = f"{v + offset:+.0f}"
+        if candidate not in out:
+            out.append(candidate)
+        offset += 25
     explain = f"EV = 勝率×獲得額 − 負ける確率×損失額 = {p}×{win} − {1 - p:.2f}×{lose} = {v:+.0f}。"
     return finish("ev", 2, "math", f"勝率 {p:.0%} で、勝てば +{win}、負ければ −{lose}。この行動の EV（期待値）は？",
                   out, f"{v:+.0f}", explain, "1回の結果ではなく「繰り返したときの平均」で判断する習慣の土台です。",
