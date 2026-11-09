@@ -22,7 +22,7 @@ class ArenaTests(unittest.TestCase):
         return int(r.location.split('/')[-1])
 
     def test_max_eight_players(self):
-        self.assertEqual(set(arena.POSITIONS), {2, 6, 8})
+        self.assertEqual(set(arena.POSITIONS), set(range(2, 9)))
         with self.assertRaises(ValueError):
             arena.config_from(dict(mode='positions', format='mtt', players=9, stack=8, position='random'))
         from sensei import drills

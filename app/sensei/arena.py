@@ -9,9 +9,15 @@ from . import drills
 from .db import ex, get_db, iso, now, q
 
 RANKS = 'AKQJT98765432'
+# CO/HJ/LJ are anchored to BTN; short-handed tables omit earlier seats.
+# https://www.pokerstars.com/poker/learn/news/poker-positions-seats-names-and-their-strategies/
 POSITIONS = {
     2: ['BTN/SB', 'BB'],
+    3: ['BTN', 'SB', 'BB'],
+    4: ['CO', 'BTN', 'SB', 'BB'],
+    5: ['HJ', 'CO', 'BTN', 'SB', 'BB'],
     6: ['UTG', 'HJ', 'CO', 'BTN', 'SB', 'BB'],
+    7: ['UTG', 'LJ', 'HJ', 'CO', 'BTN', 'SB', 'BB'],
     8: ['UTG', 'UTG+1', 'LJ', 'HJ', 'CO', 'BTN', 'SB', 'BB'],
 }
 FORMATS = {'mtt': 'トーナメント', 'cash': 'リングゲーム'}
@@ -82,7 +88,9 @@ def question(cfg, rng):
     n, mode = cfg['players'], cfg['mode']
     hero = rng.choice(POSITIONS[n]) if cfg['position'] == 'random' else cfg['position']
     item = dict(mode=mode, format=cfg['format'], players=n, hero=hero, board=[],
-                cards=[], street='プリフロップ', label='ルール練習', sources=[drills.SRC['positions2'], drills.SRC['tda']],
+                cards=[], street='プリフロップ', label='ルール練習', sources=[drills.SRC['positions2'],
+                {'title': 'Poker TDA Rules 2026 (Rule 36-C: Heads-up)', 'url': 'https://www.pokertda.com/view-poker-tda-rules/'},
+                {'title': 'PokerStars Learn: Position names', 'url': 'https://www.pokerstars.com/poker/learn/news/poker-positions-seats-names-and-their-strategies/'}],
                 condition='NLHE・アンティなし', history=[], hint='', frequencies=None)
     if mode == 'range':
         stack = cfg['stack']

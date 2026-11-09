@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}アクションの考え方 | ポーカー先生{% endblock %}
+{% block body %}
+<section class="panel">
+  <p class="eyebrow">ACTION LAB · {{ lessons|length }}つのステップ</p>
+  <h1>「何をする？」の前に、<br>「なぜ？」を学ぼう。</h1>
+  <p>フロップ、レンジ、サイズ、3ベット、HU、ブラフ。短い説明と具体例を読んで、1テーマ5問で判断の理由を確かめます。</p>
+  <p class="small muted">出典付きの基礎・考え方コースです。特定局面のGTO頻度や最適アクションを採点するソルバーではありません。</p>
+  {% if next_lesson %}<a class="btn primary" href="{{ url_for('learn.action_lesson', topic=next_lesson.topic) }}">{{ next_lesson.short }}から{{ '続ける' if lessons|selectattr('completed')|list else '始める' }} →</a>{% else %}<p class="ok">全{{ lessons|length }}テーマで直近4/5以上。迷ったテーマを振り返りましょう。</p>{% endif %}
+</section>
+<ol class="basics-path">
+{% for lesson in lessons %}
+  <li class="panel"><p class="eyebrow">STEP {{ loop.index }}</p><h2>{{ lesson.short }}</h2><p>{{ lesson.goal }}</p>
+    <p class="small muted">{% if lesson.score is not none %}直近 {{ lesson.score }}/5 · {{ '確認できました' if lesson.completed else '理由を見直そう' }}{% else %}まだ練習していません{% endif %}</p>
+    <a class="btn {{ 'ghost' if lesson.completed else 'primary' }}" href="{{ url_for('learn.action_lesson', topic=lesson.topic) }}">説明と例を読む →</a></li>
+{% endfor %}
+</ol>
+<p class="small muted">4/5はこのコースの復習目安です。GTO習熟度・実戦勝率を示す数字ではありません。誤答はホームの復習待ちに入ります。</p>
+<section class="panel"><h2>MTTの入賞に向けて、次に取り組むこと</h2><p>このコースで理由を言葉にしたら、大会特有の条件と実戦の振り返りへ進みましょう。</p><ul class="list"><li><a href="{{ url_for('learn.stage', n=4) }}">トーナメント戦略：スタック・バブル・ICMを学ぶ</a></li><li><a href="{{ url_for('records.hand_form') }}">迷ったハンドと、そのとき考えたレンジを記録する</a></li><li><a href="{{ url_for('learn.basics_lesson', topic='wizard') }}">条件をそろえてGTO Wizardの頻度・EVを比較する</a></li></ul><p class="small muted">6〜8人の詳細GTOレンジや任意のフロップを解くソルバーは未収録です。公式で確認した解の条件を、別の局面へそのまま移さないでください。</p></section>
+<div class="table-links"><a href="{{ url_for('learn.basics') }}">オッズ・期待値の基礎へ</a><a href="{{ url_for('arena.index') }}">卓を見て練習する</a><a href="{{ url_for('records.hand_form') }}">実戦の迷ったハンドを記録</a></div>
+{% endblock %}

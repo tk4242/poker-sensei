@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% from '_macros.html' import sources as source_links %}
+{% block title %}{{ lesson.short }} | アクション入門{% endblock %}
+{% block body %}
+<p><a href="{{ url_for('learn.action_course') }}">← アクション入門</a></p>
+<p class="eyebrow">STEP {{ topics.index(topic)+1 }} / {{ topics|length }} · ACTION LAB</p>
+<h1>{{ lesson.title }}</h1><p>{{ lesson.goal }}</p>
+<p class="small muted">基礎・思考手順の学習です。以下の例は説明用で、GTOソルバーによる最適アクションの指定ではありません。</p>
+{% for point in lesson.points %}<section class="panel"><h2>{{ point.title }}</h2><p>{{ point.text }}</p></section>{% endfor %}
+<section class="panel learning-start"><p class="eyebrow">一緒に考える</p><h2>{{ lesson.example.title }}</h2><p>{{ lesson.example.context }}</p>
+<details class="model-note"><summary>考える手順を開く</summary><ol>{% for step in lesson.example.steps %}<li>{{ step }}</li>{% endfor %}</ol></details>
+</section>
+<section class="panel"><h2>5問で確かめよう</h2><p>「わからない」も選べます。答えた後に理由と出典を確認し、誤答は復習へ。</p>
+<form method="post" action="{{ url_for('learn.action_practice', topic=topic) }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="btn primary start-table" type="submit">{{ lesson.short }}を5問練習</button></form></section>
+<details class="panel"><summary>このレッスンの出典</summary>{{ source_links(lesson_sources) }}<p class="small muted">2026-11-10確認。公式教材を参考にした独自の入門説明です。</p></details>
+<div class="table-links"><a href="{{ url_for('learn.basics') }}">数字が不安なら基礎コースへ</a><a href="{{ url_for('learn.glossary') }}">知らない言葉を用語集で調べる</a>{% if next_topic %}<a href="{{ url_for('learn.action_lesson', topic=next_topic) }}">次：{{ next_title }} →</a>{% endif %}</div>
+{% endblock %}

@@ -8,9 +8,10 @@
     const groups = [...position.querySelectorAll('optgroup')].map(g => g.cloneNode(true));
     function update() {
       const mode = setup.querySelector('[name=mode]:checked').value;
-      if (mode === 'range') players.value = '2';
-      // disabledのselectも送るためhiddenに置き換えず、選べるoptionだけを制限する。
-      [...players.options].forEach(o => o.disabled = mode === 'range' && o.value !== '2');
+      // 人数はユーザーの選択を保持。未収録のレンジを勝手にHUへ置き換えない。
+      const unavailable = mode === 'range' && players.value !== '2';
+      setup.querySelector('[type=submit]').disabled = unavailable;
+      setup.querySelector('[data-hu-option]').hidden = !unavailable;
       const previous = position.value;
       position.querySelectorAll('optgroup').forEach(g => g.remove());
       const group = groups.find(g => g.dataset.players === players.value);
@@ -20,11 +21,17 @@
       position.disabled = mode === 'flop';
       stack.disabled = mode !== 'range';
       document.querySelector('#setup-note').textContent = mode === 'range'
-        ? '収録済み：HU（2人）、5・8・10bb。SBのpush/foldとBBのcall/foldを学びます。'
+        ? unavailable
+          ? `${players.value}人のGTOレンジは未収録です。人数を保って「席と動く順番」「フロップの判断」を選ぶか、下のボタンでHUへ切り替えてください。`
+          : '収録済み：HU（2人）、5・8・10bb。SBのpush/foldとBBのcall/foldを学びます。'
         : mode === 'flop' ? 'あなたはBTN（2人卓ではBTN/SB）。相手の2枚を見ながら、オッズを判断する計算練習です。'
         : '席を確認して、次に動く人を選びましょう。フロップ前と後の両方を出題します。';
     }
     setup.addEventListener('change', e => { if (e.target.name === 'mode' || e.target === players) update(); });
+    setup.querySelector('[data-switch-hu]').addEventListener('click', () => {
+      players.value = '2';
+      update();
+    });
     update();
   }
   const motion = document.querySelector('[data-motion]');
