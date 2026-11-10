@@ -1,0 +1,886 @@
+{
+  "spots": [
+    {
+      "id": "decision-check",
+      "street": "フロップ",
+      "hero": "BB",
+      "cards": [
+        "Qs",
+        "Js"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 6.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 0,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BBの番。まだ誰もベットしていない"
+      ],
+      "prompt": "今回は追加チップを入れず、ハンドに残って相手へ順番を回します。どの操作？",
+      "choices": [
+        "フォールド",
+        "チェック",
+        "2bbベット",
+        "オールイン"
+      ],
+      "answer": 1,
+      "explain": "チェックはハンドを捨てずに順番を回す操作です。この手での最適戦略を判定したわけではありません。",
+      "hint": "追加チップなしで続ける操作を探そう。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-checkback",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "As",
+        "Qd"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 6.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 0,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック"
+      ],
+      "prompt": "BBがチェック。今回はベットせずターンへ進む操作を選んでください。",
+      "choices": [
+        "2bbベット",
+        "2bbコール",
+        "チェック",
+        "レイズ"
+      ],
+      "answer": 2,
+      "explain": "残る2人がチェックするとフロップのベッティングが終了します。BTNの後に行動する人はいません。",
+      "hint": "コールするベットは来ていません。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-bet",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "Kh",
+        "Qc"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 6.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 0,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック"
+      ],
+      "prompt": "今回は「最初の賭け額として2bbを出す」と決めました。正しい操作は？",
+      "choices": [
+        "2bbベット",
+        "2bbコール",
+        "合計2bbへレイズ",
+        "フォールド"
+      ],
+      "answer": 0,
+      "explain": "このストリートで誰もベットしていないため、最初に出す2bbはベットです。2bbが最適サイズという意味ではありません。",
+      "hint": "このストリートの最初の賭けです。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-call",
+      "street": "フロップ",
+      "hero": "BB",
+      "cards": [
+        "Kh",
+        "Jd"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 8.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 2,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 2bbベット"
+      ],
+      "prompt": "今回は相手の額に合わせてハンドを続けます。必要な操作は？",
+      "choices": [
+        "チェック",
+        "合計4bbへレイズ",
+        "フォールド",
+        "2bbコール"
+      ],
+      "answer": 3,
+      "explain": "まだフロップでチップを出していないBBは、2bbを追加してコールします。チェックではベットに対応できません。",
+      "hint": "相手に合わせる行動の名前は？",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-fold",
+      "street": "フロップ",
+      "hero": "BB",
+      "cards": [
+        "9s",
+        "8d"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 8.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 2,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 2bbベット"
+      ],
+      "prompt": "今回はこれ以上払わず、このハンドを放棄します。どの操作？",
+      "choices": [
+        "チェック",
+        "フォールド",
+        "2bbコール",
+        "合計4bbへレイズ"
+      ],
+      "answer": 1,
+      "explain": "放棄する操作はフォールドです。カードだけを見て必ず降りるべきという問題ではありません。",
+      "hint": "チェックとフォールドは別の行動です。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-checkraise",
+      "street": "フロップ",
+      "hero": "BB",
+      "cards": [
+        "7s",
+        "7d"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 8.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 2,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 2bbベット"
+      ],
+      "prompt": "今回はチェックレイズを行い、フロップの合計額を6bbにします。どの操作？",
+      "choices": [
+        "チェック",
+        "2bbコール",
+        "合計6bbへレイズ",
+        "6bbコール"
+      ],
+      "answer": 2,
+      "explain": "チェックした後に相手のベットを上げるのでチェックレイズ。BBの追加額は6bbです。セットを常時レイズすべきと断定する問題ではありません。",
+      "hint": "すでにチェックしています。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Poker Terms & Glossary",
+          "url": "https://www.pokerstars.com/poker/learn/strategies/poker-terms-glossary/"
+        },
+        {
+          "title": "Poker TDA 2026 Rules 43–45 / 49",
+          "url": "https://www.pokertda.com/view-poker-tda-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-minraise",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "As",
+        "Kh"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 8.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 0,
+        "BB": 2
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB 2bbベット"
+      ],
+      "prompt": "十分な残りチップがあります。オールインではない最小のフルレイズは合計何bb？",
+      "choices": [
+        "合計4bbへレイズ",
+        "合計3bbへレイズ",
+        "合計2.5bbへレイズ",
+        "合計2bbへレイズ"
+      ],
+      "answer": 0,
+      "explain": "最初のベット2bb以上の増分が必要です。2＋2＝4bbが最小のフルレイズ。戦略上の推奨額ではありません。",
+      "hint": "相手の2bbに、最低2bbを上乗せ。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "Poker TDA 2026 Rules 43–45 / 49",
+          "url": "https://www.pokertda.com/view-poker-tda-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-flop3bet",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "Kh",
+        "Ks"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 14.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 2,
+        "BB": 6
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 2bbベット",
+        "BB 合計6bbへチェックレイズ"
+      ],
+      "prompt": "今回はフロップで再レイズ（3ベット）します。オールインではない最小のフルレイズは？",
+      "choices": [
+        "合計8bb",
+        "合計12bb",
+        "合計18bb",
+        "合計10bb"
+      ],
+      "answer": 3,
+      "explain": "BBのレイズ増分は6−2＝4bb。次は6＋4＝合計10bb以上。BTNはすでに2bb出しているので、追加は8bbです。",
+      "hint": "「現在6bbの2倍」ではなく直前の増分を使う。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "Poker TDA 2026 Rules 43–45 / 49",
+          "url": "https://www.pokertda.com/view-poker-tda-rules/"
+        },
+        {
+          "title": "GTO Wizard — Defending vs BB Check-Raise on Paired Flops",
+          "url": "https://blog.gtowizard.com/defending-vs-bb-check-raise-on-paired-flops/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-callraise",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "Kh",
+        "Qd"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 14.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 2,
+        "BB": 6
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 2bbベット",
+        "BB 合計6bbへチェックレイズ"
+      ],
+      "prompt": "今回はレイズせず、BBの合計6bbに合わせます。追加額は？",
+      "choices": [
+        "6bbコール",
+        "4bbコール",
+        "8bbコール",
+        "チェック"
+      ],
+      "answer": 1,
+      "explain": "BTNは2bb支払い済み。6−2＝追加4bbです。追加6bbではありません。",
+      "hint": "自分がすでに出した2bbを引く。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        },
+        {
+          "title": "Poker TDA 2026 Rules 43–45 / 49",
+          "url": "https://www.pokertda.com/view-poker-tda-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-betsize",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "Ac",
+        "Jd"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 6.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 0,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック"
+      ],
+      "prompt": "今回はポットの50%をベットすると決めました。正しい額は？",
+      "choices": [
+        "6.5bb",
+        "2bb",
+        "3.25bb",
+        "13bb"
+      ],
+      "answer": 2,
+      "explain": "6.5×0.5＝3.25bb。50%が最適であるという意味ではなく、サイズ指定を金額に変える練習です。",
+      "hint": "ベット前のポットを半分にする。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "GTO Wizard — What Are Pot Odds in Poker?",
+          "url": "https://blog.gtowizard.com/what-are-pot-odds-in-poker/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-potodds",
+      "street": "フロップ",
+      "hero": "BB",
+      "cards": [
+        "As",
+        "Qh"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 9.75,
+      "stack": 3.25,
+      "investments": {
+        "BTN": 3.25,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 3.25bbオールイン"
+      ],
+      "prompt": "相手1人、ICMなしのチップEV計算。3.25bbコールの必要エクイティは？",
+      "choices": [
+        "50%",
+        "33.3%",
+        "20%",
+        "25%"
+      ],
+      "answer": 3,
+      "explain": "3.25÷（6.5＋3.25＋3.25）＝25%。エクイティは引き分けの持分も含みます。手札の実際のエクイティはここでは求めません。",
+      "hint": "コール後のポット13bbで割る。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。 両者のフロップ開始残り3.25bb。ICMなし。コール後の追加ベットなし。",
+      "sources": [
+        {
+          "title": "GTO Wizard — What Are Pot Odds in Poker?",
+          "url": "https://blog.gtowizard.com/what-are-pot-odds-in-poker/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-evcall",
+      "street": "フロップ",
+      "hero": "BB",
+      "cards": [
+        "9s",
+        "8s"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 9.75,
+      "stack": 3.25,
+      "investments": {
+        "BTN": 3.25,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 3.25bbオールイン"
+      ],
+      "prompt": "計算練習：相手レンジに対する勝率を仮に30%と与えます（手札から算出した値ではありません）。引き分け・ICMなし。チップEVが高いのは？",
+      "choices": [
+        "フォールド",
+        "3.25bbコール",
+        "チェック",
+        "合計6.5bbへレイズ"
+      ],
+      "answer": 1,
+      "explain": "必要勝率25%を上回ります。コールEV＝0.30×9.75−0.70×3.25＝＋0.65bb。今からのフォールドEVは0。相手がオールインなのでレイズでさらに獲得できる額はありません。",
+      "hint": "仮定30%を必要25%と比較。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。 勝率30%は計算用仮定。引き分け・ICMなし、追加ベットなし。",
+      "sources": [
+        {
+          "title": "GTO Wizard — What Are Pot Odds in Poker?",
+          "url": "https://blog.gtowizard.com/what-are-pot-odds-in-poker/"
+        },
+        {
+          "title": "GTO Wizard — What is Expected Value in Poker?",
+          "url": "https://blog.gtowizard.com/what-is-expected-value-in-poker/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-evfold",
+      "street": "フロップ",
+      "hero": "BB",
+      "cards": [
+        "Js",
+        "Td"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 9.75,
+      "stack": 3.25,
+      "investments": {
+        "BTN": 3.25,
+        "BB": 0
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 3.25bbオールイン"
+      ],
+      "prompt": "計算練習：相手レンジに対する勝率を仮に20%と与えます（手札から算出した値ではありません）。引き分け・ICMなし。チップEVが高いのは？",
+      "choices": [
+        "フォールド",
+        "3.25bbコール",
+        "チェック",
+        "合計6.5bbへレイズ"
+      ],
+      "answer": 0,
+      "explain": "コールEV＝0.20×9.75−0.80×3.25＝−0.65bb。今からのフォールドEVは0なので、この限定計算ではフォールドです。",
+      "hint": "仮定20%は必要25%より低い。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。 勝率20%は計算用仮定。引き分け・ICMなし、追加ベットなし。",
+      "sources": [
+        {
+          "title": "GTO Wizard — What Are Pot Odds in Poker?",
+          "url": "https://blog.gtowizard.com/what-are-pot-odds-in-poker/"
+        },
+        {
+          "title": "GTO Wizard — What is Expected Value in Poker?",
+          "url": "https://blog.gtowizard.com/what-is-expected-value-in-poker/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-pre3bet",
+      "street": "プリフロップ",
+      "hero": "BB",
+      "cards": [
+        "As",
+        "5s"
+      ],
+      "board": [],
+      "pot": 4,
+      "stack": 40,
+      "investments": {
+        "BTN": 2.5,
+        "BB": 1,
+        "SB": 0.5
+      },
+      "history": [
+        "SB 0.5bb／BB 1bb",
+        "BTN 合計2.5bbへオープン",
+        "SB フォールド"
+      ],
+      "prompt": "今回は合計8bbへ3ベットすると決めました。BBが追加するチップは？",
+      "choices": [
+        "8bb",
+        "9bb",
+        "7bb",
+        "5.5bb"
+      ],
+      "answer": 2,
+      "explain": "支払い済みBB1bbを含め合計8bbにするので追加7bb。A5sを必ず3ベットする、8bbが最適という問題ではありません。",
+      "hint": "合計額から、すでに払ったBBを引く。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。SBの0.5bbはデッドマネー。アンティ・レーキなし。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        },
+        {
+          "title": "PokerStars — What is a 3-bet?",
+          "url": "https://www.pokerstars.com/poker/learn/news/what-is-a-3-bet-and-when-should-you-3-bet/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-precall",
+      "street": "プリフロップ",
+      "hero": "BTN",
+      "cards": [
+        "Ah",
+        "Qd"
+      ],
+      "board": [],
+      "pot": 11,
+      "stack": 40,
+      "investments": {
+        "BTN": 2.5,
+        "BB": 8,
+        "SB": 0.5
+      },
+      "history": [
+        "SB 0.5bb／BB 1bb",
+        "BTN 合計2.5bbへオープン",
+        "SB フォールド",
+        "BB 合計8bbへ3ベット"
+      ],
+      "prompt": "今回はBBの3ベットにコールします。追加額は？",
+      "choices": [
+        "8bb",
+        "5.5bb",
+        "10.5bb",
+        "3bb"
+      ],
+      "answer": 1,
+      "explain": "8−2.5＝追加5.5bb。自分の最初の2.5bbはすでにポットに入っています。",
+      "hint": "支払い済みの2.5bbを差し引く。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。SBの0.5bbはデッドマネー。アンティ・レーキなし。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "PokerStars — Texas Hold’em Rules",
+          "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+        },
+        {
+          "title": "PokerStars — What is a 3-bet?",
+          "url": "https://www.pokerstars.com/poker/learn/news/what-is-a-3-bet-and-when-should-you-3-bet/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-pre4bet",
+      "street": "プリフロップ",
+      "hero": "BTN",
+      "cards": [
+        "Ac",
+        "Ad"
+      ],
+      "board": [],
+      "pot": 11,
+      "stack": 40,
+      "investments": {
+        "BTN": 2.5,
+        "BB": 8,
+        "SB": 0.5
+      },
+      "history": [
+        "SB 0.5bb／BB 1bb",
+        "BTN 合計2.5bbへオープン",
+        "SB フォールド",
+        "BB 合計8bbへ3ベット"
+      ],
+      "prompt": "今回は4ベットします。十分なチップがあるとき、オールインではない最小のフルレイズは合計何bb？",
+      "choices": [
+        "10.5bb",
+        "16bb",
+        "24bb",
+        "13.5bb"
+      ],
+      "answer": 3,
+      "explain": "直前のフルレイズ増分は8−2.5＝5.5bb。8＋5.5＝合計13.5bbが最小。AAの最適な4ベット額を示しているわけではありません。",
+      "hint": "直前の上乗せ幅5.5bbを現在額8bbに足す。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。SBの0.5bbはデッドマネー。アンティ・レーキなし。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "Poker TDA 2026 Rules 43–45 / 49",
+          "url": "https://www.pokertda.com/view-poker-tda-rules/"
+        },
+        {
+          "title": "PokerStars — What is a 3-bet?",
+          "url": "https://www.pokerstars.com/poker/learn/news/what-is-a-3-bet-and-when-should-you-3-bet/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-potaftercall",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "Kc",
+        "Qh"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 14.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 2,
+        "BB": 6
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 2bbベット",
+        "BB 合計6bbへチェックレイズ"
+      ],
+      "prompt": "BTNが追加4bbをコールした後のポットは？",
+      "choices": [
+        "18.5bb",
+        "20.5bb",
+        "16.5bb",
+        "22.5bb"
+      ],
+      "answer": 0,
+      "explain": "現在14.5＋追加4＝18.5bb。フロップ開始6.5＋BTN合計6＋BB合計6でも同じです。",
+      "hint": "レイズ合計額をもう一度丸ごと足さない。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "GTO Wizard — What Are Pot Odds in Poker?",
+          "url": "https://blog.gtowizard.com/what-are-pot-odds-in-poker/"
+        },
+        {
+          "title": "Poker TDA 2026 Rules 43–45 / 49",
+          "url": "https://www.pokertda.com/view-poker-tda-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    },
+    {
+      "id": "decision-checkraise-name",
+      "street": "フロップ",
+      "hero": "BTN",
+      "cards": [
+        "Kh",
+        "Qd"
+      ],
+      "board": [
+        "Kd",
+        "7c",
+        "2h"
+      ],
+      "pot": 14.5,
+      "stack": 40,
+      "investments": {
+        "BTN": 2,
+        "BB": 6
+      },
+      "history": [
+        "フロップ開始：6.5bb",
+        "BB チェック",
+        "BTN 2bbベット",
+        "BB 合計6bbへチェックレイズ"
+      ],
+      "prompt": "今回は相手のチェックレイズを受けて、合計10bbへさらにレイズします。この行動名は？",
+      "choices": [
+        "チェックレイズ",
+        "リンプ",
+        "フロップの3ベット",
+        "最初のベット"
+      ],
+      "answer": 2,
+      "explain": "このフロップではBTNのベット→BBのレイズ→BTNの再レイズ。再レイズが3ベットです。BTN自身はチェックしていないため、BTNの行動をチェックレイズとは呼びません。",
+      "hint": "プリフロップの回数と混ぜず、このストリートで数える。",
+      "label": "RULE",
+      "condition": "説明用の固定局面。BTN対BB、他はフォールド。プリフロップの経過は省略。アンティ・レーキなし。 フロップ開始ポット6.5bb。表示ポットは現在ストリートの投入も含む。 金額はbb。レイズ額はそのストリートの合計。最適GTOアクションを示す問題ではありません。",
+      "sources": [
+        {
+          "title": "GTO Wizard — Defending vs BB Check-Raise on Paired Flops",
+          "url": "https://blog.gtowizard.com/defending-vs-bb-check-raise-on-paired-flops/"
+        },
+        {
+          "title": "PokerStars — Poker Terms & Glossary",
+          "url": "https://www.pokerstars.com/poker/learn/strategies/poker-terms-glossary/"
+        },
+        {
+          "title": "Poker TDA 2026 Rules 43–45 / 49",
+          "url": "https://www.pokertda.com/view-poker-tda-rules/"
+        }
+      ],
+      "formats": [
+        "mtt",
+        "cash"
+      ]
+    }
+  ]
+}

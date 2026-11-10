@@ -2,16 +2,18 @@
 {% block title %}卓トレーニング | ポーカー先生{% endblock %}
 {% block body %}
 <div class="table-heading"><p class="eyebrow">TRAINING / 最大8人</p><h1>卓で、ひとつずつ。</h1><p class="muted">5問の小さな練習。選んだら、その場で理由がわかる。</p></div>
-<nav class="format-tabs" aria-label="ゲーム形式">{% for key, title in formats.items() %}<a class="{{ 'selected' if key == fmt }}" href="{{ url_for('arena.index', format=key) }}" {% if key == fmt %}aria-current="page"{% endif %}>{{ title }}</a>{% endfor %}</nav>
+<nav class="format-tabs" aria-label="ゲーム形式">{% for key, title in formats.items() %}<a class="{{ 'selected' if key == fmt }}" href="{{ url_for('arena.index', format=key, mode=request.args.get('mode', 'positions')) }}" {% if key == fmt %}aria-current="page"{% endif %}>{{ title }}</a>{% endfor %}</nav>
 <div class="table-metrics"><span>この形式の練習 <b>{{ stats.n }}問</b></span><span>正答率 <b>{{ (stats.c / stats.n * 100)|round|int ~ '%' if stats.n else '—' }}</b></span></div>
 {% if review_count %}<section class="panel"><h2>この形式の復習待ち：{{ review_count }}問</h2><p>前に間違えた場面を、同じ条件で最大5問。正解した問題は復習待ちから外れます。</p><form method="post" action="{{ url_for('arena.review') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="format" value="{{ fmt }}"><button class="btn primary">卓の間違いを復習する</button></form></section>{% endif %}
 {% if recent %}<details class="panel"><summary>前の練習を再開・振り返る</summary><ul class="list">{% for r in recent %}<li><a href="{{ url_for('arena.play', run_id=r.id) }}">{{ r.title }}：{{ '結果を見る' if r.complete else '続きから' }}</a> <span class="small muted">{{ r.answered }}/{{ r.total }}問・正解{{ r.correct }}問</span></li>{% endfor %}</ul></details>{% endif %}
 <form action="{{ url_for('arena.start') }}" method="post" class="panel table-setup" id="table-setup">
 <input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="format" value="{{ fmt }}">
 <h2><span class="step-number">01</span> 練習テーマ</h2>
+{% set selected_mode = request.args.get('mode', 'positions') %}
+{% if selected_mode not in modes %}{% set selected_mode = 'positions' %}{% endif %}
 <div class="mode-options">
-{% for key,title,icon,desc in [('positions','席と動く順番','◎','2〜8人卓で、自分の番をつかむ'),('range','GTOレンジ暗記','▦','HUの公開解で、降りる・進む・混ぜるを覚える'),('flop','フロップの判断','♠','見えている手札と数字で、コールを判断')] %}
-<label class="mode-option"><input type="radio" name="mode" value="{{ key }}" {{ 'checked' if key == 'positions' }}><span class="mode-icon">{{ icon }}</span><span><strong>{{ title }}</strong><small>{{ desc }}</small></span></label>
+{% for key,title,icon,desc in [('decisions','場面で選ぶアクション','↗','チェック・ベット・コール・レイズを、卓の状況で選ぶ'),('positions','席と動く順番','◎','2〜8人卓で、自分の番をつかむ'),('range','GTOレンジ暗記','▦','HUの公開解で、降りる・進む・混ぜるを覚える'),('flop','フロップの判断','♠','見えている手札と数字で、コールを判断')] %}
+<label class="mode-option"><input type="radio" name="mode" value="{{ key }}" {{ 'checked' if key == selected_mode }}><span class="mode-icon">{{ icon }}</span><span><strong>{{ title }}</strong><small>{{ desc }}</small></span></label>
 {% endfor %}
 </div>
 <h2 class="setup-section"><span class="step-number">02</span> 卓の条件</h2>
@@ -25,6 +27,7 @@
 <details class="model-note"><summary>練習の条件と、収録範囲</summary>
 <p>bbはビッグブラインドを1とする単位。ポジションは席の名前、BTNは配り手のボタン、SB/BBはブラインドを払う席です。</p><p>GTOレンジはHRCのHU push/fold限定モデル。SBのオールイン／フォールド、BBのコール／フォールドだけを扱います。3〜8人卓のGTOレンジは未収録です。</p>
 <p>席名はBTNの手前をCO、その手前をHJ、LJとする表記です。3人卓の最初はBTN、4人はCO、5人はHJ。6人卓の最初はUTG（LJとも表記）です。</p>
+<p>「場面で選ぶアクション」は出典付きの固定局面です。自分の席・スタックは問題ごとに決まり、ルール・計算・戦略の考え方と限定モデルの解をラベルで区別します。任意局面のGTO解を生成する機能ではありません。</p>
 <p>フロップは相手の2枚を公開した計算練習です。ポジションはBTN（2人卓ではBTN/SB）固定。勝率を推測する問題やGTOソルバーの解ではありません。</p>
 <p>{{ '賞金差・バブル・アンティ付きの判断は対象外です。' if fmt == 'mtt' else 'HUモデルはレーキ込みのリング戦略ではありません。フロップの計算もレーキなしの教材です。' }} ラベルで「GTO・限定モデル」「ルール練習」「計算練習」を区別します。</p>
 </details>

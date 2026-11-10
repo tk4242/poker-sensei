@@ -18,12 +18,13 @@
       position.append(group.cloneNode(true));
       if ([...position.options].some(o => o.value === previous)) position.value = previous;
       else position.value = 'random';
-      position.disabled = mode === 'flop';
+      position.disabled = mode === 'flop' || mode === 'decisions';
       stack.disabled = mode !== 'range';
       document.querySelector('#setup-note').textContent = mode === 'range'
         ? unavailable
           ? `${players.value}人のGTOレンジは未収録です。人数を保って「席と動く順番」「フロップの判断」を選ぶか、下のボタンでHUへ切り替えてください。`
           : '収録済み：HU（2人）、5・8・10bb。SBのpush/foldとBBのcall/foldを学びます。'
+        : mode === 'decisions' ? '席とスタックは問題ごとに固定。出典で確認した場面のアクションを選び、理由を学びます。相手の手札が見えない問題もあります。'
         : mode === 'flop' ? 'あなたはBTN（2人卓ではBTN/SB）。相手の2枚を見ながら、オッズを判断する計算練習です。'
         : '席を確認して、次に動く人を選びましょう。フロップ前と後の両方を出題します。';
     }
