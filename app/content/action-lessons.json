@@ -1,0 +1,1024 @@
+{
+  "sources": {
+    "rules": {
+      "title": "PokerStars — Texas Hold’em Rules",
+      "url": "https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/"
+    },
+    "3bet": {
+      "title": "PokerStars — What is a 3-bet?",
+      "url": "https://www.pokerstars.com/poker/learn/news/what-is-a-3-bet-and-when-should-you-3-bet/"
+    },
+    "morphology": {
+      "title": "GTO Wizard — Range Morphology",
+      "url": "https://blog.gtowizard.com/range-morphology/"
+    },
+    "sizing": {
+      "title": "GTO Wizard — The Mechanics of C-Bet Sizing",
+      "url": "https://blog.gtowizard.com/the-mechanics-of-c-bet-sizing/"
+    },
+    "odds": {
+      "title": "GTO Wizard — What Are Pot Odds in Poker?",
+      "url": "https://blog.gtowizard.com/what-are-pot-odds-in-poker/"
+    },
+    "mtt3bet": {
+      "title": "GTO Wizard — Mastering 3-Bet Pots In Position in MTTs",
+      "url": "https://blog.gtowizard.com/mastering-three-bet-pots-in-position-in-mtts/"
+    },
+    "flop3bet": {
+      "title": "GTO Wizard — Navigating Range Disadvantage as the 3-Bettor",
+      "url": "https://blog.gtowizard.com/navigating-range-disadvantage-as-the-3-bettor/"
+    },
+    "checkraise": {
+      "title": "GTO Wizard — Defending vs BB Check-Raise on Paired Flops",
+      "url": "https://blog.gtowizard.com/defending-vs-bb-check-raise-on-paired-flops/"
+    },
+    "cbet": {
+      "title": "PokerStars — Your guide to c-betting",
+      "url": "https://www.pokerstars.com/poker/learn/strategies/the-continuation-bet-in-poker-your-guide-to-c-betting/"
+    },
+    "probe": {
+      "title": "GTO Wizard — The Turn Probe Bet",
+      "url": "https://blog.gtowizard.com/the-turn-probe-bet/"
+    },
+    "explicit": {
+      "title": "GTO Wizard — Why doesn’t my solution match GTO Wizard?",
+      "url": "https://blog.gtowizard.com/why-doesnt-my-solution-match-gto-wizard/"
+    },
+    "changes": {
+      "title": "GTO Wizard — How to Analyze Turn Textures in Poker",
+      "url": "https://blog.gtowizard.com/how-to-analyze-turn-textures-in-poker/"
+    },
+    "ev": {
+      "title": "GTO Wizard — What is Expected Value in Poker?",
+      "url": "https://blog.gtowizard.com/what-is-expected-value-in-poker/"
+    },
+    "barrel": {
+      "title": "PokerStars — 10 Strategic Ideas (double barrelの定義のみ)",
+      "url": "https://www.pokerstars.com/poker/learn/strategies/10-strategic-ideas-all-beginners-should-know/"
+    },
+    "hu_rules": {
+      "title": "Poker TDA 2026 Rules — Button in Heads-up",
+      "url": "https://www.pokertda.com/view-poker-tda-rules/"
+    },
+    "hu_model": {
+      "title": "HoldemResources — HeadsUp Push/Fold Nash Equilibrium",
+      "url": "https://www.holdemresources.net/hune"
+    },
+    "blockers": {
+      "title": "GTO Wizard — Blockers & Unblockers: The Secret to Picking Great Bluffs",
+      "url": "https://blog.gtowizard.com/blockers-unblockers-the-secret-to-picking-great-bluffs/"
+    },
+    "semibluff": {
+      "title": "GTO Wizard — Picking the Right Semi-Bluffs",
+      "url": "https://blog.gtowizard.com/picking-the-right-semi-bluffs/"
+    }
+  },
+  "lessons": {
+    "actions": {
+      "title": "アクションの言葉と順番",
+      "short": "チェック・コールからチェックレイズまで",
+      "goal": "今の場面で何ができるかを言葉で説明する",
+      "tag": "terms",
+      "points": [
+        {
+          "title": "まず、追加で払う額があるか",
+          "text": "ノーリミット・ホールデムのフロップ以降では、自分にベットが回っていなければチェックかベット。ベットに直面したらフォールド・コール・レイズを検討します。コールは相手の賭け額に合わせることです。"
+        },
+        {
+          "title": "チェックは降りることではない",
+          "text": "チェックは追加チップを出さずに次へ回す行動。フォールドはそのハンドを放棄する行動です。チェックした後、同じラウンドで相手のベットが回れば、改めて判断できます。"
+        },
+        {
+          "title": "Cベットとチェックレイズ",
+          "text": "フロップのCベットは、プリフロップで最後にベット／レイズした側がフロップでもベットすること。チェックレイズは同じラウンドでチェックした後、相手のベットをレイズすること。名前だけで強さや正解は決まりません。"
+        },
+        {
+          "title": "次の手順まで考える",
+          "text": "ベットしたらコール・フォールド・レイズが返り得ます。チェックも戦略の一部。最適な行動は双方のレンジや条件次第で、この章は行動の意味を学ぶものです。"
+        }
+      ],
+      "example": {
+        "title": "BBチェック → BTNベット → BB？",
+        "context": "フロップ、相手1人。BBはチェック、BTNが6bbのポットに2bbベット。両者にレイズできる十分な残りスタックがあります。",
+        "steps": [
+          "BBには2bbのコールが必要です。チェックでは続けられません。",
+          "BBが合計6bbへ上げるならチェックレイズ。2bbに追加6bbではありません。",
+          "BBがコールするとポットは6＋2＋2＝10bbです。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "フロップで相手が4bbベット。まだ何も払っていない自分が、追加チップなしでハンドを続ける「チェック」は？",
+          "choices": [
+            "できる",
+            "できない",
+            "BTNだけできる",
+            "強いハンドならできる"
+          ],
+          "answer": 1,
+          "explain": "ベットに直面したらチェックは選べません。フォールド・コール・条件を満たすレイズの判断です。",
+          "source_ids": [
+            "rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "フロップで誰もベットしていない。チェックの意味は？",
+          "choices": [
+            "そのハンドを捨てる",
+            "全チップを出す",
+            "追加チップなしで順番を回す",
+            "必ず弱いハンドだと宣言する"
+          ],
+          "answer": 2,
+          "explain": "チェックしてもハンドに残ります。弱い手だけがチェックするわけではありません。",
+          "source_ids": [
+            "rules",
+            "checkraise"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "BBがチェック、BTNがベット、BBがレイズ。このBBの行動は？",
+          "choices": [
+            "チェックレイズ",
+            "オープンレイズ",
+            "リンプ",
+            "チェックバック"
+          ],
+          "answer": 0,
+          "explain": "同じラウンド内でチェックしてから相手のベットをレイズしています。",
+          "source_ids": [
+            "checkraise"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "BTNがプリフロップでレイズ。BBがコール。フロップでBBチェックの後、BTNベット。このベットは？",
+          "choices": [
+            "ブラインド",
+            "アンティ",
+            "ドンクベット",
+            "Cベット"
+          ],
+          "answer": 3,
+          "explain": "プリフロップの攻撃側がフロップでもベットするコンティニュエーションベットです。",
+          "source_ids": [
+            "cbet"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "フロップの元のポット6bb。相手が2bb、自分も2bbコール。レーキなしのポットは？",
+          "choices": [
+            "8bb",
+            "10bb",
+            "12bb",
+            "6bb"
+          ],
+          "answer": 1,
+          "explain": "6＋2＋2＝10bb。相手だけでなく自分のコールも加えます。",
+          "source_ids": [
+            "odds"
+          ],
+          "label": "RULE"
+        }
+      ],
+      "source_ids": [
+        "rules",
+        "cbet",
+        "checkraise",
+        "odds"
+      ]
+    },
+    "ranges": {
+      "title": "相手を1枚の手に決めつけない",
+      "short": "レンジ・線形・ポラー・条件の読み方",
+      "goal": "自分と相手が持ち得る手の集まりを見る",
+      "tag": "preflop",
+      "points": [
+        {
+          "title": "レンジは候補の集まり",
+          "text": "相手を「AKに違いない」と一点読みせず、その行動を取り得るハンドの集まりで考えます。人数・席・スタック・それまでの行動をそろえて比較します。"
+        },
+        {
+          "title": "線形とポラー",
+          "text": "線形（リニア）は強い側から中程度へ連なる構成。ポラーは非常に強い手と弱い手に分かれる構成です。どちらが常に正しいという意味でもありません。"
+        },
+        {
+          "title": "平均の優位と上位の優位",
+          "text": "全体のエクイティ分布と、特に強い手をどれだけ持てるかを分けます。ナッツ優位は強い領域の優位です。自分の1ハンドが強いこととは別の話です。"
+        },
+        {
+          "title": "表の条件もセットで覚える",
+          "text": "リングではレーキ、MTTではアンティ・スタック分布・賞金構造やICMの有無を確認。ベットサイズや選べる行動も解を変えます。この章は構成の理解で、未検証の6〜8人用GTO表は載せません。"
+        }
+      ],
+      "example": {
+        "title": "ボードで変わる「強い候補」",
+        "context": "説明用の例。プリフロップではAAを含むレンジでも、フロップ9♣8♣7♣になれば強さの分布は変わります。具体的なGTO頻度は設定していません。",
+        "steps": [
+          "AAがある、だけではこのボードのナッツ優位は断定できません。",
+          "フラッシュやストレートを作れる手が双方のレンジにどのくらい含まれるか確認します。",
+          "実際の頻度を求めるなら、人数・席・スタック・レイズ額などが一致する解を使います。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "レンジとは？",
+          "choices": [
+            "相手の確定した2枚",
+            "持ち得るハンドの集まり",
+            "残りチップだけ",
+            "ボードの5枚だけ"
+          ],
+          "answer": 1,
+          "explain": "相手の手を一点に断定せず、候補の集合として扱います。",
+          "source_ids": [
+            "morphology"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "ポラーなレンジの説明は？",
+          "choices": [
+            "中程度の手だけ",
+            "強い手から順にすべて",
+            "非常に強い手と弱い手に分かれる",
+            "必ずAAだけ"
+          ],
+          "answer": 2,
+          "explain": "ポラーは両極に分かれた構成。具体的な採用ハンドや比率は局面で変わります。",
+          "source_ids": [
+            "morphology"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "線形（リニア）なレンジは？",
+          "choices": [
+            "強い手から中程度の手へ連なる構成",
+            "どの手も同じ頻度",
+            "弱い手だけ",
+            "スートが同じ手だけ"
+          ],
+          "answer": 0,
+          "explain": "線形は強い側から連なる構成を指します。",
+          "source_ids": [
+            "morphology"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "リングの表をMTTへそのまま使える？",
+          "choices": [
+            "人数だけ同じなら使える",
+            "自分の手が同じなら使える",
+            "100bbなら必ず同じ",
+            "レーキ・アンティ・ICM等の条件を確認する"
+          ],
+          "answer": 3,
+          "explain": "レーキはレンジを変え得ます。MTTでは賞金価値のリスクもあり、同一の解とは限りません。",
+          "source_ids": [
+            "morphology",
+            "mtt3bet",
+            "explicit"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "自分がAAを持っている。これだけで自分側のレンジ全体のナッツ優位を証明できる？",
+          "choices": [
+            "できる",
+            "できない。双方のレンジとボードを見る",
+            "人数が8人ならできる",
+            "チェックしたらできる"
+          ],
+          "answer": 1,
+          "explain": "単独の手の強さとレンジの上位構成は別です。ボードによってAAより強い手も変わります。",
+          "source_ids": [
+            "morphology",
+            "sizing"
+          ],
+          "label": "THEORY"
+        }
+      ],
+      "source_ids": [
+        "morphology",
+        "sizing",
+        "mtt3bet",
+        "explicit"
+      ]
+    },
+    "flop": {
+      "title": "フロップで考える順番",
+      "short": "手札 → ボード → レンジ → 行動",
+      "goal": "Cベットを自動で打たず、理由を説明する",
+      "tag": "postflop",
+      "points": [
+        {
+          "title": "手札とボードを一緒に見る",
+          "text": "ペア・キッカー・ドローを確認し、ボードの高いカード、スート、つながり、ペアの有無を見ます。トップペアだから無条件で大きくベット、とは決まりません。"
+        },
+        {
+          "title": "どちらが何を持てるか",
+          "text": "プリフロップのレイズとコールから、双方のレンジを確認。プリフロップで3ベットした側でも、すべてのフロップで優位とは限りません。"
+        },
+        {
+          "title": "ベットとチェックを比較",
+          "text": "ベットで弱い手から払ってもらえるか、相手にエクイティを放棄させられるかを考えます。同時にチェック後の展開も比較。相手のレイズを受ける可能性もあります。"
+        },
+        {
+          "title": "勝率だけでコールを決めない",
+          "text": "将来のベットが残るフロップは、必要勝率を上回るだけで必ず利益になるとは限りません。ポジション・今後の支払い・引けたときの利益なども関わります。"
+        }
+      ],
+      "example": {
+        "title": "Kトップペアでも、先に状況を読む",
+        "context": "説明用HUフロップ。BTNがレイズ、BBがコール。手札K♠Q♠、ボードK♦7♣2♥、BBチェック。特定ソルバーの最適行動を問う例ではありません。",
+        "steps": [
+          "手札はKのトップペア、Qキッカー。",
+          "双方の参加レンジ、ポット、残りスタックを確認します。",
+          "ベットに相手がどんな弱い手でコールし、どんな強い手でレイズできるかを考えます。",
+          "チェックとの比較には条件の一致した解が必要。自動で特定サイズを正解にしません。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "K♠Q♠、ボードK♦7♣2♥。今の手は？",
+          "choices": [
+            "フラッシュ",
+            "ストレート",
+            "トップペア・Qキッカー",
+            "ツーペア"
+          ],
+          "answer": 2,
+          "explain": "Kが1組で、ボードの最高ランクと同じペア。もう1枚のQがキッカーです。",
+          "source_ids": [
+            "rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "プリフロップで3ベットしたら、フロップは毎回半ポットCベットが正解？",
+          "choices": [
+            "はい",
+            "いいえ。ボードとレンジの関係で変わる",
+            "AAならどのボードでも必ず半ポット",
+            "8人卓なら必ず半ポット"
+          ],
+          "answer": 1,
+          "explain": "GTO Wizardの3ベットポット解説も、全ボードへの自動Cベットを否定しています。",
+          "source_ids": [
+            "flop3bet"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "ベットの大きさを考える際に見るものは？",
+          "choices": [
+            "自分のカードの色だけ",
+            "前のハンドの勝敗だけ",
+            "相手の国籍だけ",
+            "ナッツ優位やフォールドさせる価値など"
+          ],
+          "answer": 3,
+          "explain": "手の上位構成や相手が放棄するエクイティなど、複数の要素がサイズに関わります。",
+          "source_ids": [
+            "sizing"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "フロップで必要勝率25%、推定エクイティ30%。まだターン・リバーのベットがある。コールは必ず利益？",
+          "choices": [
+            "断定できない。将来の展開も必要",
+            "必ず利益",
+            "必ず損失",
+            "残り人数とは無関係に必ず利益"
+          ],
+          "answer": 0,
+          "explain": "単純比較がそのまま成立するのは、追加ベット等を除いた条件です。将来のエクイティ実現が問題になります。",
+          "source_ids": [
+            "odds"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "フロップでチェックを選んだ相手について正しいのは？",
+          "choices": [
+            "必ずノーペア",
+            "強い手も含み得る",
+            "必ずフォールドする",
+            "今後レイズはできない"
+          ],
+          "answer": 1,
+          "explain": "チェックレイズなどもあり、チェックだけで弱い手と断定できません。",
+          "source_ids": [
+            "checkraise"
+          ],
+          "label": "THEORY"
+        }
+      ],
+      "source_ids": [
+        "rules",
+        "flop3bet",
+        "sizing",
+        "odds",
+        "checkraise"
+      ]
+    },
+    "sizing": {
+      "title": "ベットサイズを数字にする",
+      "short": "ポット比・必要勝率・コールのEV",
+      "goal": "額の違いを理解してから戦略を比較する",
+      "tag": "math",
+      "points": [
+        {
+          "title": "50%ポットの意味",
+          "text": "相手がベットする前のポットが10bbなら、50%ポットは5bb。コール後のポットは10＋5＋5＝20bb。相手のベット後の15bbを基準に50%を計算しません。"
+        },
+        {
+          "title": "必要勝率はコール額÷最終ポット",
+          "text": "相手1人、追加ベット・レーキ・ICMなしの単純化では、5÷20＝25%。同じ前提でポット10bbへの10bbベットなら10÷30＝約33.3%です。 ここでの必要勝率は、引き分けで受け取るポットの持分も含む「必要エクイティ」です。引き分けがなければ普通の勝率と同じです。"
+        },
+        {
+          "title": "コールEVの基準は今",
+          "text": "相手1人・引き分けなし・追加ベット/レーキ/ICMなし。ポット10bbに5bbベットされ、勝率40%ならコールEV＝0.4×15−0.6×5＝＋3bb。以前に入れたチップを再び損失へ足しません。"
+        },
+        {
+          "title": "計算できることと最適サイズは別",
+          "text": "サイズを大きくすると必要勝率も上がりますが、自分のベットが最適という証明にはなりません。強い領域の構成、相手の反応、ポジション、SPRなどを合わせて判断します。"
+        }
+      ],
+      "example": {
+        "title": "同じ10bbのポットで比較",
+        "context": "相手1人。相手がベットし、自分が同額をコール。追加ベット・レーキ・ICMなしの計算教材。",
+        "steps": [
+          "2.5bb（25%）なら2.5÷15＝約16.7%。",
+          "5bb（50%）なら5÷20＝25%。",
+          "10bb（100%）なら10÷30＝約33.3%。",
+          "これらはコールの損益分岐。ベット側のGTO頻度ではありません。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "ベット前のポット12bb。75%ポットのベット額は？",
+          "choices": [
+            "3bb",
+            "6bb",
+            "9bb",
+            "12bb"
+          ],
+          "answer": 2,
+          "explain": "12×0.75＝9bbです。",
+          "source_ids": [
+            "odds"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "ポット10bbに5bbベットされた。5bbコール後、レーキなしのポットは？",
+          "choices": [
+            "15bb",
+            "20bb",
+            "25bb",
+            "30bb"
+          ],
+          "answer": 1,
+          "explain": "10＋5＋5＝20bbです。",
+          "source_ids": [
+            "odds"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "相手1人、追加ベット・レーキ・ICMなし。ポット10bbへの5bbベットをコールする必要勝率は？",
+          "choices": [
+            "25%",
+            "50%",
+            "33.3%",
+            "10%"
+          ],
+          "answer": 0,
+          "explain": "コール5÷コール後ポット20＝25%。",
+          "source_ids": [
+            "odds"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "相手1人、追加ベット・レーキ・ICMなし。ポット10bbへの10bbベットをコールする必要勝率は約？",
+          "choices": [
+            "50%",
+            "66.7%",
+            "25%",
+            "33.3%"
+          ],
+          "answer": 3,
+          "explain": "10÷（10＋10＋10）＝約33.3%。",
+          "source_ids": [
+            "odds"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "相手1人、引き分け・追加ベット・レーキ・ICMなし。ポット10bbに5bbベットされ、勝率40%。コールEVは？",
+          "choices": [
+            "−3bb",
+            "＋3bb",
+            "＋8bb",
+            "0bb"
+          ],
+          "answer": 1,
+          "explain": "勝つと今ある15bbが純増、負けると追加5bbを失います。0.4×15−0.6×5＝＋3bb。",
+          "source_ids": [
+            "odds",
+            "ev"
+          ],
+          "label": "RULE"
+        }
+      ],
+      "source_ids": [
+        "odds",
+        "sizing",
+        "ev"
+      ]
+    },
+    "threebet": {
+      "title": "3ベットと、その後の計画",
+      "short": "名前・サイズ・4ベットへの備え",
+      "goal": "強い手だけに決めつけず条件をそろえる",
+      "tag": "preflop",
+      "points": [
+        {
+          "title": "3ベットは3倍という意味ではない",
+          "text": "プリフロップではBBを1つ目、最初のレイズを2つ目と数え、そこへのリレイズが3ベット。その上へのレイズは4ベットです。倍率を指す言葉ではありません。"
+        },
+        {
+          "title": "サイズは「合計」で読む",
+          "text": "相手が2.5bbへオープン、自分が8bbへ3ベットなら、8bbはそのラウンドに入れる合計額。すでにBB1bbを払っていれば追加7bbです。この8bbを推奨サイズとはしていません。"
+        },
+        {
+          "title": "相手の席とレンジを確認",
+          "text": "オープナーと3ベッターの席、スタック、サイズ、後ろに残る人数を確認します。強い手の価値とブラフの両面があり、3ベット＝AAと決めつけません。"
+        },
+        {
+          "title": "コール後と4ベット後も考える",
+          "text": "3ベットでポットを大きくすると、その後の残りスタックとポットの比が変わります。MTTのICMがある場面とリングのレーキがある場面で同じ表を機械的に使いません。コール・フォールド・4ベットは条件で比較します。 バブル（あと少しで入賞）などでは、同じチップ数の増減が同じ賞金価値にはなりません。相手に負けると脱落するか、他の短いスタックや賞金配分も確認します。"
+        }
+      ],
+      "example": {
+        "title": "6人卓、BTN 2.5bb → BB 8bb",
+        "context": "アンティ・レーキなし。SBは0.5bbを払いフォールド、他のプレイヤーもフォールド。BTNが8bbまでコールする説明用の金額例です。",
+        "steps": [
+          "BBの追加額は8−1＝7bb。BTNの追加コールは8−2.5＝5.5bb。",
+          "フロップのポットはBTN8＋BB8＋SB0.5＝16.5bb。",
+          "このポットと残りスタックを確認して次の計画を立てます。8bbがこの局面のGTO最適額だとは示していません。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "BB1bb、BTNが2.5bbへレイズ、BBが8bbへ上げた。BBの行動は？",
+          "choices": [
+            "コール",
+            "3ベット",
+            "4ベット",
+            "リンプ"
+          ],
+          "answer": 1,
+          "explain": "オープンレイズへの最初のリレイズがプリフロップの3ベットです。",
+          "source_ids": [
+            "3bet"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "3ベットの「3」は？",
+          "choices": [
+            "必ず相手額の3倍",
+            "3人だけのポット",
+            "賭けの段階。3倍とは限らない",
+            "最低3bbという意味"
+          ],
+          "answer": 2,
+          "explain": "BB、オープンレイズ、リレイズという段階を表します。",
+          "source_ids": [
+            "3bet"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "BBに1bb支払い済み。合計8bbへ3ベットする追加額は？",
+          "choices": [
+            "7bb",
+            "8bb",
+            "9bb",
+            "6bb"
+          ],
+          "answer": 0,
+          "explain": "すでに払った1bbを含めた合計が8bbなので、追加は7bb。",
+          "source_ids": [
+            "rules",
+            "3bet"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "BTNが2.5bbへオープン、BBが8bbへ3ベット。BTNの追加コール額は？",
+          "choices": [
+            "8bb",
+            "10.5bb",
+            "2.5bb",
+            "5.5bb"
+          ],
+          "answer": 3,
+          "explain": "8−2.5＝5.5bb。すでに出した額との差額です。",
+          "source_ids": [
+            "rules",
+            "3bet"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "MTTで3ベットされた。判断のため特にそろえたい条件は？",
+          "choices": [
+            "自分の手だけ",
+            "両者の席・スタック・サイズとICM条件",
+            "前のハンドの結果だけ",
+            "常にリング100bbの表"
+          ],
+          "answer": 1,
+          "explain": "MTTの3ベット対応は席、サイズ、スタックと賞金価値のリスクに左右されます。",
+          "source_ids": [
+            "mtt3bet"
+          ],
+          "label": "THEORY"
+        }
+      ],
+      "source_ids": [
+        "rules",
+        "3bet",
+        "mtt3bet",
+        "morphology"
+      ]
+    },
+    "turnriver": {
+      "title": "ターン・リバーまで考える",
+      "short": "新しいカードと相手の反応で更新",
+      "goal": "前の判断をそのまま繰り返さず再評価する",
+      "tag": "postflop",
+      "points": [
+        {
+          "title": "ターンで「何が変わった？」",
+          "text": "フラッシュやストレートが新しく可能になったか、ボードがペアになったかを確認。ボードだけでなく、そこまでのベット・コールが双方のレンジをどう変えたかも見ます。"
+        },
+        {
+          "title": "ダブルバレルとプローブ",
+          "text": "フロップに続いてターンもベットするのがダブルバレル。プリフロップの攻撃側がフロップをチェックバックし、守った側がターンで先に打つ形はプローブベットと呼びます。どちらも自動で打つものではありません。"
+        },
+        {
+          "title": "リバーは次のカードがない",
+          "text": "フラッシュドローが完成しなければ、これから引く期待はありません。今ある手が相手のベットレンジにどれだけ勝つかと、コール額を比べます。レイズを選ぶなら相手の継続レンジも考えます。"
+        },
+        {
+          "title": "毎回、形式を確認する",
+          "text": "単純なリバーの必要勝率は練習に便利ですが、レーキやMTTのICMがあればそのまま結論にできません。勝ったか負けたかだけでなく、考えたレンジと条件を記録しましょう。"
+        }
+      ],
+      "example": {
+        "title": "フラッシュが新しく可能になる",
+        "context": "説明用ボード：フロップK♠8♠7♥、ターン2♠。特定のハンドをベットすべきだとは断定しません。",
+        "steps": [
+          "フロップはスペード2枚。ターンで3枚になりました。",
+          "スペードを2枚持つ相手はフラッシュを完成できます。",
+          "自分と相手のレンジにどのスペード2枚が残るか、フロップの行動と一緒に考え直します。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "K♠8♠7♥のフロップから2♠のターン。新しく可能になったものは？",
+          "choices": [
+            "スペード2枚の手によるフラッシュ",
+            "すべての手のフルハウス",
+            "ボードだけのストレート",
+            "必ず全員のツーペア"
+          ],
+          "answer": 0,
+          "explain": "ボードにスペード3枚、手札に2枚あれば5枚になります。",
+          "source_ids": [
+            "rules",
+            "changes"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "フロップでベットしてコールされた。ターンもベットする呼び方は？",
+          "choices": [
+            "リンプ",
+            "ブラインド",
+            "ダブルバレル",
+            "チェックバック"
+          ],
+          "answer": 2,
+          "explain": "フロップからターンへ攻撃を続けるベットです。実際に打つべきかは新しいカードやレンジ次第です。",
+          "source_ids": [
+            "barrel",
+            "changes"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "BTNがプリフロップでレイズしBBコール。フロップはBBチェック、BTNチェック。ターンでBBが先にベット。これは？",
+          "choices": [
+            "4ベット",
+            "プローブベット",
+            "チェックレイズ",
+            "アンティ"
+          ],
+          "answer": 1,
+          "explain": "プリフロップの攻撃側がフロップをチェックバックした後、守備側がターンで先に打つ形です。",
+          "source_ids": [
+            "probe"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "リバーでフラッシュドローが完成しなかった。次のカードで引ける期待を足してコールしてよい？",
+          "choices": [
+            "必ず足す",
+            "半分だけ足す",
+            "MTTなら足す",
+            "足さない。リバーの後に共有カードは出ない"
+          ],
+          "answer": 3,
+          "explain": "リバーは最後の共有カード。現在の手と相手のレンジで判断します。",
+          "source_ids": [
+            "rules",
+            "odds"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "リバー、相手1人。ポット20bbに相手10bb、自分が10bbコール。レーキ・ICMなしの必要勝率は？",
+          "choices": [
+            "50%",
+            "25%",
+            "33.3%",
+            "10%"
+          ],
+          "answer": 1,
+          "explain": "10÷（20＋10＋10）＝25%。MTTのICMやレーキを含めた最終結論とは区別します。",
+          "source_ids": [
+            "odds",
+            "mtt3bet"
+          ],
+          "label": "RULE"
+        }
+      ],
+      "source_ids": [
+        "rules",
+        "cbet",
+        "probe",
+        "changes",
+        "odds",
+        "mtt3bet",
+        "barrel"
+      ]
+    },
+    "hu": {
+      "title": "HU：2人だけの勝負",
+      "short": "BTN＝SB・行動順・表の使い分け",
+      "goal": "2人卓の席と、使えるレンジ表の条件を区別する",
+      "tag": "preflop",
+      "points": [
+        {
+          "title": "BTNとSBが同じ席になる",
+          "text": "最初から2人で行うヘッズアップでは、ボタン（BTN）がスモールブラインド（SB）を兼ねます。プリフロップはBTN/SBから、フロップ以降はBBから行動します。"
+        },
+        {
+          "title": "2人残りと、2人卓を区別",
+          "text": "8人卓で6人がフォールドして2人になっても、ボタンやブラインドが途中で移動するわけではありません。最初から2人卓で始めたハンドの行動順と混同しないようにしましょう。"
+        },
+        {
+          "title": "push/fold表は行動を限定した解",
+          "text": "HRCのHU push/foldは、SBがオールインかフォールド、BBがそのオールインにコールかフォールドだけを選ぶモデル。リンプ・小さなレイズ・フロップの判断を比べた解ではありません。"
+        },
+        {
+          "title": "有効スタックと条件を確認",
+          "text": "2人のうち小さいスタックが、互いに争える額を制限します。HRC表はブラインドを含むスタックをBB単位で読み、アンティの設定も確認します。HU表を6〜8人の参加レンジやレーキ込みリング戦略へそのまま移しません。"
+        }
+      ],
+      "example": {
+        "title": "BTN/SBから始めて、フロップはBBから",
+        "context": "2人卓、SB 0.5bb／BB 1bb、アンティなし。BTN/SBは開始時10bb、BBは開始時15bb。一般のノーリミット・ホールデムで、push/fold限定ではありません。",
+        "steps": [
+          "BTN/SBが先に判断します。コールなら追加0.5bbで合計1bbになります。",
+          "SBがコールし、BBがチェックすればフロップへ。フロップはBBが先、BTN/SBが後です。",
+          "このリンプ→チェックの進行は、SBの選択をオールイン／フォールドに限定する表では評価できません。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "最初から2人卓のヘッズアップ。ボタンを持つのは？",
+          "choices": [
+            "BB",
+            "BTN/SB（スモールブラインドと同じ人）",
+            "毎ストリート入れ替わる",
+            "どちらにも置かない"
+          ],
+          "answer": 1,
+          "explain": "ヘッズアップではSBがボタンを兼ねます。",
+          "source_ids": [
+            "hu_rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "最初から2人卓。プリフロップで先に行動するのは？",
+          "choices": [
+            "BB",
+            "カードが強い側",
+            "BTN/SB",
+            "前のハンドの勝者"
+          ],
+          "answer": 2,
+          "explain": "プリフロップはBTN/SBからです。フロップ以降とは逆なので分けて覚えます。",
+          "source_ids": [
+            "hu_rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "2人卓で両者がフロップまで残り、どちらもオールインではない。フロップで先に行動するのは？",
+          "choices": [
+            "BB",
+            "BTN/SB",
+            "残りチップが多い側",
+            "必ずプリフロップのレイザー"
+          ],
+          "answer": 0,
+          "explain": "フロップ以降はBBが先、BTN/SBが後です。",
+          "source_ids": [
+            "hu_rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "HRCのHU push/foldモデルでSBに用意される選択は？",
+          "choices": [
+            "リンプだけ",
+            "2bbレイズとコール",
+            "すべてのレイズサイズ",
+            "オールインかフォールド"
+          ],
+          "answer": 3,
+          "explain": "SBの行動を2つに限定したゲームです。一般のHU全体の最適戦略とは区別します。",
+          "source_ids": [
+            "hu_model"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "HU push/fold表から直接判断できないものは？",
+          "choices": [
+            "その限定モデルでのSBのプッシュ",
+            "その限定モデルでのBBのコール",
+            "6人卓のBTNからの小さなオープンレイズ",
+            "条件が一致するHUのプッシュ／フォールド"
+          ],
+          "answer": 2,
+          "explain": "人数も選べる行動も違います。HUの表をそのまま多人数のレイズ表にはできません。",
+          "source_ids": [
+            "hu_model"
+          ],
+          "label": "THEORY"
+        }
+      ],
+      "source_ids": [
+        "hu_rules",
+        "hu_model",
+        "rules"
+      ]
+    },
+    "bluff": {
+      "title": "ブラフする手の選び方",
+      "short": "価値・ドロー・ブロッカーを分ける",
+      "goal": "どの手を降ろしたくて、何を持つと都合がよいか説明する",
+      "tag": "postflop",
+      "points": [
+        {
+          "title": "価値とブラフは、相手の反応で考える",
+          "text": "バリューベットは弱い手から支払いを得る狙い。ブラフは自分より強い手を降ろす狙いです。カードの見た目だけで分類せず、相手が何でコールし何を降りるかを考えます。"
+        },
+        {
+          "title": "セミブラフは改善する可能性もある",
+          "text": "ドローで打つセミブラフには、相手を降ろす道と、コールされても後で強い手へ改善する道があります。ただし強いドローほど必ず大きく打つ、ではありません。チェックやコールとの比較も必要です。"
+        },
+        {
+          "title": "強い続行ハンドを減らし、フォールドは残す",
+          "text": "自分が持つカードは相手が持てません。相手の強い継続ハンドを減らすのが有用なブロッカー。降りてほしい手まで減らしていないかも見ます。Aを1枚持つだけでブラフ成功が保証されるわけではありません。"
+        },
+        {
+          "title": "A5sを合言葉にしない",
+          "text": "GTO WizardのNL500・100bb・6人卓UTGオープン対HJの例では、A5sはAA/AKを減らし、一部のフォールド候補を残す性質を持つブラフ例です。これはその局面の説明。別の席、額、スタック、MTTのICMに同じ頻度やサイズを移しません。"
+        }
+      ],
+      "example": {
+        "title": "A♠5♠を候補として調べる",
+        "context": "上記のNL500・100bb・UTG対HJという公式例の考え方。ここではレイズの推奨額・頻度を新しく設定しません。",
+        "steps": [
+          "A♠を自分が持つため、相手はA♠を含むAAやAKを持てません。強い継続ハンドの候補を減らせます。",
+          "一方、K♥Q♥などA♠も5♠も使わない手は、この2枚では除外されません。どの手が実際に降りるかは相手のレンジとサイズ次第です。",
+          "コールやフォールドのEVとも比較してから選びます。ブロッカーがある、だけで常時3ベットしません。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "バリューベットの基本的な狙いは？",
+          "choices": [
+            "必ず全員を降ろす",
+            "自分より弱い手に支払ってもらう",
+            "相手のカードを公開させる",
+            "毎回最大額を出す"
+          ],
+          "answer": 1,
+          "explain": "弱い手から価値を得る狙いです。実際にどの弱い手が継続するかを考えます。",
+          "source_ids": [
+            "cbet"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "フロップでドローを使い、フォールドを狙いつつ改善も期待してベット。この考え方は？",
+          "choices": [
+            "セミブラフ",
+            "ブラインドの支払い",
+            "チェックバック",
+            "必ず完成済みのナッツ"
+          ],
+          "answer": 0,
+          "explain": "今の手が負けていても、相手を降ろしたり後のカードで改善したりする可能性があります。",
+          "source_ids": [
+            "semibluff"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "自分がA♠5♠を持つ。相手が絶対に持てない組み合わせは？",
+          "choices": [
+            "K♥Q♥",
+            "7♦7♣",
+            "A♠K♦",
+            "J♣T♣"
+          ],
+          "answer": 2,
+          "explain": "同じA♠が2枚存在することはありません。これがカード除去の基本です。",
+          "source_ids": [
+            "blockers"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "A5sは3ベットブラフの例になる。どの席・スタックでも必ず3ベット？",
+          "choices": [
+            "はい、いつも同じ額",
+            "はい、MTTなら常に",
+            "はい、相手のレンジは不要",
+            "いいえ。席・サイズ・相手の継続レンジ等で比較する"
+          ],
+          "answer": 3,
+          "explain": "公式例の条件を外して一般化しません。ブロッカーの価値も相手が持つ範囲と反応次第です。",
+          "source_ids": [
+            "blockers",
+            "explicit"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "セミブラフ候補を選ぶときの適切な考え方は？",
+          "choices": [
+            "最も強いドローを必ず最大額で打つ",
+            "降ろせる手・改善の可能性・チェック等のEVを比較する",
+            "ドローがあれば相手の手は関係ない",
+            "チェックは常に損だから除外する"
+          ],
+          "answer": 1,
+          "explain": "強いドローでもチェックに価値がある局面があります。ハンドの改善だけでなく行動全体を比較します。",
+          "source_ids": [
+            "semibluff",
+            "ev"
+          ],
+          "label": "THEORY"
+        }
+      ],
+      "source_ids": [
+        "cbet",
+        "semibluff",
+        "blockers",
+        "explicit",
+        "ev"
+      ]
+    }
+  }
+}

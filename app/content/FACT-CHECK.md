@@ -49,3 +49,12 @@
 - 別fact-checkerが既存のPoker.org出典と選択肢・正解・解説を照合し合格。8人ではUTG+2を省く席名体系に一致。
 - 指摘に従い、8人卓問題の不正解候補UTG+2をBBへ、出典で確認できない「オンラインMTTは8人卓が多い」という一般化を削除。
 - 卓トレーナーは2/6/8、従来ドリルは6/8へ限定。新GTO戦略・数値の追加や変更なし。
+
+## 2026-11-10 Codex：アクション入門8テーマ40問・2〜8人卓
+- 教材作成担当とは別のaction_fact_checkが全出典を独立openし、全説明/正答/例の条件を照合して合格。source_ids→URLの対応はaction-lessons.jsonとsources/SOURCES.md。
+- actions/ranges/flop/sizing/threebet/turnriver：定義、レンジ形態、ナッツ優位、チェック/Cベット、将来ベットがある場合のEQ実現を確認。Cベットを「プリフロップの最後の攻撃者」へ精密化、必要エクイティに引き分け持分を含むと補足。単独復習でも前提が読めるようsizing問題を修正。
+- 数値：tools/poker_math.pyで必要EQ16.7/25.0/33.3/25.0%、EV+3.00bbを独立検算。役判定はKトップペアQキッカー/フラッシュと一致。3bet追加額7/5.5bb、コール後pot16.5bb、HU追加0.5bbも確認。
+- HU：TDA2026v1.1 Rule36-CでBTN=SB、プリフロップSB先/ポストフロップBB先。HRC公式huneでpush/fold制約とブラインド前stackを確認。多人数卓から2人残った場合と最初からHUの違いを明記。
+- bluff：GTO Wizard Picking the Right Semi-Bluffs、Blockers & Unblockersを独立照合。A5sはNL500/100bb/6max UTG対HJの公式例の考え方に限定。相手の強い継続手を減らす/フォールド候補を残す説明であり、最適サイズ/頻度の転載や捏造なし。カード除去AsKd不可も確認。
+- 席順：PokerStars Poker Positions/PositionのBTN相対CO・HJ・LJとTDAを照合。3人BTN、4人CO、5人HJ、6人UTG=LJ、7人UTG→LJ、8人UTG→UTG+1→LJ。全2〜8のpost_orderも合格。
+- 適用限界：一般則と定義の学習で、任意局面を解くGTOソルバーではない。MTTとリングの条件差、ICM/レーキ、HRC限定モデルの範囲を保つ。確認できない多人数レンジや推奨頻度は追加しない。

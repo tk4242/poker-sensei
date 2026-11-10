@@ -10,7 +10,7 @@
 <input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="format" value="{{ fmt }}">
 <h2><span class="step-number">01</span> 練習テーマ</h2>
 <div class="mode-options">
-{% for key,title,icon,desc in [('positions','席と動く順番','◎','2・6・8人卓で、自分の番をつかむ'),('range','GTOレンジ暗記','▦','HUの公開解で、降りる・進む・混ぜるを覚える'),('flop','フロップの判断','♠','見えている手札と数字で、コールを判断')] %}
+{% for key,title,icon,desc in [('positions','席と動く順番','◎','2〜8人卓で、自分の番をつかむ'),('range','GTOレンジ暗記','▦','HUの公開解で、降りる・進む・混ぜるを覚える'),('flop','フロップの判断','♠','見えている手札と数字で、コールを判断')] %}
 <label class="mode-option"><input type="radio" name="mode" value="{{ key }}" {{ 'checked' if key == 'positions' }}><span class="mode-icon">{{ icon }}</span><span><strong>{{ title }}</strong><small>{{ desc }}</small></span></label>
 {% endfor %}
 </div>
@@ -20,13 +20,15 @@
 <label>自分のポジション<select name="position" id="table-position"><option value="random">いろいろ練習</option>{% for n,ps in positions.items() %}<optgroup label="{{ n }}人卓" data-players="{{ n }}">{% for p in ps %}<option value="{{ p }}">{{ p }}</option>{% endfor %}</optgroup>{% endfor %}</select></label>
 <label>HUレンジの深さ<select name="stack"><option value="5">5bb</option><option value="8" selected>8bb</option><option value="10">10bb</option></select></label>
 </div>
-<p class="small muted" id="setup-note">席の名前を見ながら練習できます。6人卓の最初の席はUTG（LJとも表記）。</p>
+<p class="small muted" id="setup-note" role="status" aria-live="polite">席の名前を見ながら練習できます。人数は2〜8人を選べます。GTOレンジ暗記の収録はHU（2人）のみ。</p>
+<p data-hu-option hidden><button type="button" class="btn ghost" data-switch-hu>HU（2人）のレンジ練習へ切り替える</button></p>
 <details class="model-note"><summary>練習の条件と、収録範囲</summary>
-<p>bbはビッグブラインドを1とする単位。ポジションは席の名前、BTNは配り手のボタン、SB/BBはブラインドを払う席です。</p><p>GTOレンジはHRCのHU push/fold限定モデル。SBのオールイン／フォールド、BBのコール／フォールドだけを扱います。6・8人卓のGTOレンジは未収録です。</p>
+<p>bbはビッグブラインドを1とする単位。ポジションは席の名前、BTNは配り手のボタン、SB/BBはブラインドを払う席です。</p><p>GTOレンジはHRCのHU push/fold限定モデル。SBのオールイン／フォールド、BBのコール／フォールドだけを扱います。3〜8人卓のGTOレンジは未収録です。</p>
+<p>席名はBTNの手前をCO、その手前をHJ、LJとする表記です。3人卓の最初はBTN、4人はCO、5人はHJ。6人卓の最初はUTG（LJとも表記）です。</p>
 <p>フロップは相手の2枚を公開した計算練習です。ポジションはBTN（2人卓ではBTN/SB）固定。勝率を推測する問題やGTOソルバーの解ではありません。</p>
 <p>{{ '賞金差・バブル・アンティ付きの判断は対象外です。' if fmt == 'mtt' else 'HUモデルはレーキ込みのリング戦略ではありません。フロップの計算もレーキなしの教材です。' }} ラベルで「GTO・限定モデル」「ルール練習」「計算練習」を区別します。</p>
 </details>
 <button type="submit" class="btn primary start-table">▶ トレーニングを始める</button>
 </form>
-<div class="table-links"><a href="{{ url_for('arena.ranges', format=fmt) }}">▦ レンジ表で予習</a><a href="{{ url_for('learn.basics') }}">？ オッズ・EVの基礎</a><a href="{{ url_for('train.index') }}">⚔ これまでのトレーニング</a></div>
+<div class="table-links"><a href="{{ url_for('learn.action_course') }}">フロップ・サイズ・3ベットの考え方</a><a href="{{ url_for('arena.ranges', format=fmt) }}">▦ レンジ表で予習</a><a href="{{ url_for('learn.basics') }}">？ オッズ・EVの基礎</a><a href="{{ url_for('train.index') }}">⚔ これまでのトレーニング</a></div>
 {% endblock %}

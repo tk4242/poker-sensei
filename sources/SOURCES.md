@@ -218,3 +218,27 @@
 | https://www.pokertda.com/view-poker-tda-rules/ | HUでSBがボタン、preflop先・postflop後に行動 | A | 卓の行動順 |
 | https://pokercoaching.com/blog/poker-positions/ | 席の名称と行動順（6max UTG/LJ表記） | B | 卓の行動順 |
 | https://upswingpoker.com/wp-content/uploads/2023/01/Preflop-Guide-for-RFI-v21-2023.pdf | 冊子p.4〜5のコンボ数：pair6/suited4/offsuit12。レンジ表の転載なし | A（公式教材の記述確認） | レンジ表の読み方 |
+
+
+## 2026-11-10 アクション入門（8テーマ・40問）
+アプリ独自の初心者向け説明と概念チェック。以下の一次資料を確認。条件付きの一般則・定義・計算として扱い、普遍的なGTO頻度/サイズは作らない。
+- rules: [PokerStars — Texas Hold’em Rules](https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- 3bet: [PokerStars — What is a 3-bet?](https://www.pokerstars.com/poker/learn/news/what-is-a-3-bet-and-when-should-you-3-bet/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- morphology: [GTO Wizard — Range Morphology](https://blog.gtowizard.com/range-morphology/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- sizing: [GTO Wizard — The Mechanics of C-Bet Sizing](https://blog.gtowizard.com/the-mechanics-of-c-bet-sizing/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- odds: [GTO Wizard — What Are Pot Odds in Poker?](https://blog.gtowizard.com/what-are-pot-odds-in-poker/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- mtt3bet: [GTO Wizard — Mastering 3-Bet Pots In Position in MTTs](https://blog.gtowizard.com/mastering-three-bet-pots-in-position-in-mtts/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- flop3bet: [GTO Wizard — Navigating Range Disadvantage as the 3-Bettor](https://blog.gtowizard.com/navigating-range-disadvantage-as-the-3-bettor/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- checkraise: [GTO Wizard — Defending vs BB Check-Raise on Paired Flops](https://blog.gtowizard.com/defending-vs-bb-check-raise-on-paired-flops/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- cbet: [PokerStars — Your guide to c-betting](https://www.pokerstars.com/poker/learn/strategies/the-continuation-bet-in-poker-your-guide-to-c-betting/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- probe: [GTO Wizard — The Turn Probe Bet](https://blog.gtowizard.com/the-turn-probe-bet/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- explicit: [GTO Wizard — Why doesn’t my solution match GTO Wizard?](https://blog.gtowizard.com/why-doesnt-my-solution-match-gto-wizard/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- changes: [GTO Wizard — How to Analyze Turn Textures in Poker](https://blog.gtowizard.com/how-to-analyze-turn-textures-in-poker/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- ev: [GTO Wizard — What is Expected Value in Poker?](https://blog.gtowizard.com/what-is-expected-value-in-poker/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- barrel: [PokerStars — 10 Strategic Ideas (double barrelの定義のみ)](https://www.pokerstars.com/poker/learn/strategies/10-strategic-ideas-all-beginners-should-know/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- hu_rules: [Poker TDA 2026 Rules — Button in Heads-up](https://www.pokertda.com/view-poker-tda-rules/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- hu_model: [HoldemResources — HeadsUp Push/Fold Nash Equilibrium](https://www.holdemresources.net/hune) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- blockers: [GTO Wizard — Blockers & Unblockers: The Secret to Picking Great Bluffs](https://blog.gtowizard.com/blockers-unblockers-the-secret-to-picking-great-bluffs/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- semibluff: [GTO Wizard — Picking the Right Semi-Bluffs](https://blog.gtowizard.com/picking-the-right-semi-bluffs/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
+- 数値検算：tools/poker_math.py。コール必要エクイティ16.7/25.0/33.3%、コールEV+3bb、3ベット追加額7/5.5bb・ポット16.5bb。
+- 席名の補足：[PokerStars — Poker positions](https://www.pokerstars.com/poker/learn/news/poker-positions-seats-names-and-their-strategies/) — CO/HJ/LJをBTN相対で表示。3〜8人の省略席表記とHUのTDA Rule 36-Cを区別（2026-11-10確認）。

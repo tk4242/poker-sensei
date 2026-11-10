@@ -21,6 +21,7 @@
 <h2>{{ '✓ いい判断！' if result.correct else 'ここが覚えるチャンス。' }}</h2>
 <p>あなたの回答：{{ item.choices[result.chosen] }}<br>答え：<strong>{{ item.choices[item.answer] }}</strong></p>
 <p>{{ item.explain }}</p>
+{% if item.mode in ['flop', 'range'] %}<p><a href="{{ url_for('learn.action_lesson', topic='flop' if item.mode == 'flop' else 'ranges') }}">{{ 'フロップの考え方' if item.mode == 'flop' else 'レンジの読み方' }}を基礎から学ぶ →</a></p>{% endif %}
 </div>
 <a class="btn primary start-table" href="{{ url_for('arena.play', run_id=run.id, q=index+1) }}">{{ '今回の結果を見る' if index+1 == run.questions|length else '次のハンドへ →' }}</a>
 {% else %}

@@ -161,3 +161,36 @@ def basics_practice(topic):
         abort(404)
     bid = practice.create_batch('practice', foundations.title(topic), foundations.questions(topic))
     return redirect(url_for('practice.batch', batch_id=bid))
+
+
+@bp.route('/learn/actions')
+def action_course():
+    from .. import action_lessons
+    lessons = action_lessons.overview()
+    return render_template('action_course.html', lessons=lessons,
+                           next_lesson=next((le for le in lessons if not le['completed']), None))
+
+
+@bp.route('/learn/actions/<topic>')
+def action_lesson(topic):
+    from .. import action_lessons
+    data = action_lessons.data()
+    if topic not in data['lessons']:
+        abort(404)
+    topics = list(data['lessons'])
+    index = topics.index(topic)
+    next_topic = topics[index + 1] if index + 1 < len(topics) else None
+    lesson = data['lessons'][topic]
+    return render_template('action_lesson.html', lesson=lesson, topic=topic, topics=topics,
+                           next_topic=next_topic, next_title=data['lessons'][next_topic]['short'] if next_topic else '',
+                           lesson_sources=[data['sources'][key] for key in lesson['source_ids']])
+
+
+@bp.route('/learn/actions/<topic>/practice', methods=['POST'])
+def action_practice(topic):
+    from flask import redirect, url_for
+    from .. import action_lessons, practice
+    if topic not in action_lessons.data()['lessons']:
+        abort(404)
+    bid = practice.create_batch('practice', action_lessons.title(topic), action_lessons.questions(topic))
+    return redirect(url_for('practice.batch', batch_id=bid))
