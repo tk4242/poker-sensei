@@ -144,3 +144,7 @@ nav.bottom a.on::before { content: none; }
 @media (prefers-reduced-motion:reduce) {
   .course-tile { transition: none; }
 }
+
+/* Keep the betting sequence beside action buttons on a phone. */
+.dock-context { font-size: .75rem; line-height: 1.5; color: #d4cce0; margin: 0 0 8px; }
+@media (min-width: 761px) { .dock-context { display: none; } }
