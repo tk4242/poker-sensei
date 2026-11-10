@@ -1,0 +1,98 @@
+{
+  "spots": [
+    {
+      "street": "フロップ",
+      "hero": "BB",
+      "board": [
+        "8h",
+        "5d",
+        "4s"
+      ],
+      "pot": null,
+      "stack": null,
+      "investments": {},
+      "label": "公式記事のGTO解説例",
+      "condition": "原典限定：NL500・6人リング・開始時150bb・CO対BBの3ベットポット。BBは合計12bbへ3ベット。レーキ詳細・全ベットツリーは記事本文に明示なし。現在のポットと残りスタックは推測表示しません。",
+      "sources": [
+        {
+          "title": "GTO Wizard — Navigating Range Disadvantage as the 3-Bettor",
+          "url": "https://blog.gtowizard.com/navigating-range-disadvantage-as-the-3-bettor/"
+        }
+      ],
+      "formats": [
+        "cash"
+      ],
+      "players": 6,
+      "id": "source-bb-kqo-check",
+      "cards": [
+        "Ks",
+        "Qd"
+      ],
+      "history": [
+        "COがオープン（初回額は本文に明示なし）",
+        "BBが合計12bbへ3ベット → COがコール",
+        "フロップ 8♥ 5♦ 4♠"
+      ],
+      "prompt": "原典のこの例では、BBのKQoは最初にどうする？",
+      "choices": [
+        "チェック",
+        "ベット"
+      ],
+      "answer": 0,
+      "explain": "原典はこのボードのKQoをチェックし、ベットを受けたらフォールドする例として説明しています。ここでは最初のチェックを確認します。別の条件への推奨ではありません。",
+      "hint": "プリフロップで3ベットしても、毎回Cベットするわけではありません。",
+      "active": [
+        "CO",
+        "BB"
+      ]
+    },
+    {
+      "street": "フロップ",
+      "hero": "BB",
+      "board": [
+        "8h",
+        "5d",
+        "4s"
+      ],
+      "pot": null,
+      "stack": null,
+      "investments": {},
+      "label": "公式記事のGTO解説例",
+      "condition": "原典限定：NL500・6人リング・開始時150bb・CO対BBの3ベットポット。BBは合計12bbへ3ベット。レーキ詳細・全ベットツリーは記事本文に明示なし。現在のポットと残りスタックは推測表示しません。",
+      "sources": [
+        {
+          "title": "GTO Wizard — Navigating Range Disadvantage as the 3-Bettor",
+          "url": "https://blog.gtowizard.com/navigating-range-disadvantage-as-the-3-bettor/"
+        }
+      ],
+      "formats": [
+        "cash"
+      ],
+      "players": 6,
+      "id": "source-bb-kcqc-fold",
+      "cards": [
+        "Kc",
+        "Qc"
+      ],
+      "history": [
+        "COがオープン（初回額は本文に明示なし）",
+        "BBが合計12bbへ3ベット → COがコール",
+        "フロップ 8♥ 5♦ 4♠",
+        "BBチェック → COが小さくベット（記事は20%・33%ポットの例を比較）"
+      ],
+      "prompt": "原典の小ベットへの対応説明では、BBのK♣Q♣は？",
+      "choices": [
+        "コール",
+        "レイズ",
+        "フォールド"
+      ],
+      "answer": 2,
+      "explain": "原典の「Checking The Flop」節はK♣Q♣をチェック後のフォールド例に含めています。クラブのバックドアフラッシュがなく、相手の降りる候補も減らす点を説明しています。",
+      "hint": "元の記事の特定局面を復習します。相手の実際のレンジが違えば、そのまま結論にはできません。",
+      "active": [
+        "CO",
+        "BB"
+      ]
+    }
+  ]
+}

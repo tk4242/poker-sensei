@@ -242,3 +242,14 @@
 - semibluff: [GTO Wizard — Picking the Right Semi-Bluffs](https://blog.gtowizard.com/picking-the-right-semi-bluffs/) — 確認2026-11-10。app/content/action-lessons.json内のsource_idsから各問題へ対応。
 - 数値検算：tools/poker_math.py。コール必要エクイティ16.7/25.0/33.3%、コールEV+3bb、3ベット追加額7/5.5bb・ポット16.5bb。
 - 席名の補足：[PokerStars — Poker positions](https://www.pokerstars.com/poker/learn/news/poker-positions-seats-names-and-their-strategies/) — CO/HJ/LJをBTN相対で表示。3〜8人の省略席表記とHUのTDA Rule 36-Cを区別（2026-11-10確認）。
+
+## 2026-11-10 卓上アクション選択問題
+- PokerStars — Texas Hold’em Rules: https://www.pokerstars.com/poker/learn/lesson/texas-holdem-rules/
+- PokerStars — Poker Terms & Glossary: https://www.pokerstars.com/poker/learn/strategies/poker-terms-glossary/
+- Poker TDA 2026 Rules 43–45 / 49: https://www.pokertda.com/view-poker-tda-rules/
+- GTO Wizard — Defending vs BB Check-Raise on Paired Flops: https://blog.gtowizard.com/defending-vs-bb-check-raise-on-paired-flops/
+- GTO Wizard — What Are Pot Odds in Poker?: https://blog.gtowizard.com/what-are-pot-odds-in-poker/
+- GTO Wizard — What is Expected Value in Poker?: https://blog.gtowizard.com/what-is-expected-value-in-poker/
+- PokerStars — What is a 3-bet?: https://www.pokerstars.com/poker/learn/news/what-is-a-3-bet-and-when-should-you-3-bet/
+- GTO Wizard — Navigating Range Disadvantage as the 3-Bettor: https://blog.gtowizard.com/navigating-range-disadvantage-as-the-3-bettor/
+- 原典のGTO例はNL500・6人・開始150bb・CO対BB・12bbへの3bet・854rに限定。未知のポット/残りスタック/頻度は補完しない。その他18問はルール・算術の独自例。

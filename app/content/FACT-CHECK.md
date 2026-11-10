@@ -58,3 +58,11 @@
 - bluff：GTO Wizard Picking the Right Semi-Bluffs、Blockers & Unblockersを独立照合。A5sはNL500/100bb/6max UTG対HJの公式例の考え方に限定。相手の強い継続手を減らす/フォールド候補を残す説明であり、最適サイズ/頻度の転載や捏造なし。カード除去AsKd不可も確認。
 - 席順：PokerStars Poker Positions/PositionのBTN相対CO・HJ・LJとTDAを照合。3人BTN、4人CO、5人HJ、6人UTG=LJ、7人UTG→LJ、8人UTG→UTG+1→LJ。全2〜8のpost_orderも合格。
 - 適用限界：一般則と定義の学習で、任意局面を解くGTOソルバーではない。MTTとリングの条件差、ICM/レーキ、HRC限定モデルの範囲を保つ。確認できない多人数レンジや推奨頻度は追加しない。
+
+## 2026-11-10 卓上アクション20問
+- 18問の作成者と別のaction_fact_checkがTDA45/49、PokerStars、GTO Wizardの出典を照合して承認。最小raise 2→4、2→6→10、pre2.5→8→13.5bbを確認。
+- tools/poker_math.pyで必要EQ25%、仮定勝率30%/20%のEV+0.65/-0.65bbを検算。これは手札から計算した勝率ではないと問題文に明示。
+- 18×7人数の126派生で席・手番・ポット・投入・残stack・カード重複を検証。HUでは別SBのdeadmoneyとfold履歴を除去。フロップは開始6.5bbを条件として与え、プリフロップ履歴を省略。
+- 公式例2問はfact-check担当が作成し、親が原典を独立照合（Navigating Range Disadvantage as the 3-Bettor、KQoチェック、KcQc smallstabフォールド）。NL500/6人/開始150bb/CO対BB/12bb3bet/854rだけに限定。現在pot/stack不明は表示を補完しない。
+- Claude Agentのfact-checker呼出しはavailable agents:noneで実行不可。上記独立担当が同じfact-checker手順で出典・計算確認を実施。
+- 3〜8人GTOレンジは全条件と利用権の確認された無料データ未確保。表の席を減らす変換や架空頻度は採用しない。今回追加はルール・算術18問と原典局面2問のみ。

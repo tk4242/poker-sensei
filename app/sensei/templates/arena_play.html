@@ -12,6 +12,7 @@
 </section>
 <section class="decision-panel">
 <p class="eyebrow">{{ item.label }}</p>
+{% if item.mode == 'decisions' %}<p class="coach-tip">{{ item.condition }}</p>{% endif %}
 {% if item.mode == 'flop' %}<p class="action-history">{{ item.history[-1] }}</p><details class="table-hint"><summary>ここまでのアクション</summary><ol>{% for action in item.history[:-1] %}<li>{{ action }}</li>{% endfor %}</ol></details>{% else %}<ol class="action-history">{% for action in item.history %}<li>{{ action }}</li>{% endfor %}</ol>{% endif %}
 {% if item.villain %}<p class="opponent-hand">相手の公開手札：{% for card in item.villain_view %}<span class="opponent-card {{ 'red-card' if card.red }}">{{ card.rank }}{{ card.suit }}</span> {% endfor %}</p>{% endif %}
 <h1 id="decision-title">{{ item.prompt }}</h1>
@@ -21,15 +22,16 @@
 <h2>{{ '✓ いい判断！' if result.correct else 'ここが覚えるチャンス。' }}</h2>
 <p>あなたの回答：{{ item.choices[result.chosen] }}<br>答え：<strong>{{ item.choices[item.answer] }}</strong></p>
 <p>{{ item.explain }}</p>
+{% if item.mode == 'decisions' %}<p><a href="{{ url_for('learn.action_course') }}">アクションの考え方を基礎から学ぶ →</a></p>{% endif %}
 {% if item.mode in ['flop', 'range'] %}<p><a href="{{ url_for('learn.action_lesson', topic='flop' if item.mode == 'flop' else 'ranges') }}">{{ 'フロップの考え方' if item.mode == 'flop' else 'レンジの読み方' }}を基礎から学ぶ →</a></p>{% endif %}
 </div>
 <a class="btn primary start-table" href="{{ url_for('arena.play', run_id=run.id, q=index+1) }}">{{ '今回の結果を見る' if index+1 == run.questions|length else '次のハンドへ →' }}</a>
 {% else %}
 <div class="decision-dock"><p class="dock-prompt">{{ item.prompt }}</p><form action="{{ url_for('arena.answer', run_id=run.id) }}" method="post" class="table-actions">
 <input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="index" value="{{ index }}">
-{% for choice in item.choices %}<button class="btn {{ 'ghost' if loop.first or item.mode == 'positions' else 'primary' }}" type="submit" name="choice" value="{{ loop.index0 }}">{{ choice }}</button>{% endfor %}
+{% for choice in item.choices %}<button class="btn {{ 'ghost' if loop.first or item.mode in ['positions', 'decisions'] else 'primary' }}" type="submit" name="choice" value="{{ loop.index0 }}">{{ choice }}</button>{% endfor %}
 </form></div>
 {% endif %}
-<details class="model-note"><summary>条件・出典と学習範囲</summary><p>{{ item.condition }}</p><ul>{% for source in item.sources %}<li><a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.title }}</a></li>{% endfor %}</ul><p>レンジ：公開HU限定モデルの採用頻度。原CSVにレーキ・賞金条件の記載はありません。EV損失・実戦勝率は算出していません。フロップ：相手の手札が既知のチップEV計算。MTTの賞金価値やリングのレーキは別途考慮が必要です。</p></details>
+<details class="model-note"><summary>条件・出典と学習範囲</summary><p>{{ item.condition }}</p><ul>{% for source in item.sources %}<li><a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.title }}</a></li>{% endfor %}</ul><p>{% if item.mode == 'decisions' %}これは条件が決まった局面の教材です。ルール・計算・戦略の考え方・限定モデルの解を区別して学びます。問題に記載のないGTO頻度やEV損失は算出していません。{% else %}レンジ：公開HU限定モデルの採用頻度。原CSVにレーキ・賞金条件の記載はありません。EV損失・実戦勝率は算出していません。フロップ：相手の手札が既知のチップEV計算。MTTの賞金価値やリングのレーキは別途考慮が必要です。{% endif %}</p></details>
 </section></div>
 {% endblock %}

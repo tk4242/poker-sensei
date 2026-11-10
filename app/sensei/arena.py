@@ -21,7 +21,7 @@ POSITIONS = {
     8: ['UTG', 'UTG+1', 'LJ', 'HJ', 'CO', 'BTN', 'SB', 'BB'],
 }
 FORMATS = {'mtt': 'トーナメント', 'cash': 'リングゲーム'}
-MODES = {'positions': '席と動く順番', 'range': 'GTOレンジ暗記', 'flop': 'フロップのコール判断'}
+MODES = {'positions': '席と動く順番', 'range': 'GTOレンジ暗記', 'flop': 'フロップのコール判断', 'decisions': '場面で選ぶアクション'}
 HRC = {'title': 'HoldemResources：HU equilibrium / Raw Data', 'url': 'https://www.holdemresources.net/hune'}
 ODDS = {'title': 'GTO Wizard：Pot Odds', 'url': 'https://blog.gtowizard.com/what-are-pot-odds-in-poker/'}
 
@@ -71,14 +71,15 @@ def seats(players, hero, stack, investments=None, folded=()):
 def config_from(form):
     mode, fmt = form.get('mode', 'positions'), form.get('format', 'mtt')
     try:
-        players, stack = int(form.get('players', 6)), int(form.get('stack', 8))
+        players = int(form.get('players', 6))
+        stack = 8 if mode == 'decisions' else int(form.get('stack', 8))
     except (TypeError, ValueError):
         raise ValueError('人数とスタックを選んでください。')
     if mode not in MODES or fmt not in FORMATS or players not in POSITIONS or stack not in (5, 8, 10):
         raise ValueError('選択できる条件から選んでください。')
     if mode == 'range' and players != 2:
         raise ValueError('この人数の検証済みレンジは未収録です。HU（2人）を選んでください。')
-    pos = form.get('position', 'random')
+    pos = 'random' if mode == 'decisions' else form.get('position', 'random')
     if pos != 'random' and pos not in POSITIONS[players]:
         raise ValueError('人数に合うポジションを選んでください。')
     return dict(mode=mode, format=fmt, players=players, stack=stack, position=pos)
@@ -132,6 +133,9 @@ def question(cfg, rng):
                     history=['全員が残っている場合の行動順'],
                     explain='行動順：'+' → '.join(order)+'。この問題では再レイズなどによる手番の戻りはありません。'
                             + ('2人卓ではボタンがSBを兼ね、プリフロップは先、フロップ以降は後に行動します。' if n == 2 else '6人卓の最初の席はUTG（LJとも表記）です。' if n == 6 else ''))
+    elif mode == 'decisions':
+        from .decision_spots import question as decision_question
+        item.update(decision_question(cfg, rng))
     else:
         # 既知の相手の2枚を使い全ランアウトを列挙した教材。レンジ対レンジのGTO解ではない。
         sample = rng.choice(flop_examples())
@@ -206,7 +210,7 @@ def answer(run_id, index, chosen):
             correct = chosen == item['answer']
             row['answers'].append(dict(chosen=chosen, correct=correct))
             con.execute('UPDATE arena_runs SET answers=? WHERE id=?', (json.dumps(row['answers']), run_id))
-            tag = 'positions' if item['mode'] == 'positions' else 'preflop' if item['mode'] == 'range' else 'math'
+            tag = 'positions' if item['mode'] == 'positions' else 'preflop' if item['mode'] == 'range' else 'strategy' if item['mode'] == 'decisions' else 'math'
             con.execute('INSERT INTO attempts(ts,mode,kind,qkey,tag,stage,correct) VALUES(?,?,?,?,?,?,?)',
                         (iso(now()), 'arena-'+row['config']['format'], 'gen', item['key'], tag, 0 if tag == 'positions' else 2, int(correct)))
         con.commit()
