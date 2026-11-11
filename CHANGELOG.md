@@ -3,7 +3,8 @@
 新しい順。変更したら、その PR の中でこのファイルの先頭に追記する（日付・PR・何を・どこを・残っている宿題）。
 細かい差分は `git log` と各 PR を見る。教材のファクトチェック記録は各ファイルの末尾と `app/content/FACT-CHECK.md` にある。
 
-## 2026-11-11 Codex：公開レンジ資料の調査と読解学習（PR番号は作成後追記）
+## 2026-11-11 Codex：公開レンジ資料の調査と読解学習（PR #11）
+https://github.com/tk4242/poker-sensei/pull/11
 - ユーザーのLightTHREEヨコサワ記事・PokerQz公開表を深掘り調査。紹介記事/公式公表値/GTO独立検証の区別を維持し、未確認169マスを転載しない。
 - `range_guide.html` / `views/learn.py`：2〜8人の席図で後ろ人数を確認。BBまで全foldなら終了を明示。MTT/リング別の条件説明と公式PokerQz表/PDFリンク。`arena.py`に後ろ人数問題を追加、BBの終了局面は除外。
 - `action-lessons.json`：range-reading5問追加、全9テーマ45問。記事の色ランクを相手手札の断定やGTO最適解にしない。`source-decisions.json`：PokerQz公式PDFの54s/22クラス集約混合頻度を読む2問（6人cash限定）追加、卓問題22問。
