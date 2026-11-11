@@ -1,0 +1,30 @@
+{% extends 'base.html' %}{% from '_table.html' import table %}
+{% block title %}レンジ表の人数を読み解く | ポーカー先生{% endblock %}
+{% block body %}
+<p class="eyebrow">RANGE GUIDE · 2026-11-11確認</p>
+<h1>卓の人数と、<br>後ろの人数は別。</h1>
+<p>最初にレイズする場面を想定して、あなたより後に判断する席を数えてみよう。</p>
+<nav class="format-tabs" aria-label="ゲーム形式">{% for key,title in formats.items() %}<a href="{{ url_for('learn.range_guide', format=key, players=players, position=hero) }}" class="{{ 'selected' if fmt == key }}">{{ title }}</a>{% endfor %}</nav>
+<section class="panel">
+<form method="get" class="range-controls"><input type="hidden" name="format" value="{{ fmt }}">
+<label>卓の人数<select name="players">{% for n in positions %}<option value="{{ n }}" {{ 'selected' if players == n }}>{{ n }}人</option>{% endfor %}</select></label><button class="btn" type="submit">人数を変更</button></form>
+<form method="get" class="range-controls"><input type="hidden" name="format" value="{{ fmt }}"><input type="hidden" name="players" value="{{ players }}"><label>あなたの席<select name="position">{% for p in positions[players] %}<option value="{{ p }}" {{ 'selected' if hero == p }}>{{ p }}</option>{% endfor %}</select></label><button class="btn" type="submit">席を変更</button></form>
+<h2 id="behind-count">{{ players }}人卓の{{ hero }}：後ろは{{ behind|length }}人</h2>
+<p>{% if behind %}これから判断する席：<strong>{{ behind|join(' → ') }}</strong>{% else %}全員がフォールドしてBBまで来たなら、ブラインドを獲得して終了です。新しくオープンする場面ではありません。{% endif %}</p>
+{{ table(item) }}
+<p class="small muted">前の席は全員フォールドという席順の図解です。スタックと手札、参加レンジを指定する図ではありません。レイズが入れば、既に行動した席へも手番が戻ります。</p>
+<p>BTNの後ろが2人でも、2人卓（HU）という意味ではありません。HUではBTNがSBを兼ね、後ろはBBの1人です。</p>
+<a class="btn primary" href="{{ url_for('arena.index', mode='positions', format=fmt) }}">卓で席と順番を練習する →</a>
+</section>
+<section class="panel"><h2>共有記事をどう使う？</h2>
+<p><a href="https://light-three.com/hand-range-yokosawa/" target="_blank" rel="noopener noreferrer">LightTHREEのヨコサワ式レンジ紹介記事 ↗</a>は、トーナメント向けの簡略化した目安です。記事中の人数は、自分より後ろの人数を指します。GTOの計算結果として扱わず、条件を調べる入口にしましょう。</p>
+<p class="small muted">本人の<a href="https://www.youtube.com/watch?v=NDouTGvor-k" target="_blank" rel="noopener noreferrer">紹介元動画 ↗</a>へのリンクを確認しましたが、動画本編との照合は未完了です。全169マスや最適頻度はアプリに転記していません。</p>
+{% if fmt == 'cash' %}<p class="coach-tip">リングゲームではレーキの条件も確認します。記事のMTT用目安を、そのままリングの正解表にしないでください。</p>{% else %}<p class="coach-tip">MTTでは有効スタック、アンティ、賞金状況を確認します。記事だけでは、具体的な計算条件を確定できません。</p>{% endif %}
+</section>
+<section class="panel"><h2>PokerQ'zの公式表で確認する</h2><p>公式ページにはリングとMTTの入口があり、保存用PDFはNL50・6人・100BBのBTNオープンという特定条件です。画面の「簡易レンジ」と、保存用の混合頻度を混同しないようにしましょう。</p><div class="table-links"><a href="https://pokerqz.com/ja/tools/node/{{ 'mtt-btn-open' if fmt == 'mtt' else 'btn-open' }}" target="_blank" rel="noopener noreferrer">{{ formats[fmt] }}のBTN表を公式サイトで見る ↗</a><a href="https://pokerqz.com/images/tools/node/pokerqz-nl50-6max-100bb-btn-open-range-20260629.pdf" target="_blank" rel="noopener noreferrer">6人リング・100BBの公式PDF ↗</a></div><p class="small muted">公式公表資料として参照しています。ソルバー精度やレーキなどの全計算条件を独立再検証したものではありません。表全体の複製ではなく、条件確認と読解の学習に使います。</p></section>
+<section class="panel"><h2>GTOの表と比較する前に</h2><ul class="list"><li>配牌人数・自分と相手の席・ここまでのアクション</li><li>有効スタックとレイズサイズ</li><li>{{ 'アンティ、チップEVか賞金価値（ICM）か' if fmt == 'mtt' else 'レーキ率・上限・アンティの有無' }}</li><li>単純化した推奨か、混合頻度を含むソルバーの解か</li></ul>
+<p>単純な色ランクだけで実際の相手の手札を断定することはできません。条件が異なる解を比べても、同じ答えになるとは限りません。</p>
+<a class="btn primary" href="{{ url_for('learn.action_lesson', topic='range-reading') }}">読み方を学んで5問チェック →</a>
+</section>
+<details class="panel"><summary>確認した一次資料と範囲</summary><ul class="list"><li><a href="https://www.pokerstars.com/poker/learn/lesson/position/">PokerStars：ポジション</a></li><li><a href="https://www.pokertda.com/view-poker-tda-rules/">Poker TDA：HUの行動順（Rule 36-C）</a></li><li><a href="https://blog.gtowizard.com/why-doesnt-my-solution-match-gto-wizard/">GTO Wizard：解が一致しない理由</a></li><li><a href="https://blog.gtowizard.com/how-stack-sizes-change-your-range/">GTO Wizard：スタックとレンジ</a></li></ul><p>記事の簡略ルールと、条件付きGTO解は別の資料です。多人数レンジ表全体は未収録です。公開表の数値2例は読解問題として参照しています。</p></details>
+{% endblock %}

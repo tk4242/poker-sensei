@@ -93,6 +93,100 @@
         "CO",
         "BB"
       ]
+    },
+    {
+      "id": "qz-class-54s",
+      "street": "プリフロップ",
+      "hero": "BTN",
+      "cards": [
+        "5s",
+        "4s"
+      ],
+      "board": [],
+      "pot": null,
+      "stack": null,
+      "investments": {},
+      "active": [
+        "BTN",
+        "SB",
+        "BB"
+      ],
+      "players": 6,
+      "formats": [
+        "cash"
+      ],
+      "label": "公式公開表の読解・クラス集約値",
+      "condition": "PokerQz公開PDF：NL50・6人リング・開始100BB、BTN first-in。2026-06-29版。レーキ等の全計算条件・精度の独立検証は未完了。手札のスートは図示例で、特定コンボの頻度を示していません。",
+      "history": [
+        "UTG → HJ → CO フォールド",
+        "BTNの判断。表のRaiseは合計2.5BB"
+      ],
+      "prompt": "公開表の54sクラス全体は、Raise 76.4%・Fold 23.6%。どう読む？",
+      "choices": [
+        "必ずレイズする",
+        "レイズとフォールドが混ざる",
+        "必ずフォールドする"
+      ],
+      "answer": 1,
+      "hint": "表にある数値はハンドクラスに集約した採用頻度。勝率とは別です。",
+      "explain": "公開表の54sは混合です（76.4 + 23.6 = 100%）。画面に示した具体的な2枚の組み合わせにも、同じ頻度が当てはまるとは断定できません。提供者の表の読み方を確認する問題で、独自ソルバーで再計算した最適判断ではありません。",
+      "sources": [
+        {
+          "title": "PokerQz公式：NL50 6-max 100BB BTN Open Range PDF",
+          "url": "https://pokerqz.com/images/tools/node/pokerqz-nl50-6max-100bb-btn-open-range-20260629.pdf"
+        },
+        {
+          "title": "PokerQz公式：クラスへの頻度集約説明",
+          "url": "https://pokerqz.com/ja/tools/node"
+        }
+      ]
+    },
+    {
+      "id": "qz-class-22",
+      "street": "プリフロップ",
+      "hero": "BTN",
+      "cards": [
+        "2s",
+        "2h"
+      ],
+      "board": [],
+      "pot": null,
+      "stack": null,
+      "investments": {},
+      "active": [
+        "BTN",
+        "SB",
+        "BB"
+      ],
+      "players": 6,
+      "formats": [
+        "cash"
+      ],
+      "label": "公式公開表の読解・クラス集約値",
+      "condition": "PokerQz公開PDF：NL50・6人リング・開始100BB、BTN first-in。2026-06-29版。レーキ等の全計算条件・精度の独立検証は未完了。手札のスートは図示例で、特定コンボの頻度を示していません。",
+      "history": [
+        "UTG → HJ → CO フォールド",
+        "BTNの判断。表のRaiseは合計2.5BB"
+      ],
+      "prompt": "公開表の22クラス全体は、Raise 76.3%・Fold 23.7%。どう読む？",
+      "choices": [
+        "必ずレイズする",
+        "レイズとフォールドが混ざる",
+        "必ずフォールドする"
+      ],
+      "answer": 1,
+      "hint": "表にある数値はハンドクラスに集約した採用頻度。勝率とは別です。",
+      "explain": "公開表の22は混合です（76.3 + 23.7 = 100%）。画面に示した具体的な2枚の組み合わせにも、同じ頻度が当てはまるとは断定できません。提供者の表の読み方を確認する問題で、独自ソルバーで再計算した最適判断ではありません。",
+      "sources": [
+        {
+          "title": "PokerQz公式：NL50 6-max 100BB BTN Open Range PDF",
+          "url": "https://pokerqz.com/images/tools/node/pokerqz-nl50-6max-100bb-btn-open-range-20260629.pdf"
+        },
+        {
+          "title": "PokerQz公式：クラスへの頻度集約説明",
+          "url": "https://pokerqz.com/ja/tools/node"
+        }
+      ]
     }
   ]
 }

@@ -118,9 +118,12 @@ def question(cfg, rng):
         is_last = order.index(hero) == n-1
         choices = list(POSITIONS[n]) + ['この巡目の最後']
         answer = 'この巡目の最後' if is_last else next_pos
-        task = rng.choice(['next', 'first', 'last'])
+        tasks = ['next', 'first', 'last']
+        if pre and hero != 'BB':
+            tasks.append('behind')
+        task = rng.choice(tasks)
         prompt = f'全員が残り、レイズなし。{hero} の次に行動するのは？'
-        if task != 'next':
+        if task in ('first', 'last'):
             answer = order[0] if task == 'first' else order[-1]
             prompt = '全員が残り、レイズなし。この巡目で' + ('最初' if task == 'first' else '最後') + 'に行動する席は？'
         item.update(street='プリフロップ' if pre else 'フロップ',
@@ -133,6 +136,22 @@ def question(cfg, rng):
                     history=['全員が残っている場合の行動順'],
                     explain='行動順：'+' → '.join(order)+'。この問題では再レイズなどによる手番の戻りはありません。'
                             + ('2人卓ではボタンがSBを兼ね、プリフロップは先、フロップ以降は後に行動します。' if n == 2 else '6人卓の最初の席はUTG（LJとも表記）です。' if n == 6 else ''))
+        item['task'] = task
+        if task == 'behind':
+            before = order[:order.index(hero)]
+            after = order[order.index(hero)+1:]
+            choices = [f'{count}人' for count in range(n)]
+            item.update(
+                seats=seats(n, hero, 30, folded=before),
+                prompt=f'{hero}の番です。自分より後ろに、まだ行動する人は何人？',
+                choices=choices, answer=len(after),
+                condition='プリフロップ・先行プレイヤーは全員フォールド・自分の最初の手番。',
+                history=[' → '.join(before)+' がフォールド' if before else 'プリフロップ最初の手番。まだ誰も行動していません。'],
+                hint='自分を含めず、このあと動く席を数えます。3人以上の卓のBTNなら後ろはSBとBBの2人。これは「卓全体が2人」のHUとは違います。',
+                explain='行動順：'+' → '.join(order)+'。'
+                        f'{hero}より後ろは'+ '・'.join(after)+f'の{len(after)}人です。'
+                        f'卓全体の{n}人と、これから行動する相手の人数を区別しましょう。'
+                        + ('HUではBTN/SBが先に動き、後ろはBBの1人です。' if n == 2 else ''))
     elif mode == 'decisions':
         from .decision_spots import question as decision_question
         item.update(decision_question(cfg, rng))

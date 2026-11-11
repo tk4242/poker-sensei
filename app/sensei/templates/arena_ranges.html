@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}レンジを覚える | ポーカー先生{% endblock %}
 {% block body %}
+<section class="panel"><h2>ヨコサワ式の記事から、レンジの読み方を学ぶ</h2><p>卓人数と「後ろの人数」を席図で確認。MTT・リングの条件を分けて考えよう。</p><a class="btn primary" href="{{ url_for('learn.range_guide', format=fmt) }}">2〜8人の席図で確認 →</a></section>
 <div class="table-heading"><p class="eyebrow">RANGE LAB</p><h1>ハンドの地図を、覚えよう。</h1><p class="muted">マスを押すと、そのハンドの採用頻度がわかります。</p></div>
 <nav class="format-tabs" aria-label="ゲーム形式">{% for key,title in formats.items() %}<a href="{{ url_for('arena.ranges', format=key) }}" class="{{ 'selected' if fmt == key }}">{{ title }}</a>{% endfor %}</nav>
 <section class="panel range-panel">

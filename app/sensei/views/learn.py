@@ -194,3 +194,27 @@ def action_practice(topic):
         abort(404)
     bid = practice.create_batch('practice', action_lessons.title(topic), action_lessons.questions(topic))
     return redirect(url_for('practice.batch', batch_id=bid))
+
+
+@bp.route('/learn/range-guide')
+def range_guide():
+    from ..arena import POSITIONS, FORMATS, seats
+    try:
+        players = int(request.args.get('players', 6))
+    except (ValueError, TypeError):
+        abort(400)
+    fmt = request.args.get('format', 'mtt')
+    if players not in POSITIONS or fmt not in FORMATS:
+        abort(400)
+    hero = request.args.get('position', 'BTN/SB' if players == 2 else 'BTN')
+    if hero not in POSITIONS[players]:
+        abort(400)
+    order = POSITIONS[players]
+    index = order.index(hero)
+    behind = order[index+1:]
+    item = dict(players=players, hero=hero, street='プリフロップ', history=['自分より前は全員フォールド'],
+                pot=None, board=[], board_view=[], cards_view=[], seats=seats(players, hero, 0, folded=order[:index]))
+    for seat in item['seats']:
+        seat['stack'] = None
+    return render_template('range_guide.html', item=item, positions=POSITIONS,
+                           behind=behind, players=players, hero=hero, fmt=fmt, formats=FORMATS)
