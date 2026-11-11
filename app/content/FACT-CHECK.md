@@ -66,3 +66,9 @@
 - 公式例2問はfact-check担当が作成し、親が原典を独立照合（Navigating Range Disadvantage as the 3-Bettor、KQoチェック、KcQc smallstabフォールド）。NL500/6人/開始150bb/CO対BB/12bb3bet/854rだけに限定。現在pot/stack不明は表示を補完しない。
 - Claude Agentのfact-checker呼出しはavailable agents:noneで実行不可。上記独立担当が同じfact-checker手順で出典・計算確認を実施。
 - 3〜8人GTOレンジは全条件と利用権の確認された無料データ未確保。表の席を減らす変換や架空頻度は採用しない。今回追加はルール・算術18問と原典局面2問のみ。
+
+## 2026-11-11 公開レンジ資料・人数ガイド
+- 独立action_fact_checkがLightTHREE/公式動画リンク/GTO Wizardを調査。記事はMTT目安、後ろ人数基準。stack/ante/rake/ICM/raise条件は不明、本人の本編と169マス一致未確認。新range-reading5問とguideの断定回避を承認。
+- PokerStars/TDA一次資料と2〜8人のbehind全28非BB席を独立照合。8UTG後ろ7、6HJ後ろ4、BTN後ろ2、HU BTN/SB後ろ1。BB全foldは既に勝ちでクイズから除外。
+- PokerQz公開PDFを親・独立担当が照合。NL50/6max/100BB/UTG HJ CO fold/BTN first-in/Raise2.5BB。54s76.4+23.6=100、22の76.3+23.7=100。クラス集約値の読解として採用可能、特定スートへの頻度適用やGTO独立検証とは扱わない。
+- PokerQz本文には簡易レンジ表記もあるため公表PDFの値と混同しない。全ソルバー条件は未検証。Chromeの既存タブはツール接続不可、公開ページとPDFのみを確認した。

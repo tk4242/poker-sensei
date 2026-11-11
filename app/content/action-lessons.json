@@ -71,6 +71,18 @@
     "semibluff": {
       "title": "GTO Wizard — Picking the Right Semi-Bluffs",
       "url": "https://blog.gtowizard.com/picking-the-right-semi-bluffs/"
+    },
+    "lightthree": {
+      "title": "LightTHREE — ヨコサワのレンジを紹介する記事（二次資料・2026-11-11確認）",
+      "url": "https://light-three.com/hand-range-yokosawa/"
+    },
+    "stack_ranges": {
+      "title": "GTO Wizard — How Stack Sizes Change Your Range",
+      "url": "https://blog.gtowizard.com/how-stack-sizes-change-your-range/"
+    },
+    "positions": {
+      "title": "PokerStars — Poker positions: seats, names and their strategies",
+      "url": "https://www.pokerstars.com/poker/learn/news/poker-positions-seats-names-and-their-strategies/"
     }
   },
   "lessons": {
@@ -1018,6 +1030,131 @@
         "blockers",
         "explicit",
         "ev"
+      ]
+    },
+    "range-reading": {
+      "title": "レンジ表を正しく使う",
+      "short": "後ろの人数・形式・条件を照合",
+      "goal": "表を丸暗記する前に、自分の局面に使えるか確かめる",
+      "tag": "preflop",
+      "points": [
+        {
+          "title": "後ろの人数は、自分を数えない",
+          "text": "ここでは、誰も途中退席していないプリフロップの最初の行動順を数えます。8人卓のUTGなら自分以外の7人。6人卓のHJならCO・BTN・SB・BBの4人が後ろです。席名の暗記と人数の確認を組み合わせます。"
+        },
+        {
+          "title": "ボタンの「後ろ2人」とHUは別",
+          "text": "3人以上の卓でBTNの後ろにいるのはSBとBB。卓そのものが2人ならBTNはSBを兼ね、相手はBB1人です。「後ろ2人」を「2人卓」という意味に読み替えません。"
+        },
+        {
+          "title": "紹介記事は、まず出典の種類を確認",
+          "text": "紹介されたLightTHREEの記事は、トーナメント向けに後ろの人数と段階による目安を説明する二次資料です。元動画との一致は未確認。ここでは169マスを転載せず、検証済みのGTO解として採点する用途には使いません。"
+        },
+        {
+          "title": "人数だけでなく条件をそろえる",
+          "text": "スタック、アンティ、レイズ額、リングのレーキ、MTTのICM条件を確認します。同じ席や同じ手でも条件でレンジは変わります。条件が足りない表から実際の相手のハンドを断定しません。"
+        }
+      ],
+      "example": {
+        "title": "6人卓、HJで参加を考える",
+        "context": "最初の席UTG/LJがフォールドしてHJの番。CO・BTN・SB・BBはまだ行動前。具体的な参加ハンドや推奨額を決める例ではありません。",
+        "steps": [
+          "後ろはCO、BTN、SB、BBの4人。すでに降りたUTG/LJと自分は数えません。",
+          "次に有効スタック、アンティ、オープン額、MTTかリングかを確認します。",
+          "表の条件が一致しなければ、その表だけでレイズ／コール／フォールドの正解とはしません。"
+        ]
+      },
+      "questions": [
+        {
+          "prompt": "全8人が着席した通常の8人卓。プリフロップ最初のUTGより後ろに行動する人数は？",
+          "choices": [
+            "8人",
+            "7人",
+            "6人",
+            "2人"
+          ],
+          "answer": 1,
+          "explain": "自分を除く7人が後から行動します。ブラインドも数えます。",
+          "source_ids": [
+            "positions",
+            "rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "6人卓でUTG/LJがフォールドし、HJの番。CO・BTN・SB・BBはまだ行動前。HJの後ろは何人？",
+          "choices": [
+            "3人",
+            "5人",
+            "4人",
+            "2人"
+          ],
+          "answer": 2,
+          "explain": "CO・BTN・SB・BBの4人です。卓全体の人数ではなく、自分より後ろにいる人を数えます。",
+          "source_ids": [
+            "positions",
+            "rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "通常の6人卓でBTNの後ろはSB・BBの2人。この「後ろ2人」と、最初から2人卓のHUは同じ？",
+          "choices": [
+            "違う。HUではBTNがSBを兼ね、相手はBB1人",
+            "同じ。BTNの相手は常に2人",
+            "同じ。HUでもBTNとSBは別の人",
+            "違う。HUではボタンがない"
+          ],
+          "answer": 0,
+          "explain": "多人数卓のBTNにはSBとBBが後ろにいます。HUではBTN/SBとBBの2席だけです。",
+          "source_ids": [
+            "positions",
+            "hu_rules"
+          ],
+          "label": "RULE"
+        },
+        {
+          "prompt": "トーナメント用と記された表を、レーキありのリングへ条件確認なしで使ってよい？",
+          "choices": [
+            "人数が同じなら必ず使える",
+            "同じハンドなら必ず使える",
+            "有名選手の表なら条件は不要",
+            "そのまま同じ解として使わず、レーキ・スタック等を照合する"
+          ],
+          "answer": 3,
+          "explain": "ゲーム条件が変わればレンジも変わります。スタックやレーキ、アンティ、ベット額などをそろえます。",
+          "source_ids": [
+            "explicit",
+            "stack_ranges"
+          ],
+          "label": "THEORY"
+        },
+        {
+          "prompt": "記事の「3ベットは相手の基準より＋2」という目安から、実際に3ベットした相手は必ずその範囲だけだと断定できる？",
+          "choices": [
+            "できる。すべての相手が従う",
+            "できない。目安は実際の相手の範囲を保証しない",
+            "できる。スタックや額は関係ない",
+            "できる。リングでもMTTでも同じ"
+          ],
+          "answer": 1,
+          "explain": "紹介記事の簡略化された目安と、特定条件の戦略や実際の相手の行動は別です。相手の席・額・スタック・それまでの行動も確認します。",
+          "source_ids": [
+            "lightthree",
+            "explicit",
+            "stack_ranges"
+          ],
+          "label": "THEORY"
+        }
+      ],
+      "source_ids": [
+        "lightthree",
+        "positions",
+        "rules",
+        "hu_rules",
+        "explicit",
+        "stack_ranges",
+        "mtt3bet"
       ]
     }
   }

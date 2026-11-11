@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="sensei-ui-version" content="decisions-v5">
+<meta name="sensei-ui-version" content="range-guide-v6">
 <meta name="robots" content="noindex, nofollow">
 <title>{% block title %}ポーカー先生{% endblock %}</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='decisions-v5') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='range-guide-v6') }}">
 <link rel="icon" href="{{ url_for('static', filename='icon.svg') }}" type="image/svg+xml">
-<link rel="stylesheet" href="{{ url_for('static', filename='table.css', v='decisions-v5') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='studio.css', v='decisions-v5') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='table.css', v='range-guide-v6') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='studio.css', v='range-guide-v6') }}">
 </head>
 <body class="{% block body_class %}{% endblock %}">
 {% macro navigation_links() -%}
@@ -57,7 +57,7 @@
   <a href="{{ url_for('coach.index') }}" class="{{ 'on' if ep.startswith('coach.') }}"><b>☺</b>コーチ</a>
 </nav>
 {% endif %}
-<script src="{{ url_for('static', filename='app.js', v='decisions-v5') }}"></script>
-<script src="{{ url_for('static', filename='table.js', v='decisions-v5') }}"></script>
+<script src="{{ url_for('static', filename='app.js', v='range-guide-v6') }}"></script>
+<script src="{{ url_for('static', filename='table.js', v='range-guide-v6') }}"></script>
 </body>
 </html>

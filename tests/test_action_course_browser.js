@@ -14,7 +14,7 @@ const assert = require('node:assert/strict');
     await page.locator('[name=user]').fill('koja');
     await page.locator('[name=password]').fill('correct-horse-battery');
     await page.locator('form button').click();
-    const topics = ['actions', 'ranges', 'flop', 'sizing', 'threebet', 'turnriver', 'hu', 'bluff'];
+    const topics = ['actions', 'ranges', 'flop', 'sizing', 'threebet', 'turnriver', 'hu', 'bluff', 'range-reading'];
     for (const topic of topics) {
       await page.goto(base + '/learn/actions/' + topic);
       await page.locator('.model-note summary').click();
@@ -48,6 +48,6 @@ const assert = require('node:assert/strict');
     await p.getByRole('link', { name: '復習する', exact: true }).click();
     assert(await p.locator('form.quiz').isVisible());
     assert.deepEqual(errors, []);
-    console.log('PASS: 8 lessons / 40 answers / result-return links / 36 viewports / JS-off quiz and review');
+    console.log('PASS: 9 lessons / 45 answers / result-return links / 40 viewports / JS-off quiz and review');
   } finally { await browser.close(); }
 })().catch(e => { console.error(e); process.exitCode = 1; });

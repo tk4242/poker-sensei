@@ -15,7 +15,7 @@ class ActionLessonTests(unittest.TestCase):
     def test_all_lessons_grade_and_save_progress(self):
         from sensei import action_lessons, practice
         topics = list(action_lessons.data()['lessons'])
-        self.assertEqual(topics, ['actions', 'ranges', 'flop', 'sizing', 'threebet', 'turnriver', 'hu', 'bluff'])
+        self.assertEqual(topics, ['actions', 'ranges', 'flop', 'sizing', 'threebet', 'turnriver', 'hu', 'bluff', 'range-reading'])
         for topic in topics:
             with self.subTest(topic=topic):
                 page = self.c.get('/learn/actions/' + topic)
@@ -32,7 +32,7 @@ class ActionLessonTests(unittest.TestCase):
                     le = next(le for le in action_lessons.overview() if le['topic'] == topic)
                     self.assertEqual(le['score'], 5)
                     self.assertTrue(le['completed'])
-        self.assertIn('全8テーマ', self.c.get('/learn/actions').text)
+        self.assertIn('全9テーマ', self.c.get('/learn/actions').text)
 
     def test_wrong_answers_enter_existing_review_and_keep_explanations(self):
         from sensei import action_lessons, practice
@@ -65,8 +65,8 @@ class ActionLessonTests(unittest.TestCase):
                     self.assertIn(item['label'], ['RULE', 'THEORY'])
                     self.assertTrue(item['source'])
                     self.assertTrue(all(s['url'].startswith('https://') for s in item['source']))
-        self.assertEqual(len(keys), 40)
-        self.assertEqual(len(set(keys)), 40)
+        self.assertEqual(len(keys), 45)
+        self.assertEqual(len(set(keys)), 45)
 
     def test_completion_uses_latest_four_of_five(self):
         from sensei import action_lessons, practice

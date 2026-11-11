@@ -253,3 +253,14 @@
 - PokerStars — What is a 3-bet?: https://www.pokerstars.com/poker/learn/news/what-is-a-3-bet-and-when-should-you-3-bet/
 - GTO Wizard — Navigating Range Disadvantage as the 3-Bettor: https://blog.gtowizard.com/navigating-range-disadvantage-as-the-3-bettor/
 - 原典のGTO例はNL500・6人・開始150bb・CO対BB・12bbへの3bet・854rに限定。未知のポット/残りスタック/頻度は補完しない。その他18問はルール・算術の独自例。
+
+## 2026-11-11 レンジ資料調査
+- LightTHREE（二次資料・MTT簡略目安）: https://light-three.com/hand-range-yokosawa/
+- 記事の参照元動画（本編未照合）: https://www.youtube.com/watch?v=NDouTGvor-k
+- GTO Wizard 解の比較条件: https://blog.gtowizard.com/why-doesnt-my-solution-match-gto-wizard/
+- GTO Wizard stack/ante/rake: https://blog.gtowizard.com/how-stack-sizes-change-your-range/
+- PokerQz公式範囲・class集約説明: https://pokerqz.com/ja/tools/node
+- PokerQz公式PDF（2026-06-29版）: https://pokerqz.com/images/tools/node/pokerqz-nl50-6max-100bb-btn-open-range-20260629.pdf
+- PokerQz cash/MTT BTN入口: https://pokerqz.com/ja/tools/node/btn-open / https://pokerqz.com/ja/tools/node/mtt-btn-open
+- PokerQz利用範囲を確認: https://pokerqz.com/ja/terms-of-use
+- 採用範囲：後ろ人数の独自計算、条件を読む教材、公式PDF2例の混合戦略読解。全表を複製しない。各クラス集約値を特定コンボへ適用しない。
